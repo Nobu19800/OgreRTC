@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<Imageset Name="CHR000" Imagefile="CHR000.png" NativeHorzRes="128" NativeVertRes="128" AutoScaled="true">
+	<Image Name="Marge1" XPos="0" YPos="0" Width="16" Height="16" />
+	<Image Name="Marge2" XPos="16" YPos="0" Width="16" Height="16" />
+	<Image Name="Marge3" XPos="32" YPos="0" Width="16" Height="16" />
+	<Image Name="aMarge1" XPos="48" YPos="0" Width="16" Height="16" />
+	<Image Name="aMarge2" XPos="64" YPos="0" Width="16" Height="16" />
+	<Image Name="aMarge3" XPos="80" YPos="0" Width="16" Height="16" />
+</Imageset>
