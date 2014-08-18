@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<Imageset Name="pipo-btleffect021" Imagefile="pipo-btleffect021.png" NativeHorzRes="1024" NativeVertRes="128" AutoScaled="true">
-	<Image Name="0" XPos="0" YPos="0" Width="120" Height="120" />
-	<Image Name="1" XPos="0" YPos="120" Width="320" Height="120" />
-	<Image Name="2" XPos="0" YPos="240" Width="320" Height="120" />
-	<Image Name="3" XPos="0" YPos="360" Width="320" Height="120" />
-	<Image Name="4" XPos="0" YPos="480" Width="320" Height="120" />
-</Imageset>
