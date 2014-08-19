@@ -50,8 +50,10 @@ int str_size;
 
 CEGUI::utf32 keycodeToUTF32( unsigned int scanCode)
  {
+
  	CEGUI::utf32 utf = 0;
- 
+
+#ifdef _WIN32
  	BYTE keyboardState[256];
  	unsigned char ucBuffer[3];
  	static WCHAR deadKey = '\0';
@@ -123,7 +125,8 @@ CEGUI::utf32 keycodeToUTF32( unsigned int scanCode)
  			deadKey = ucBuffer[0];
  		}
  	}
- 
+#else
+#endif
  	return utf;
  }
 
