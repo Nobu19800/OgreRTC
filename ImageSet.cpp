@@ -1,4 +1,4 @@
-#include "ImageSet.h"
+ï»¿#include "ImageSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -25,7 +25,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	
 
 	QVBoxLayout *FileNameLayout = new QVBoxLayout();
-	QLabel *FileNamelabel = new QLabel(tc->toUnicode("ƒtƒ@ƒCƒ‹–¼"));
+	QLabel *FileNamelabel = new QLabel(tc->toUnicode("ãƒ•ã‚¡ã‚¤ãƒ«å"));
 	FileNameLayout->addWidget(FileNamelabel);
 	FileNameEdit = new QComboBox();
 	FileNameEdit->setLineEdit(new QLineEdit());
@@ -46,12 +46,12 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 
 	
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
 
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 
@@ -62,7 +62,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	INameEdit->setLineEdit(new QLineEdit());
 	INameEdit->addItem("full_image");
 	guiLayout->addWidget(INameEdit);
-	SetGUIButton = new QPushButton(tc->toUnicode("‰æ‘œ“\‚è•t‚¯"));
+	SetGUIButton = new QPushButton(tc->toUnicode("ç”»åƒè²¼ã‚Šä»˜ã‘"));
 	connect(SetGUIButton, SIGNAL(clicked()), this, SLOT(SetGUISlot()));
 	guiLayout->addWidget(SetGUIButton);
 	QGroupBox *guiGroup = new QGroupBox(tc->toUnicode("CEGUI"));

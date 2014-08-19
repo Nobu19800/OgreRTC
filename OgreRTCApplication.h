@@ -1,4 +1,4 @@
-#ifndef __OgreRTCApplication_h_
+ï»¿#ifndef __OgreRTCApplication_h_
 #define __OgreRTCApplication_h_
 
 #include <CEGUI.h>
@@ -44,7 +44,7 @@ class MySimulation;
 
 
 /*
-*Ogre3D‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOŠÇ—ƒNƒ‰ƒX
+*Ogre3Dã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç®¡ç†ã‚¯ãƒ©ã‚¹
 */
  
 class OgreRTCApplication : public BaseApplication, public SingletonT<OgreRTCApplication>
@@ -65,13 +65,13 @@ public:
 	
 
 	/*
-	*ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ì’Ç‰Á‚ÌŠÖ”
+	*ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®è¿½åŠ ã®é–¢æ•°
 	*/
 	void AddFileSystem(const char *name);
 	std::vector<std::string> FileSystems;
 	
 	/*
-	*ƒJƒƒ‰‚ÌˆÊ’uAp¨A‹——£‚Ìİ’è‚ÌŠÖ”
+	*ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã€å§¿å‹¢ã€è·é›¢ã®è¨­å®šã®é–¢æ•°
 	*/
 	void UpdateCameraPQ(float px, float py, float pz, float roll, float pitch, float yaw, float len);
 	void MoveCameraPos(float dx, float dy);
@@ -80,48 +80,48 @@ public:
 	
 
 	/*
-	*3Dƒ‚ƒfƒ‹‚Ìì¬‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã®ä½œæˆã®é–¢æ•°
 	*/
 	MyLink *SetBody(const char* n,const char* s);
 	
 	
 	/*
-	*3Dƒ‚ƒfƒ‹‚ÌF‚Ìİ’è‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã®è‰²ã®è¨­å®šã®é–¢æ•°
 	*/
 	void setEColor(MyLink *ml, float r, float g, float b, float a);
 	/*
-	*3Dƒ‚ƒfƒ‹‚Ìíœ‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã®å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyBody(MyLink *link);
 
 	/*
-	*‘S‚Ä‚Ì3Dƒ‚ƒfƒ‹‚Ìíœ‚ÌŠÖ”
+	*å…¨ã¦ã®3Dãƒ¢ãƒ‡ãƒ«ã®å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAllBody();
 
 	
 	
 	/*
-	*3Dƒ‚ƒfƒ‹‚Ì–¼‘O‚ğæ“¾‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã®åå‰ã‚’å–å¾—ã®é–¢æ•°
 	*/
 	std::string GetBodyName(MyLink *link);
 
 	/*
-	*ŒõŒ¹‚ÌˆÊ’uİ’è‚ÌŠÖ”
+	*å…‰æºã®ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetLightPosition(float x, float y, float z);
 	/*
-	*‰e‚ÌF‚Ìİ’è‚ÌŠÖ”
+	*å½±ã®è‰²ã®è¨­å®šã®é–¢æ•°
 	*/
 	void SetShadowColour(float r, float g, float b);
 	/*
-	*ŒõŒ¹‚ÌF‚Ìİ’è‚ÌŠÖ”
+	*å…‰æºã®è‰²ã®è¨­å®šã®é–¢æ•°
 	*/
 	void SetLightColor(float r, float g, float b);
 
 
 	/*
-	*ƒJƒƒ‰‚Ìp¨İ’è‚ÌŠÖ”
+	*ã‚«ãƒ¡ãƒ©ã®å§¿å‹¢è¨­å®šã®é–¢æ•°
 	*/
 	void CameraRoll(float ang);
 	void CameraPitch(float ang);
@@ -130,22 +130,22 @@ public:
 	void SetCameraQuaternion(float w, float x, float y, float z);
 
 	/*
-	*ƒJƒƒ‰‚ÌˆÊ’uİ’è‚ÌŠÖ”
+	*ã‚«ãƒ¡ãƒ©ã®ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetCameraPosition(float x, float y, float z);
 	
 
 	/*
-	*ƒXƒ^ƒeƒBƒbƒNƒCƒ[ƒWì¬‚ÌŠÖ”
+	*ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateStaticImage(const char* name);
 	/*
-	*ƒXƒ^ƒeƒBƒbƒNƒeƒLƒXƒgì¬‚ÌŠÖ”
+	*ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯ãƒ†ã‚­ã‚¹ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateStaticText(const char* name);
 	
 	/*
-	*GUIíœ‚ÌŠÖ”
+	*GUIå‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyGui(MyGUI *label);
 	
@@ -157,21 +157,21 @@ public:
 	
 
 	/*
-	*ƒ{ƒ^ƒ“ì¬‚ÌŠÖ”
+	*ãƒœã‚¿ãƒ³ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateButton(const char* name);
 	/*
-	*ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool BottonClickedHandler(const CEGUI::EventArgs &event);
 
 	/*
-	*ƒeƒLƒXƒgƒGƒfƒBƒ^ì¬‚ÌŠÖ”
+	*ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateEditBox(const char* name);
 	
 	/*
-	*ƒRƒ“ƒ{ƒ{ƒbƒNƒXì¬‚ÌŠÖ”
+	*ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateComboBox(const char* name);
 	
@@ -180,246 +180,246 @@ public:
 	
 
 	/*
-	*ƒXƒ‰ƒCƒ_[ì¬‚ÌŠÖ”
+	*ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateSlider(const char* name);
 	
 	/*
-	*ƒXƒ‰ƒCƒ_[‚Ì’l‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®å€¤ãŒå¤‰åŒ–ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool SliderChangedHandler(const CEGUI::EventArgs &event);
 
 	/*
-	*ƒ^ƒCƒgƒ‹ƒo[ì¬‚ÌŠÖ”
+	*ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateTitlebar(const char* name);
 	/*
-	*ƒtƒŒ[ƒ€ƒEƒCƒ“ƒhƒEì¬‚ÌŠÖ”
+	*ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateFrameWindow(const char* name);
 	/*
-	*cƒXƒNƒ[ƒ‹ƒo[ì¬‚ÌŠÖ”
+	*ç¸¦ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateVerticalScrollbar(const char* name);
 	/*
-	*‰¡ƒXƒNƒ[ƒ‹ƒo[ì¬‚ÌŠÖ”
+	*æ¨ªã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateHorizontalScrollbar(const char* name);
 	/*
-	*ƒvƒƒOƒŒƒXƒo[ì¬‚ÌŠÖ”
+	*ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateProgressBar(const char* name);
 	/*
-	*ƒ}ƒ‹ƒ`ƒ‰ƒCƒ“ƒGƒfƒBƒbƒgì¬‚ÌŠÖ”
+	*ãƒãƒ«ãƒãƒ©ã‚¤ãƒ³ã‚¨ãƒ‡ã‚£ãƒƒãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateMultiLineEditbox(const char* name);
 	/*
-	*ƒŠƒXƒgƒ{ƒbƒNƒXì¬‚ÌŠÖ”
+	*ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateListbox(const char* name);
 	/*
-	*ƒRƒ“ƒ{ƒhƒƒbƒvƒŠƒXƒgì¬‚ÌŠÖ”
+	*ã‚³ãƒ³ãƒœãƒ‰ãƒ­ãƒƒãƒ—ãƒªã‚¹ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateComboDropList(const char* name);
 	/*
-	*ƒ`ƒFƒbƒNƒ{ƒbƒNƒXì¬‚ÌŠÖ”
+	*ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateCheckbox(const char* name);
 	/*
-	*ƒ‰ƒWƒIƒ{ƒ^ƒ“ì¬‚ÌŠÖ”
+	*ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateRadioButton(const char* name);
 	/*
-	*ƒc[ƒ‹ƒ`ƒbƒvì¬‚ÌŠÖ”
+	*ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateTooltip(const char* name);
 	/*
-	*ƒAƒCƒeƒ€ƒŠƒXƒgƒ{ƒbƒNƒXì¬‚ÌŠÖ”
+	*ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateItemListbox(const char* name);
 	/*
-	*ƒŠƒXƒgƒ{ƒbƒNƒXƒAƒCƒeƒ€ì¬‚ÌŠÖ”
+	*ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateListboxItem(const char* name);
 	/*
-	*ƒXƒsƒi[ì¬‚ÌŠÖ”
+	*ã‚¹ãƒ”ãƒŠãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateSpinner(const char* name);
 	/*
-	*ƒXƒNƒ[ƒ‹ƒuƒ‹ƒy[ƒ“ì¬‚ÌŠÖ”
+	*ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ–ãƒ«ãƒšãƒ¼ãƒ³ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateScrollablePane(const char* name);
 	/*
-	*ƒŠƒXƒgƒwƒbƒ_[ƒZƒOƒƒ“ƒgì¬‚ÌŠÖ”
+	*ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã‚»ã‚°ãƒ¡ãƒ³ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateListHeaderSegment(const char* name);
 	/*
-	*ƒŠƒXƒgƒwƒbƒ_[ì¬‚ÌŠÖ”
+	*ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateListHeader(const char* name);
 	/*
-	*ƒ}ƒ‹ƒ`ƒRƒƒ“ƒŠƒXƒgì¬‚ÌŠÖ”
+	*ãƒãƒ«ãƒã‚³ãƒ­ãƒ³ãƒªã‚¹ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateMultiColumnList(const char* name);
 	/*
-	*ƒƒjƒ…[ƒAƒCƒeƒ€ì¬‚ÌŠÖ”
+	*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateMenuItem(const char* name);
 	/*
-	*ƒƒjƒ…[ƒo[ì¬‚ÌŠÖ”
+	*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateMenubar(const char* name);
 	/*
-	*ƒ|ƒbƒvƒAƒCƒeƒ€ƒƒjƒ…[ì¬‚ÌŠÖ”
+	*ãƒãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreatePopupMenu(const char* name);
 	/*
-	*ƒ^ƒuƒ{ƒ^ƒ“ƒy[ƒ“ì¬‚ÌŠÖ”
+	*ã‚¿ãƒ–ãƒœã‚¿ãƒ³ãƒšãƒ¼ãƒ³ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateTabButtonPane(const char* name);
 	/*
-	*ƒ^ƒuƒRƒ“ƒeƒLƒXƒgƒy[ƒ“ì¬‚ÌŠÖ”
+	*ã‚¿ãƒ–ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒšãƒ¼ãƒ³ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateTabContentPane(const char* name);
 	/*
-	*ƒ^ƒuƒRƒ“ƒgƒ[ƒ‹ì¬‚ÌŠÖ”
+	*ã‚¿ãƒ–ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateTabControl(const char* name);
 
 
 	/*
-	*ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ãŒå¤‰åŒ–ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool CheckedHandler(const CEGUI::EventArgs &event);
 	/*
-	*ƒ‰ƒWƒIƒ{ƒ^ƒ“‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ãŒå¤‰åŒ–ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool RadioHandler(const CEGUI::EventArgs &event);
 	/*
-	*ƒŠƒXƒgƒ{ƒbƒNƒX‚Ì‘I‘ğ‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®é¸æŠãŒå¤‰åŒ–ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool ListBoxChangedHandler(const CEGUI::EventArgs &event);
 	/*
-	*ƒRƒ“ƒ{ƒ{ƒbƒNƒX‚Ì‘I‘ğ‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®é¸æŠãŒå¤‰åŒ–ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool ComboBoxChangedHandler(const CEGUI::EventArgs &event);
 	/*
-	*ƒXƒNƒ[ƒ‹ƒo[‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ãŒå¤‰åŒ–ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool ScrollPosChangedHandler(const CEGUI::EventArgs &event);
 
 	/*
-	*GUIì¬‚ÌŠÖ”
+	*GUIä½œæˆã®é–¢æ•°
 	*/
 	MyGUI *CreateGUI(const char* type, const char* name);
 
 	/*
-	*GUI‚ÌƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚éŠÖ”
+	*GUIã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹é–¢æ•°
 	*/
 	void SetCallScript(const char* name, const char* type);
 	
 	
 
 	/*
-	*GUI‚ğƒL[‚Å‰Ÿ‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*GUIã‚’ã‚­ãƒ¼ã§æŠ¼ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool GUIKeyUpHandler(const CEGUI::EventArgs &event);
 	/*
-	*GUI‚©‚çƒL[‚ğ—£‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*GUIã‹ã‚‰ã‚­ãƒ¼ã‚’é›¢ã—ãŸã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	bool GUIKeyDownHandler(const CEGUI::EventArgs &event);
 
 
 	
 	/*
-	*XV‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*æ›´æ–°æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void update(float t);
 
 	
 
 	/*
-	*ƒp[ƒeƒBƒNƒ‹ì¬‚ÌŠÖ”
+	*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ä½œæˆã®é–¢æ•°
 	*/
 	myParticle *CreateParticle(const char* name, const char* file_name);
 	
 	/*
-	*ƒp[ƒeƒBƒNƒ‹íœ‚ÌŠÖ”
+	*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyParticle(myParticle *ml);
 	/*
-	*‘S‚Äƒp[ƒeƒBƒNƒ‹íœ‚ÌŠÖ”
+	*å…¨ã¦ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAllParticle();
 
 	
 
 	/*
-	*ƒXƒJƒCƒ{ƒbƒNƒXì¬‚ÌŠÖ”
+	*ã‚¹ã‚«ã‚¤ãƒœãƒƒã‚¯ã‚¹ä½œæˆã®é–¢æ•°
 	*/
 	void SetSkyBox(const char* filename, int Size);
 	void RemoveSkyBox();
 	
 	/*
-	*’n–Êì¬‚ÌŠÖ”
+	*åœ°é¢ä½œæˆã®é–¢æ•°
 	*/
 	MyLink *SetFloor(const char* name, const char* name2, const char* filename, int Size, int direction);
 	/*
-	*’n–Êíœ‚ÌŠÖ”
+	*åœ°é¢å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyFloor();
 	
 	
 	
 	/*
-	*‰æ‘œì¬‚ÌŠÖ”
+	*ç”»åƒä½œæˆã®é–¢æ•°
 	*/
 	MyImageSet *CreateGuiImageSet(const char* name, const char* filename);
 	/*
-	*‰æ‘œíœ‚ÌŠÖ”
+	*ç”»åƒå‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyImage(MyImageSet *MIS);
 	/*
-	*‘S‰æ‘œíœ‚ÌŠÖ”
+	*å…¨ç”»åƒå‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAllImage();
 
 	
 
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“ì¬‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä½œæˆã®é–¢æ•°
 	*/
 	MyAnimation *CreateAnimation(const char* name, float t);
 	
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“íœ‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAnimation(MyAnimation *man);
 	
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“‘Síœ‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å…¨å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAllAnimation();
 
 	
 	/*
-	*ŒõŒ¹ì¬‚ÌŠÖ”
+	*å…‰æºä½œæˆã®é–¢æ•°
 	*/
 	MyLight *CreateLight(const char* name);
 	
 	/*
-	*ŒõŒ¹íœ‚ÌŠÖ”
+	*å…‰æºå‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyLight(MyLight *ml);
 	
 	/*
-	*‘SŒõŒ¹íœ‚ÌŠÖ”
+	*å…¨å…‰æºå‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAllLight();
 	
 
 	/*
-	*ƒTƒuƒEƒCƒ“ƒhƒEì¬‚ÌŠÖ”
+	*ã‚µãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆã®é–¢æ•°
 	*/
 	SubWindow *SetSubWindow(const char* wName, const char* texName, const char* camName, const char* ImageSetName, const char* ImageName);
 	void DestroySubWindow(SubWindow *sw);
@@ -432,34 +432,34 @@ public:
 
 
 	/*
-	*ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒYæ“¾‚ÌŠÖ”
+	*ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºå–å¾—ã®é–¢æ•°
 	*/
 	Ogre::Vector2 getRenderWindowSize();
 	/*
-	*ƒJ[ƒ\ƒ‹ˆÊ’u‚Ì3Dƒ‚ƒfƒ‹‚ğæ“¾‚ÌŠÖ”
+	*ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®3Dãƒ¢ãƒ‡ãƒ«ã‚’å–å¾—ã®é–¢æ•°
 	*/
 	MyLink* GetQueryScene(float screenX, float screenY);
 
 	/*
-	*FPSİ’è‚ÌŠÖ”
+	*FPSè¨­å®šã®é–¢æ•°
 	*/
 	void SetSleepTime(int st);
 
 	/*
-	*RTC“Ç‚İ‚İ‚ÌŠÖ”
+	*RTCèª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	void OpenFile(const char *fname);
 	/*
-	*RTCíœ‚ÌŠÖ”
+	*RTCå‰Šé™¤ã®é–¢æ•°
 	*/
 	void CloseFile();
 	/*
-	*RTC‚Ì’â~‚ÌŠÖ”
+	*RTCã®åœæ­¢ã®é–¢æ•°
 	*/
 	void StopFile();
 
 	/*
-	*ƒm[ƒh‚ÌÚ‘±‚ÌŠÖ”
+	*ãƒãƒ¼ãƒ‰ã®æ¥ç¶šã®é–¢æ•°
 	*/
 	void AttachObj(MyLink *obj1, myParticle *obj2);
 	void AttachObj(MyLink *obj1, MyLight *obj2);
@@ -473,7 +473,7 @@ public:
 	void AttachObj(MyObject *n1, Ogre::MovableObject *o1,MyObject *n2);
 
 	/*
-	*ƒm[ƒh•ª—£‚ÌŠÖ”
+	*ãƒãƒ¼ãƒ‰åˆ†é›¢ã®é–¢æ•°
 	*/
 	void DeatachObj(MyLink *obj1);
 	void DeatachObj(myParticle *obj1);
@@ -483,17 +483,17 @@ public:
 	
 	
 	/*
-	*ƒm[ƒhíœ‚ÌŠÖ”
+	*ãƒãƒ¼ãƒ‰å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyNode(MyNode *mn);
 	
 	/*
-	*‘Sƒm[ƒh‚Ìíœ‚ÌŠÖ”
+	*å…¨ãƒãƒ¼ãƒ‰ã®å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAllNode();
 
 	/*
-	*–¼‘O‚©‚çŠeƒIƒuƒWƒFƒNƒg‚ğæ“¾
+	*åå‰ã‹ã‚‰å„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 	*/
 	MyLink* getBodyByName(const char* name);
 	MyGUI* getGUIByName(const char* name);
@@ -505,38 +505,38 @@ public:
 	MyNode* getNodeByName(const char* name);
 
 	/*
-	*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚Ì3Dƒ‚ƒfƒ‹‚Ìì¬
+	*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®3Dãƒ¢ãƒ‡ãƒ«ã®ä½œæˆ
 	*/
 	void CreateODEObj(MyLink *obj);
 	
 	/*
-	*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚Ì3Dƒ‚ƒfƒ‹‚Ìíœ
+	*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®3Dãƒ¢ãƒ‡ãƒ«ã®å‰Šé™¤
 	*/
 	void DestroyODEObj(MyLink *obj);
 
 	/*
-	*ƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	void save(std::string s);
 	/*
-	*ƒtƒ@ƒCƒ‹‘‚«‚İ‚ÌŠÖ”
+	*ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::string s);
 	/*
-	*‰Šú‰»‚ÌŠÖ”
+	*åˆæœŸåŒ–ã®é–¢æ•°
 	*/
 	bool newfile();
 	/*
-	*ƒŠƒZƒbƒg‚ÌŠÖ”
+	*ãƒªã‚»ãƒƒãƒˆã®é–¢æ•°
 	*/
 	void reset();
 	/*
-	*RTC‚ª‹N“®o—ˆ‚½‚Æ‚«‚ÉŒÄ‚Ño‚·ŠÖ”
+	*RTCãŒèµ·å‹•å‡ºæ¥ãŸã¨ãã«å‘¼ã³å‡ºã™é–¢æ•°
 	*/
 	void SetRTC();
 
 	/*
-	*GUI‚Ì‘€ì‚Ì‚İ‚Åì¬Aíœ‚Ì‚Å‚«‚éƒIƒuƒWƒFƒNƒg‚Ìì¬Aíœ‚ÌŠÖ”
+	*GUIã®æ“ä½œã®ã¿ã§ä½œæˆã€å‰Šé™¤ã®ã§ãã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã€å‰Šé™¤ã®é–¢æ•°
 	*/
 	MyLink *SetQtBody(const char* n,const char* s);
 	void DestroyQtBody(MyLink *link);
@@ -590,7 +590,7 @@ public:
 
 
 	/*
-	*ƒIƒuƒWƒFƒNƒg‚ÌÄ¶¬‚ÌŠÖ”
+	*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†ç”Ÿæˆã®é–¢æ•°
 	*/
 	void DestroyQtParticle(myParticle *ml);
 	void CreateQtBody(MyLink *link);
@@ -668,23 +668,23 @@ protected:
 	CEGUI::Window *sheet;
 	
 	/*
-	*ƒL[‚ğ‰Ÿ‚µ‚½‚ÉŒÄ‚Î‚ê‚éŠÖ”
+	*ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 	*/
 	virtual bool keyPressed(QKeyEvent *arg );
 	/*
-	*ƒL[‚ğ—£‚µ‚½‚ÉŒÄ‚Î‚ê‚éŠÖ”
+	*ã‚­ãƒ¼ã‚’é›¢ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 	*/
     virtual bool keyReleased(QKeyEvent *arg );
 	/*
-	*ƒ}ƒEƒX‚ğ“®‚©‚µ‚½‚ÉŒÄ‚Î‚ê‚éŠÖ”
+	*ãƒã‚¦ã‚¹ã‚’å‹•ã‹ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 	*/
     virtual bool mouseMoved(QMouseEvent *arg );
 	/*
-	*ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚ÉŒÄ‚Î‚ê‚éŠÖ”
+	*ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³æŠ¼ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 	*/
     virtual bool mousePressed(QMouseEvent *arg);
 	/*
-	*ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“—£‚µ‚½‚ÉŒÄ‚Î‚ê‚éŠÖ”
+	*ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³é›¢ã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 	*/
     virtual bool mouseReleased(QMouseEvent *arg);
 	bool inputMethodEvent(QInputMethodEvent *arg);

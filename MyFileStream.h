@@ -1,4 +1,4 @@
-
+ï»¿
 #ifndef MYFILESTREAM_H
 #define MYFILESTREAM_H
 
@@ -8,15 +8,15 @@
 #include <fstream>
 
 /*
-* •¶š‚Ì’u‚«Š·‚¦‚ÌŠÖ”
+* æ–‡å­—ã®ç½®ãæ›ãˆã®é–¢æ•°
 */
 std::string Replace( std::string String1, std::string String2, std::string String3 );
 /*
-* ƒoƒCƒiƒŠŒ`®‚Ì•¶š—ñ•Û‘¶‚ÌŠÖ”
+* ãƒã‚¤ãƒŠãƒªå½¢å¼ã®æ–‡å­—åˆ—ä¿å­˜ã®é–¢æ•°
 */
 void WriteString(std::string a, std::ofstream &ofs);
 /*
-* ƒoƒCƒiƒŠŒ`®‚Ì•¶š—ñ“Ç‚İ‚İ‚ÌŠÖ”
+* ãƒã‚¤ãƒŠãƒªå½¢å¼ã®æ–‡å­—åˆ—èª­ã¿è¾¼ã¿ã®é–¢æ•°
 */
 std::string ReadString(std::ifstream &ifs);
 

@@ -1,4 +1,4 @@
-#include "BornSet.h"
+ï»¿#include "BornSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -21,15 +21,15 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(BodyNameEdit);
 
 
-	NameEdit = SetSpinBox(tc->toUnicode("”Ô†"), 1, 0, layout);
+	NameEdit = SetSpinBox(tc->toUnicode("ç•ªå·"), 1, 0, layout);
 	
 
 	
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
-	ResetButton = new QPushButton(tc->toUnicode("ƒŠƒZƒbƒg"));
+	ResetButton = new QPushButton(tc->toUnicode("ãƒªã‚»ãƒƒãƒˆ"));
 	connect(ResetButton, SIGNAL(clicked()), this, SLOT(ResetSlot()));
 	layout->addWidget(ResetButton);
 
@@ -41,7 +41,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
 	PosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1000.0, -1000.0, posLayout);
 	connect(PosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosZSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -56,7 +56,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ScaleZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, 0.01, scaleLayout);
 	ScaleZspinBox->setValue(100.);
 	connect(ScaleZspinBox, SIGNAL(valueChanged(double)), this, SLOT(ScaleZSlot(double)));
-	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("Šg‘å—¦"));
+	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("æ‹¡å¤§çŽ‡"));
 	scaleGroup->setLayout(scaleLayout);
 	layout->addWidget(scaleGroup);
 
@@ -68,7 +68,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PitchspinBox, SIGNAL(valueChanged(double)), this, SLOT(PitchSlot(double)));
 	YawspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 360.0, 0.0, angleLayout);
 	connect(YawspinBox, SIGNAL(valueChanged(double)), this, SLOT(YawSlot(double)));
-	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("Žp¨"));
+	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("å§¿å‹¢"));
 	angleGroup->setLayout(angleLayout);
 	layout->addWidget(angleGroup);
 

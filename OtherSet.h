@@ -1,4 +1,4 @@
-#ifndef OTHERSET_H
+﻿#ifndef OTHERSET_H
 #define OTHERSET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �w�i�A�n�ʁAFPS�ݒ�p�E�B�W�F�b�g
+* 背景、地面、FPS設定用ウィジェット
 */
 
 class OtherSetWidget : public QWidget
@@ -45,29 +45,29 @@ public:
 
 public slots:
 	/*
-	*�w�i�A�n�ʂ̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*背景、地面の設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
 	/*
-	*�w�i�ݒ�{�^�����������Ƃ��̃X���b�g
+	*背景設定ボタンを押したときのスロット
 	*/
 	void SkyBoxSetSlot();
 	void DelSkyBoxSetSlot();
 	void SkyBoxSizeSlot(int value);
 	/*
-	*�n�ʍ쐬�{�^�����������Ƃ��̃X���b�g
+	*地面作成ボタンを押したときのスロット
 	*/
 	void FloorSetSlot();
 	/*
-	*�n�ʍ폜�{�^�����������Ƃ��̃X���b�g
+	*地面削除ボタンを押したときのスロット
 	*/
 	void DelFloorSetSlot();
 	void FloorSizeSlot(int value);
 	void FloorDirSlot(int value);
 	/*
-	*FPS�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*FPSスピンボックスの値を変更したときのスロット
 	*/
 	void TimeSlot(int value);
 

@@ -1,4 +1,4 @@
-#ifndef GUITEXTSET_H
+﻿#ifndef GUITEXTSET_H
 #define GUITEXTSET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* GUI�̃e�L�X�g�ݒ�p�E�B�W�F�b�g
+* GUIのテキスト設定用ウィジェット
 */
 
 class GUITextSetWidget : public QWidget
@@ -45,25 +45,25 @@ public:
 
 public slots:
 	/*
-	*GUI���ǉ��A�폜���ꂽ���̃X���b�g
+	*GUIが追加、削除された時のスロット
 	*/
 	void UpdateGUI();
 	/*
-	*GUI�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*GUIの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
 	/*
-	*�e�L�X�g�ݒ�{�^�����������Ƃ��̃X���b�g
+	*テキスト設定ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*�t�H���g�T�C�Y�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*フォントサイズ設定スピンボックスの値を変更したときのスロット
 	*/
 	void FontSizeSlot(int);
 	/*
-	*�e�L�X�g�̈ʒu�ݒ�{�^�����������Ƃ��̃X���b�g
+	*テキストの位置設定ボタンを押したときのスロット
 	*/
 	void TextTopAlignedSlot();
 	void BottomAlignedSlot();
@@ -75,11 +75,11 @@ private slots:
 	void RightAlignedSlot();
 	void HorzCentredSlot();
 	/*
-	*�ݒ菉�����{�^�����������Ƃ��̃X���b�g
+	*設定初期化ボタンを押したときのスロット
 	*/
 	void ClearPropertiesSlot();
 	/*
-	*GUI�̖��O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*GUIの名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 

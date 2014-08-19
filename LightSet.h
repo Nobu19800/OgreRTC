@@ -1,4 +1,4 @@
-#ifndef LIGHTSET_H
+﻿#ifndef LIGHTSET_H
 #define LIGHTSET_H
 
 
@@ -33,7 +33,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �����̍쐬�A�ݒ�p�E�B�W�F�b�g
+* 光源の作成、設定用ウィジェット
 */
 
 class LightSetWidget : public QWidget
@@ -51,7 +51,7 @@ signals:
 
 public slots:
 	/*
-	*�����̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*光源の設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
@@ -59,33 +59,33 @@ public slots:
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�F�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*色設定スピンボックスの値を変更したときのスロット
 	*/
 	void RedSlot(double value);
 	void GreenSlot(double value);
 	void BlueSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 
@@ -97,15 +97,15 @@ private slots:
 private:
 	bool up_flag;
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
 	/*
-	* �F�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 色設定スピンボックスの値を反映する関数
 	*/
 	void UpdateColor();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void UpdateVisi(bool visi);
 

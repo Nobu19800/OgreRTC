@@ -1,4 +1,4 @@
-#ifndef NODESET_H
+﻿#ifndef NODESET_H
 #define NODESET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �m�[�h�̐ݒ�p�E�B�W�F�b�g
+* ノードの設定用ウィジェット
 */
 
 class NodeSetWidget : public QWidget
@@ -45,26 +45,26 @@ public:
 
 public slots:
 	/*
-	*�m�[�h�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*ノードの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
 	/*
-	*�I�u�W�F�N�g�̎�ރR���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*オブジェクトの種類コンボボックスの番号が変わったときのスロット
 	*/
 	void NumSlot(int value);
 	void NameSlot(int value);
 	/*
-	*�ڑ��{�^�����������Ƃ��̃X���b�g
+	*接続ボタンを押したときのスロット
 	*/
 	void AttachSlot();
 	/*
-	*�����{�^�����������Ƃ��̃X���b�g
+	*分離ボタンを押したときのスロット
 	*/
 	void DettachSlot();
 	/*
-	*�ڑ������I�u�W�F�N�g�̃R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*接続したオブジェクトのコンボボックスの番号が変わったときのスロット
 	*/
 	void AttachNumSlot(int value);
 	void DettachNumSlot(int value);

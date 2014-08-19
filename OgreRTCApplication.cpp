@@ -1,6 +1,5 @@
-#include "OgreRTCApplication.h"
-#include <windows.h>
-#include <process.h>
+ï»¿#include "OgreRTCApplication.h"
+
 #include "UnicodeF.h"
 
 
@@ -816,7 +815,7 @@ OgreRTCApplication::~OgreRTCApplication(void)
 {
 	/*if (hTh != NULL) {
         CloseHandle(hTh);
-        printf("ƒnƒ“ƒhƒ‹ƒNƒ[ƒY‚µ‚Ü‚µ‚½\n");
+        printf("ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚ºã—ã¾ã—ãŸ\n");
     }
 
 	dJointGroupEmpty (contactgroup);

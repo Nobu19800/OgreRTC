@@ -1,4 +1,4 @@
-#ifndef GUISET_H
+﻿#ifndef GUISET_H
 #define GUISET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* GUI�쐬�A�ݒ�p�E�B�W�F�b�g
+* GUI作成、設定用ウィジェット
 */
 
 class GUISetWidget : public QWidget
@@ -45,66 +45,66 @@ public:
 
 signals:
 	/*
-	* GUI���쐬�A�폜�����Ƃ��̃V�O�i��
+	* GUIを作成、削除したときのシグナル
 	*/
 	void UpdateGUI();
 
 public slots:
 	/*
-	*GUI�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*GUIの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*�傫���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*大きさ設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	/*
-	*�����x�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*透明度設定スピンボックスの値を変更したときのスロット
 	*/
 	void AlphaSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 	/*
-	*�t���[���̕\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*フレームの表示、非表示設定ボタンを押したときのスロット
 	*/
 	void FrameSlot();
 	void unFrameSlot();
 	/*
-	*�w�i�̕\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*背景の表示、非表示設定ボタンを押したときのスロット
 	*/
 	void BackGroundSlot();
 	void unBackGroundSlot();
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*�E�B���h�E�ݒ�{�^�����������Ƃ��̃X���b�g
+	*ウィンドウ設定ボタンを押したときのスロット
 	*/
 	void WindowSlot();
 
@@ -112,27 +112,27 @@ private slots:
 private:
 	bool up_flag;
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
 	/*
-	* �p���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void UpdateRot();
 	/*
-	* �傫���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 大きさ設定スピンボックスの値を反映する関数
 	*/
 	void UpdateSize();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void UpdateVisi(bool visi);
 	/*
-	* �t���[���̕\���ݒ�{�^���𔽉f����֐�
+	* フレームの表示設定ボタンを反映する関数
 	*/
 	void UpdateFrame(bool visi);
 	/*
-	* �w�i�̕\���ݒ�{�^���𔽉f����֐�
+	* 背景の表示設定ボタンを反映する関数
 	*/
 	void UpdateBackGround(bool visi);
 

@@ -1,4 +1,4 @@
-#include <QtGui>
+ï»¿#include <QtGui>
 #include <QLabel>
 #include <QTextEdit>
 #include <qfont.h>
@@ -47,35 +47,35 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 	mBodySetWidget = new BodySetWidget();
-	tabWidget->addTab(mBodySetWidget, tc->toUnicode("ƒ{ƒfƒB"));
+	tabWidget->addTab(mBodySetWidget, tc->toUnicode("ãƒœãƒ‡ã‚£"));
 	mBornSetWidget = new BornSetWidget();
-	tabWidget->addTab(mBornSetWidget, tc->toUnicode("ƒ{[ƒ“"));
+	tabWidget->addTab(mBornSetWidget, tc->toUnicode("ãƒœãƒ¼ãƒ³"));
 	mCameraSetWidget = new CameraSetWidget();
-	tabWidget->addTab(mCameraSetWidget, tc->toUnicode("ƒJƒƒ‰"));
+	tabWidget->addTab(mCameraSetWidget, tc->toUnicode("ã‚«ãƒ¡ãƒ©"));
 	mGUISetWidget = new GUISetWidget();
 	tabWidget->addTab(mGUISetWidget, tc->toUnicode("CEGUI"));
 	mGUITextSetWidget = new GUITextSetWidget();
-	tabWidget->addTab(mGUITextSetWidget, tc->toUnicode("CEGUI‚ÌƒeƒLƒXƒg"));
+	tabWidget->addTab(mGUITextSetWidget, tc->toUnicode("CEGUIã®ãƒ†ã‚­ã‚¹ãƒˆ"));
 	mImageSetWidget = new ImageSetWidget();
-	tabWidget->addTab(mImageSetWidget, tc->toUnicode("CEGUI‚Ì‰æ‘œ"));
+	tabWidget->addTab(mImageSetWidget, tc->toUnicode("CEGUIã®ç”»åƒ"));
 	mParticleSetWidget = new ParticleSetWidget();
-	tabWidget->addTab(mParticleSetWidget, tc->toUnicode("ƒp[ƒeƒBƒNƒ‹"));
+	tabWidget->addTab(mParticleSetWidget, tc->toUnicode("ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«"));
 	mSubWindowSetWidget = new SubWindowSetWidget();
-	tabWidget->addTab(mSubWindowSetWidget, tc->toUnicode("‰æ–Ê•ªŠ„"));
+	tabWidget->addTab(mSubWindowSetWidget, tc->toUnicode("ç”»é¢åˆ†å‰²"));
 	mAnimationSetWidget = new AnimationSetWidget();
-	tabWidget->addTab(mAnimationSetWidget, tc->toUnicode("ƒAƒjƒ[ƒVƒ‡ƒ“"));
+	tabWidget->addTab(mAnimationSetWidget, tc->toUnicode("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³"));
 	mLightSetWidget = new LightSetWidget();
-	tabWidget->addTab(mLightSetWidget, tc->toUnicode("ŒõŒ¹"));
+	tabWidget->addTab(mLightSetWidget, tc->toUnicode("å…‰æº"));
 	mNodeSetWidget = new NodeSetWidget();
-	tabWidget->addTab(mNodeSetWidget, tc->toUnicode("ƒm[ƒh"));
+	tabWidget->addTab(mNodeSetWidget, tc->toUnicode("ãƒãƒ¼ãƒ‰"));
 	mSimulationSetWidget = new SimulationSetWidget();
-	tabWidget->addTab(mSimulationSetWidget, tc->toUnicode("•¨—ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“(İ’è)"));
+	tabWidget->addTab(mSimulationSetWidget, tc->toUnicode("ç‰©ç†ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³(è¨­å®š)"));
 	mSimBodySetWidget = new SimBodySetWidget();
-	tabWidget->addTab(mSimBodySetWidget, tc->toUnicode("•¨—ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“(ƒ{ƒfƒB)"));
+	tabWidget->addTab(mSimBodySetWidget, tc->toUnicode("ç‰©ç†ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³(ãƒœãƒ‡ã‚£)"));
 	mSimJointSetWidget = new SimJointSetWidget();
-	tabWidget->addTab(mSimJointSetWidget, tc->toUnicode("•¨—ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“(ƒWƒ‡ƒCƒ“ƒg)"));
+	tabWidget->addTab(mSimJointSetWidget, tc->toUnicode("ç‰©ç†ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³(ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆ)"));
 	mOtherSetWidget = new OtherSetWidget();
-	tabWidget->addTab(mOtherSetWidget, tc->toUnicode("‚»‚Ì‘¼"));
+	tabWidget->addTab(mOtherSetWidget, tc->toUnicode("ãã®ä»–"));
 
 	connect(mBodySetWidget, SIGNAL(UpdateBody()), mBornSetWidget, SLOT(UpdateBody()));
 	connect(mGUISetWidget, SIGNAL(UpdateGUI()), mGUITextSetWidget, SLOT(UpdateGUI()));
@@ -221,7 +221,7 @@ void MainWindow::createMenus()
 void MainWindow::open()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
-							tc->toUnicode("ŠJ‚­"), "",
+							tc->toUnicode("é–‹ã"), "",
 							tr("Text File (*.txt);;All Files (*)"));
 	if (fileName.isEmpty())
         return;
@@ -256,7 +256,7 @@ void MainWindow::open()
 void MainWindow::pyOpen()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
-							tc->toUnicode("ƒXƒNƒŠƒvƒg‚ğŠJ‚­"), "",
+							tc->toUnicode("ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’é–‹ã"), "",
 							tr("Python File (*.py);;All Files (*)"));
 
 	if (fileName.isEmpty())
@@ -291,7 +291,7 @@ void MainWindow::pyOpen()
 bool MainWindow::save()
 {
 	QString fileName = QFileDialog::getSaveFileName(this,
-							tc->toUnicode("•Û‘¶"), "",
+							tc->toUnicode("ä¿å­˜"), "",
 							tr("Text File (*.txt);;All Files (*)"));
 	if (fileName.isEmpty())
         return false;
@@ -337,7 +337,7 @@ void MainWindow::newFile()
 void MainWindow::addFileSystem()
 {
 	QString fileName = QFileDialog::getExistingDirectory(this,
-							tc->toUnicode("ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ì’Ç‰Á"));
+							tc->toUnicode("ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®è¿½åŠ "));
 	if (fileName.isEmpty())
         return;
 

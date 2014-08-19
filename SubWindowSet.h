@@ -1,4 +1,4 @@
-#ifndef SUBWINDOWSET_H
+﻿#ifndef SUBWINDOWSET_H
 #define SUBWINDOWSET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* ��ʕ����ݒ�p�E�B�W�F�b�g
+* 画面分割設定用ウィジェット
 */
 
 class SubWindowSetWidget : public QWidget
@@ -45,61 +45,61 @@ public:
 
 public slots:
 	/*
-	*�T�u�E�C���h�E�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*サブウインドウの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	/*
-	*�傫���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*大きさ設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 
 	/*
-	*�J�����̈ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*カメラの位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void CameraPosXSlot(double value);
 	void CameraPosYSlot(double value);
 	void CameraPosZSlot(double value);
 	/*
-	*�J�����̎p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*カメラの姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void CameraRollSlot(double value);
 	void CameraPitchSlot(double value);
 	void CameraYawSlot(double value);
 	/*
-	*�J�����̋����ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*カメラの距離設定スピンボックスの値を変更したときのスロット
 	*/
 	void CameraLenSlot(double value);
 	/*
-	*���Z�b�g�{�^�����������Ƃ��̃X���b�g
+	*リセットボタンを押したときのスロット
 	*/
 	void RestartSlot();
 	
 	void StopSlot();
 
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	
@@ -109,21 +109,21 @@ private slots:
 private:
 	bool up_flag;
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
 	/*
-	* �傫���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 大きさ設定スピンボックスの値を反映する関数
 	*/
 	void UpdateSize();
 	void UpdateCameraPos();
 	void UpdateCameraRot();
 	/*
-	* �J�����̈ʒu�A�p���A�����ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* カメラの位置、姿勢、距離設定スピンボックスの値を反映する関数
 	*/
 	void UpdateCameraPQ();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void UpdateVisi(bool visi);
 

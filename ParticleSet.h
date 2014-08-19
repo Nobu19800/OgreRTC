@@ -1,4 +1,4 @@
-#ifndef PARTICLESET_H
+﻿#ifndef PARTICLESET_H
 #define PARTICLESET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �p�[�e�B�N���쐬�A�ݒ�p�E�B�W�F�b�g
+* パーティクル作成、設定用ウィジェット
 */
 
 class ParticleSetWidget : public QWidget
@@ -50,44 +50,44 @@ public slots:
 
 signals:
 	/*
-	* �p�[�e�B�N�����쐬�A�폜�����Ƃ��̃V�O�i��
+	* パーティクルを作成、削除したときのシグナル
 	*/
 	void UpdateParticle();
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�g�嗦�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*拡大率設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	void ScaleZSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 
@@ -99,19 +99,19 @@ private:
 	bool up_flag;
 
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
 	/*
-	* �g�嗦�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 拡大率設定スピンボックスの値を反映する関数
 	*/
 	void UpdateScale();
 	/*
-	* �p���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void UpdateRot();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void UpdateVisi(bool visi);
 

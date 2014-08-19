@@ -1,4 +1,4 @@
-#ifndef OGREWIDGET_H
+ï»¿#ifndef OGREWIDGET_H
 #define OGREWIDGET_H
 
 #include <QtGui>
@@ -27,7 +27,7 @@ class QTreeWidget;
 QT_END_NAMESPACE
 
 /*
-*Ogre3D‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì•\¦‚ÌƒEƒBƒWƒFƒbƒg
+*Ogre3Dã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¡¨ç¤ºã®ã‚¦ã‚£ã‚¸ã‚§ãƒƒãƒˆ
 */
 class OgreWidget : public QWidget
 {
@@ -38,7 +38,7 @@ public:
 	~OgreWidget(void);
 
 	/*
-	*ƒŒƒ“ƒ_ƒŠƒ“ƒO‰Šú‰»
+	*ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°åˆæœŸåŒ–
 	*/
 	void initOgre();
 
@@ -46,26 +46,26 @@ public:
 
 signals:
 	/*
-	*ƒ}ƒEƒXˆÚ“®‚ÌƒVƒOƒiƒ‹
+	*ãƒã‚¦ã‚¹ç§»å‹•æ™‚ã®ã‚·ã‚°ãƒŠãƒ«
 	*/
 	void  mouseMoveSignal(QMouseEvent*  evt, int dx, int dy);
 	/*
-	*ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚ÌƒVƒOƒiƒ‹
+	*ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚·ã‚°ãƒŠãƒ«
 	*/
 	void  mousePressSignal(QMouseEvent*  evt);
 	/*
-	*ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ—£‚µ‚½‚ÌƒVƒOƒiƒ‹
+	*ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’é›¢ã—ãŸæ™‚ã®ã‚·ã‚°ãƒŠãƒ«
 	*/
 	void  mouseReleaseSignal(QMouseEvent*  evt);
 
 
 private:
 	/*
-	*üŠú“I‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*å‘¨æœŸçš„ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void timerEvent (QTimerEvent *event);
 	/*
-	*•`‰æ‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*æç”»æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void paintEvent (QPaintEvent *event);
 	
@@ -82,23 +82,23 @@ private:
 
 protected:
 	/*
-	*ƒ}ƒEƒX‚ª“®‚¢‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒã‚¦ã‚¹ãŒå‹•ã„ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void  mouseMoveEvent(QMouseEvent*  evt);
 	/*
-	*ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void  mousePressEvent(QMouseEvent*  evt);
 	/*
-	*ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ—£‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’é›¢ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void  mouseReleaseEvent(QMouseEvent*  evt);
 	/*
-	*ƒL[‚ğ‰Ÿ‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void  keyPressEvent(QKeyEvent*  event);
 	/*
-	*ƒL[‚ğ—£‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	*ã‚­ãƒ¼ã‚’é›¢ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 	*/
 	void  keyReleaseEvent(QKeyEvent*  event);
 	/*

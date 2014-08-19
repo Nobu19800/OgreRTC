@@ -1,4 +1,4 @@
-#ifndef MYIMAGESET_H
+ï»¿#ifndef MYIMAGESET_H
 #define MYIMAGESET_H
 
 #include <CEGUI.h>
@@ -7,7 +7,7 @@
 #include "MyFileStream.h"
 
 /*
-* ‰æ‘œ‚ÌƒNƒ‰ƒX
+* ç”»åƒã®ã‚¯ãƒ©ã‚¹
 */
 
 class MyImageSet
@@ -16,11 +16,11 @@ public:
 	MyImageSet();
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 

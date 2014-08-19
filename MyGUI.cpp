@@ -1,4 +1,4 @@
-#include "MyGUI.h"
+﻿#include "MyGUI.h"
 #include "UnicodeF.h"
 
 extern int str_size;

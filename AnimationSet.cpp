@@ -1,4 +1,4 @@
-#include "AnimationSet.h"
+ï»¿#include "AnimationSet.h"
 
 
 #include "MyQtMacro.h"
@@ -26,35 +26,35 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(NameEdit);
 
 
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 
 
-	KeyButton = new QPushButton(tc->toUnicode("ƒL[ƒtƒŒ[ƒ€’Ç‰Á"));
+	KeyButton = new QPushButton(tc->toUnicode("ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ è¿½åŠ "));
 	connect(KeyButton, SIGNAL(clicked()), this, SLOT(KeySlot()));
 	layout->addWidget(KeyButton);
 
-	RemoveKeyButton = new QPushButton(tc->toUnicode("ƒL[ƒtƒŒ[ƒ€íœ"));
+	RemoveKeyButton = new QPushButton(tc->toUnicode("ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ å‰Šé™¤"));
 	connect(RemoveKeyButton, SIGNAL(clicked()), this, SLOT(RemoveKeySlot()));
 	layout->addWidget(RemoveKeyButton);
 
-	TimespinBox = SetDoubleSpinBox(tc->toUnicode("I—¹ŽžŠÔ"), 1000.0, 0.0, layout);
+	TimespinBox = SetDoubleSpinBox(tc->toUnicode("çµ‚äº†æ™‚é–“"), 1000.0, 0.0, layout);
 	connect(TimespinBox, SIGNAL(valueChanged(double)), this, SLOT(TimeSlot(double)));
 
 
-	KeyNumspinBox = SetSpinBox(tc->toUnicode("ƒL[ƒtƒŒ[ƒ€‚Ì”Ô†"), 0, 0, layout);
+	KeyNumspinBox = SetSpinBox(tc->toUnicode("ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç•ªå·"), 0, 0, layout);
 	connect(KeyNumspinBox, SIGNAL(valueChanged(int)), this, SLOT(KeyNumSlot(int)));
 
 
-	KeyTimespinBox = SetDoubleSpinBox(tc->toUnicode("ƒL[ƒtƒŒ[ƒ€‚ÌŽžŠÔ"), 0, 0, layout);
+	KeyTimespinBox = SetDoubleSpinBox(tc->toUnicode("ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ™‚é–“"), 0, 0, layout);
 	
 
-	StatespinBox = SetDoubleSpinBox(tc->toUnicode("ŽžŠÔ"), 0, 0, layout);
+	StatespinBox = SetDoubleSpinBox(tc->toUnicode("æ™‚é–“"), 0, 0, layout);
 	connect(StatespinBox, SIGNAL(valueChanged(double)), this, SLOT(StateSlot(double)));
 
 
@@ -65,10 +65,10 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
 	PosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1000.0, -1000.0, posLayout);
 	connect(PosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosZSlot(double)));
-	TransButton = new QPushButton(tc->toUnicode("Ý’è"));
+	TransButton = new QPushButton(tc->toUnicode("è¨­å®š"));
 	connect(TransButton, SIGNAL(clicked()), this, SLOT(TransSlot()));
 	posLayout->addWidget(TransButton);
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -79,17 +79,17 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PitchspinBox, SIGNAL(valueChanged(double)), this, SLOT(PitchSlot(double)));
 	YawspinBox = SetDoubleSpinBox(tc->toUnicode("Yaw"), 360.0, 0.0, angleLayout);
 	connect(YawspinBox, SIGNAL(valueChanged(double)), this, SLOT(YawSlot(double)));
-	RotButton = new QPushButton(tc->toUnicode("Ý’è"));
+	RotButton = new QPushButton(tc->toUnicode("è¨­å®š"));
 	connect(RotButton, SIGNAL(clicked()), this, SLOT(RotSlot()));
 	angleLayout->addWidget(RotButton);
-	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("Žp¨"));
+	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("å§¿å‹¢"));
 	angleGroup->setLayout(angleLayout);
 	layout->addWidget(angleGroup);
 
 
 	
 
-	ResetButton = new QPushButton(tc->toUnicode("‰Šú‰»"));
+	ResetButton = new QPushButton(tc->toUnicode("åˆæœŸåŒ–"));
 	connect(ResetButton, SIGNAL(clicked()), this, SLOT(ResetSlot()));
 	layout->addWidget(ResetButton);
 

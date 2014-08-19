@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -60,7 +60,7 @@ class QTreeWidget;
 QT_END_NAMESPACE
 
 /*
-*���C���E�C���h�E�̃N���X
+*メインウインドウのクラス
 */
 
 //! [0]
@@ -76,7 +76,7 @@ protected:
 
 signals:
 	/*
-	*�t�@�C���ǂݍ��ݎ��̃V�O�i��
+	*ファイル読み込み時のシグナル
 	*/
 	void UpdateList();
 	
@@ -105,23 +105,23 @@ private:
 
 private slots:
 	/*
-	*RTC�ǂݍ��ݎ��̃X���b�g
+	*RTC読み込み時のスロット
 	*/
 	void pyOpen();
 	/*
-	*�t�@�C���ۑ����̃X���b�g
+	*ファイル保存時のスロット
 	*/
 	bool save();
 	/*
-	*�t�@�C���ǂݍ��ݎ��̃X���b�g
+	*ファイル読み込み時のスロット
 	*/
 	void open();
 	/*
-	*���������̃X���b�g
+	*初期化時のスロット
 	*/
 	void newFile();
 	/*
-	*�t�@�C���V�X�e���ǉ��̃X���b�g
+	*ファイルシステム追加のスロット
 	*/
 	void addFileSystem();
 
@@ -132,11 +132,11 @@ private:
 	QAction *pyAct;
 	QAction *addFileSystemAct;
 	/*
-	*���j���[�쐬�̊֐�
+	*メニュー作成の関数
 	*/
 	void createMenus();
 	/*
-	*�A�N�V�����쐬�̊֐�
+	*アクション作成の関数
 	*/
 	void createAction();
 	QMenu *fileMenu;

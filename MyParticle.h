@@ -1,4 +1,4 @@
-#ifndef MYPARTICLE_H
+ï»¿#ifndef MYPARTICLE_H
 #define MYPARTICLE_H
 
 #include "BaseApplication.h"
@@ -14,11 +14,11 @@ public:
 
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 

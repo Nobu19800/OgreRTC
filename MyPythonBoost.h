@@ -1,4 +1,4 @@
-#ifndef MYPYTHONBOOST_H
+ï»¿#ifndef MYPYTHONBOOST_H
 #define MYPYTHONBOOST_H
 
 #define BOOST_PYTHON_STATIC_LIB
@@ -12,7 +12,7 @@ class PyObj;
 class PBThread;
 
 /*
-*RTC‚ğÀs‚·‚éƒXƒŒƒbƒh‚ÌƒNƒ‰ƒX
+*RTCã‚’å®Ÿè¡Œã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¯ãƒ©ã‚¹
 */
 
 class PBThread : public virtual coil::Task
@@ -20,7 +20,7 @@ class PBThread : public virtual coil::Task
 public:
 	PBThread(std::string fn, PyObj *p);
 	/*
-	*ƒXƒŒƒbƒhÀsŠÖ”
+	*ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œé–¢æ•°
 	*/
 	virtual int svc();
 	std::string fname;
@@ -30,7 +30,7 @@ public:
 
 
 /*
-*Python–„‚ß‚İŠÇ—ƒNƒ‰ƒX
+*PythonåŸ‹ã‚è¾¼ã¿ç®¡ç†ã‚¯ãƒ©ã‚¹
 */
 
 class PyObj
@@ -39,15 +39,15 @@ public:
 	PyObj();
 	~PyObj();
 	/*
-	*Python‚ÌŠÖ”Às‚ÌŠÖ”
+	*Pythonã®é–¢æ•°å®Ÿè¡Œã®é–¢æ•°
 	*/
 	void setFunc(const char *fname);
 	/*
-	*Python‚Ìƒtƒ@ƒCƒ‹Às‚ÌŠÖ”
+	*Pythonã®ãƒ•ã‚¡ã‚¤ãƒ«å®Ÿè¡Œã®é–¢æ•°
 	*/
 	void Script(const char *fname);
 	/*
-	*Python‚ÌŠÖ”æ“¾‚ÌŠÖ”
+	*Pythonã®é–¢æ•°å–å¾—ã®é–¢æ•°
 	*/
 	boost::python::object getFunc(const char *fname);
 	boost::python::object global_ns;

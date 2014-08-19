@@ -1,4 +1,4 @@
-#include "SimulationSet.h"
+ï»¿#include "SimulationSet.h"
 
 
 
@@ -19,24 +19,24 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 	QVBoxLayout *layout = new QVBoxLayout;
 
-	StartButton = new QPushButton(tc->toUnicode("ŠJŽn"));
+	StartButton = new QPushButton(tc->toUnicode("é–‹å§‹"));
 	connect(StartButton, SIGNAL(clicked()), this, SLOT(StartSlot()));
 	layout->addWidget(StartButton);
 
-	StopButton = new QPushButton(tc->toUnicode("’âŽ~"));
+	StopButton = new QPushButton(tc->toUnicode("åœæ­¢"));
 	connect(StopButton, SIGNAL(clicked()), this, SLOT(StopSlot()));
 	layout->addWidget(StopButton);
 
-	RestartButton = new QPushButton(tc->toUnicode("ÄŠJ"));
+	RestartButton = new QPushButton(tc->toUnicode("å†é–‹"));
 	connect(RestartButton, SIGNAL(clicked()), this, SLOT(RestartSlot()));
 	layout->addWidget(RestartButton);
 
-	ResetButton = new QPushButton(tc->toUnicode("‰Šú‰»"));
+	ResetButton = new QPushButton(tc->toUnicode("åˆæœŸåŒ–"));
 	connect(ResetButton, SIGNAL(clicked()), this, SLOT(ResetSlot()));
 	layout->addWidget(ResetButton);
 
 
-	GravityspinBox = SetDoubleSpinBox(tc->toUnicode("d—Í"), 10000.0, -10000.0, layout);
+	GravityspinBox = SetDoubleSpinBox(tc->toUnicode("é‡åŠ›"), 10000.0, -10000.0, layout);
 	GravityspinBox->setValue(-9.8);
 	connect(GravityspinBox, SIGNAL(valueChanged(double)), this, SLOT(GravitySlot(double)));
 
@@ -50,23 +50,23 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ERPspinBox->setValue(0.2);
 	connect(ERPspinBox, SIGNAL(valueChanged(double)), this, SLOT(ERPSlot(double)));
 
-	gCFMspinBox = SetDoubleSpinBox(tc->toUnicode("ÚG‚ÌCFM(x1e-10)"), 100000000.0, 0.0, layout);
+	gCFMspinBox = SetDoubleSpinBox(tc->toUnicode("æŽ¥è§¦ã®CFM(x1e-10)"), 100000000.0, 0.0, layout);
 	gCFMspinBox->setValue(1);
 	connect(gCFMspinBox, SIGNAL(valueChanged(double)), this, SLOT(gCFMSlot(double)));
 
-	gERPspinBox = SetDoubleSpinBox(tc->toUnicode("ÚG‚ÌERP"), 100000000.0, 0.0, layout);
+	gERPspinBox = SetDoubleSpinBox(tc->toUnicode("æŽ¥è§¦ã®ERP"), 100000000.0, 0.0, layout);
 	gERPspinBox->setValue(0.8);
 	connect(gERPspinBox, SIGNAL(valueChanged(double)), this, SLOT(gERPSlot(double)));
 
-	gMuspinBox = SetDoubleSpinBox(tc->toUnicode("–€ŽC"), 1000000.0, 0.0, layout);
+	gMuspinBox = SetDoubleSpinBox(tc->toUnicode("æ‘©æ“¦"), 1000000.0, 0.0, layout);
 	gMuspinBox->setValue(0);
 	connect(gMuspinBox, SIGNAL(valueChanged(double)), this, SLOT(gMuSlot(double)));
 
-	STimespinBox = SetDoubleSpinBox(tc->toUnicode("ƒTƒ“ƒvƒŠƒ“ƒOƒ^ƒCƒ€[ms]"), 1000.0, 0.0, layout);
+	STimespinBox = SetDoubleSpinBox(tc->toUnicode("ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ [ms]"), 1000.0, 0.0, layout);
 	STimespinBox->setValue(10);
 	connect(STimespinBox, SIGNAL(valueChanged(double)), this, SLOT(STimeSlot(double)));
 
-	SleepTimespinBox = SetDoubleSpinBox(tc->toUnicode("‘Ò‚¿ŽžŠÔ[ms]"), 1000.0, 0.0, layout);
+	SleepTimespinBox = SetDoubleSpinBox(tc->toUnicode("å¾…ã¡æ™‚é–“[ms]"), 1000.0, 0.0, layout);
 	SleepTimespinBox->setValue(0);
 	connect(SleepTimespinBox, SIGNAL(valueChanged(double)), this, SLOT(SleepTimeSlot(double)));
 
@@ -80,7 +80,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ScaleZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, 0.01, scaleLayout);
 	ScaleZspinBox->setValue(1);
 	connect(ScaleZspinBox, SIGNAL(valueChanged(double)), this, SLOT(ScaleZSlot(double)));
-	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("Šg‘å—¦"));
+	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("æ‹¡å¤§çŽ‡"));
 	scaleGroup->setLayout(scaleLayout);
 	layout->addWidget(scaleGroup);
 

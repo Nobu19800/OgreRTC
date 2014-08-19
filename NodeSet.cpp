@@ -1,4 +1,4 @@
-#include "NodeSet.h"
+ï»¿#include "NodeSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -13,7 +13,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	QTextCodec* tc = QTextCodec::codecForLocale();
 	
 	QVBoxLayout *layout = new QVBoxLayout;
-	QLabel *NumLabel = new QLabel(tc->toUnicode("ƒIƒuƒWƒFƒNƒg‚ÌŽí—Þ"));
+	QLabel *NumLabel = new QLabel(tc->toUnicode("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ž"));
 	layout->addWidget(NumLabel);
 	NumEdit = new QComboBox();
 	NumEdit->addItem("Body");
@@ -25,13 +25,13 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(NumEdit, SIGNAL(currentIndexChanged(int)), this, SLOT(NumSlot(int)));
 	layout->addWidget(NumEdit);
 
-	QLabel *NameLabel = new QLabel(tc->toUnicode("ƒIƒuƒWƒFƒNƒg‚Ì–¼‘O"));
+	QLabel *NameLabel = new QLabel(tc->toUnicode("ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åå‰"));
 	layout->addWidget(NameLabel);
 	NameEdit = new QComboBox();
 	connect(NameEdit, SIGNAL(currentIndexChanged(int)), this, SLOT(NameSlot(int)));
 	layout->addWidget(NameEdit);
 
-	QLabel *TypeLabel = new QLabel(tc->toUnicode("ƒAƒ^ƒbƒ`‚ÌŽí—Þ"));
+	QLabel *TypeLabel = new QLabel(tc->toUnicode("ã‚¢ã‚¿ãƒƒãƒã®ç¨®é¡ž"));
 	layout->addWidget(TypeLabel);
 	TypeEdit= new QComboBox();
 	TypeEdit->addItem("Node");
@@ -39,7 +39,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(TypeEdit);
 
 
-	QLabel *AttachNumLabel = new QLabel(tc->toUnicode("ƒAƒ^ƒbƒ`‚·‚éƒIƒuƒWƒFƒNƒg‚ÌŽí—Þ"));
+	QLabel *AttachNumLabel = new QLabel(tc->toUnicode("ã‚¢ã‚¿ãƒƒãƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ž"));
 	layout->addWidget(AttachNumLabel);
 	AttachNumBox = new QComboBox();
 	AttachNumBox->addItem("Body");
@@ -51,7 +51,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(AttachNumBox);
 
 
-	QLabel *AttachListLabel = new QLabel(tc->toUnicode("ƒAƒ^ƒbƒ`‚·‚éƒIƒuƒWƒFƒNƒg‚Ì–¼‘O"));
+	QLabel *AttachListLabel = new QLabel(tc->toUnicode("ã‚¢ã‚¿ãƒƒãƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åå‰"));
 	layout->addWidget(AttachListLabel);
 	AttachListBox = new QComboBox();
 	
@@ -60,7 +60,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 
 
-	AttachButton = new QPushButton(tc->toUnicode("ƒAƒ^ƒbƒ`"));
+	AttachButton = new QPushButton(tc->toUnicode("ã‚¢ã‚¿ãƒƒãƒ"));
 	connect(AttachButton, SIGNAL(clicked()), this, SLOT(AttachSlot()));
 	layout->addWidget(AttachButton);
 
@@ -74,14 +74,14 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(DettachNumBox);*/
 
 
-	QLabel *DettachListLabel = new QLabel(tc->toUnicode("Ú‘±‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚Ì–¼‘O"));
+	QLabel *DettachListLabel = new QLabel(tc->toUnicode("æŽ¥ç¶šã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åå‰"));
 	layout->addWidget(DettachListLabel);
 	DettachListBox = new QComboBox();
 
 	layout->addWidget(DettachListBox);
 
 
-	DettachButton = new QPushButton(tc->toUnicode("ƒfƒ^ƒbƒ`"));
+	DettachButton = new QPushButton(tc->toUnicode("ãƒ‡ã‚¿ãƒƒãƒ"));
 	connect(DettachButton, SIGNAL(clicked()), this, SLOT(DettachSlot()));
 	layout->addWidget(DettachButton);
 

@@ -1,4 +1,4 @@
-#include "MyLight.h"
+﻿#include "MyLight.h"
 
 MyLight::MyLight(std::string n)
 {

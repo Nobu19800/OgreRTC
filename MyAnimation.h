@@ -1,4 +1,4 @@
-#ifndef MYANIMATION_H
+ï»¿#ifndef MYANIMATION_H
 #define MYANIMATION_H
 
 
@@ -11,7 +11,7 @@
 #include "MyNode.h"
 
 /*
-* ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒL[‚ÌƒNƒ‰ƒX
+* ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼ã®ã‚¯ãƒ©ã‚¹
 */
 
 class MyAnimationList
@@ -30,7 +30,7 @@ public:
 
 
 /*
-* ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX
+* ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹
 */
 
 class MyAnimation : public MyObject
@@ -46,24 +46,24 @@ public:
 	std::vector<MyAnimationList*> animList;
 	MyAnimationList *AddKeyFrame(float t);
 	/*
-	*ƒL[ƒtƒŒ[ƒ€‚Ìíœ‚ÌŠÖ”
+	*ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã®å‰Šé™¤ã®é–¢æ•°
 	*/
 	void RemoveKeyFrame(MyAnimationList *mal);
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŠÔİ’è‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ™‚é–“è¨­å®šã®é–¢æ•°
 	*/
 	void SetAnimationState(float t);
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌI—¹ŠÔİ’è‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†æ™‚é–“è¨­å®šã®é–¢æ•°
 	*/
 	void SetLength(float t);
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 

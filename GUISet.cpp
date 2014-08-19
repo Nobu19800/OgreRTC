@@ -1,4 +1,4 @@
-#include "GUISet.h"
+ï»¿#include "GUISet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -56,7 +56,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 	layout->addWidget(TypeBox);
 
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
@@ -65,10 +65,10 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	WindowBox = new QComboBox();
 	windowLayout->addWidget(WindowBox);
 
-	WindowButton = new QPushButton(tc->toUnicode("Ý’è"));
+	WindowButton = new QPushButton(tc->toUnicode("è¨­å®š"));
 	connect(WindowButton, SIGNAL(clicked()), this, SLOT(WindowSlot()));
 	windowLayout->addWidget(WindowButton);
-	QGroupBox *windowGroup = new QGroupBox(tc->toUnicode("eƒEƒCƒ“ƒhƒEÝ’è"));
+	QGroupBox *windowGroup = new QGroupBox(tc->toUnicode("è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¨­å®š"));
 	windowGroup->setLayout(windowLayout);
 	layout->addWidget(windowGroup);
 
@@ -81,7 +81,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	PosYspinBox = SetDoubleSpinBox(tc->toUnicode("Y"), 1.0, 0.0, posLayout);
 	PosYspinBox->setSingleStep(0.1);
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -92,7 +92,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PitchspinBox, SIGNAL(valueChanged(double)), this, SLOT(PitchSlot(double)));
 	YawspinBox = SetDoubleSpinBox(tc->toUnicode("Y"), 360.0, 0.0, rotLayout);
 	connect(YawspinBox, SIGNAL(valueChanged(double)), this, SLOT(YawSlot(double)));
-	QGroupBox *rotGroup = new QGroupBox(tc->toUnicode("Žp¨"));
+	QGroupBox *rotGroup = new QGroupBox(tc->toUnicode("å§¿å‹¢"));
 	rotGroup->setLayout(rotLayout);
 	layout->addWidget(rotGroup);
 
@@ -105,45 +105,45 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ScaleYspinBox->setValue(0.1);
 	ScaleYspinBox->setSingleStep(0.1);
 	connect(ScaleYspinBox, SIGNAL(valueChanged(double)), this, SLOT(ScaleYSlot(double)));
-	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("‘å‚«‚³"));
+	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("å¤§ãã•"));
 	scaleGroup->setLayout(scaleLayout);
 	layout->addWidget(scaleGroup);
 
 	
-	AlphaspinBox = SetDoubleSpinBox(tc->toUnicode("“§–¾“x"), 1.0, 0.0, layout);
+	AlphaspinBox = SetDoubleSpinBox(tc->toUnicode("é€æ˜Žåº¦"), 1.0, 0.0, layout);
 	AlphaspinBox->setSingleStep(0.1);
 	AlphaspinBox->setValue(1.0);
 	connect(AlphaspinBox, SIGNAL(valueChanged(double)), this, SLOT(AlphaSlot(double)));
 	
 
-	VisibleButton = new QPushButton(tc->toUnicode("•\Ž¦"));
+	VisibleButton = new QPushButton(tc->toUnicode("è¡¨ç¤º"));
 	connect(VisibleButton, SIGNAL(clicked()), this, SLOT(VisibleSlot()));
 	layout->addWidget(VisibleButton);
 
-	unVisibleButton = new QPushButton(tc->toUnicode("”ñ•\Ž¦"));
+	unVisibleButton = new QPushButton(tc->toUnicode("éžè¡¨ç¤º"));
 	connect(unVisibleButton, SIGNAL(clicked()), this, SLOT(unVisibleSlot()));
 	layout->addWidget(unVisibleButton);
 
-	FrameButton = new QPushButton(tc->toUnicode("ƒtƒŒ[ƒ€•\Ž¦"));
+	FrameButton = new QPushButton(tc->toUnicode("ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤º"));
 	connect(FrameButton, SIGNAL(clicked()), this, SLOT(FrameSlot()));
 	layout->addWidget(FrameButton);
 
-	unFrameButton = new QPushButton(tc->toUnicode("ƒtƒŒ[ƒ€”ñ•\Ž¦"));
+	unFrameButton = new QPushButton(tc->toUnicode("ãƒ•ãƒ¬ãƒ¼ãƒ éžè¡¨ç¤º"));
 	connect(unFrameButton, SIGNAL(clicked()), this, SLOT(unFrameSlot()));
 	layout->addWidget(unFrameButton);
 
-	BackGroundButton = new QPushButton(tc->toUnicode("”wŒi•\Ž¦"));
+	BackGroundButton = new QPushButton(tc->toUnicode("èƒŒæ™¯è¡¨ç¤º"));
 	connect(BackGroundButton, SIGNAL(clicked()), this, SLOT(BackGroundSlot()));
 	layout->addWidget(BackGroundButton);
 
-	unBackGroundButton = new QPushButton(tc->toUnicode("”wŒi”ñ•\Ž¦"));
+	unBackGroundButton = new QPushButton(tc->toUnicode("èƒŒæ™¯éžè¡¨ç¤º"));
 	connect(unBackGroundButton, SIGNAL(clicked()), this, SLOT(unBackGroundSlot()));
 	layout->addWidget(unBackGroundButton);
 
 	
 
 
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 

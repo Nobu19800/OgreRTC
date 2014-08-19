@@ -1,4 +1,4 @@
-#include "OtherSet.h"
+ï»¿#include "OtherSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -15,11 +15,11 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	QVBoxLayout *layout = new QVBoxLayout;
 
 	QVBoxLayout *SkyBoxLayout =  new QVBoxLayout();
-	SkyBoxButton = new QPushButton(tc->toUnicode("ì¬"));
+	SkyBoxButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SkyBoxButton, SIGNAL(clicked()), this, SLOT(SkyBoxSetSlot()));
 	SkyBoxLayout->addWidget(SkyBoxButton);
 
-	DelSkyBoxButton = new QPushButton(tc->toUnicode("íœ"));
+	DelSkyBoxButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DelSkyBoxButton, SIGNAL(clicked()), this, SLOT(DelSkyBoxSetSlot()));
 	SkyBoxLayout->addWidget(DelSkyBoxButton);
 
@@ -45,21 +45,21 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	
 	SkyBoxLayout->addWidget(SkyBoxEdit);
 
-	SkyBoxspinBox = SetSpinBox(tc->toUnicode("ƒTƒCƒY"), 10000, 1, SkyBoxLayout);
+	SkyBoxspinBox = SetSpinBox(tc->toUnicode("ã‚µã‚¤ã‚º"), 10000, 1, SkyBoxLayout);
 	SkyBoxspinBox->setValue(1000);
 	connect(SkyBoxspinBox, SIGNAL(valueChanged(int)), this, SLOT(SkyBoxSizeSlot(int)));
 
-	QGroupBox *SkyBoxGroup = new QGroupBox(tc->toUnicode("ƒXƒJƒCƒ{ƒbƒNƒX"));
+	QGroupBox *SkyBoxGroup = new QGroupBox(tc->toUnicode("ã‚¹ã‚«ã‚¤ãƒœãƒƒã‚¯ã‚¹"));
 	SkyBoxGroup->setLayout(SkyBoxLayout);
 	layout->addWidget(SkyBoxGroup);
 
 
 	QVBoxLayout *FloorLayout =  new QVBoxLayout();
-	FloorButton = new QPushButton(tc->toUnicode("ì¬"));
+	FloorButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(FloorButton, SIGNAL(clicked()), this, SLOT(FloorSetSlot()));
 	FloorLayout->addWidget(FloorButton);
 
-	DelFloorButton = new QPushButton(tc->toUnicode("íœ"));
+	DelFloorButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DelFloorButton, SIGNAL(clicked()), this, SLOT(DelFloorSetSlot()));
 	FloorLayout->addWidget(DelFloorButton);
 
@@ -76,7 +76,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	FloorEdit->addItem("OceanCg");
 	FloorLayout->addWidget(FloorEdit);
 
-	FloorSizespinBox = SetSpinBox(tc->toUnicode("ƒTƒCƒY"), 10000, 1, FloorLayout);
+	FloorSizespinBox = SetSpinBox(tc->toUnicode("ã‚µã‚¤ã‚º"), 10000, 1, FloorLayout);
 	FloorSizespinBox->setValue(1000);
 	connect(FloorSizespinBox, SIGNAL(valueChanged(int)), this, SLOT(FloorSizeSlot(int)));
 
@@ -89,11 +89,11 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 	FloorLayout->addWidget(FloorDircombpBox);
 
-	QGroupBox *FloorGroup = new QGroupBox(tc->toUnicode("•½–Ê"));
+	QGroupBox *FloorGroup = new QGroupBox(tc->toUnicode("å¹³é¢"));
 	FloorGroup->setLayout(FloorLayout);
 	layout->addWidget(FloorGroup);
 
-	TimespinBox = SetSpinBox(tc->toUnicode("‘Ò‚¿ŠÔ"), 10000, 0, layout);
+	TimespinBox = SetSpinBox(tc->toUnicode("å¾…ã¡æ™‚é–“"), 10000, 0, layout);
 	connect(TimespinBox, SIGNAL(valueChanged(int)), this, SLOT(TimeSlot(int)));
 
 

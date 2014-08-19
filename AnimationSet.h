@@ -1,10 +1,9 @@
-#ifndef ANIMATIONSET_H
+﻿#ifndef ANIMATIONSET_H
 #define ANIMATIONSET_H
 
 
 #include <QtGui>
 #include "OgreRTCApplication.h"
-
 
 
 
@@ -33,7 +32,7 @@ class QComboBox;
 QT_END_NAMESPACE
 
 /*
-* �A�j���[�V�����ݒ�p�E�B�W�F�b�g
+* アニメーション設定用ウィジェット
 */
 
 class AnimationSetWidget : public QWidget
@@ -48,76 +47,76 @@ public:
 
 signals:
 	/*
-	*�A�j���[�V������ǉ��A�폜�����Ƃ��̃V�O�i��
+	*アニメーションを追加、削除したときのシグナル
 	*/
 	void UpdateAnimation();
 
 public slots:
 	/*
-	*�A�j���[�V�����̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*アニメーションの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 	/*
-	*���Z�b�g�{�^�����������Ƃ��̃X���b�g
+	*リセットボタンを押したときのスロット
 	*/
 	void ResetSlot();
 
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	
 	/*
-	* �L�[�ԍ��ǉ��{�^�����������Ƃ��̃X���b�g
+	* キー番号追加ボタンを押したときのスロット
 	*/
 	void KeySlot();
 	/*
-	* �L�[�ԍ��폜�{�^�����������Ƃ��̃X���b�g
+	* キー番号削除ボタンを押したときのスロット
 	*/
 	void RemoveKeySlot();
 	/*
-	* �L�[�ԍ��R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	* キー番号コンボボックスの番号が変わったときのスロット
 	*/
 	void KeyNumSlot(int value);
 
 	/*
-	* �L�[�̈ʒu�ݒ�{�^���������ꂽ�Ƃ��̃X���b�g
+	* キーの位置設定ボタンが押されたときのスロット
 	*/
 	void TransSlot();
 	/*
-	* �L�[�̎p���ݒ�{�^���������ꂽ�Ƃ��̃X���b�g
+	* キーの姿勢設定ボタンが押されたときのスロット
 	*/
 	void RotSlot();
 
 	/*
-	* �A�j���[�V�����̎��ԕύX�X�s���{�b�N�X�̒l���ω������Ƃ��̃X���b�g
+	* アニメーションの時間変更スピンボックスの値が変化したときのスロット
 	*/
 	void StateSlot(double value);
 	/*
-	* �A�j���[�V�����̏I�����Ԑݒ�X�s���{�b�N�X�̒l���ω������Ƃ��̃X���b�g
+	* アニメーションの終了時間設定スピンボックスの値が変化したときのスロット
 	*/
 	void TimeSlot(double value);
 	
@@ -127,11 +126,11 @@ private:
 	bool up_flag;
 	
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
 	/*
-	* �p���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void UpdateRot();
 

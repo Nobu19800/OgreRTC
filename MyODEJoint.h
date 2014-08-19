@@ -1,4 +1,4 @@
-#ifndef MYODEJOINT_H
+ï»¿#ifndef MYODEJOINT_H
 #define MYODEJOINT_H
 
 #include "BaseApplication.h"
@@ -26,50 +26,50 @@ public:
 	MySimulation *ms;
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	virtual void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	virtual bool openb(std::ifstream &ifs);
 
 	/*
-	*ˆÊ’uİ’è‚ÌŠÖ”
+	*ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetJointPosition(double px, double py, double pz);
 	/*
-	*p¨İ’è‚ÌŠÖ”
+	*å§¿å‹¢è¨­å®šã®é–¢æ•°
 	*/
 	void SetJointRotation(double r, double p, double y);
 	/*
-	*ƒWƒ‡ƒCƒ“ƒg‚ÌŠp“xAˆÊ’u§Œä‚ÌŠÖ”
+	*ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®è§’åº¦ã€ä½ç½®åˆ¶å¾¡ã®é–¢æ•°
 	*/
 	void ControlJointAng(double v);
 	/*
-	*ƒWƒ‡ƒCƒ“ƒg‚Ì‘¬“x§Œä‚ÌŠÖ”
+	*ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®é€Ÿåº¦åˆ¶å¾¡ã®é–¢æ•°
 	*/
 	void ControlJointVel(double v);
 	/*
-	*ƒWƒ‡ƒCƒ“ƒg‚Ì—Í§Œä‚ÌŠÖ”
+	*ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®åŠ›åˆ¶å¾¡ã®é–¢æ•°
 	*/
 	void ControlJointToq(double v);
 
 	/*
-	*3Dƒ‚ƒfƒ‹‚É‘Î‚·‚éŠg‘å—¦‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã«å¯¾ã™ã‚‹æ‹¡å¤§ç‡ã®é–¢æ•°
 	*/
 	void SetODEScale(float sx, float sy, float sz);
 	/*
-	*3Dƒ‚ƒfƒ‹‚É‘Î‚·‚éƒIƒtƒZƒbƒg‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã«å¯¾ã™ã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆã®é–¢æ•°
 	*/
 	void SetODEOffset(float ox, float oy, float oz);
 	/*
-	*ˆÊ’uXV‚ÌŠÖ”
+	*ä½ç½®æ›´æ–°ã®é–¢æ•°
 	*/
 	void UpdateJointPosition();
 
 	/*
-	*ƒWƒ‡ƒCƒ“ƒg‚ÌˆÊ’uAŠp“xæ“¾‚ÌŠÖ”
+	*ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ä½ç½®ã€è§’åº¦å–å¾—ã®é–¢æ•°
 	*/
 	double GetJointPosition();
 

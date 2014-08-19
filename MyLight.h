@@ -1,4 +1,4 @@
-#ifndef MYLIGHT_H
+ï»¿#ifndef MYLIGHT_H
 #define MYLIGHT_H
 
 #include "BaseApplication.h"
@@ -10,7 +10,7 @@
 
 
 /*
-* ŒõŒ¹‚ÌƒNƒ‰ƒX
+* å…‰æºã®ã‚¯ãƒ©ã‚¹
 */
 
 class MyLight : public MyObject
@@ -25,16 +25,16 @@ public:
 	
 	
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 
 	/*
-	*Fİ’è‚ÌŠÖ”
+	*è‰²è¨­å®šã®é–¢æ•°
 	*/
 	void setColor(float r,float g,float b);
 	

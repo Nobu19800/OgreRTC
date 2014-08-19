@@ -1,4 +1,4 @@
-#ifndef MYGUI_H
+﻿#ifndef MYGUI_H
 #define MYGUI_H
 
 #include <CEGUI.h>
@@ -9,7 +9,7 @@
 
 
 /*
-* GUI�̃N���X
+* GUIのクラス
 */
 
 class MyGUI
@@ -17,141 +17,141 @@ class MyGUI
 public:
 	MyGUI();
 	/*
-	*�F�̕ύX
+	*色の変更
 	*/
 	void setColor(float r, float g, float b);
 	/*
-	*�擪�̃E�C���h�E�ɂ���֐�
+	*先頭のウインドウにする関数
 	*/
 	void moveToFront();
 	/*
-	*�Ō���̃E�C���h�E�ɂ���֐�
+	*最後尾のウインドウにする関数
 	*/
 	void moveToBack();
 	/*
-	*�E�C���h�E��O�Ɉړ�����֐�
+	*ウインドウを前に移動する関数
 	*/
 	void moveInFront(MyGUI *mg);
 	/*
-	*�E�C���h�E�����Ɉړ�����֐�
+	*ウインドウを後ろに移動する関数
 	*/
 	void moveBehind(MyGUI *mg);
 	/*
-	*�ʒu�ݒ�̊֐�
+	*位置設定の関数
 	*/
 	void SetPosition( float x, float y);
 	/*
-	*�傫���ݒ�̊֐�
+	*大きさ設定の関数
 	*/
 	void SetSize( float sx, float sy);
 	/*
-	*�e�L�X�g�ݒ�̊֐�
+	*テキスト設定の関数
 	*/
 	void SetText( const char* t);
 	/*
-	*�\���A��\���ݒ�̊֐�
+	*表示、非表示設定の関数
 	*/
 	void SetVisible( bool v);
 	/*
-	*�t���[���̕\���A��\���ݒ�̊֐�
+	*フレームの表示、非表示設定の関数
 	*/
 	void SetFrameEnable( bool v);
 	/*
-	*�w�i�̕\���A��\���ݒ�̊֐�
+	*背景の表示、非表示設定の関数
 	*/
 	void SetBackGroundEnable( bool v);
 	/*
-	*�t�H���g�T�C�Y�ݒ�̊֐�
+	*フォントサイズ設定の関数
 	*/
 	void SetFontSize( int Size);
 	/*
-	*�e�L�X�g�擾�̊֐�
+	*テキスト取得の関数
 	*/
 	std::string GetText();
 	/*
-	*�R���{�{�b�N�X�̃A�C�e���擾�̊֐�
+	*コンボボックスのアイテム取得の関数
 	*/
 	std::string GetComboBoxItem();
 	/*
-	*�X���C�_�[�̒l�擾�̊֐�
+	*スライダーの値取得の関数
 	*/
 	float GetSliderValue();
 	/*
-	*�X���C�_�[�̒l�ݒ�̊֐�
+	*スライダーの値設定の関数
 	*/
 	void SetSliderValue( float val);
 	/*
-	*�R���{�{�b�N�X�̃A�C�e���ǉ��̊֐�
+	*コンボボックスのアイテム追加の関数
 	*/
 	void AddComboBoxItem(const char *t);
 	/*
-	*�e�L�X�g�̐F�ݒ�̊֐�
+	*テキストの色設定の関数
 	*/
 	void SetTextColor(float r, float g, float b);
 	/*
-	*�����x�ݒ�̊֐�
+	*透明度設定の関数
 	*/
 	void SetAlpha( float val);
 	/*
-	*�p���ݒ�̊֐�
+	*姿勢設定の関数
 	*/
 	void SetRotatin( float r, float p, float y);
 	/*
-	*�摜�ݒ�̊֐�
+	*画像設定の関数
 	*/
 	void SetImage(MyImageSet *MIS, const char *n);
 
 
 	/*
-	*�E�C���h�E�ݒ�̊֐�
+	*ウインドウ設定の関数
 	*/
 	void SetWindow(MyGUI *mg);
 	/*
-	*�R���{�{�b�N�X�̃A�C�e���폜�̊֐�
+	*コンボボックスのアイテム削除の関数
 	*/
 	void RemoveComboBoxItem(int index);
 	/*
-	*���X�g�{�b�N�X�̃A�C�e���ǉ��̊֐�
+	*リストボックスのアイテム追加の関数
 	*/
 	void AddListBoxItem(const char *t);
 	/*
-	*���X�g�{�b�N�X�̃A�C�e���폜�̊֐�
+	*リストボックスのアイテム削除の関数
 	*/
 	void RemoveListBoxItem(int index);
 	/*
-	*�}���`�R�������X�g�̍s�ǉ��̊֐�
+	*マルチコロンリストの行追加の関数
 	*/
 	void AddMultiColumnRow();
 	/*
-	*�}���`�R�������X�g�̍s�폜�̊֐�
+	*マルチコロンリストの行削除の関数
 	*/
 	void RemoveMultiColumnRow(int index);
 	/*
-	*�}���`�R�������X�g�̗�폜�̊֐�
+	*マルチコロンリストの列削除の関数
 	*/
 	void RemoveMultiColumnCol(int index);
 	/*
-	*�}���`�R�������X�g�̃A�C�e���ݒ�̊֐�
+	*マルチコロンリストのアイテム設定の関数
 	*/
 	void AddMultiColumnItem(const char *t, int row, int col);
 	/*
-	*�v���O���X�o�[�̒l�ݒ�̊֐�
+	*プログレスバーの値設定の関数
 	*/
 	void SetProgressBarValue(float val);
 	/*
-	*�X�N���[���o�[�̒l�擾�̊֐�
+	*スクロールバーの値取得の関数
 	*/
 	float GetScrollValue();
 	/*
-	*�X�N���[���o�[�̒l�ݒ�̊֐�
+	*スクロールバーの値設定の関数
 	*/
 	void SetScrollValue( float val);
 	/*
-	*�`�F�b�N�{�b�N�X�̃`�F�b�N�ݒ�̊֐�
+	*チェックボックスのチェック設定の関数
 	*/
 	void SetCheckBox(bool val);
 	/*
-	*�`�F�b�N�{�b�N�X�̃`�F�b�N�擾�̊֐�
+	*チェックボックスのチェック取得の関数
 	*/
 	bool GetCheckBox();
 
@@ -159,7 +159,7 @@ public:
 
 
 	/*
-	*�e�L�X�g�̈ʒu�ݒ�̊֐�
+	*テキストの位置設定の関数
 	*/
 	void SetTextTopAligned();
 	void SetTextBottomAligned();
@@ -171,16 +171,16 @@ public:
 	void SetTextRightAligned();
 	void SetTextHorzCentred();
 	/*
-	*�ݒ菉�����̊֐�
+	*設定初期化の関数
 	*/
 	void ClearProperties();
 
 	/*
-	*�ݒ�̃t�@�C���ۑ��̊֐�
+	*設定のファイル保存の関数
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*�ݒ�̃t�@�C���ǂݍ��݂̊֐�
+	*設定のファイル読み込みの関数
 	*/
 	bool openb(std::ifstream &ifs);
 

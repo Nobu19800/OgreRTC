@@ -1,4 +1,4 @@
-#ifndef MYNODE_H
+ï»¿#ifndef MYNODE_H
 #define MYNODE_H
 
 #include "BaseApplication.h"
@@ -9,7 +9,7 @@ class MyObject;
 
 
 /*
-*3Dƒ‚ƒfƒ‹‚Ìƒx[ƒX‚Æ‚È‚éƒNƒ‰ƒX
+*3Dãƒ¢ãƒ‡ãƒ«ã®ãƒ™ãƒ¼ã‚¹ã¨ãªã‚‹ã‚¯ãƒ©ã‚¹
 */
 
 class MyObject
@@ -22,15 +22,15 @@ public:
 	std::vector<MyNode*> NodeList;
 
 	/*
-	*ˆÊ’uİ’è‚ÌŠÖ”
+	*ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetPosition(float sx,float sy,float sz);
 	/*
-	*Šg‘å—¦İ’è‚ÌŠÖ”
+	*æ‹¡å¤§ç‡è¨­å®šã®é–¢æ•°
 	*/
 	void SetScale(float x,float y,float z);
 	/*
-	*p¨İ’è‚ÌŠÖ”
+	*å§¿å‹¢è¨­å®šã®é–¢æ•°
 	*/
 	void Roll(float ang);
 	void Pitch(float ang);
@@ -39,26 +39,26 @@ public:
 	void SetQuaternion(float w, float x, float y, float z);
 	
 	/*
-	*•\¦A”ñ•\¦İ’è‚ÌŠÖ”
+	*è¡¨ç¤ºã€éè¡¨ç¤ºè¨­å®šã®é–¢æ•°
 	*/
 	void SetVisible(bool v);
 
 	/*
-	*ƒ}ƒEƒX‚ÌˆÊ’u‚É‘Î‚·‚éˆÊ’uXV‚ÌŠÖ”
+	*ãƒã‚¦ã‚¹ã®ä½ç½®ã«å¯¾ã™ã‚‹ä½ç½®æ›´æ–°ã®é–¢æ•°
 	*/
 	void UpdatePos(float dx, float dy, float dz, float CamRoll, float CamPitch, float CamYaw);
 	/*
-	*ƒ}ƒEƒX‚ÌˆÊ’u‚É‘Î‚·‚ép¨XV‚ÌŠÖ”
+	*ãƒã‚¦ã‚¹ã®ä½ç½®ã«å¯¾ã™ã‚‹å§¿å‹¢æ›´æ–°ã®é–¢æ•°
 	*/
 	void UpdateRot(float dx, float dy, float CamRoll, float CamPitch, float CamYaw);
 	/*
-	*ƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒX‚Ì•\¦A”ñ•\¦İ’è‚ÌŠÖ”
+	*ãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹ã®è¡¨ç¤ºã€éè¡¨ç¤ºè¨­å®šã®é–¢æ•°
 	*/
 	void BoundingBoxVisible(bool v);
 };
 
 /*
-*ƒm[ƒh‚ÌƒNƒ‰ƒX
+*ãƒãƒ¼ãƒ‰ã®ã‚¯ãƒ©ã‚¹
 */
 
 class MyNode
@@ -77,22 +77,22 @@ public:
 	bool bound_visi;
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 
 	std::vector<MyObject*> mobj;
 
 	/*
-	*ƒIƒuƒWƒFƒNƒg’Ç‰Á‚ÌŠÖ”
+	*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ ã®é–¢æ•°
 	*/
 	void AddObj(MyObject *mo);
 	/*
-	*ƒIƒuƒWƒFƒNƒgíœ‚ÌŠÖ”
+	*ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‰Šé™¤ã®é–¢æ•°
 	*/
 	void RemoveObj(MyObject *mo);
 

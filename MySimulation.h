@@ -1,4 +1,4 @@
-#ifndef MYSIMULATION_H
+ï»¿#ifndef MYSIMULATION_H
 #define MYSIMULATION_H
 
 #include <coil/Task.h>
@@ -19,7 +19,7 @@ class MyODEBody;
 class MyODEJoint;
 
 /*
-*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÚGİ’è‚ÌŠÇ—ƒNƒ‰ƒX
+*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®æ¥è§¦è¨­å®šã®ç®¡ç†ã‚¯ãƒ©ã‚¹
 */
 
 class MyContactList
@@ -35,26 +35,26 @@ public:
 	bool contact;
 
 	/*
-	*ÚG‚ÌERP‚Ìİ’è‚ÌŠÖ”
+	*æ¥è§¦ã®ERPã®è¨­å®šã®é–¢æ•°
 	*/
 	void SetERP(double e);
 	/*
-	*ÚG‚ÌCFM‚Ìİ’è‚ÌŠÖ”
+	*æ¥è§¦ã®CFMã®è¨­å®šã®é–¢æ•°
 	*/
 	void SetCFM(double c);
 	/*
-	*–€C‚Ìİ’è‚ÌŠÖ”
+	*æ‘©æ“¦ã®è¨­å®šã®é–¢æ•°
 	*/
 	void SetMu(double m);
 	/*
-	*ÚG‚·‚é‚©‚µ‚È‚¢‚©‚Ìİ’è‚ÌŠÖ”
+	*æ¥è§¦ã™ã‚‹ã‹ã—ãªã„ã‹ã®è¨­å®šã®é–¢æ•°
 	*/
 	void SetContact(bool f);
 
 };
 
 /*
-*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX
+*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹
 */
 
 class MySimulation : public virtual coil::Task
@@ -62,124 +62,124 @@ class MySimulation : public virtual coil::Task
 public:
 	MySimulation(OgreRTCApplication *ec);
 	/*
-	*ƒXƒŒƒbƒhÀsŠÖ”
+	*ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œé–¢æ•°
 	*/
 	virtual int svc();
 	/*
-	*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ŠJn‚ÌŠÖ”
+	*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ã®é–¢æ•°
 	*/
 	void startSim();
 	void restartSim();
 	/*
-	*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“’â~‚ÌŠÖ”
+	*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³åœæ­¢ã®é–¢æ•°
 	*/
 	void stopSim();
 	/*
-	*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“I—¹‚ÌŠÖ”
+	*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã®é–¢æ•°
 	*/
 	void finishSim();
 	/*
-	*d—Íİ’è‚ÌŠÖ”
+	*é‡åŠ›è¨­å®šã®é–¢æ•°
 	*/
 	void SetGravity(double g);
 	/*
-	*CFMİ’è‚ÌŠÖ”
+	*CFMè¨­å®šã®é–¢æ•°
 	*/
 	void SetCFM(double c);
 	/*
-	*ERPİ’è‚ÌŠÖ”
+	*ERPè¨­å®šã®é–¢æ•°
 	*/
 	void SetERP(double e);
 	/*
-	*ƒTƒ“ƒvƒŠƒ“ƒOƒ^ƒCƒ€İ’è‚ÌŠÖ”
+	*ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ è¨­å®šã®é–¢æ•°
 	*/
 	void SetSamplingTime(double t);
 	/*
-	*‘Ò‚¿ŠÔİ’è‚ÌŠÖ”
+	*å¾…ã¡æ™‚é–“è¨­å®šã®é–¢æ•°
 	*/
 	void SetSleepTime(double t);
 	/*
-	*ÚG‚ÌCFMİ’è‚ÌŠÖ”
+	*æ¥è§¦ã®CFMè¨­å®šã®é–¢æ•°
 	*/
 	void SetGroundCFM(double c);
 	/*
-	*ÚG‚ÌERPİ’è‚ÌŠÖ”
+	*æ¥è§¦ã®ERPè¨­å®šã®é–¢æ•°
 	*/
 	void SetGroundERP(double e);
 	/*
-	*¸“xA‘¬“xd‹İ’è‚ÌŠÖ”
+	*ç²¾åº¦ã€é€Ÿåº¦é‡è¦–è¨­å®šã®é–¢æ•°
 	*/
 	void SetQuiq(bool q);
 	/*
-	*–€Cİ’è‚ÌŠÖ”
+	*æ‘©æ“¦è¨­å®šã®é–¢æ•°
 	*/
 	void SetGroundMu(double m);
 	/*
-	*‹…ì¬‚ÌŠÖ”
+	*çƒä½œæˆã®é–¢æ•°
 	*/
 	MyODEBody *SetSphere(const char *name, double m, double r);
 	/*
-	*’¼•û‘Ìì¬‚ÌŠÖ”
+	*ç›´æ–¹ä½“ä½œæˆã®é–¢æ•°
 	*/
 	MyODEBody *SetBox(const char *name, double m, double lx, double ly, double lz);
 	/*
-	*‰~’Œì¬‚ÌŠÖ”
+	*å††æŸ±ä½œæˆã®é–¢æ•°
 	*/
 	MyODEBody *SetSylinder(const char *name, double m, double l, double r);
 	/*
-	*ƒJƒvƒZƒ‹ì¬‚ÌŠÖ”
+	*ã‚«ãƒ—ã‚»ãƒ«ä½œæˆã®é–¢æ•°
 	*/
 	MyODEBody *SetCapsule(const char *name, double m, double l, double r);
 	/*
-	*ƒXƒ‰ƒCƒ_[ƒWƒ‡ƒCƒ“ƒgİ’è‚ÌŠÖ”
+	*ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆè¨­å®šã®é–¢æ•°
 	*/
 	void SetSliderJoint(MyODEJoint *ml, MyODEBody *b1, MyODEBody *b2, double ax, double ay, double az);
 	/*
-	*ƒXƒ‰ƒCƒ_[ƒWƒ‡ƒCƒ“ƒgì¬‚ÌŠÖ”
+	*ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyODEJoint *SetSliderJoint(const char *name, MyODEBody *b1, MyODEBody *b2, double ax, double ay, double az);
 	MyODEJoint *SetSliderJoint(const char *name, MyODEBody *b1, double ax, double ay, double az);
 	/*
-	*ŒÅ’èƒWƒ‡ƒCƒ“ƒgİ’è‚ÌŠÖ”
+	*å›ºå®šã‚¸ãƒ§ã‚¤ãƒ³ãƒˆè¨­å®šã®é–¢æ•°
 	*/
 	void SetFixJoint(MyODEJoint *ml, MyODEBody *b1, MyODEBody *b2);
 	/*
-	*ŒÅ’èƒWƒ‡ƒCƒ“ƒgì¬‚ÌŠÖ”
+	*å›ºå®šã‚¸ãƒ§ã‚¤ãƒ³ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyODEJoint *SetFixJoint(const char *name, MyODEBody *b1, MyODEBody *b2);
 	MyODEJoint *SetFixJoint(const char *name, MyODEBody *b1);
 	/*
-	*ƒqƒ“ƒWƒWƒ‡ƒCƒ“ƒgİ’è‚ÌŠÖ”
+	*ãƒ’ãƒ³ã‚¸ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆè¨­å®šã®é–¢æ•°
 	*/
 	void SetHingeJoint(MyODEJoint *ml, MyODEBody *b1, MyODEBody *b2, double px, double py, double pz, double ax, double ay, double az);
 	/*
-	*ƒqƒ“ƒWƒWƒ‡ƒCƒ“ƒgì¬‚ÌŠÖ”
+	*ãƒ’ãƒ³ã‚¸ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆä½œæˆã®é–¢æ•°
 	*/
 	MyODEJoint *SetHingeJoint(const char *name, MyODEBody *b1, MyODEBody *b2, double px, double py, double pz, double ax, double ay, double az);
 	MyODEJoint *SetHingeJoint(const char *name, MyODEBody *b1, double px, double py, double pz, double ax, double ay, double az);
 	/*
-	*ÚG‚ÌƒR[ƒ‹ƒoƒbƒN‚ÌŠÖ”
+	*æ¥è§¦æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®é–¢æ•°
 	*/
 	void NearCallback(dGeomID o1, dGeomID o2);
 	/*
-	*ƒ{ƒfƒB‚Ìíœ‚ÌŠÖ”
+	*ãƒœãƒ‡ã‚£ã®å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyBody(MyODEBody *ml);
 	/*
-	*ƒWƒ‡ƒCƒ“ƒg‚Ìíœ‚ÌŠÖ”
+	*ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyJoint(MyODEJoint *ml);
 	/*
-	*ƒ{ƒfƒBAƒWƒ‡ƒCƒ“ƒg‚Ì‘Síœ‚ÌŠÖ”
+	*ãƒœãƒ‡ã‚£ã€ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®å…¨å‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyAll();
 	/*
-	*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‰Šú‰»‚ÌŠÖ”
+	*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸåŒ–ã®é–¢æ•°
 	*/
 	void Reset();
 
 	/*
-	*GUI‚Ì‘€ì‚Å‚Ì‚İ‚Åƒ{ƒfƒBAƒWƒ‡ƒCƒ“ƒg‚Ìì¬Aíœ‚ğ‚·‚éŠÖ”
+	*GUIã®æ“ä½œã§ã®ã¿ã§ãƒœãƒ‡ã‚£ã€ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ä½œæˆã€å‰Šé™¤ã‚’ã™ã‚‹é–¢æ•°
 	*/
 	MyODEBody *SetQtSphere(const char *name, double m, double r);
 	MyODEBody *SetQtBox(const char *name, double m, double lx, double ly, double lz);
@@ -195,7 +195,7 @@ public:
 	void DestroyQtJoint(MyODEJoint *ml);
 
 	/*
-	*ƒ{ƒfƒBAƒWƒ‡ƒCƒ“ƒg‚ÌÄ¶¬‚ÌŠÖ”
+	*ãƒœãƒ‡ã‚£ã€ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®å†ç”Ÿæˆã®é–¢æ•°
 	*/
 	void SetQtSphere(MyODEBody *ml);
 	void SetQtBox(MyODEBody *ml);
@@ -207,37 +207,37 @@ public:
 
 	
 	/*
-	*ƒ{ƒfƒB‚Ìæ“¾‚ÌŠÖ”
+	*ãƒœãƒ‡ã‚£ã®å–å¾—ã®é–¢æ•°
 	*/
 	MyODEBody *getBodyByName(const char* name);
 	/*
-	*ƒWƒ‡ƒCƒ“ƒg‚Ìæ“¾‚ÌŠÖ”
+	*ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®å–å¾—ã®é–¢æ•°
 	*/
 	MyODEJoint *getJointByName(const char* name);
 
 	/*
-	*3Dƒ‚ƒfƒ‹‚É‘Î‚·‚éƒ{ƒfƒBAƒWƒ‡ƒCƒ“ƒg‚ÌŠg‘å—¦İ’è‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã«å¯¾ã™ã‚‹ãƒœãƒ‡ã‚£ã€ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®æ‹¡å¤§ç‡è¨­å®šã®é–¢æ•°
 	*/
 	void SetScale(float sx, float sy, float sz);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 
 	/*
-	*ÚG‚Ìİ’è’Ç‰Á‚ÌŠÖ”
+	*æ¥è§¦ã®è¨­å®šè¿½åŠ ã®é–¢æ•°
 	*/
 	MyContactList *SetContactList(const char* name, MyODEBody *b1, MyODEBody *b2);
 	/*
-	*ÚG‚Ìİ’èíœ‚ÌŠÖ”
+	*æ¥è§¦ã®è¨­å®šå‰Šé™¤ã®é–¢æ•°
 	*/
 	void DestroyContactList(MyContactList *mcl);
 	/*
-	*ÚG‚Ìİ’èæ“¾‚ÌŠÖ”
+	*æ¥è§¦ã®è¨­å®šå–å¾—ã®é–¢æ•°
 	*/
 	MyContactList *getContactListByName(const char* name);
 	

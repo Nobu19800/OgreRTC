@@ -1,4 +1,4 @@
-#ifndef MYODEBODY_H
+ï»¿#ifndef MYODEBODY_H
 #define MYODEBODY_H
 
 #include "BaseApplication.h"
@@ -18,7 +18,7 @@ class MySimulation;
 
 
 /*
-*ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚Ìƒ{ƒfƒB‚ÌƒNƒ‰ƒX
+*ã‚·ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒœãƒ‡ã‚£ã®ã‚¯ãƒ©ã‚¹
 */
 
 class MyODEBody : public MyLink
@@ -29,37 +29,37 @@ public:
 	MySimulation *ms;
 	
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	virtual void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	virtual bool openb(std::ifstream &ifs);
 
 	/*
-	*ˆÊ’uİ’è‚ÌŠÖ”
+	*ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetBodyPosition(double px, double py, double pz);
 	/*
-	*p¨İ’è‚ÌŠÖ”
+	*å§¿å‹¢è¨­å®šã®é–¢æ•°
 	*/
 	void SetBodyRotation(double r, double p, double y);
 	/*
-	*ˆÊ’uæ“¾‚ÌŠÖ”
+	*ä½ç½®å–å¾—ã®é–¢æ•°
 	*/
 	double GetPosition(int num);
 
 	/*
-	*3Dƒ‚ƒfƒ‹‚É‘Î‚·‚éŠg‘å—¦‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã«å¯¾ã™ã‚‹æ‹¡å¤§ç‡ã®é–¢æ•°
 	*/
 	void SetODEScale(float sx, float sy, float sz);
 	/*
-	*3Dƒ‚ƒfƒ‹‚É‘Î‚·‚éƒIƒtƒZƒbƒg‚ÌŠÖ”
+	*3Dãƒ¢ãƒ‡ãƒ«ã«å¯¾ã™ã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆã®é–¢æ•°
 	*/
 	void SetODEOffset(float ox, float oy, float oz);
 	/*
-	*ˆÊ’uXV‚ÌŠÖ”
+	*ä½ç½®æ›´æ–°ã®é–¢æ•°
 	*/
 	void UpdateBodyPosition();
 	
@@ -73,7 +73,7 @@ public:
 
   float bscale_x,bscale_y,bscale_z;
   
-  dReal    roll, pitch, yaw, offx,offy,offz,m,rd,posx,posy,posz,lx,ly,lz; // ¿—Ê(weight)C”¼Œa(radius)CˆÊ’u(positin:x,y,z)
+  dReal    roll, pitch, yaw, offx,offy,offz,m,rd,posx,posy,posz,lx,ly,lz; // è³ªé‡(weight)ï¼ŒåŠå¾„(radius)ï¼Œä½ç½®(positin:x,y,z)
   
 
 

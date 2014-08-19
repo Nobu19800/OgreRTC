@@ -1,4 +1,4 @@
-#include "LightSet.h"
+ï»¿#include "LightSet.h"
 
 
 #include "MyQtMacro.h"
@@ -25,7 +25,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 	layout->addWidget(NameEdit);
 
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
@@ -36,37 +36,37 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
 	PosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1000.0, -1000.0, posLayout);
 	connect(PosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosZSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
 
 	QVBoxLayout *ColorLayout =  new QVBoxLayout();
-	RedspinBox = SetDoubleSpinBox(tc->toUnicode("Ô"), 1, 0, ColorLayout);
+	RedspinBox = SetDoubleSpinBox(tc->toUnicode("èµ¤"), 1, 0, ColorLayout);
 	RedspinBox->setSingleStep(0.1);
 	connect(RedspinBox, SIGNAL(valueChanged(double)), this, SLOT(RedSlot(double)));
-	GreenspinBox = SetDoubleSpinBox(tc->toUnicode("—Î"), 1, 0, ColorLayout);
+	GreenspinBox = SetDoubleSpinBox(tc->toUnicode("ç·‘"), 1, 0, ColorLayout);
 	GreenspinBox->setSingleStep(0.1);
 	connect(GreenspinBox, SIGNAL(valueChanged(double)), this, SLOT(GreenSlot(double)));
-	BluespinBox = SetDoubleSpinBox(tc->toUnicode("Â"),1, 0, ColorLayout);
+	BluespinBox = SetDoubleSpinBox(tc->toUnicode("é’"),1, 0, ColorLayout);
 	BluespinBox->setSingleStep(0.1);
 	connect(BluespinBox, SIGNAL(valueChanged(double)), this, SLOT(BlueSlot(double)));
-	QGroupBox *colorGroup = new QGroupBox(tc->toUnicode("F"));
+	QGroupBox *colorGroup = new QGroupBox(tc->toUnicode("è‰²"));
 	colorGroup->setLayout(ColorLayout);
 	layout->addWidget(colorGroup);
 
 
 	
 
-	VisibleButton = new QPushButton(tc->toUnicode("•\Ž¦"));
+	VisibleButton = new QPushButton(tc->toUnicode("è¡¨ç¤º"));
 	connect(VisibleButton, SIGNAL(clicked()), this, SLOT(VisibleSlot()));
 	layout->addWidget(VisibleButton);
 
-	unVisibleButton = new QPushButton(tc->toUnicode("”ñ•\Ž¦"));
+	unVisibleButton = new QPushButton(tc->toUnicode("éžè¡¨ç¤º"));
 	connect(unVisibleButton, SIGNAL(clicked()), this, SLOT(unVisibleSlot()));
 	layout->addWidget(unVisibleButton);
 
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 

@@ -1,4 +1,4 @@
-#ifndef SIMJOINTSET_H
+﻿#ifndef SIMJOINTSET_H
 #define SIMJOINTSET_H
 
 #include <QtGui>
@@ -32,7 +32,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �V�~�����[�V�����̃W���C���g�쐬�A�ݒ�p�E�B�W�F�b�g
+* シミュレーションのジョイント作成、設定用ウィジェット
 */
 
 class SimJointSetWidget : public QWidget
@@ -47,59 +47,59 @@ public:
 
 signals:
 	/*
-	* �W���C���g���쐬�A�폜�����Ƃ��̃V�O�i��
+	* ジョイントを作成、削除したときのシグナル
 	*/
 	void UpdateODEJoint();
 
 
 public slots:
 	/*
-	*�W���C���g�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*ジョイントの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*3D���f���ƃW���C���g�̊g�嗦�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*3Dモデルとジョイントの拡大率設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	void ScaleZSlot(double value);
 	/*
-	*���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*軸設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*3D���f���ƃW���C���g�̃I�t�Z�b�g�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*3Dモデルとジョイントのオフセット設定スピンボックスの値を変更したときのスロット
 	*/
 	void OffsetXSlot(double value);
 	void OffsetYSlot(double value);
 	void OffsetZSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 
@@ -110,23 +110,23 @@ private slots:
 private:
 	
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void SetPos();
 	/*
-	* �g�嗦�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 拡大率設定スピンボックスの値を反映する関数
 	*/
 	void SetScale();
 	/*
-	* ���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 軸設定スピンボックスの値を反映する関数
 	*/
 	void SetRot();
 	/*
-	* �I�t�Z�b�g�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* オフセット設定スピンボックスの値を反映する関数
 	*/
 	void SetOffset();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void SetVisi(bool visi);
 

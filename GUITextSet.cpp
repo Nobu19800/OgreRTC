@@ -1,4 +1,4 @@
-#include "GUITextSet.h"
+ï»¿#include "GUITextSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -24,12 +24,12 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(NameEdit);
 
 
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
 	QVBoxLayout *TextLayout = new QVBoxLayout();
-	QLabel *Textlabel = new QLabel(tc->toUnicode("ƒeƒLƒXƒg"));
+	QLabel *Textlabel = new QLabel(tc->toUnicode("ãƒ†ã‚­ã‚¹ãƒˆ"));
 	TextLayout->addWidget(Textlabel);
 	TextEdit = new QTextEdit();
 	TextLayout->addWidget(TextEdit);
@@ -37,48 +37,48 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 	
 
-	FontSizespinBox = SetSpinBox(tc->toUnicode("ƒtƒHƒ“ƒgƒTƒCƒY"), 1000, 1, layout);
+	FontSizespinBox = SetSpinBox(tc->toUnicode("ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º"), 1000, 1, layout);
 	FontSizespinBox->setValue(30);
 	connect(FontSizespinBox, SIGNAL(valueChanged(int)), this, SLOT(FontSizeSlot(int)));
 	
 
-	TextTopAlignedButton = new QPushButton(tc->toUnicode("ã"));
+	TextTopAlignedButton = new QPushButton(tc->toUnicode("ä¸Š"));
 	connect(TextTopAlignedButton, SIGNAL(clicked()), this, SLOT(TextTopAlignedSlot()));
 	layout->addWidget(TextTopAlignedButton);
 
-	BottomAlignedButton = new QPushButton(tc->toUnicode("‰º"));
+	BottomAlignedButton = new QPushButton(tc->toUnicode("ä¸‹"));
 	connect(BottomAlignedButton, SIGNAL(clicked()), this, SLOT(BottomAlignedSlot()));
 	layout->addWidget(BottomAlignedButton);
 
-	VertCentredButton = new QPushButton(tc->toUnicode("’†‰›"));
+	VertCentredButton = new QPushButton(tc->toUnicode("ä¸­å¤®"));
 	connect(VertCentredButton, SIGNAL(clicked()), this, SLOT(VertCentredSlot()));
 	layout->addWidget(VertCentredButton);
 
-	WordWrapLeftAlignedButton = new QPushButton(tc->toUnicode("¶"));
+	WordWrapLeftAlignedButton = new QPushButton(tc->toUnicode("å·¦"));
 	connect(WordWrapLeftAlignedButton, SIGNAL(clicked()), this, SLOT(WordWrapLeftAlignedSlot()));
 	layout->addWidget(WordWrapLeftAlignedButton);
 
-	WordWrapRightAlignedButton = new QPushButton(tc->toUnicode("‰E"));
+	WordWrapRightAlignedButton = new QPushButton(tc->toUnicode("å³"));
 	connect(WordWrapRightAlignedButton, SIGNAL(clicked()), this, SLOT(WordWrapRightAlignedSlot()));
 	layout->addWidget(WordWrapRightAlignedButton);
 
-	WordWrapCentredButton = new QPushButton(tc->toUnicode("’†‰›"));
+	WordWrapCentredButton = new QPushButton(tc->toUnicode("ä¸­å¤®"));
 	connect(WordWrapCentredButton, SIGNAL(clicked()), this, SLOT(WordWrapCentredSlot()));
 	layout->addWidget(WordWrapCentredButton);
 
-	LeftAlignedButton = new QPushButton(tc->toUnicode("¶‰º"));
+	LeftAlignedButton = new QPushButton(tc->toUnicode("å·¦ä¸‹"));
 	connect(LeftAlignedButton, SIGNAL(clicked()), this, SLOT(LeftAlignedSlot()));
 	layout->addWidget(LeftAlignedButton);
 
-	RightAlignedButton = new QPushButton(tc->toUnicode("‰E‰º"));
+	RightAlignedButton = new QPushButton(tc->toUnicode("å³ä¸‹"));
 	connect(RightAlignedButton, SIGNAL(clicked()), this, SLOT(RightAlignedSlot()));
 	layout->addWidget(RightAlignedButton);
 
-	HorzCentredButton = new QPushButton(tc->toUnicode("’†‰›"));
+	HorzCentredButton = new QPushButton(tc->toUnicode("ä¸­å¤®"));
 	connect(HorzCentredButton, SIGNAL(clicked()), this, SLOT(HorzCentredSlot()));
 	layout->addWidget(HorzCentredButton);
 
-	ClearPropertiesButton = new QPushButton(tc->toUnicode("‰Šú‰»"));
+	ClearPropertiesButton = new QPushButton(tc->toUnicode("åˆæœŸåŒ–"));
 	connect(ClearPropertiesButton, SIGNAL(clicked()), this, SLOT(ClearPropertiesSlot()));
 	layout->addWidget(ClearPropertiesButton);
 

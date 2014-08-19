@@ -1,4 +1,4 @@
-#ifndef SIMULATIONSET_H
+﻿#ifndef SIMULATIONSET_H
 #define SIMULATIONSET_H
 
 #include <QtGui>
@@ -31,7 +31,7 @@ class QComboBox;
 QT_END_NAMESPACE
 
 /*
-* �V�~�����[�V�����ݒ�p�E�B�W�F�b�g
+* シミュレーション設定用ウィジェット
 */
 
 
@@ -48,66 +48,66 @@ public:
 
 public slots:
 	/*
-	*�V�~�����[�V�����̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*シミュレーションの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
 
 private slots:
 	/*
-	*���Z�b�g�{�^�����������Ƃ��̃X���b�g
+	*リセットボタンを押したときのスロット
 	*/
 	void ResetSlot();
 	/*
-	*�d�͐ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*重力設定スピンボックスの値を変更したときのスロット
 	*/
 	void GravitySlot(double value);
 	/*
-	*CFM�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*CFM設定スピンボックスの値を変更したときのスロット
 	*/
 	void CFMSlot(double value);
 	/*
-	*ERP�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*ERP設定スピンボックスの値を変更したときのスロット
 	*/
 	void ERPSlot(double value);
 	/*
-	*�ڐG����CFM�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*接触時のCFM設定スピンボックスの値を変更したときのスロット
 	*/
 	void gCFMSlot(double value);
 	/*
-	*�ڐG����ERP�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*接触時のERP設定スピンボックスの値を変更したときのスロット
 	*/
 	void gERPSlot(double value);
 	/*
-	*���x�A���x�d���{�^�����������Ƃ��̃X���b�g
+	*精度、速度重視ボタンを押したときのスロット
 	*/
 	void unQuiqSlot();
 	void QuiqSlot();
 
 	/*
-	*�J�n�{�^�����������Ƃ��̃X���b�g
+	*開始ボタンを押したときのスロット
 	*/
 	void StartSlot();
 	void RestartSlot();
 	/*
-	*��~�{�^�����������Ƃ��̃X���b�g
+	*停止ボタンを押したときのスロット
 	*/
 	void StopSlot();
 	
 	/*
-	*���C�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*摩擦設定スピンボックスの値を変更したときのスロット
 	*/
 	void gMuSlot(double value);
 	/*
-	*�T���v�����O�^�C���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*サンプリングタイム設定スピンボックスの値を変更したときのスロット
 	*/
 	void STimeSlot(double value);
 	/*
-	*�҂����Ԑݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*待ち時間設定スピンボックスの値を変更したときのスロット
 	*/
 	void SleepTimeSlot(double value);
 	/*
-	*3D���f���ƃV�~�����[�V�����̊g�嗦�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*3Dモデルとシミュレーションの拡大率設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
@@ -119,7 +119,7 @@ private slots:
 
 private:
 	/*
-	* �g�嗦�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 拡大率設定スピンボックスの値を反映する関数
 	*/
 	void SetScale();
 	QPushButton *StartButton;

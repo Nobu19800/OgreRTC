@@ -1,4 +1,4 @@
-#include "SubWindowSet.h"
+ï»¿#include "SubWindowSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -25,7 +25,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 
 	
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
@@ -37,7 +37,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	PosYspinBox = SetDoubleSpinBox(tc->toUnicode("Y"), 1.0, 0.0, posLayout);
 	PosYspinBox->setSingleStep(0.1);
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -51,7 +51,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ScaleYspinBox->setValue(0.1);
 	ScaleYspinBox->setSingleStep(0.1);
 	connect(ScaleYspinBox, SIGNAL(valueChanged(double)), this, SLOT(ScaleYSlot(double)));
-	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("‘å‚«‚³"));
+	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("å¤§ãã•"));
 	scaleGroup->setLayout(scaleLayout);
 	layout->addWidget(scaleGroup);
 
@@ -66,7 +66,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(CameraPosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(CameraPosYSlot(double)));
 	CameraPosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1000.0, -1000.0, cameraposLayout);
 	connect(CameraPosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(CameraPosZSlot(double)));
-	QGroupBox *cameraposGroup = new QGroupBox(tc->toUnicode("ƒJƒƒ‰‚ÌˆÊ’u"));
+	QGroupBox *cameraposGroup = new QGroupBox(tc->toUnicode("ã‚«ãƒ¡ãƒ©ã®ä½ç½®"));
 	cameraposGroup->setLayout(cameraposLayout);
 	layout->addWidget(cameraposGroup);
 
@@ -78,34 +78,34 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(CameraPitchspinBox, SIGNAL(valueChanged(double)), this, SLOT(CameraPitchSlot(double)));
 	CameraYawspinBox = SetDoubleSpinBox(tc->toUnicode("Yaw"), 360.0, 0.0, camreraangleLayout);
 	connect(CameraYawspinBox, SIGNAL(valueChanged(double)), this, SLOT(CameraYawSlot(double)));
-	QGroupBox *cameraangleGroup = new QGroupBox(tc->toUnicode("ƒJƒƒ‰‚ÌŽp¨"));
+	QGroupBox *cameraangleGroup = new QGroupBox(tc->toUnicode("ã‚«ãƒ¡ãƒ©ã®å§¿å‹¢"));
 	cameraangleGroup->setLayout(camreraangleLayout);
 	layout->addWidget(cameraangleGroup);
 
 	
-	CameraLenspinBox = SetDoubleSpinBox(tc->toUnicode("‹——£"), 1000.0, 0.0, layout);
+	CameraLenspinBox = SetDoubleSpinBox(tc->toUnicode("è·é›¢"), 1000.0, 0.0, layout);
 	CameraLenspinBox->setValue(100.0);
 	connect(CameraLenspinBox, SIGNAL(valueChanged(double)), this, SLOT(CameraLenSlot(double)));
 
 
 
-	VisibleButton = new QPushButton(tc->toUnicode("•\Ž¦"));
+	VisibleButton = new QPushButton(tc->toUnicode("è¡¨ç¤º"));
 	connect(VisibleButton, SIGNAL(clicked()), this, SLOT(VisibleSlot()));
 	layout->addWidget(VisibleButton);
 
-	unVisibleButton = new QPushButton(tc->toUnicode("”ñ•\Ž¦"));
+	unVisibleButton = new QPushButton(tc->toUnicode("éžè¡¨ç¤º"));
 	connect(unVisibleButton, SIGNAL(clicked()), this, SLOT(unVisibleSlot()));
 	layout->addWidget(unVisibleButton);
 	
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 
-	RestartButton = new QPushButton(tc->toUnicode("ÄŠJ"));
+	RestartButton = new QPushButton(tc->toUnicode("å†é–‹"));
 	connect(RestartButton, SIGNAL(clicked()), this, SLOT(RestartSlot()));
 	layout->addWidget(RestartButton);
 
-	StopButton = new QPushButton(tc->toUnicode("’âŽ~"));
+	StopButton = new QPushButton(tc->toUnicode("åœæ­¢"));
 	connect(StopButton, SIGNAL(clicked()), this, SLOT(StopSlot()));
 	layout->addWidget(StopButton);
 

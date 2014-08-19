@@ -1,4 +1,4 @@
-#include "MyNode.h"
+﻿#include "MyNode.h"
 #include "MyOgreMacro.h"
 
 MyObject::MyObject()

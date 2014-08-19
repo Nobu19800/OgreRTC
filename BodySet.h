@@ -1,4 +1,4 @@
-#ifndef BODYSET_H
+﻿#ifndef BODYSET_H
 #define BODYSET_H
 
 #include <QtGui>
@@ -32,7 +32,7 @@ QT_END_NAMESPACE
 
 
 /*
-* 3D���f���쐬�A�ݒ�p�E�B�W�F�b�g
+* 3Dモデル作成、設定用ウィジェット
 */
 
 class BodySetWidget : public QWidget
@@ -47,25 +47,25 @@ public:
 
 signals:
 	/*
-	* 3D���f�����쐬�A�폜�����Ƃ��̃V�O�i��
+	* 3Dモデルを作成、削除したときのシグナル
 	*/
 	void UpdateBody();
 
 public slots:
 	/*
-	*3D���f���̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*3Dモデルの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	/*
-	* �}�E�X�����������̃X���b�g
+	* マウスが動いた時のスロット
 	*/
 	void mouseMoveSlot(QMouseEvent*  evt, int dx, int dy);
 	/*
-	* �}�E�X�̃{�^�����������Ƃ��̃X���b�g
+	* マウスのボタンを押したときのスロット
 	*/
 	void mousePressSlot(QMouseEvent*  evt);
 	/*
-	* �}�E�X�̃{�^���𗣂����Ƃ��̃X���b�g
+	* マウスのボタンを離したときのスロット
 	*/
 	void mouseReleaseSlot(QMouseEvent*  evt);
 
@@ -73,69 +73,69 @@ public slots:
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�g�嗦�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*拡大率設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	void ScaleZSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*�F�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*色設定スピンボックスの値を変更したときのスロット
 	*/
 	void RedSlot(double value);
 	void GreenSlot(double value);
 	void BlueSlot(double value);
 	/*
-	*�����x�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*透明度設定スピンボックスの値を変更したときのスロット
 	*/
 	void AlphaSlot(double value);
 	/*
-	*�A�j���[�V�������ԕύX�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*アニメーション時間変更スピンボックスの値を変更したときのスロット
 	*/
 	void AnimationSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 	/*
-	*�A�j���[�V�����ݒ�{�^�����������Ƃ��̃X���b�g
+	*アニメーション設定ボタンを押したときのスロット
 	*/
 	void SetAnimationSlot();
 	/*
-	*�A�j���[�V�����̃��Z�b�g�{�^�����������Ƃ��̃X���b�g
+	*アニメーションのリセットボタンを押したときのスロット
 	*/
 	void ResetAnimationSlot();
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 	/*
-	*�e�̕\���A��\���{�^�����������Ƃ��̃X���b�g
+	*影の表示、非表示ボタンを押したときのスロット
 	*/
 	void SetShadowSlot();
 	void RemoveShadowSlot();
 	/*
-	*�o�E���f�B���O�{�b�N�X�̕\���A��\���{�^�����������Ƃ��̃X���b�g
+	*バウンディングボックスの表示、非表示ボタンを押したときのスロット
 	*/
 	void SetBoundingBoxSlot();
 	void RemoveBoundingBoxSlot();
@@ -143,7 +143,7 @@ private slots:
 	void MaterialSlot();
 
 	/*
-	*�}�e���A���ݒ�{�^�����������Ƃ��̃X���b�g
+	*マテリアル設定ボタンを押したときのスロット
 	*/
 	void SetMaterialSlot();
 
@@ -153,31 +153,31 @@ private:
 	bool up_flag;
 	
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
 	/*
-	* �g�嗦�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 拡大率設定スピンボックスの値を反映する関数
 	*/
 	void UpdateScale();
 	/*
-	* �p���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void UpdateRot();
 	/*
-	* �F�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 色設定スピンボックスの値を反映する関数
 	*/
 	void UpdateColor();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void UpdateVisi(bool visi);
 	/*
-	* �e�̕\���ݒ�{�^���𔽉f����֐�
+	* 影の表示設定ボタンを反映する関数
 	*/
 	void UpdateShadow(bool visi);
 	/*
-	* �o�E���f�B���O�{�b�N�X�̕\���ݒ�{�^���𔽉f����֐�
+	* バウンディングボックスの表示設定ボタンを反映する関数
 	*/
 	void UpdateBound(bool visi);
 

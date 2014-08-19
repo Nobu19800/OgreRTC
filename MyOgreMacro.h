@@ -1,4 +1,4 @@
-#ifndef MYOGREMACRO_H
+ï»¿#ifndef MYOGREMACRO_H
 #define MYOGREMACRO_H
 
 #include "BaseApplication.h"
@@ -6,12 +6,12 @@
 
 
 /*
-*Šg’£q‚ğæ“¾‚·‚éŠÖ”
+*æ‹¡å¼µå­ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 */
 std::string GetExtension(std::string &path);
 
 /*
-*Šp“x‚©‚çƒNƒI[ƒ^ƒjƒIƒ“‚ğæ“¾‚·‚éŠÖ”
+*è§’åº¦ã‹ã‚‰ã‚¯ã‚ªãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 */
 Ogre::Quaternion GetRotQuat(float roll, float pitch, float yaw);
 

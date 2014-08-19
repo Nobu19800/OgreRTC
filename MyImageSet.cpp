@@ -1,4 +1,4 @@
-#include "MyImageSet.h"
+﻿#include "MyImageSet.h"
 
 
 MyImageSet::MyImageSet()

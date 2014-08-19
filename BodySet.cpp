@@ -1,4 +1,4 @@
-#include "BodySet.h"
+ï»¿#include "BodySet.h"
 #include "MyQtMacro.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
@@ -31,7 +31,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	
 
 	QVBoxLayout *FileNameLayout = new QVBoxLayout();
-	QLabel *FileNamelabel = new QLabel(tc->toUnicode("ƒtƒ@ƒCƒ‹–¼"));
+	QLabel *FileNamelabel = new QLabel(tc->toUnicode("ãƒ•ã‚¡ã‚¤ãƒ«å"));
 	FileNameLayout->addWidget(FileNamelabel);
 	FileNameEdit = new QComboBox();
 	FileNameEdit->setLineEdit(new QLineEdit());
@@ -63,7 +63,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 
 
 	
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
@@ -75,7 +75,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
 	PosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1000.0, -1000.0, posLayout);
 	connect(PosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosZSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -90,7 +90,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ScaleZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, 0.01, scaleLayout);
 	ScaleZspinBox->setValue(1);
 	connect(ScaleZspinBox, SIGNAL(valueChanged(double)), this, SLOT(ScaleZSlot(double)));
-	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("Šg‘å—¦"));
+	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("æ‹¡å¤§çŽ‡"));
 	scaleGroup->setLayout(scaleLayout);
 	layout->addWidget(scaleGroup);
 
@@ -102,26 +102,26 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PitchspinBox, SIGNAL(valueChanged(double)), this, SLOT(PitchSlot(double)));
 	YawspinBox = SetDoubleSpinBox(tc->toUnicode("Yaw"), 360.0, 0.0, angleLayout);
 	connect(YawspinBox, SIGNAL(valueChanged(double)), this, SLOT(YawSlot(double)));
-	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("Žp¨"));
+	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("å§¿å‹¢"));
 	angleGroup->setLayout(angleLayout);
 	layout->addWidget(angleGroup);
 
 	
 	QVBoxLayout *ColorLayout =  new QVBoxLayout();
-	RedspinBox = SetDoubleSpinBox(tc->toUnicode("Ô"), 1, 0, ColorLayout);
+	RedspinBox = SetDoubleSpinBox(tc->toUnicode("èµ¤"), 1, 0, ColorLayout);
 	RedspinBox->setSingleStep(0.1);
 	connect(RedspinBox, SIGNAL(valueChanged(double)), this, SLOT(RedSlot(double)));
-	GreenspinBox = SetDoubleSpinBox(tc->toUnicode("—Î"), 1, 0, ColorLayout);
+	GreenspinBox = SetDoubleSpinBox(tc->toUnicode("ç·‘"), 1, 0, ColorLayout);
 	GreenspinBox->setSingleStep(0.1);
 	connect(GreenspinBox, SIGNAL(valueChanged(double)), this, SLOT(GreenSlot(double)));
-	BluespinBox = SetDoubleSpinBox(tc->toUnicode("Â"),1, 0, ColorLayout);
+	BluespinBox = SetDoubleSpinBox(tc->toUnicode("é’"),1, 0, ColorLayout);
 	BluespinBox->setSingleStep(0.1);
 	connect(BluespinBox, SIGNAL(valueChanged(double)), this, SLOT(BlueSlot(double)));
-	AlphaspinBox = SetDoubleSpinBox(tc->toUnicode("“§–¾“x"), 1, 0, ColorLayout);
+	AlphaspinBox = SetDoubleSpinBox(tc->toUnicode("é€æ˜Žåº¦"), 1, 0, ColorLayout);
 	AlphaspinBox->setSingleStep(0.1);
 	AlphaspinBox->setValue(1.0);
 	connect(AlphaspinBox, SIGNAL(valueChanged(double)), this, SLOT(AlphaSlot(double)));
-	QGroupBox *colorGroup = new QGroupBox(tc->toUnicode("F"));
+	QGroupBox *colorGroup = new QGroupBox(tc->toUnicode("è‰²"));
 	colorGroup->setLayout(ColorLayout);
 	layout->addWidget(colorGroup);
 	
@@ -136,15 +136,15 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	AnimationEdit = new QComboBox();
 	AnimationEdit->setLineEdit(new QLineEdit());
 	AnimationLayout->addWidget(AnimationEdit);
-	SetAnimationButton = new QPushButton(tc->toUnicode("ƒAƒjƒ[ƒVƒ‡ƒ“Ý’è"));
+	SetAnimationButton = new QPushButton(tc->toUnicode("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š"));
 	connect(SetAnimationButton, SIGNAL(clicked()), this, SLOT(SetAnimationSlot()));
 	AnimationLayout->addWidget(SetAnimationButton);
-	ResetAnimationButton = new QPushButton(tc->toUnicode("ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒZƒbƒg"));
+	ResetAnimationButton = new QPushButton(tc->toUnicode("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚»ãƒƒãƒˆ"));
 	connect(ResetAnimationButton, SIGNAL(clicked()), this, SLOT(ResetAnimationSlot()));
 	AnimationLayout->addWidget(ResetAnimationButton);
-	QGroupBox *animationGroup = new QGroupBox(tc->toUnicode("ƒAƒjƒ[ƒVƒ‡ƒ“"));
+	QGroupBox *animationGroup = new QGroupBox(tc->toUnicode("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³"));
 	animationGroup->setLayout(AnimationLayout);
-	AnimationspinBox = SetDoubleSpinBox(tc->toUnicode("ŽžŠÔ"), 0.0, 0.0, AnimationLayout);
+	AnimationspinBox = SetDoubleSpinBox(tc->toUnicode("æ™‚é–“"), 0.0, 0.0, AnimationLayout);
 	connect(AnimationspinBox, SIGNAL(valueChanged(double)), this, SLOT(AnimationSlot(double)));
 	layout->addWidget(animationGroup);
 
@@ -236,41 +236,41 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	MaterialEdit->addItem("Examples/ShowTangents");
 	MaterialEdit->addItem("Examples/ShowNormals");
 	MaterialLayout->addWidget(MaterialEdit);
-	SetMaterialButton = new QPushButton(tc->toUnicode("ƒ}ƒeƒŠƒAƒ‹Ý’è"));
+	SetMaterialButton = new QPushButton(tc->toUnicode("ãƒžãƒ†ãƒªã‚¢ãƒ«è¨­å®š"));
 	connect(SetMaterialButton, SIGNAL(clicked()), this, SLOT(SetMaterialSlot()));
 	MaterialLayout->addWidget(SetMaterialButton);
-	QGroupBox *MaterialGroup = new QGroupBox(tc->toUnicode("ƒ}ƒeƒŠƒAƒ‹"));
+	QGroupBox *MaterialGroup = new QGroupBox(tc->toUnicode("ãƒžãƒ†ãƒªã‚¢ãƒ«"));
 	MaterialGroup->setLayout(MaterialLayout);
 	layout->addWidget(MaterialGroup);
 
 
 	
 
-	VisibleButton = new QPushButton(tc->toUnicode("•\Ž¦"));
+	VisibleButton = new QPushButton(tc->toUnicode("è¡¨ç¤º"));
 	connect(VisibleButton, SIGNAL(clicked()), this, SLOT(VisibleSlot()));
 	layout->addWidget(VisibleButton);
 
-	unVisibleButton = new QPushButton(tc->toUnicode("”ñ•\Ž¦"));
+	unVisibleButton = new QPushButton(tc->toUnicode("éžè¡¨ç¤º"));
 	connect(unVisibleButton, SIGNAL(clicked()), this, SLOT(unVisibleSlot()));
 	layout->addWidget(unVisibleButton);
 	
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 
-	SetShadowButton = new QPushButton(tc->toUnicode("‰e•\Ž¦"));
+	SetShadowButton = new QPushButton(tc->toUnicode("å½±è¡¨ç¤º"));
 	connect(SetShadowButton, SIGNAL(clicked()), this, SLOT(SetShadowSlot()));
 	layout->addWidget(SetShadowButton);
 
-	RemoveShadowButton = new QPushButton(tc->toUnicode("‰e”ñ•\Ž¦"));
+	RemoveShadowButton = new QPushButton(tc->toUnicode("å½±éžè¡¨ç¤º"));
 	connect(RemoveShadowButton, SIGNAL(clicked()), this, SLOT(RemoveShadowSlot()));
 	layout->addWidget(RemoveShadowButton);
 
-	SetBoundingBoxButton = new QPushButton(tc->toUnicode("ƒ{ƒbƒNƒX•\Ž¦"));
+	SetBoundingBoxButton = new QPushButton(tc->toUnicode("ãƒœãƒƒã‚¯ã‚¹è¡¨ç¤º"));
 	connect(SetBoundingBoxButton, SIGNAL(clicked()), this, SLOT(SetBoundingBoxSlot()));
 	layout->addWidget(SetBoundingBoxButton);
 
-	RemoveBoundingBoxButton = new QPushButton(tc->toUnicode("ƒ{ƒbƒNƒX”ñ•\Ž¦"));
+	RemoveBoundingBoxButton = new QPushButton(tc->toUnicode("ãƒœãƒƒã‚¯ã‚¹éžè¡¨ç¤º"));
 	connect(RemoveBoundingBoxButton, SIGNAL(clicked()), this, SLOT(RemoveBoundingBoxSlot()));
 	layout->addWidget(RemoveBoundingBoxButton);
 

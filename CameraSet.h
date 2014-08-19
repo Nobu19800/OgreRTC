@@ -1,4 +1,4 @@
-#ifndef CAMERASET_H
+﻿#ifndef CAMERASET_H
 #define CAMERASET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �J�����ݒ�p�E�B�W�F�b�g
+* カメラ設定用ウィジェット
 */
 
 class CameraSetWidget : public QWidget
@@ -44,49 +44,49 @@ public:
 	OgreRTCApplication *EC;
 public slots:
 	/*
-	*�J�����ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*カメラ設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	/*
-	* �}�E�X�����������̃X���b�g
+	* マウスが動いた時のスロット
 	*/
 	void mouseMoveSlot(QMouseEvent*  evt, int dx, int dy);
 	/*
-	* �}�E�X�̃{�^�����������Ƃ��̃X���b�g
+	* マウスのボタンを押したときのスロット
 	*/
 	void mousePressSlot(QMouseEvent*  evt);
 	/*
-	* �}�E�X�̃{�^���𗣂����Ƃ��̃X���b�g
+	* マウスのボタンを離したときのスロット
 	*/
 	void mouseReleaseSlot(QMouseEvent*  evt);
 
 private slots:
 	/*
-	*�����̈ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*光源の位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void LightXSlot(double value);
 	void LightYSlot(double value);
 	void LightZSlot(double value);
 	/*
-	*�e�̐F�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*影の色設定スピンボックスの値を変更したときのスロット
 	*/
 	void ShadowRSlot(double value);
 	void ShadowGSlot(double value);
 	void ShadowBSlot(double value);
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*�����ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*距離設定スピンボックスの値を変更したときのスロット
 	*/
 	void LenSlot(double value);
 
@@ -96,15 +96,15 @@ private:
 	void UpdatePos();
 	void UpdateRot();
 	/*
-	* �e�̐F�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 影の色設定スピンボックスの値を反映する関数
 	*/
 	void UpdateColor();
 	/*
-	* �����̈ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 光源の位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdateLightPos();
 	/*
-	* �ʒu�A�p���A�����ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置、姿勢、距離設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePQ();
 

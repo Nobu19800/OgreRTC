@@ -1,4 +1,4 @@
-#ifndef MYLINK_H
+ï»¿#ifndef MYLINK_H
 #define MYLINK_H
 
 #include "BaseApplication.h"
@@ -14,7 +14,7 @@
 
 
 /*
-* 3Dƒ‚ƒfƒ‹‚ÌƒNƒ‰ƒX
+* 3Dãƒ¢ãƒ‡ãƒ«ã®ã‚¯ãƒ©ã‚¹
 */
 
 
@@ -24,63 +24,63 @@ public:
 	MyLink(std::string n);
 
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“İ’è‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®šã®é–¢æ•°
 	*/
 	void SetAnimation(const char* name);
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸåŒ–ã®é–¢æ•°
 	*/
 	void ResetAnimation( const char* name);
 	/*
-	*ƒAƒjƒ[ƒVƒ‡ƒ“XV‚ÌŠÖ”
+	*ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°ã®é–¢æ•°
 	*/
 	void UpdateAnimation(const char* name, float time);
 	/*
-	*‰e‚Ì•\¦A”ñ•\¦İ’è‚ÌŠÖ”
+	*å½±ã®è¡¨ç¤ºã€éè¡¨ç¤ºè¨­å®šã®é–¢æ•°
 	*/
 	void SetShadows( bool v);
 
 	/*
-	*ƒ{[ƒ“‚ÌˆÊ’uİ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornPosition(const char*name, float x, float y, float z);
 	void SetBornPosition(int name, float x, float y, float z);
 	/*
-	*ƒ{[ƒ“‚ÌƒNƒI[ƒ^ƒjƒIƒ“İ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®ã‚¯ã‚ªãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornOrientation(const char*name, float w, float x, float y, float z);
 	void SetBornOrientation(int name, float w, float x, float y, float z);
 	/*
-	*ƒ{[ƒ“‚ÌŠg‘å—¦İ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®æ‹¡å¤§ç‡è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornScale(const char*name, float sx, float sy, float sz);
 	void SetBornScale(int name, float sx, float sy, float sz);
 	/*
-	*ƒ{[ƒ“‚Ìƒ[ƒ‹Špİ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®ãƒ­ãƒ¼ãƒ«è§’è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornRoll(const char*name, float ang);
 	void SetBornRoll(int name, float ang);
 	/*
-	*ƒ{[ƒ“‚Ìƒsƒbƒ`Špİ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®ãƒ”ãƒƒãƒè§’è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornPitch(const char*name, float ang);
 	void SetBornPitch(int name, float ang);
 	/*
-	*ƒ{[ƒ“‚Ìƒˆ[Špİ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®ãƒ¨ãƒ¼è§’è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornYaw(const char*name, float ang);
 	void SetBornYaw(int name, float ang);
 	/*
-	*ƒ{[ƒ“‚Ìp¨İ’è‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®å§¿å‹¢è¨­å®šã®é–¢æ•°
 	*/
 	void SetBornRotation(const char*name, float r, float p, float y);
 	void SetBornRotation(int name, float r, float p, float y);
 	/*
-	*ƒ{[ƒ“‚Ì”æ“¾‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®æ•°å–å¾—ã®é–¢æ•°
 	*/
 	int GetBornNum();
 	/*
-	*ƒ{[ƒ“‚Ì‰Šú‰»‚ÌŠÖ”
+	*ãƒœãƒ¼ãƒ³ã®åˆæœŸåŒ–ã®é–¢æ•°
 	*/
 	void ResetBorn();
 	
@@ -90,23 +90,23 @@ public:
 	
 	
 	/*
-	*ƒ}ƒeƒŠƒAƒ‹İ’è‚ÌŠÖ”
+	*ãƒãƒ†ãƒªã‚¢ãƒ«è¨­å®šã®é–¢æ•°
 	*/
 	void SetMaterial(const char *name);
 
 		
 
 	/*
-	*ƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒX‚Ì‘å‚«‚³æ“¾‚ÌŠÖ”
+	*ãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹ã®å¤§ãã•å–å¾—ã®é–¢æ•°
 	*/
 	float GetBoundingBoxSize(int num);
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	virtual void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	virtual bool openb(std::ifstream &ifs);
 

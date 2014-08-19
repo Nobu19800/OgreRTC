@@ -1,4 +1,4 @@
-#ifndef IMAGESET_H
+﻿#ifndef IMAGESET_H
 #define IMAGESET_H
 
 #include <QtGui>
@@ -30,7 +30,7 @@ QT_END_NAMESPACE
 
 
 /*
-* GUI�̉摜�쐬�A�ݒ�p�E�B�W�F�b�g
+* GUIの画像作成、設定用ウィジェット
 */
 
 class ImageSetWidget : public QWidget
@@ -47,29 +47,29 @@ public:
 
 public slots:
 	/*
-	*�摜�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*画像の設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	/*
-	*GUI���ǉ��A�폜���ꂽ���̃X���b�g
+	*GUIが追加、削除された時のスロット
 	*/
 	void UpdateGUI();
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 	/*
-	*GUI�̖��O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*GUIの名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*GUI�̉摜�ݒ�{�^�����������Ƃ��̃X���b�g
+	*GUIの画像設定ボタンを押したときのスロット
 	*/
 	void SetGUISlot();
 

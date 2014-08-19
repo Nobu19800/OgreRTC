@@ -1,4 +1,4 @@
-#ifndef BORNSET_H
+﻿#ifndef BORNSET_H
 #define BORNSET_H
 
 #include <QtGui>
@@ -29,7 +29,7 @@ QT_END_NAMESPACE
 
 
 /*
-* �{�[���ݒ�p�E�B�W�F�b�g
+* ボーン設定用ウィジェット
 */
 
 class BornSetWidget : public QWidget
@@ -44,39 +44,39 @@ public:
 
 public slots:
 	/*
-	* 3D���f�����ǉ��A�폜���ꂽ�Ƃ��̃X���b�g
+	* 3Dモデルが追加、削除されたときのスロット
 	*/
 	void UpdateBody();
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 /*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�g�嗦�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*拡大率設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	void ScaleZSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*���Z�b�g�{�^�����������Ƃ��̃X���b�g
+	*リセットボタンを押したときのスロット
 	*/
 	void ResetSlot();
 	/*
-	*�{�f�B�̖��O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*ボディの名前コンボボックスの番号が変わったときのスロット
 	*/
 	void BodyNameSlot(int value);
 

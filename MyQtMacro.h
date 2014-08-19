@@ -1,4 +1,4 @@
-#ifndef MYQTMACRO_H
+ï»¿#ifndef MYQTMACRO_H
 #define MYQTMACRO_H
 
 #include <QtGui>
@@ -29,11 +29,11 @@ class QTreeWidget;
 QT_END_NAMESPACE
 
 /*
-*ƒXƒsƒ“ƒ{ƒbƒNƒXì¬‚ÌŠÖ”
+*ã‚¹ãƒ”ãƒ³ãƒœãƒƒã‚¯ã‚¹ä½œæˆã®é–¢æ•°
 */
 QSpinBox *SetSpinBox(QString name, int Max, int Min, QBoxLayout *layout);
 /*
-*ƒXƒsƒ“ƒ{ƒbƒNƒX(DoubleŒ^)ì¬‚ÌŠÖ”
+*ã‚¹ãƒ”ãƒ³ãƒœãƒƒã‚¯ã‚¹(Doubleå‹)ä½œæˆã®é–¢æ•°
 */
 QDoubleSpinBox *SetDoubleSpinBox(QString name, double Max, double Min, QBoxLayout *layout);
 

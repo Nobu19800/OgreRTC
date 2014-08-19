@@ -1,4 +1,4 @@
-#include "CameraSet.h"
+ï»¿#include "CameraSet.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
 #include "MyQtMacro.h"
@@ -26,24 +26,24 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	LightZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, -10000.0, lightposLayout);
 	LightZspinBox->setValue(10000);
 	connect(LightZspinBox, SIGNAL(valueChanged(double)), this, SLOT(LightZSlot(double)));
-	QGroupBox *lightposGroup = new QGroupBox(tc->toUnicode("ŒõŒ¹‚ÌˆÊ’u"));
+	QGroupBox *lightposGroup = new QGroupBox(tc->toUnicode("å…‰æºã®ä½ç½®"));
 	lightposGroup->setLayout(lightposLayout);
 	layout->addWidget(lightposGroup);
 
 	QVBoxLayout *shadowcolorLayout =  new QVBoxLayout();
-	ShadowRspinBox = SetDoubleSpinBox(tc->toUnicode("Ô"), 1, 0, shadowcolorLayout);
+	ShadowRspinBox = SetDoubleSpinBox(tc->toUnicode("èµ¤"), 1, 0, shadowcolorLayout);
 	ShadowRspinBox->setValue(0.5);
 	ShadowRspinBox->setSingleStep(0.1);
 	connect(ShadowRspinBox, SIGNAL(valueChanged(double)), this, SLOT(ShadowRSlot(double)));
-	ShadowGspinBox = SetDoubleSpinBox(tc->toUnicode("—Î"), 1, 0, shadowcolorLayout);
+	ShadowGspinBox = SetDoubleSpinBox(tc->toUnicode("ç·‘"), 1, 0, shadowcolorLayout);
 	ShadowGspinBox->setValue(0.5);
 	ShadowGspinBox->setSingleStep(0.1);
 	connect(ShadowGspinBox, SIGNAL(valueChanged(double)), this, SLOT(ShadowGSlot(double)));
-	ShadowBspinBox = SetDoubleSpinBox(tc->toUnicode("Â"), 1, 0, shadowcolorLayout);
+	ShadowBspinBox = SetDoubleSpinBox(tc->toUnicode("é’"), 1, 0, shadowcolorLayout);
 	ShadowBspinBox->setValue(0.5);
 	ShadowBspinBox->setSingleStep(0.1);
 	connect(ShadowBspinBox, SIGNAL(valueChanged(double)), this, SLOT(ShadowBSlot(double)));
-	QGroupBox *shadowcolorGroup = new QGroupBox(tc->toUnicode("‰e‚ÌF"));
+	QGroupBox *shadowcolorGroup = new QGroupBox(tc->toUnicode("å½±ã®è‰²"));
 	shadowcolorGroup->setLayout(shadowcolorLayout);
 	layout->addWidget(shadowcolorGroup);
 
@@ -54,7 +54,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
 	PosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, -10000.0, posLayout);
 	connect(PosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosZSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ƒJƒƒ‰‚ÌˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ã‚«ãƒ¡ãƒ©ã®ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -68,11 +68,11 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	YawspinBox = SetDoubleSpinBox(tc->toUnicode("Yaw"), 360.0, 0.0, angleLayout);
 	YawspinBox->setValue(0);
 	connect(YawspinBox, SIGNAL(valueChanged(double)), this, SLOT(YawSlot(double)));
-	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("ƒJƒƒ‰‚ÌŽp¨"));
+	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("ã‚«ãƒ¡ãƒ©ã®å§¿å‹¢"));
 	angleGroup->setLayout(angleLayout);
 	layout->addWidget(angleGroup);
 
-	LenspinBox = SetDoubleSpinBox(tc->toUnicode("‹——£"), 10000.0, 0.0, layout);
+	LenspinBox = SetDoubleSpinBox(tc->toUnicode("è·é›¢"), 10000.0, 0.0, layout);
 	LenspinBox->setValue(1500.0);
 	connect(LenspinBox, SIGNAL(valueChanged(double)), this, SLOT(LenSlot(double)));
 

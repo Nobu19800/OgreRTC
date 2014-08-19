@@ -1,4 +1,4 @@
-#ifndef SUBWINDOW_H
+ï»¿#ifndef SUBWINDOW_H
 #define SUBWINDOW_H
 
 #include "BaseApplication.h"
@@ -11,7 +11,7 @@
 
 
 /*
-*ƒTƒuƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒX
+*ã‚µãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¹
 */
 
 
@@ -20,15 +20,15 @@ class SubWindow
 public:
 	SubWindow();
 	/*
-	*ˆÊ’uİ’è‚ÌŠÖ”
+	*ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetPosition( float x, float y);
 	/*
-	*‘å‚«‚³İ’è‚ÌŠÖ”
+	*å¤§ãã•è¨­å®šã®é–¢æ•°
 	*/
 	void SetSize( float sx, float sy);
 	/*
-	*ƒJƒƒ‰‚Ìp¨İ’è‚ÌŠÖ”
+	*ã‚«ãƒ¡ãƒ©ã®å§¿å‹¢è¨­å®šã®é–¢æ•°
 	*/
 	void SetCameraRoll( float ang);
 	void SetCameraPitch( float ang);
@@ -36,24 +36,24 @@ public:
 	void SetCameraQuaternion(float w, float x, float y, float z);
 	void SetCameraRotation(float r, float p, float y);
 	/*
-	*ƒJƒƒ‰‚ÌˆÊ’uİ’è‚ÌŠÖ”
+	*ã‚«ãƒ¡ãƒ©ã®ä½ç½®è¨­å®šã®é–¢æ•°
 	*/
 	void SetCameraPosition( float x, float y, float z);
 	/*
-	*ƒJƒƒ‰‚ÌˆÊ’uAp¨A‹——£İ’è‚ÌŠÖ”
+	*ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã€å§¿å‹¢ã€è·é›¢è¨­å®šã®é–¢æ•°
 	*/
 	void UpdateCameraPQ(float px, float py, float pz, float roll, float pitch, float yaw, float len);
 	/*
-	*•\¦A”ñ•\¦İ’è‚ÌŠÖ”
+	*è¡¨ç¤ºã€éè¡¨ç¤ºè¨­å®šã®é–¢æ•°
 	*/
 	void SetVisible( bool v);
 
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹•Û‘¶‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ã®é–¢æ•°
 	*/
 	void save(std::ofstream &ofs2);
 	/*
-	*İ’è‚Ìƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌŠÖ”
+	*è¨­å®šã®ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®é–¢æ•°
 	*/
 	bool openb(std::ifstream &ifs);
 

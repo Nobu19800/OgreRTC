@@ -1,4 +1,4 @@
-#include "SimJointSet.h"
+ï»¿#include "SimJointSet.h"
 
 #include "MyQtMacro.h"
 #include <QtGui/QApplication>
@@ -30,7 +30,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(TypeEdit);
 
 
-	SetButton = new QPushButton(tc->toUnicode("ì¬"));
+	SetButton = new QPushButton(tc->toUnicode("ä½œæˆ"));
 	connect(SetButton, SIGNAL(clicked()), this, SLOT(SetSlot()));
 	layout->addWidget(SetButton);
 
@@ -49,7 +49,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PosYspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosYSlot(double)));
 	PosZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1000.0, -1000.0, posLayout);
 	connect(PosZspinBox, SIGNAL(valueChanged(double)), this, SLOT(PosZSlot(double)));
-	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ˆÊ’u"));
+	QGroupBox *posGroup = new QGroupBox(tc->toUnicode("ä½ç½®"));
 	posGroup->setLayout(posLayout);
 	layout->addWidget(posGroup);
 
@@ -63,7 +63,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	ScaleZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, 0.01, scaleLayout);
 	ScaleZspinBox->setValue(1);
 	connect(ScaleZspinBox, SIGNAL(valueChanged(double)), this, SLOT(ScaleZSlot(double)));
-	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("Šg‘å—¦"));
+	QGroupBox *scaleGroup = new QGroupBox(tc->toUnicode("æ‹¡å¤§çŽ‡"));
 	scaleGroup->setLayout(scaleLayout);
 	layout->addWidget(scaleGroup);
 
@@ -77,7 +77,7 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	connect(PitchspinBox, SIGNAL(valueChanged(double)), this, SLOT(PitchSlot(double)));
 	YawspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 1.0, -1.0, angleLayout);
 	connect(YawspinBox, SIGNAL(valueChanged(double)), this, SLOT(YawSlot(double)));
-	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("Ž²"));
+	QGroupBox *angleGroup = new QGroupBox(tc->toUnicode("è»¸"));
 	angleGroup->setLayout(angleLayout);
 	layout->addWidget(angleGroup);
 
@@ -93,20 +93,20 @@ QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
 	OffsetZspinBox = SetDoubleSpinBox(tc->toUnicode("Z"), 10000.0, 0.01, offsetLayout);
 	OffsetZspinBox->setValue(1);
 	connect(OffsetZspinBox, SIGNAL(valueChanged(double)), this, SLOT(OffsetZSlot(double)));
-	QGroupBox *offsetGroup = new QGroupBox(tc->toUnicode("ƒIƒtƒZƒbƒg"));
+	QGroupBox *offsetGroup = new QGroupBox(tc->toUnicode("ã‚ªãƒ•ã‚»ãƒƒãƒˆ"));
 	offsetGroup->setLayout(offsetLayout);
 	layout->addWidget(offsetGroup);
 
 
-	VisibleButton = new QPushButton(tc->toUnicode("•\Ž¦"));
+	VisibleButton = new QPushButton(tc->toUnicode("è¡¨ç¤º"));
 	connect(VisibleButton, SIGNAL(clicked()), this, SLOT(VisibleSlot()));
 	layout->addWidget(VisibleButton);
 
-	unVisibleButton = new QPushButton(tc->toUnicode("”ñ•\Ž¦"));
+	unVisibleButton = new QPushButton(tc->toUnicode("éžè¡¨ç¤º"));
 	connect(unVisibleButton, SIGNAL(clicked()), this, SLOT(unVisibleSlot()));
 	layout->addWidget(unVisibleButton);
 	
-	DestroyButton = new QPushButton(tc->toUnicode("íœ"));
+	DestroyButton = new QPushButton(tc->toUnicode("å‰Šé™¤"));
 	connect(DestroyButton, SIGNAL(clicked()), this, SLOT(DestroySlot()));
 	layout->addWidget(DestroyButton);
 

@@ -1,4 +1,4 @@
-#ifndef SIMBODYSET_H
+﻿#ifndef SIMBODYSET_H
 #define SIMBODYSET_H
 
 #include <QtGui>
@@ -31,7 +31,7 @@ class QComboBox;
 QT_END_NAMESPACE
 
 /*
-* �V�~�����[�V�����̃{�f�B�쐬�A�ݒ�p�E�B�W�F�b�g
+* シミュレーションのボディ作成、設定用ウィジェット
 */
 
 class SimBodySetWidget : public QWidget
@@ -46,69 +46,69 @@ public:
 
 signals:
 	/*
-	* �{�f�B���쐬�A�폜�����Ƃ��̃V�O�i��
+	* ボディを作成、削除したときのシグナル
 	*/
 	void UpdateODEBody();
 
 public slots:
 	/*
-	*�{�f�B�̐ݒ���E�B�W�F�b�g�ɔ��f������Ƃ��̃X���b�g
+	*ボディの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
 
 private slots:
 	/*
-	*�쐬�{�^�����������Ƃ��̃X���b�g
+	*作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
 	/*
-	*���O�R���{�{�b�N�X�̔ԍ����ς�����Ƃ��̃X���b�g
+	*名前コンボボックスの番号が変わったときのスロット
 	*/
 	void NameSlot(int value);
 	/*
-	*�ʒu�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*位置設定スピンボックスの値を変更したときのスロット
 	*/
 	void PosXSlot(double value);
 	void PosYSlot(double value);
 	void PosZSlot(double value);
 	/*
-	*�傫���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*大きさ設定スピンボックスの値を変更したときのスロット
 	*/
 	void SizeXSlot(double value);
 	void SizeYSlot(double value);
 	void SizeZSlot(double value);
 	void SizeRSlot(double value);
 	/*
-	*3D���f���ƃ{�f�B�̊g�嗦�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*3Dモデルとボディの拡大率設定スピンボックスの値を変更したときのスロット
 	*/
 	void ScaleXSlot(double value);
 	void ScaleYSlot(double value);
 	void ScaleZSlot(double value);
 	/*
-	*3D���f���ƃ{�f�B�̃I�t�Z�b�g�ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*3Dモデルとボディのオフセット設定スピンボックスの値を変更したときのスロット
 	*/
 	void OffsetXSlot(double value);
 	void OffsetYSlot(double value);
 	void OffsetZSlot(double value);
 	/*
-	*�p���ݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*姿勢設定スピンボックスの値を変更したときのスロット
 	*/
 	void RollSlot(double value);
 	void PitchSlot(double value);
 	void YawSlot(double value);
 	/*
-	*���ʐݒ�X�s���{�b�N�X�̒l��ύX�����Ƃ��̃X���b�g
+	*質量設定スピンボックスの値を変更したときのスロット
 	*/
 	void MassSlot(double value);
 	/*
-	*�\���A��\���ݒ�{�^�����������Ƃ��̃X���b�g
+	*表示、非表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
 	void unVisibleSlot();
 
 	/*
-	*�폜�{�^�����������Ƃ��̃X���b�g
+	*削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
 
@@ -120,27 +120,27 @@ private:
 	
 	
 	/*
-	* �ʒu�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 位置設定スピンボックスの値を反映する関数
 	*/
 	void SetPos();
 	/*
-	* �傫���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 大きさ設定スピンボックスの値を反映する関数
 	*/
 	void SetSize();
 	/*
-	* �g�嗦�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 拡大率設定スピンボックスの値を反映する関数
 	*/
 	void SetScale();
 	/*
-	* �p���ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void SetRot();
 	/*
-	* �I�t�Z�b�g�ݒ�X�s���{�b�N�X�̒l�𔽉f����֐�
+	* オフセット設定スピンボックスの値を反映する関数
 	*/
 	void SetOffset();
 	/*
-	* �\���ݒ�{�^���𔽉f����֐�
+	* 表示設定ボタンを反映する関数
 	*/
 	void SetVisi(bool visi);
 	

@@ -1,4 +1,4 @@
-#include "MyFileStream.h"
+﻿#include "MyFileStream.h"
 
 std::string Replace( std::string String1, std::string String2, std::string String3 )
 {
