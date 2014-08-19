@@ -43,7 +43,7 @@ public:
 
     
 
-	void initRenderWindow(HWND hwnd, int width, int heigth);
+	void initRenderWindow(Ogre::String hwnd, int width, int heigth);
 	Ogre::RenderWindow* getRenderWindow() { return mWindow; }
 	Ogre::SceneManager*  getSceneManager() { return mSceneMgr; }
 

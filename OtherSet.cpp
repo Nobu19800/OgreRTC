@@ -117,7 +117,7 @@ void OtherSetWidget::SkyBoxSetSlot()
 {
 	if(EC)
 	{
-		std::string fn = SkyBoxEdit->currentText().toLocal8Bit();
+		std::string fn = (const char*)SkyBoxEdit->currentText().toLocal8Bit();
 		int s = SkyBoxspinBox->value();
 
 		EC->SetQtSkyBox(fn.c_str(), s);
@@ -137,9 +137,9 @@ void OtherSetWidget::DelSkyBoxSetSlot()
 void OtherSetWidget::FloorSetSlot()
 {
 	
-	std::string fn = FloorEdit->currentText().toLocal8Bit();
+	std::string fn = (const char*)FloorEdit->currentText().toLocal8Bit();
 	int s = FloorSizespinBox->value();
-	std::string d = FloorDircombpBox->currentText().toLocal8Bit();
+	std::string d = (const char*)FloorDircombpBox->currentText().toLocal8Bit();
 	
 	if(EC)
 	{

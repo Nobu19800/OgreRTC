@@ -157,9 +157,9 @@ void SimJointSetWidget::UpdateList()
 }
 void SimJointSetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string b1n = Body1Edit->currentText().toLocal8Bit();
-	std::string b2n = Body2Edit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string b1n = (const char*)Body1Edit->currentText().toLocal8Bit();
+	std::string b2n = (const char*)Body2Edit->currentText().toLocal8Bit();
 	int type = TypeEdit->currentIndex();
 	double px = PosXspinBox->value();
 	double py = PosYspinBox->value();
@@ -276,7 +276,7 @@ void SimJointSetWidget::SetSlot()
 }
 void SimJointSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
@@ -367,7 +367,7 @@ void SimJointSetWidget::unVisibleSlot()
 
 void SimJointSetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	
 
@@ -403,7 +403,7 @@ void SimJointSetWidget::SetPos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double px = PosXspinBox->value();
 		double py = PosYspinBox->value();
@@ -424,7 +424,7 @@ void SimJointSetWidget::SetScale()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double sx = ScaleXspinBox->value();
 		double sy = ScaleYspinBox->value();
@@ -445,7 +445,7 @@ void SimJointSetWidget::SetRot()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double roll = RollspinBox->value();
 		double pitch = PitchspinBox->value();
@@ -466,7 +466,7 @@ void SimJointSetWidget::SetOffset()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double ox = OffsetXspinBox->value();
 		double oy = OffsetYspinBox->value();
@@ -485,7 +485,7 @@ void SimJointSetWidget::SetOffset()
 }
 void SimJointSetWidget::SetVisi(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());

@@ -15,7 +15,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QSplashScreen>
-#include <QPixMap>
+
 
 
 

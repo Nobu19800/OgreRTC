@@ -129,7 +129,7 @@ void SubWindowSetWidget::UpdatePos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float px = PosXspinBox->value();
 		float py = PosYspinBox->value();
 
@@ -157,7 +157,7 @@ void SubWindowSetWidget::UpdateSize()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float sx = ScaleXspinBox->value();
 		float sy = ScaleYspinBox->value();
 
@@ -183,7 +183,7 @@ void SubWindowSetWidget::UpdateSize()
 
 void SubWindowSetWidget::UpdateVisi(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 	if(EC)
@@ -208,7 +208,7 @@ void SubWindowSetWidget::UpdateCameraPQ()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		float cx = CameraPosXspinBox->value();
 		float cy = CameraPosYspinBox->value();
@@ -244,7 +244,7 @@ void SubWindowSetWidget::UpdateCameraPos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float cx = CameraPosXspinBox->value();
 		float cy = CameraPosYspinBox->value();
 		float cz = CameraPosZspinBox->value();
@@ -274,7 +274,7 @@ void SubWindowSetWidget::UpdateCameraRot()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float roll = CameraRollspinBox->value();
 		float pitch = CameraPitchspinBox->value();
 		float yaw = CameraYawspinBox->value();
@@ -304,7 +304,7 @@ void SubWindowSetWidget::UpdateCameraRot()
 
 void SubWindowSetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
 
@@ -380,7 +380,7 @@ void SubWindowSetWidget::unVisibleSlot()
 }
 void SubWindowSetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -425,17 +425,17 @@ void SubWindowSetWidget::CameraLenSlot(double value)
 }
 void SubWindowSetWidget::RestartSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 }
 void SubWindowSetWidget::StopSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 }
 
 
 void SubWindowSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{

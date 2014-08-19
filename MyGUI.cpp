@@ -1,5 +1,9 @@
 ﻿#include "MyGUI.h"
+
+#ifdef _WIN32
 #include "UnicodeF.h"
+#else
+#endif
 
 extern int str_size;
 
@@ -34,8 +38,11 @@ std::string MyGUI::GetText()
 void MyGUI::AddComboBoxItem( const char *t)
 {
 	//static_cast<CEGUI::Combobox*>(label)->addItem(new MyListItem(name));
-
+#ifdef _WIN32
 	static_cast<CEGUI::Combobox*>(window)->addItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)CUnicodeF::sjis_to_utf8(t, &str_size)));
+#else
+	static_cast<CEGUI::Combobox*>(window)->addItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)t));
+#endif
 }
 
 std::string MyGUI::GetComboBoxItem()
@@ -81,7 +88,11 @@ void MyGUI::SetRotatin( float r, float p, float y)
 
 void MyGUI::SetText( const char* t)
 {
+#ifdef _WIN32
 	window->setText((CEGUI::utf8*)CUnicodeF::sjis_to_utf8(t, &str_size));
+#else
+	window->setText((CEGUI::utf8*)t);
+#endif
 	text = t;
 }
 
@@ -275,7 +286,11 @@ void MyGUI::RemoveComboBoxItem(int index)
 
 void MyGUI::AddListBoxItem(const char *t)
 {
+#ifdef _WIN32
 	static_cast<CEGUI::Listbox*>(window)->addItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)CUnicodeF::sjis_to_utf8(t, &str_size)));
+#else
+	static_cast<CEGUI::Listbox*>(window)->addItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)t));
+#endif
 }
 
 void MyGUI::RemoveListBoxItem(int index)
@@ -301,7 +316,11 @@ void MyGUI::RemoveMultiColumnCol(int index)
 
 void MyGUI::AddMultiColumnItem(const char *t, int row, int col)
 {
+#ifdef _WIN32
 	static_cast<CEGUI::MultiColumnList*>(window)->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)CUnicodeF::sjis_to_utf8(t, &str_size)), row, col);
+#else
+	static_cast<CEGUI::MultiColumnList*>(window)->setItem(new CEGUI::ListboxTextItem((CEGUI::utf8*)t), row, col);
+#endif
 }
 
 void MyGUI::SetProgressBarValue(float val)

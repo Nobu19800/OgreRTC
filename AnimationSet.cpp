@@ -111,7 +111,7 @@ AnimationSetWidget::~AnimationSetWidget(void)
 
 void AnimationSetWidget::UpdatePos()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
@@ -144,7 +144,7 @@ void AnimationSetWidget::UpdatePos()
 }
 void AnimationSetWidget::UpdateRot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	float roll = RollspinBox->value();
 	float pitch = PitchspinBox->value();
@@ -193,7 +193,7 @@ void AnimationSetWidget::UpdateList()
 
 void AnimationSetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	
 
 	if(EC)
@@ -226,7 +226,7 @@ void AnimationSetWidget::SetSlot()
 
 void AnimationSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyAnimation *man = EC->getAnimationByName(n.c_str());
@@ -267,7 +267,7 @@ void AnimationSetWidget::NameSlot(int value)
 
 void AnimationSetWidget::TransSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
@@ -298,7 +298,7 @@ void AnimationSetWidget::TransSlot()
 
 void AnimationSetWidget::RotSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	float roll = RollspinBox->value();
 	float pitch = PitchspinBox->value();
@@ -333,7 +333,7 @@ void AnimationSetWidget::ResetSlot()
 
 void AnimationSetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -376,7 +376,7 @@ void AnimationSetWidget::YawSlot(double value)
 
 void AnimationSetWidget::KeySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	float t = KeyTimespinBox->value();
 
 	if(EC)
@@ -395,7 +395,7 @@ void AnimationSetWidget::KeySlot()
 }
 void AnimationSetWidget::KeyNumSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	if(EC)
 	{
@@ -430,7 +430,7 @@ void AnimationSetWidget::KeyNumSlot(int value)
 }
 void AnimationSetWidget::RemoveKeySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	if(EC)
 	{
@@ -451,7 +451,7 @@ void AnimationSetWidget::RemoveKeySlot()
 }
 void AnimationSetWidget::StateSlot(double value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	float st = StatespinBox->value();
 	if(EC)
 	{
@@ -467,7 +467,7 @@ void AnimationSetWidget::StateSlot(double value)
 
 void AnimationSetWidget::TimeSlot(double value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	double t = TimespinBox->value();
 	
 	if(EC)

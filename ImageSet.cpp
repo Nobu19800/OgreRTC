@@ -4,7 +4,7 @@
 #include "MyQtMacro.h"
 
 
-#include "ImageSet.h"
+
 
 
 ImageSetWidget::ImageSetWidget( QWidget *parent) : 
@@ -85,8 +85,8 @@ ImageSetWidget::~ImageSetWidget(void)
 
 void ImageSetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string fn = FileNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string fn = (const char*)FileNameEdit->currentText().toLocal8Bit();
 	
 
 	if(EC)
@@ -112,7 +112,7 @@ void ImageSetWidget::SetSlot()
 
 void ImageSetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyImageSet *mi = EC->getImageSetByName(n.c_str());
@@ -127,7 +127,7 @@ void ImageSetWidget::DestroySlot()
 
 void ImageSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 }
 
 void ImageSetWidget::UpdateList()
@@ -154,7 +154,7 @@ void ImageSetWidget::UpdateGUI()
 			GUIBox->addItem(EC->QtGUIs[i]->name.c_str());
 		}
 
-		std::string n = GUIBox->currentText().toLocal8Bit();
+		std::string n = (const char*)GUIBox->currentText().toLocal8Bit();
 
 		if(n == "")
 		{
@@ -186,9 +186,9 @@ void ImageSetWidget::UpdateGUI()
 }
 
 void ImageSetWidget::SetGUISlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string gn = GUIBox->currentText().toLocal8Bit();
-	std::string in = INameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string gn = (const char*)GUIBox->currentText().toLocal8Bit();
+	std::string in = (const char*)INameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{

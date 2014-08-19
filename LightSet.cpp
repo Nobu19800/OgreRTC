@@ -91,7 +91,7 @@ void LightSetWidget::UpdatePos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float px = PosXspinBox->value();
 		float py = PosYspinBox->value();
 		float pz = PosZspinBox->value();
@@ -119,7 +119,7 @@ void LightSetWidget::UpdateColor()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float red = RedspinBox->value();
 		float green = GreenspinBox->value();
 		float blue = BluespinBox->value();
@@ -147,7 +147,7 @@ void LightSetWidget::UpdateVisi(bool visi)
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 		if(EC)
@@ -171,7 +171,7 @@ void LightSetWidget::UpdateVisi(bool visi)
 
 void LightSetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
 	float pz = PosZspinBox->value();
@@ -210,7 +210,7 @@ void LightSetWidget::SetSlot()
 }
 void LightSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyLight *ml = EC->getLightByName(n.c_str());
@@ -275,7 +275,7 @@ void LightSetWidget::DestroySlot()
 	
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 		if(EC)

@@ -1,4 +1,4 @@
-﻿#include "myParticle.h"
+﻿#include "MyParticle.h"
 
 
 myParticle::myParticle(std::string n)

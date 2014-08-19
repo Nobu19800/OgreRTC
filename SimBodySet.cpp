@@ -154,7 +154,7 @@ void SimBodySetWidget::UpdateList()
 
 void SimBodySetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int type = TypeEdit->currentIndex();
 	double px = PosXspinBox->value();
 	double py = PosYspinBox->value();
@@ -228,7 +228,7 @@ void SimBodySetWidget::SetSlot()
 }
 void SimBodySetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
@@ -332,7 +332,7 @@ void SimBodySetWidget::unVisibleSlot()
 	
 void SimBodySetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	
 
@@ -371,7 +371,7 @@ void SimBodySetWidget::SetPos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double px = PosXspinBox->value();
 		double py = PosYspinBox->value();
@@ -392,7 +392,7 @@ void SimBodySetWidget::SetScale()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double sx = ScaleXspinBox->value();
 		double sy = ScaleYspinBox->value();
@@ -413,7 +413,7 @@ void SimBodySetWidget::SetRot()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double roll = RollspinBox->value();
 		double pitch = PitchspinBox->value();
@@ -434,7 +434,7 @@ void SimBodySetWidget::SetOffset()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		double ox = OffsetXspinBox->value();
 		double oy = OffsetYspinBox->value();
@@ -453,7 +453,7 @@ void SimBodySetWidget::SetOffset()
 }
 void SimBodySetWidget::SetVisi(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());

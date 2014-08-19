@@ -1,6 +1,10 @@
-﻿#include "MainWindow.h"
+﻿#include "mainwindow.h"
 #include <QtGui/QApplication>
 #include <QtGui/QPainter>
+#ifdef Q_OS_WIN
+#else
+#include <QX11Info>
+#endif
 
 OgreWidget::OgreWidget(QWidget *parent) : 
 QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
@@ -41,9 +45,19 @@ void OgreWidget::initOgre()
 {
 	
 	{
-		
+		Ogre::String winHandle;
+#ifdef Q_OS_WIN
+		winHandle = Ogre::StringConverter::toString((long)((HWND)winId()));
+#else
+		QX11Info info = this->x11Info();
+		winHandle  = Ogre::StringConverter::toString((unsigned long)(info.display()));
+		winHandle += ":";
+		winHandle += Ogre::StringConverter::toString((unsigned int)(info.screen()));
+		winHandle += ":";
+		winHandle += Ogre::StringConverter::toString((unsigned long)(winId()));
+#endif
 		mOgreRTCApplication = OgreRTCApplication::getSingletonPtr();
-		mOgreRTCApplication->initRenderWindow((HWND)winId(), 1024, 768);
+		mOgreRTCApplication->initRenderWindow(winHandle, 1024, 768);
 		//mOgreApp->start();
 		mOgreRTCApplication->update(100);
 	}

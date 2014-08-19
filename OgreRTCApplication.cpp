@@ -1,7 +1,9 @@
 ﻿#include "OgreRTCApplication.h"
 
+#ifdef _WIN32
 #include "UnicodeF.h"
-
+#else
+#endif
 
 
 
@@ -12,7 +14,7 @@
 
 #include <fstream>
 
-
+#include <coil/Time.h>
 
 using namespace std;
 namespace bpy = boost::python;

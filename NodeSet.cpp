@@ -110,9 +110,9 @@ void NodeSetWidget::NameSlot(int value)
 void NodeSetWidget::AttachSlot()
 {
 	int num = NumEdit->currentIndex();
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int anum = AttachNumBox->currentIndex();
-	std::string an = AttachListBox->currentText().toLocal8Bit();
+	std::string an = (const char*)AttachListBox->currentText().toLocal8Bit();
 	int type = TypeEdit->currentIndex();
 	
 	if(EC)
@@ -311,7 +311,7 @@ void NodeSetWidget::AttachSlot()
 void NodeSetWidget::DettachSlot()
 {
 	int num = NumEdit->currentIndex();
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int type = TypeEdit->currentIndex();
 	
 	if(EC)
@@ -481,7 +481,7 @@ void NodeSetWidget::NumSlot(int value)
 void NodeSetWidget::DettachNumSlot(int value)
 {
 	int num = NumEdit->currentIndex();
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	//int dnum = DettachNumBox->currentIndex();
 	
 	

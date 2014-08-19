@@ -129,7 +129,7 @@ void ParticleSetWidget::UpdatePos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float px = PosXspinBox->value();
 		float py = PosYspinBox->value();
 		float pz = PosZspinBox->value();
@@ -157,7 +157,7 @@ void ParticleSetWidget::UpdateScale()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		float sx = ScaleXspinBox->value();
 		float sy = ScaleYspinBox->value();
@@ -186,7 +186,7 @@ void ParticleSetWidget::UpdateRot()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		float roll = RollspinBox->value();
 		float pitch = PitchspinBox->value();
@@ -214,7 +214,7 @@ void ParticleSetWidget::UpdateRot()
 
 void ParticleSetWidget::UpdateVisi(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		if(n == "")
@@ -235,8 +235,8 @@ void ParticleSetWidget::UpdateVisi(bool visi)
 
 void ParticleSetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string fn = FileNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string fn = (const char*)FileNameEdit->currentText().toLocal8Bit();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
 	float pz = PosZspinBox->value();
@@ -291,7 +291,7 @@ void ParticleSetWidget::unVisibleSlot()
 
 void ParticleSetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -346,7 +346,7 @@ void ParticleSetWidget::YawSlot(double value)
 
 void ParticleSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		myParticle *pc = EC->getParticleByName(n.c_str());

@@ -87,7 +87,7 @@ BornSetWidget::~BornSetWidget(void)
 
 void BornSetWidget::SetSlot()
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
@@ -132,21 +132,21 @@ void BornSetWidget::SetSlot()
 
 void BornSetWidget::PosXSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float py = PosYspinBox->value();
 	float pz = PosZspinBox->value();
 }
 void BornSetWidget::PosYSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float px = PosXspinBox->value();
 	float pz = PosZspinBox->value();
 }
 void BornSetWidget::PosZSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
@@ -154,42 +154,42 @@ void BornSetWidget::PosZSlot(double value)
 }
 void BornSetWidget::ScaleXSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float sy = ScaleYspinBox->value();
 	float sz = ScaleZspinBox->value();
 }
 void BornSetWidget::ScaleYSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float sx = ScaleXspinBox->value();
 	float sz = ScaleZspinBox->value();
 }
 void BornSetWidget::ScaleZSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float sx = ScaleXspinBox->value();
 	float sy = ScaleYspinBox->value();
 }
 void BornSetWidget::RollSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float pitch = PitchspinBox->value();
 	float yaw = YawspinBox->value();
 }
 void BornSetWidget::PitchSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float roll = RollspinBox->value();
 	float yaw = YawspinBox->value();
 }
 void BornSetWidget::YawSlot(double value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	int num = NameEdit->value();
 	float roll = RollspinBox->value();
 	float pitch = PitchspinBox->value();
@@ -197,7 +197,7 @@ void BornSetWidget::YawSlot(double value)
 
 void BornSetWidget::ResetSlot()
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 	
 	
 
@@ -226,7 +226,7 @@ void BornSetWidget::ResetSlot()
 
 void BornSetWidget::BodyNameSlot(int value)
 {
-	std::string n = BodyNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{

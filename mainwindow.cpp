@@ -2,7 +2,7 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <qfont.h>
-#include <QThread>
+
 
 #include "mainwindow.h"
 #include "OgreWidget.h"
@@ -232,7 +232,7 @@ void MainWindow::open()
 	
 	
 
-	std::string ba = fileName.toLocal8Bit();
+	std::string ba = (const char*)fileName.toLocal8Bit();
 	
 	if(EC)
 	{
@@ -265,7 +265,7 @@ void MainWindow::pyOpen()
 	
 	
 
-	std::string ba = fileName.toLocal8Bit();
+	std::string ba = (const char*)fileName.toLocal8Bit();
 
 	std::string tmp = Replace(ba,"\\","/");
 
@@ -296,7 +296,7 @@ bool MainWindow::save()
 	if (fileName.isEmpty())
         return false;
 
-	std::string ba = fileName.toLocal8Bit();
+	std::string ba = (const char*)fileName.toLocal8Bit();
 
 	
 	
@@ -345,7 +345,7 @@ void MainWindow::addFileSystem()
 
 	//std::cout << fileName.toStdString() << std::endl;
 
-	std::string ba = fileName.toLocal8Bit();
+	std::string ba = (const char*)fileName.toLocal8Bit();
 
 	if(EC)
 	{

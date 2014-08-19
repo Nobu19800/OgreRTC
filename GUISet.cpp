@@ -164,7 +164,7 @@ void GUISetWidget::UpdatePos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float px = PosXspinBox->value();
 		float py = PosYspinBox->value();
 
@@ -192,7 +192,7 @@ void GUISetWidget::UpdateRot()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float roll = RollspinBox->value();
 		float pitch = PitchspinBox->value();
 		float yaw = YawspinBox->value();
@@ -221,7 +221,7 @@ void GUISetWidget::UpdateSize()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float sx = ScaleXspinBox->value();
 		float sy = ScaleYspinBox->value();
 
@@ -247,7 +247,7 @@ void GUISetWidget::UpdateSize()
 
 void GUISetWidget::UpdateVisi(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 	if(EC)
@@ -272,7 +272,7 @@ void GUISetWidget::UpdateVisi(bool visi)
 
 void GUISetWidget::UpdateFrame(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 	if(EC)
@@ -295,7 +295,7 @@ void GUISetWidget::UpdateFrame(bool visi)
 
 void GUISetWidget::UpdateBackGround(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 	if(EC)
@@ -318,8 +318,8 @@ void GUISetWidget::UpdateBackGround(bool visi)
 
 void GUISetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string t = TypeBox->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string t = (const char*)TypeBox->currentText().toLocal8Bit();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
 
@@ -514,7 +514,7 @@ void GUISetWidget::ScaleYSlot(double value)
 }
 void GUISetWidget::AlphaSlot(double value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	float a = AlphaspinBox->value();
 
 
@@ -562,7 +562,7 @@ void GUISetWidget::unBackGroundSlot()
 
 void GUISetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -578,7 +578,7 @@ void GUISetWidget::DestroySlot()
 
 void GUISetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyGUI *mg = EC->getGUIByName(n.c_str());
@@ -618,8 +618,8 @@ void GUISetWidget::UpdateList()
 
 void GUISetWidget::WindowSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string wn = WindowBox->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string wn = (const char*)WindowBox->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyGUI *mg = EC->getGUIByName(n.c_str());

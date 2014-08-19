@@ -50,11 +50,11 @@ BaseApplication::~BaseApplication(void)
     delete mRoot;
 }
 
-void BaseApplication::initRenderWindow(HWND hwnd, int width, int heigth)
+void BaseApplication::initRenderWindow(Ogre::String hwnd, int width, int heigth)
 {
 	if(!mWindow) {
 		Ogre::NameValuePairList parms;
-		parms["externalWindowHandle"] = Ogre::StringConverter::toString((long)hwnd);
+		parms["externalWindowHandle"] = hwnd;
 		
 		
 		mRoot->initialise(false);

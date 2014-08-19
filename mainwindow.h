@@ -2,9 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QModelIndex>
+//#include <QModelIndex>
 #include <QDialog>
+#ifdef Q_OS_WIN
 #include <windows.h>
+#else
+#endif
+
 #include <vector>
 #include <iostream>
 

@@ -103,9 +103,9 @@ GUITextSetWidget::~GUITextSetWidget(void)
 
 
 void GUITextSetWidget::SetSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int fs = FontSizespinBox->value();
-	std::string te = TextEdit->toPlainText().toLocal8Bit();
+	std::string te = (const char*)TextEdit->toPlainText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -133,7 +133,7 @@ void GUITextSetWidget::SetSlot(){
 
 void GUITextSetWidget::FontSizeSlot(int)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int fs = FontSizespinBox->value();
 
 	if(EC)
@@ -158,7 +158,7 @@ void GUITextSetWidget::FontSizeSlot(int)
 	}
 }
 void GUITextSetWidget::TextTopAlignedSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -182,7 +182,7 @@ void GUITextSetWidget::TextTopAlignedSlot(){
 	}
 }
 void GUITextSetWidget::BottomAlignedSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -206,7 +206,7 @@ void GUITextSetWidget::BottomAlignedSlot(){
 	}
 }
 void GUITextSetWidget::VertCentredSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -230,7 +230,7 @@ void GUITextSetWidget::VertCentredSlot(){
 	}
 }
 void GUITextSetWidget::WordWrapLeftAlignedSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -254,7 +254,7 @@ void GUITextSetWidget::WordWrapLeftAlignedSlot(){
 	}
 }
 void GUITextSetWidget::WordWrapRightAlignedSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -278,7 +278,7 @@ void GUITextSetWidget::WordWrapRightAlignedSlot(){
 	}
 }
 void GUITextSetWidget::WordWrapCentredSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -302,7 +302,7 @@ void GUITextSetWidget::WordWrapCentredSlot(){
 	}
 }
 void GUITextSetWidget::LeftAlignedSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -326,7 +326,7 @@ void GUITextSetWidget::LeftAlignedSlot(){
 	}
 }
 void GUITextSetWidget::RightAlignedSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -350,7 +350,7 @@ void GUITextSetWidget::RightAlignedSlot(){
 	}
 }
 void GUITextSetWidget::HorzCentredSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -374,7 +374,7 @@ void GUITextSetWidget::HorzCentredSlot(){
 	}
 }
 void GUITextSetWidget::ClearPropertiesSlot(){
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -398,7 +398,7 @@ void GUITextSetWidget::ClearPropertiesSlot(){
 
 void GUITextSetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	
 
 	if(EC)

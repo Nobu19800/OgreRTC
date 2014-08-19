@@ -296,7 +296,7 @@ void BodySetWidget::UpdatePos()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 		float px = PosXspinBox->value();
 		float py = PosYspinBox->value();
 		float pz = PosZspinBox->value();
@@ -324,7 +324,7 @@ void BodySetWidget::UpdateScale()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		float sx = ScaleXspinBox->value();
 		float sy = ScaleYspinBox->value();
@@ -353,7 +353,7 @@ void BodySetWidget::UpdateRot()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 		float roll = RollspinBox->value();
 		float pitch = PitchspinBox->value();
@@ -383,7 +383,7 @@ void BodySetWidget::UpdateColor()
 {
 	if(up_flag)
 	{
-		std::string n = NameEdit->currentText().toLocal8Bit();
+		std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 
 		float red = RedspinBox->value();
@@ -413,7 +413,7 @@ void BodySetWidget::UpdateColor()
 
 void BodySetWidget::UpdateShadow(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		if(n == "")
@@ -433,7 +433,7 @@ void BodySetWidget::UpdateShadow(bool visi)
 }
 void BodySetWidget::UpdateVisi(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		if(n == "")
@@ -453,7 +453,7 @@ void BodySetWidget::UpdateVisi(bool visi)
 }
 void BodySetWidget::UpdateBound(bool visi)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -475,8 +475,8 @@ void BodySetWidget::UpdateBound(bool visi)
 
 void BodySetWidget::SetSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string fn = FileNameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string fn = (const char*)FileNameEdit->currentText().toLocal8Bit();
 	float px = PosXspinBox->value();
 	float py = PosYspinBox->value();
 	float pz = PosZspinBox->value();
@@ -531,8 +531,8 @@ void BodySetWidget::unVisibleSlot()
 
 void BodySetWidget::SetAnimationSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string c = AnimationEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string c = (const char*)AnimationEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -555,9 +555,9 @@ void BodySetWidget::SetAnimationSlot()
 
 void BodySetWidget::ResetAnimationSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
-	std::string c = AnimationEdit->currentText().toLocal8Bit();
+	std::string c = (const char*)AnimationEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -579,7 +579,7 @@ void BodySetWidget::ResetAnimationSlot()
 
 void BodySetWidget::DestroySlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -664,8 +664,8 @@ void BodySetWidget::AlphaSlot(double value)
 
 void BodySetWidget::AnimationSlot(double value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string c = AnimationEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string c = (const char*)AnimationEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
@@ -702,7 +702,7 @@ void BodySetWidget::RemoveBoundingBoxSlot()
 
 void BodySetWidget::NameSlot(int value)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyLink *ml = EC->getBodyByName(n.c_str());
@@ -761,7 +761,7 @@ void BodySetWidget::UpdateList()
 
 void BodySetWidget::mouseMoveSlot(QMouseEvent*  evt, int dx, int dy)
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		
@@ -849,8 +849,8 @@ void BodySetWidget::MaterialSlot()
 }
 void BodySetWidget::SetMaterialSlot()
 {
-	std::string n = NameEdit->currentText().toLocal8Bit();
-	std::string en = MaterialEdit->currentText().toLocal8Bit();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	std::string en = (const char*)MaterialEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		MyLink *ml = EC->getBodyByName(n.c_str());
