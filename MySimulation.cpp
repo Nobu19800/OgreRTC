@@ -1,5 +1,7 @@
 ﻿#include "MySimulation.h"
 
+#include <coil/Time.h>
+
 MySimulation *ms;
 
 namespace bpy = boost::python;
@@ -76,6 +78,7 @@ MySimulation::MySimulation(OgreRTCApplication *ec)
 	SleepTime = 0;
 
 	smu->lock();
+	mState = S_Stop;
 }
 
 int MySimulation::svc()
@@ -110,7 +113,7 @@ int MySimulation::svc()
 		
 		if(SleepTime > time*1000)
 		{
-			Sleep(SleepTime - (int)(time*1000.));
+			coil::usleep(SleepTime - (int)(time*1000.));
 		}
 		mu->unlock();
 		smu->unlock();
@@ -129,17 +132,27 @@ int MySimulation::svc()
 
 void MySimulation::startSim()
 {
-	smu->unlock();
+	if(mState == S_Stop)
+	{
+		smu->unlock();
+		mState = S_Start;
+	}
 }
 
 void MySimulation::restartSim()
 {
+	
 	mu->unlock();
+		
 }
 
 void MySimulation::stopSim()
 {
-	smu->lock();
+	if(mState == S_Start)
+	{
+		smu->lock();
+		mState = S_Stop;
+	}
 }
 
 void MySimulation::finishSim()
@@ -604,7 +617,12 @@ void MySimulation::DestroyJoint(MyODEJoint *ml)
 }
 void MySimulation::DestroyAll()
 {
-	smu->lock();
+	if(mState == S_Start)
+	{
+		smu->lock();
+		mState = S_Stop;
+	}
+	
 
 	for(int i=0;i < MyJoints.size();i++)
 	{

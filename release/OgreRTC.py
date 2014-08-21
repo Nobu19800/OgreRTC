@@ -1,4 +1,4 @@
-# -*- coding: cp932 -*-
+# -*- coding: utf-8 -*-
 
 import OpenRTM_aist
 import RTC
@@ -6,7 +6,11 @@ import os.path
 import sys
 import imp
 import time
+
+sys.path += ['./']
+
 import OgreRTS
+
 
 
 EndFlag = True
@@ -14,7 +18,7 @@ EndFlag = True
 
     
 ##
-#マネージャを立ち上げる関数
+#繝槭ロ繝ｼ繧ｸ繝｣繧堤ｫ九■荳翫￡繧矩未謨ｰ
 ##
 def ManagerStart():
     OgreRTS.OgreObj = OgreObj
@@ -28,7 +32,7 @@ def ManagerStart():
     OgreRTS.mgr.runManager(True)
 
 ##
-#RTCを立ち上げる関数
+#RTC繧堤ｫ九■荳翫￡繧矩未謨ｰ
 ##
 def RTCStart(fName): 
     
@@ -47,7 +51,7 @@ def RTCStart(fName):
     time.sleep(3)
     
 ##
-#RTCを停止する関数
+#RTC繧貞●豁｢縺吶ｋ髢｢謨ｰ
 ##
 def RTCStop():
     
@@ -68,7 +72,7 @@ def RTCStop():
     #time.sleep(3)
 
 ##
-#ファイルよりRTCを読み込む関数
+#繝輔ぃ繧､繝ｫ繧医ｊRTC繧定ｪｭ縺ｿ霎ｼ繧髢｢謨ｰ
 ##
 
 def RTCInit(fName):
@@ -90,14 +94,14 @@ def RTCInit(fName):
 
 
 ##
-#キーを押したときに呼び出されるコールバック関数
+#繧ｭ繝ｼ繧呈款縺励◆縺ｨ縺阪↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def keyPressed(k):
     
     if OgreRTS.m_comp:
         OgreRTS.m_comp.keyPressed(k)
 ##
-#キーを離したときに呼び出されるコールバック関数
+#繧ｭ繝ｼ繧帝屬縺励◆縺ｨ縺阪↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def keyReleased(k):
     
@@ -105,7 +109,7 @@ def keyReleased(k):
         OgreRTS.m_comp.keyReleased(k)
 
 ##
-#マウスを動かしたときに呼び出されるコールバック関数
+#繝槭え繧ｹ繧貞虚縺九＠縺溘→縺阪↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def mouseMoved(mx, my, mdx, mdy):
     
@@ -114,7 +118,7 @@ def mouseMoved(mx, my, mdx, mdy):
 
 
 ##
-#マウスのボタンを押したときに呼び出されるコールバック関数
+#繝槭え繧ｹ縺ｮ繝懊ち繝ｳ繧呈款縺励◆縺ｨ縺阪↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def mousePressed(b):
     
@@ -123,7 +127,7 @@ def mousePressed(b):
 
 
 ##
-#マウスのボタンを離したときに呼び出されるコールバック関数
+#繝槭え繧ｹ縺ｮ繝懊ち繝ｳ繧帝屬縺励◆縺ｨ縺阪↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def mouseReleased(b):
     
@@ -132,14 +136,14 @@ def mouseReleased(b):
 
 
 ##
-#ファイル読み込み時に呼び出されるコールバック関数
+#繝輔ぃ繧､繝ｫ隱ｭ縺ｿ霎ｼ縺ｿ譎ゅ↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def ogre_init():
     if OgreRTS.m_comp:
         OgreRTS.m_comp.ogre_init()
             
 ##
-#描画更新時に呼び出されるコールバック関数
+#謠冗判譖ｴ譁ｰ譎ゅ↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def ogre_loop():
     
@@ -148,7 +152,7 @@ def ogre_loop():
 
 
 ##
-#シミュレーション更新時に呼び出されるコールバック関数
+#繧ｷ繝溘Η繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ譖ｴ譁ｰ譎ゅ↓蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def Simloop():
     
@@ -157,7 +161,7 @@ def Simloop():
 
 
 ##
-#シミュレーションで接触が発生した時に呼び出されるコールバック関数
+#繧ｷ繝溘Η繝ｬ繝ｼ繧ｷ繝ｧ繝ｳ縺ｧ謗･隗ｦ縺檎匱逕溘＠縺滓凾縺ｫ蜻ｼ縺ｳ蜃ｺ縺輔ｌ繧九さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
 ##
 def Contacthandler(b1, b2):
     

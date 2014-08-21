@@ -736,7 +736,7 @@ void OgreRTCApplication::OpenFile(const char *fname)
 	
 
 	while(!RTCFlag){
-		Sleep(10);
+		coil::usleep(10);
 		if(po->mThread->fin)
 		{
 			po->mThread->wait();
@@ -1393,7 +1393,7 @@ void OgreRTCApplication::update(float t)
 		//std::cout << MyNodes.size() << std::endl;
 		
 		int ttW = SleepTime - (int)(1000. * t); 
-		if(ttW > 0)Sleep(ttW);
+		if(ttW > 0)coil::usleep(ttW);
 		
 
 		if(po->Exec)

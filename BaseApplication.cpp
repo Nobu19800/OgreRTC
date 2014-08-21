@@ -50,7 +50,7 @@ BaseApplication::~BaseApplication(void)
     delete mRoot;
 }
 
-void BaseApplication::initRenderWindow(Ogre::String hwnd, int width, int heigth)
+WId BaseApplication::initRenderWindow(Ogre::String hwnd, int width, int heigth)
 {
 	if(!mWindow) {
 		Ogre::NameValuePairList parms;
@@ -62,6 +62,10 @@ void BaseApplication::initRenderWindow(Ogre::String hwnd, int width, int heigth)
 		//mWindow = mRoot->initialise(true, "TutorialApplication Render Window");
 		
 		mWindow->setActive(true);
+
+		WId ogreWinId = 0x0;
+		mWindow->getCustomAttribute("WINDOW", &ogreWinId);
+
 		mWindow->update();
 
 		
@@ -108,11 +112,15 @@ void BaseApplication::initRenderWindow(Ogre::String hwnd, int width, int heigth)
 		
 
 		mWindow->setActive(true);
+		mWindow->setVisible(true);
 		mWindow->update();
+
+		return ogreWinId;
 
 		//mRoot->startRendering();
 
 	}
+	return 0;
 }
 
 //-------------------------------------------------------------------------------------

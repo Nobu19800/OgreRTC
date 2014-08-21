@@ -18,6 +18,8 @@ class OgreRTCApplication;
 class MyODEBody;
 class MyODEJoint;
 
+enum SimState { S_Start = 0, S_Stop = 1, };
+
 /*
 *シミュレーションの接触設定の管理クラス
 */
@@ -274,6 +276,8 @@ public:
 	double gMu;
 
 	bool QuiqFlag;
+
+	SimState mState;
 
 	
 	OgreRTCApplication *EC;

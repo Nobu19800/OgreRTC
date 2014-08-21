@@ -6,8 +6,12 @@
 #include <QX11Info>
 #endif
 
-OgreWidget::OgreWidget(QWidget *parent) : 
+OgreWidget::OgreWidget(QWidget *parent) :
+#ifdef Q_OS_WIN
 QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
+#else
+QWidget(parent)
+#endif
 {
 	QTextCodec* tc = QTextCodec::codecForLocale();
 	
@@ -54,10 +58,18 @@ void OgreWidget::initOgre()
 		winHandle += ":";
 		winHandle += Ogre::StringConverter::toString((unsigned int)(info.screen()));
 		winHandle += ":";
-		winHandle += Ogre::StringConverter::toString((unsigned long)(winId()));
+		winHandle += Ogre::StringConverter::toString((unsigned long)(window()->winId()));
 #endif
 		mOgreRTCApplication = OgreRTCApplication::getSingletonPtr();
-		mOgreRTCApplication->initRenderWindow(winHandle, 1024, 768);
+		WId ogreWinId = mOgreRTCApplication->initRenderWindow(winHandle, 944, 708);
+
+#ifdef Q_OS_WIN
+#else
+		QRect geo = this->frameGeometry();
+		create(ogreWinId);
+		setGeometry(geo);
+#endif
+
 		//mOgreApp->start();
 		mOgreRTCApplication->update(100);
 	}
@@ -72,7 +84,7 @@ void OgreWidget::paintEvent (QPaintEvent *event)
 {
 	if (mOgreRTCApplication)
 	{
-		if(this->isActiveWindow())
+		//if(this->isActiveWindow())
 			mOgreRTCApplication->update(100);
 	}
 	

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="OgreRTC" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="debug/OgreRTC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="release/OgreRTC" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DdDOUBLE" />
+					<Add directory="/usr/include/openrtm-1.1" />
+					<Add directory="/usr/include/openrtm-1.1/rtm/idl" />
+					<Add directory="/usr/include/coil-1.1" />
+					<Add directory="/usr/include/OGRE" />
+					<Add directory="../../ode-0.12/include" />
+					<Add directory="/usr/local/include/CEGUI" />
+					<Add directory="/usr/include/python2.6" />
+					<Add directory="/usr/lib/perl/5.10/CORE" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lboost_python" />
+					<Add library="/usr/lib/libcoil.a" />
+					<Add library="/usr/lib/libdl.so" />
+					<Add library="/usr/lib/libpthread.so" />
+					<Add library="/usr/lib/libuuid.a" />
+					<Add library="/usr/lib/libOgreMain.so" />
+					<Add library="/usr/lib/libOgreTerrain.so" />
+					<Add library="/home/nobuhiko/ode-0.12/lib/ReleaseDoubleLib/libode_double.a" />
+					<Add library="/usr/local/lib/libCEGUIBase.so" />
+					<Add library="/usr/local/lib/libCEGUIOgreRenderer.so" />
+					<Add library="/usr/lib/libpython2.6.so" />
+					<Add library="/usr/lib/libssl.so" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="/usr/share/qt4/include" />
+			<Add directory="/usr/share/qt4/include/QtGui" />
+		</Compiler>
+		<Linker>
+			<Add library="QtCore" />
+			<Add library="QtGui" />
+			<Add directory="/usr/share/qt4/lib" />
+		</Linker>
+		<Unit filename="AnimationSet.cpp" />
+		<Unit filename="AnimationSet.h" />
+		<Unit filename="BaseApplication.cpp" />
+		<Unit filename="BaseApplication.h" />
+		<Unit filename="BodySet.cpp" />
+		<Unit filename="BodySet.h" />
+		<Unit filename="BornSet.cpp" />
+		<Unit filename="BornSet.h" />
+		<Unit filename="CameraSet.cpp" />
+		<Unit filename="CameraSet.h" />
+		<Unit filename="GUISet.cpp" />
+		<Unit filename="GUISet.h" />
+		<Unit filename="GUITextSet.cpp" />
+		<Unit filename="GUITextSet.h" />
+		<Unit filename="ImageSet.cpp" />
+		<Unit filename="ImageSet.h" />
+		<Unit filename="LightSet.cpp" />
+		<Unit filename="LightSet.h" />
+		<Unit filename="MyAnimation.cpp" />
+		<Unit filename="MyAnimation.h" />
+		<Unit filename="MyArray.cpp" />
+		<Unit filename="MyArray.h" />
+		<Unit filename="MyFileStream.cpp" />
+		<Unit filename="MyFileStream.h" />
+		<Unit filename="MyGUI.cpp" />
+		<Unit filename="MyGUI.h" />
+		<Unit filename="MyImageSet.cpp" />
+		<Unit filename="MyImageSet.h" />
+		<Unit filename="MyLight.cpp" />
+		<Unit filename="MyLight.h" />
+		<Unit filename="MyLink.cpp" />
+		<Unit filename="MyLink.h" />
+		<Unit filename="MyNode.cpp" />
+		<Unit filename="MyNode.h" />
+		<Unit filename="MyODEBody.cpp" />
+		<Unit filename="MyODEBody.h" />
+		<Unit filename="MyODEJoint.cpp" />
+		<Unit filename="MyODEJoint.h" />
+		<Unit filename="MyOgreMacro.cpp" />
+		<Unit filename="MyOgreMacro.h" />
+		<Unit filename="MyParticle.cpp" />
+		<Unit filename="MyParticle.h" />
+		<Unit filename="MyPythonBoost.cpp" />
+		<Unit filename="MyPythonBoost.h" />
+		<Unit filename="MyQtMacro.cpp" />
+		<Unit filename="MyQtMacro.h" />
+		<Unit filename="MySimulation.cpp" />
+		<Unit filename="MySimulation.h" />
+		<Unit filename="NodeSet.cpp" />
+		<Unit filename="NodeSet.h" />
+		<Unit filename="OgreRTCApplication.cpp" />
+		<Unit filename="OgreRTCApplication.h" />
+		<Unit filename="OgreWidget.cpp" />
+		<Unit filename="OgreWidget.h" />
+		<Unit filename="OtherSet.cpp" />
+		<Unit filename="OtherSet.h" />
+		<Unit filename="ParticleSet.cpp" />
+		<Unit filename="ParticleSet.h" />
+		<Unit filename="RTCmain.cpp" />
+		<Unit filename="SimBodySet.cpp" />
+		<Unit filename="SimBodySet.h" />
+		<Unit filename="SimJointSet.cpp" />
+		<Unit filename="SimJointSet.h" />
+		<Unit filename="SimulationSet.cpp" />
+		<Unit filename="SimulationSet.h" />
+		<Unit filename="SingletonT.h" />
+		<Unit filename="SubWindow.cpp" />
+		<Unit filename="SubWindow.h" />
+		<Unit filename="SubWindowSet.cpp" />
+		<Unit filename="SubWindowSet.h" />
+		<Unit filename="mainwindow.cpp" />
+		<Unit filename="mainwindow.h" />
+		<Unit filename="release/moc_AnimationSet.cpp" />
+		<Unit filename="release/moc_BodySet.cpp" />
+		<Unit filename="release/moc_BornSet.cpp" />
+		<Unit filename="release/moc_CameraSet.cpp" />
+		<Unit filename="release/moc_GUISet.cpp" />
+		<Unit filename="release/moc_GUITextSet.cpp" />
+		<Unit filename="release/moc_ImageSet.cpp" />
+		<Unit filename="release/moc_LightSet.cpp" />
+		<Unit filename="release/moc_NodeSet.cpp" />
+		<Unit filename="release/moc_OgreWidget.cpp" />
+		<Unit filename="release/moc_OtherSet.cpp" />
+		<Unit filename="release/moc_ParticleSet.cpp" />
+		<Unit filename="release/moc_SimBodySet.cpp" />
+		<Unit filename="release/moc_SimJointSet.cpp" />
+		<Unit filename="release/moc_SimulationSet.cpp" />
+		<Unit filename="release/moc_SubWindowSet.cpp" />
+		<Unit filename="release/moc_mainwindow.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
