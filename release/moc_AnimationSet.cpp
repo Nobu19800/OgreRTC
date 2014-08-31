@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'AnimationSet.h'
 **
-** Created: Tue Aug 19 09:04:21 2014
+** Created: Sat Aug 30 07:05:22 2014
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.0)
 **
 ** WARNING! All changes made in this file will be lost!

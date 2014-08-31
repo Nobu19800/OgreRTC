@@ -162,7 +162,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="true"
-				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib RTC110.lib coil110.lib omniORB414_rt.lib omniDynamic414_rt.lib omnithread34_rt.lib advapi32.lib ws2_32.lib mswsock.lib OgreMain.lib OgreTerrain.lib ode.lib winmm.lib CEGUIBase.lib CEGUIOgreRenderer.lib opengl32.lib glu32.lib gdi32.lib user32.lib c:\Qt\4.6.0\lib\QtAssistantClient4.lib c:\Qt\4.6.0\lib\QtTest4.lib c:\Qt\4.6.0\lib\QtGui4.lib c:\Qt\4.6.0\lib\QtNetwork4.lib c:\Qt\4.6.0\lib\QtCore4.lib"
+				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib coil110.lib ws2_32.lib mswsock.lib OgreMain.lib OgreTerrain.lib ode.lib winmm.lib CEGUIBase.lib CEGUIOgreRenderer.lib opengl32.lib glu32.lib c:\Qt\4.6.0\lib\QtAssistantClient4.lib c:\Qt\4.6.0\lib\QtTest4.lib c:\Qt\4.6.0\lib\QtGui4.lib c:\Qt\4.6.0\lib\QtNetwork4.lib c:\Qt\4.6.0\lib\QtCore4.lib"
 				OutputFile="release\OgreRTC.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
