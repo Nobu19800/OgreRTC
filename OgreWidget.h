@@ -1,7 +1,7 @@
 ﻿#ifndef OGREWIDGET_H
 #define OGREWIDGET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 QT_BEGIN_NAMESPACE

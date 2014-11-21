@@ -1,7 +1,7 @@
 ﻿#ifndef MYQTMACRO_H
 #define MYQTMACRO_H
 
-#include <QtGui>
+#include <QtWidgets>
 
 
 QT_BEGIN_NAMESPACE

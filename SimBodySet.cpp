@@ -1,13 +1,14 @@
 ﻿#include "SimBodySet.h"
 
 #include "MyQtMacro.h"
-#include <QtGui/QApplication>
-#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+//#include <QtWidgets/QPainter>
+#include <QtWidgets>
 
 #include "MyODEBody.h"
 
 SimBodySetWidget::SimBodySetWidget( QWidget *parent) : 
-QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
+QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
 	up_flag = true;
 	QTextCodec* tc = QTextCodec::codecForLocale();

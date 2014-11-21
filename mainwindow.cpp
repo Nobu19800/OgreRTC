@@ -1,7 +1,8 @@
-﻿#include <QtGui>
+﻿#include <QtWidgets>
 #include <QLabel>
 #include <QTextEdit>
 #include <qfont.h>
+#include <QtWidgets>
 
 
 #include "mainwindow.h"

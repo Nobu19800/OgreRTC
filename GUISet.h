@@ -1,7 +1,7 @@
 ﻿#ifndef GUISET_H
 #define GUISET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

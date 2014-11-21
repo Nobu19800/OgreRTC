@@ -1,7 +1,7 @@
 ﻿#ifndef SUBWINDOWSET_H
 #define SUBWINDOWSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

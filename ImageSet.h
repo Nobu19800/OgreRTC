@@ -1,7 +1,7 @@
 ﻿#ifndef IMAGESET_H
 #define IMAGESET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

@@ -1,7 +1,7 @@
 ﻿#ifndef PARTICLESET_H
 #define PARTICLESET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

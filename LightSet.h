@@ -2,7 +2,7 @@
 #define LIGHTSET_H
 
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

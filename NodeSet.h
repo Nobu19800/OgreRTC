@@ -1,7 +1,7 @@
 ﻿#ifndef NODESET_H
 #define NODESET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

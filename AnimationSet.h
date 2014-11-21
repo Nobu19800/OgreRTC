@@ -2,7 +2,7 @@
 #define ANIMATIONSET_H
 
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

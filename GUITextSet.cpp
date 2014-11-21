@@ -1,6 +1,7 @@
 ﻿#include "GUITextSet.h"
-#include <QtGui/QApplication>
-#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+//#include <QtWidgets/QPainter>
+#include <QtWidgets>
 #include "MyQtMacro.h"
 
 
@@ -9,7 +10,7 @@
 
 
 GUITextSetWidget::GUITextSetWidget( QWidget *parent) : 
-QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
+QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
 	
 

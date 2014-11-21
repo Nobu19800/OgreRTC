@@ -1,7 +1,7 @@
 ﻿#ifndef GUITEXTSET_H
 #define GUITEXTSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
-#include <QtGui/QApplication>
-#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+//#include <QtWidgets/QPainter>
+#include <QtWidgets>
 #ifdef Q_OS_WIN
 #else
 #include <QX11Info>
@@ -8,7 +9,7 @@
 
 OgreWidget::OgreWidget(QWidget *parent) :
 #ifdef Q_OS_WIN
-QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
+QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 #else
 QWidget(parent)
 #endif

@@ -27,7 +27,7 @@ This source file is part of the
 #include <OgreRenderWindow.h>
 #include <OgreConfigFile.h>
 
-#include <QtGui>
+#include <QtWidgets>
 
 #include "SingletonT.h"
 

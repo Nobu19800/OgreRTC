@@ -1,12 +1,13 @@
 ﻿#include "OtherSet.h"
-#include <QtGui/QApplication>
-#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+//#include <QtWidgets/QPainter>
+#include <QtWidgets>
 #include "MyQtMacro.h"
 
 
 
 OtherSetWidget::OtherSetWidget(QWidget *parent) : 
-QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
+QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
 	
 

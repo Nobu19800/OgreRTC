@@ -1,26 +1,54 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'OgreWidget.h'
 **
-** Created: Sat Aug 30 07:05:26 2014
-**      by: The Qt Meta Object Compiler version 62 (Qt 4.6.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../OgreWidget.h"
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'OgreWidget.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 62
-#error "This file was generated using the moc from 4.6.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+struct qt_meta_stringdata_OgreWidget_t {
+    QByteArrayData data[9];
+    char stringdata[87];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_OgreWidget_t, stringdata) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_OgreWidget_t qt_meta_stringdata_OgreWidget = {
+    {
+QT_MOC_LITERAL(0, 0, 10),
+QT_MOC_LITERAL(1, 11, 15),
+QT_MOC_LITERAL(2, 27, 0),
+QT_MOC_LITERAL(3, 28, 12),
+QT_MOC_LITERAL(4, 41, 3),
+QT_MOC_LITERAL(5, 45, 2),
+QT_MOC_LITERAL(6, 48, 2),
+QT_MOC_LITERAL(7, 51, 16),
+QT_MOC_LITERAL(8, 68, 18)
+    },
+    "OgreWidget\0mouseMoveSignal\0\0QMouseEvent*\0"
+    "evt\0dx\0dy\0mousePressSignal\0"
+    "mouseReleaseSignal"
+};
+#undef QT_MOC_LITERAL
+
 static const uint qt_meta_data_OgreWidget[] = {
 
  // content:
-       4,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        3,   14, // methods
@@ -30,39 +58,68 @@ static const uint qt_meta_data_OgreWidget[] = {
        0,       // flags
        3,       // signalCount
 
- // signals: signature, parameters, type, tag, flags
-      22,   12,   11,   11, 0x05,
-      64,   60,   11,   11, 0x05,
-      95,   60,   11,   11, 0x05,
+ // signals: name, argc, parameters, tag, flags
+       1,    3,   29,    2, 0x06 /* Public */,
+       7,    1,   36,    2, 0x06 /* Public */,
+       8,    1,   39,    2, 0x06 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3, QMetaType::Int, QMetaType::Int,    4,    5,    6,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_OgreWidget[] = {
-    "OgreWidget\0\0evt,dx,dy\0"
-    "mouseMoveSignal(QMouseEvent*,int,int)\0"
-    "evt\0mousePressSignal(QMouseEvent*)\0"
-    "mouseReleaseSignal(QMouseEvent*)\0"
-};
+void OgreWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        OgreWidget *_t = static_cast<OgreWidget *>(_o);
+        switch (_id) {
+        case 0: _t->mouseMoveSignal((*reinterpret_cast< QMouseEvent*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
+        case 1: _t->mousePressSignal((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 2: _t->mouseReleaseSignal((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (OgreWidget::*_t)(QMouseEvent * , int , int );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&OgreWidget::mouseMoveSignal)) {
+                *result = 0;
+            }
+        }
+        {
+            typedef void (OgreWidget::*_t)(QMouseEvent * );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&OgreWidget::mousePressSignal)) {
+                *result = 1;
+            }
+        }
+        {
+            typedef void (OgreWidget::*_t)(QMouseEvent * );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&OgreWidget::mouseReleaseSignal)) {
+                *result = 2;
+            }
+        }
+    }
+}
 
 const QMetaObject OgreWidget::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_OgreWidget,
-      qt_meta_data_OgreWidget, 0 }
+    { &QWidget::staticMetaObject, qt_meta_stringdata_OgreWidget.data,
+      qt_meta_data_OgreWidget,  qt_static_metacall, 0, 0}
 };
 
-#ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &OgreWidget::getStaticMetaObject() { return staticMetaObject; }
-#endif //Q_NO_DATA_RELOCATION
 
 const QMetaObject *OgreWidget::metaObject() const
 {
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
 void *OgreWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_OgreWidget))
+    if (!strcmp(_clname, qt_meta_stringdata_OgreWidget.stringdata))
         return static_cast<void*>(const_cast< OgreWidget*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -73,12 +130,12 @@ int OgreWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        switch (_id) {
-        case 0: mouseMoveSignal((*reinterpret_cast< QMouseEvent*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
-        case 1: mousePressSignal((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        case 2: mouseReleaseSignal((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        default: ;
-        }
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 3;
     }
     return _id;

@@ -1,7 +1,7 @@
 ﻿#ifndef SIMJOINTSET_H
 #define SIMJOINTSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

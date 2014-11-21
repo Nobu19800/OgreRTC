@@ -1,5 +1,5 @@
-﻿#include <QtGui/QApplication>
-#include <QtGui/QPainter>
+﻿#include <QtWidgets/QApplication>
+//#include <QtWidgets/QPainter>
 
 #include "MyQtMacro.h"
 

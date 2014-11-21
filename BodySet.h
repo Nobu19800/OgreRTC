@@ -1,7 +1,7 @@
 ﻿#ifndef BODYSET_H
 #define BODYSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

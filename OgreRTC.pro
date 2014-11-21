@@ -2,7 +2,7 @@ TEMPLATE = vcapp
 TARGET = OgreRTC
 
 CONFIG += assistant
-
+QT += widgets
 QT += network
 QT += testlib
 

@@ -1,7 +1,7 @@
 ﻿#ifndef BORNSET_H
 #define BORNSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 QT_BEGIN_NAMESPACE

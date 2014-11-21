@@ -1,26 +1,63 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'LightSet.h'
 **
-** Created: Sat Aug 30 07:05:25 2014
-**      by: The Qt Meta Object Compiler version 62 (Qt 4.6.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../LightSet.h"
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'LightSet.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 62
-#error "This file was generated using the moc from 4.6.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+struct qt_meta_stringdata_LightSetWidget_t {
+    QByteArrayData data[16];
+    char stringdata[154];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_LightSetWidget_t, stringdata) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_LightSetWidget_t qt_meta_stringdata_LightSetWidget = {
+    {
+QT_MOC_LITERAL(0, 0, 14),
+QT_MOC_LITERAL(1, 15, 11),
+QT_MOC_LITERAL(2, 27, 0),
+QT_MOC_LITERAL(3, 28, 10),
+QT_MOC_LITERAL(4, 39, 7),
+QT_MOC_LITERAL(5, 47, 8),
+QT_MOC_LITERAL(6, 56, 5),
+QT_MOC_LITERAL(7, 62, 8),
+QT_MOC_LITERAL(8, 71, 8),
+QT_MOC_LITERAL(9, 80, 8),
+QT_MOC_LITERAL(10, 89, 7),
+QT_MOC_LITERAL(11, 97, 9),
+QT_MOC_LITERAL(12, 107, 8),
+QT_MOC_LITERAL(13, 116, 11),
+QT_MOC_LITERAL(14, 128, 13),
+QT_MOC_LITERAL(15, 142, 11)
+    },
+    "LightSetWidget\0UpdateLight\0\0UpdateList\0"
+    "SetSlot\0NameSlot\0value\0PosXSlot\0"
+    "PosYSlot\0PosZSlot\0RedSlot\0GreenSlot\0"
+    "BlueSlot\0VisibleSlot\0unVisibleSlot\0"
+    "DestroySlot"
+};
+#undef QT_MOC_LITERAL
+
 static const uint qt_meta_data_LightSetWidget[] = {
 
  // content:
-       4,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
       13,   14, // methods
@@ -30,54 +67,90 @@ static const uint qt_meta_data_LightSetWidget[] = {
        0,       // flags
        1,       // signalCount
 
- // signals: signature, parameters, type, tag, flags
-      16,   15,   15,   15, 0x05,
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   79,    2, 0x06 /* Public */,
 
- // slots: signature, parameters, type, tag, flags
-      30,   15,   15,   15, 0x0a,
-      43,   15,   15,   15, 0x08,
-      59,   53,   15,   15, 0x08,
-      73,   53,   15,   15, 0x08,
-      90,   53,   15,   15, 0x08,
-     107,   53,   15,   15, 0x08,
-     124,   53,   15,   15, 0x08,
-     140,   53,   15,   15, 0x08,
-     158,   53,   15,   15, 0x08,
-     175,   15,   15,   15, 0x08,
-     189,   15,   15,   15, 0x08,
-     205,   15,   15,   15, 0x08,
+ // slots: name, argc, parameters, tag, flags
+       3,    0,   80,    2, 0x0a /* Public */,
+       4,    0,   81,    2, 0x08 /* Private */,
+       5,    1,   82,    2, 0x08 /* Private */,
+       7,    1,   85,    2, 0x08 /* Private */,
+       8,    1,   88,    2, 0x08 /* Private */,
+       9,    1,   91,    2, 0x08 /* Private */,
+      10,    1,   94,    2, 0x08 /* Private */,
+      11,    1,   97,    2, 0x08 /* Private */,
+      12,    1,  100,    2, 0x08 /* Private */,
+      13,    0,  103,    2, 0x08 /* Private */,
+      14,    0,  104,    2, 0x08 /* Private */,
+      15,    0,  105,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void, QMetaType::Double,    6,
+    QMetaType::Void, QMetaType::Double,    6,
+    QMetaType::Void, QMetaType::Double,    6,
+    QMetaType::Void, QMetaType::Double,    6,
+    QMetaType::Void, QMetaType::Double,    6,
+    QMetaType::Void, QMetaType::Double,    6,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_LightSetWidget[] = {
-    "LightSetWidget\0\0UpdateLight()\0"
-    "UpdateList()\0SetSlot()\0value\0NameSlot(int)\0"
-    "PosXSlot(double)\0PosYSlot(double)\0"
-    "PosZSlot(double)\0RedSlot(double)\0"
-    "GreenSlot(double)\0BlueSlot(double)\0"
-    "VisibleSlot()\0unVisibleSlot()\0"
-    "DestroySlot()\0"
-};
+void LightSetWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        LightSetWidget *_t = static_cast<LightSetWidget *>(_o);
+        switch (_id) {
+        case 0: _t->UpdateLight(); break;
+        case 1: _t->UpdateList(); break;
+        case 2: _t->SetSlot(); break;
+        case 3: _t->NameSlot((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->PosXSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 5: _t->PosYSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 6: _t->PosZSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 7: _t->RedSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 8: _t->GreenSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 9: _t->BlueSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: _t->VisibleSlot(); break;
+        case 11: _t->unVisibleSlot(); break;
+        case 12: _t->DestroySlot(); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (LightSetWidget::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&LightSetWidget::UpdateLight)) {
+                *result = 0;
+            }
+        }
+    }
+}
 
 const QMetaObject LightSetWidget::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_LightSetWidget,
-      qt_meta_data_LightSetWidget, 0 }
+    { &QWidget::staticMetaObject, qt_meta_stringdata_LightSetWidget.data,
+      qt_meta_data_LightSetWidget,  qt_static_metacall, 0, 0}
 };
 
-#ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &LightSetWidget::getStaticMetaObject() { return staticMetaObject; }
-#endif //Q_NO_DATA_RELOCATION
 
 const QMetaObject *LightSetWidget::metaObject() const
 {
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
 void *LightSetWidget::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_LightSetWidget))
+    if (!strcmp(_clname, qt_meta_stringdata_LightSetWidget.stringdata))
         return static_cast<void*>(const_cast< LightSetWidget*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -88,22 +161,12 @@ int LightSetWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        switch (_id) {
-        case 0: UpdateLight(); break;
-        case 1: UpdateList(); break;
-        case 2: SetSlot(); break;
-        case 3: NameSlot((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: PosXSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 5: PosYSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 6: PosZSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 7: RedSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 8: GreenSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 9: BlueSlot((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 10: VisibleSlot(); break;
-        case 11: unVisibleSlot(); break;
-        case 12: DestroySlot(); break;
-        default: ;
-        }
+        if (_id < 13)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 13;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 13)
+            *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 13;
     }
     return _id;

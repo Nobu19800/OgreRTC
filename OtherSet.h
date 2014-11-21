@@ -1,7 +1,7 @@
 ﻿#ifndef OTHERSET_H
 #define OTHERSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

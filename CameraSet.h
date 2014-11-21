@@ -1,7 +1,7 @@
 ﻿#ifndef CAMERASET_H
 #define CAMERASET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

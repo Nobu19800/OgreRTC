@@ -1,15 +1,16 @@
 ﻿#include "SimJointSet.h"
 
 #include "MyQtMacro.h"
-#include <QtGui/QApplication>
-#include <QtGui/QPainter>
+#include <QtWidgets/QApplication>
+//#include <QtWidgets/QPainter>
+#include <QtWidgets>
 
 #include "MyODEBody.h"
 #include "MyODEJoint.h"
 
 
 SimJointSetWidget::SimJointSetWidget( QWidget *parent) : 
-QWidget(parent,Qt::WFlags(Qt::MSWindowsOwnDC))
+QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
 	up_flag = true;
 	QTextCodec* tc = QTextCodec::codecForLocale();

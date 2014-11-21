@@ -1,7 +1,7 @@
 ﻿#ifndef SIMULATIONSET_H
 #define SIMULATIONSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 

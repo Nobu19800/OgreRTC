@@ -1,7 +1,7 @@
 ﻿#ifndef SIMBODYSET_H
 #define SIMBODYSET_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "OgreRTCApplication.h"
 
 
