@@ -3,6 +3,7 @@
 #include <QTextEdit>
 #include <qfont.h>
 #include <QtWidgets>
+#include <coil/stringutil.h>
 
 
 #include "mainwindow.h"
@@ -23,7 +24,7 @@
 
 
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 : QMainWindow(parent)
 {
 	
@@ -176,8 +177,11 @@ MainWindow::MainWindow(QWidget *parent)
 	createAction();
 	createMenus();
 
-	
-
+	if(EC && argc > 1)
+	{
+		EC->reset();
+		EC->OpenFile(argv[1]);
+	}
 
 }
 
@@ -268,7 +272,9 @@ void MainWindow::pyOpen()
 
 	std::string ba = (const char*)fileName.toLocal8Bit();
 
-	std::string tmp = Replace(ba,"\\","/");
+	std::string tmp = ba;
+	
+	coil::replaceString(tmp, "\\","/");
 
 	if(EC)
 	{

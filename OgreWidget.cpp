@@ -28,8 +28,8 @@ QWidget(parent)
 	//setAcceptDrops(true);
 	setContextMenuPolicy( Qt::PreventContextMenu );
 
-	setMaximumSize(944, 708);
-	setMinimumSize(944, 708);
+	setMaximumSize(windowSizeX, windowSizeY);
+	setMinimumSize(windowSizeX, windowSizeY);
 
 	//setSizeIncrement(1024, 768);
 
@@ -62,7 +62,7 @@ void OgreWidget::initOgre()
 		winHandle += Ogre::StringConverter::toString((unsigned long)(window()->winId()));
 #endif
 		mOgreRTCApplication = OgreRTCApplication::getSingletonPtr();
-		WId ogreWinId = mOgreRTCApplication->initRenderWindow(winHandle, 944, 708);
+		WId ogreWinId = mOgreRTCApplication->initRenderWindow(winHandle, windowSizeX, windowSizeY);
 
 #ifdef Q_OS_WIN
 #else

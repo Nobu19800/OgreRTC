@@ -4,7 +4,8 @@
 #include <CEGUI.h>
 #include <RendererModules/Ogre/CEGUIOgreRenderer.h>
 
-
+#define windowSizeX 944
+#define windowSizeY 708
 
 #include "MyLink.h"
 #include "MyParticle.h"
@@ -17,6 +18,7 @@
 #include "MyNode.h"
 #include "MyPythonBoost.h"
 #include "MyOgreMacro.h"
+#include "DisplayImage.h"
 
 #include <string>
 #include <time.h>
@@ -77,6 +79,10 @@ public:
 	void MoveCameraPos(float dx, float dy);
 	void MoveCameraRot(float dx, float dy);
 
+	/*
+	*背景画像設定の関数
+	*/
+	void OgreRTCApplication::setDisplayImage(const char *img, int w, int h);
 	
 
 	/*
@@ -602,6 +608,10 @@ public:
 	void CreateQtAnimation(MyAnimation *man);
 	void CreateQtNode(MyNode *mn);
 
+	void SetCameraAutoMoveFlag(bool flag);
+
+	bool JudgeMouseOnGUI(float px, float py);
+
 	
 	MySimulation *mSim;
 
@@ -623,6 +633,10 @@ public:
 	std::vector<MyLight*> QtLights;
 	std::vector<MyNode*> QtNodes;
 
+	DisplayImage *displayImg;
+
+
+
 	float CamX, CamY, CamZ;
 	float CamRoll, CamPitch, CamYaw;
 	float CamLen;
@@ -641,6 +655,8 @@ public:
 
 	PyObj *po;
 	bool RTCFlag;
+
+	bool CameraFlag;
 
 	
 

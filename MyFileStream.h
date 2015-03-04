@@ -7,10 +7,7 @@
 #include <string>
 #include <fstream>
 
-/*
-* 文字の置き換えの関数
-*/
-std::string Replace( std::string String1, std::string String2, std::string String3 );
+
 /*
 * バイナリ形式の文字列保存の関数
 */

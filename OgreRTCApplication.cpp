@@ -257,6 +257,8 @@ BOOST_PYTHON_MODULE(CppExport)
 			.def("newfile",&OgreRTCApplication::newfile)
 			.def("reset",&OgreRTCApplication::reset)
 			.def("SetRTC",&OgreRTCApplication::SetRTC)
+			.def("setDisplayImage",&OgreRTCApplication::setDisplayImage)
+			.def("SetCameraAutoMoveFlag",&OgreRTCApplication::SetCameraAutoMoveFlag)
 			;
 			
 			
@@ -350,6 +352,8 @@ BOOST_PYTHON_MODULE(CppExport)
 			.def("GetScrollValue",&MyGUI::GetScrollValue)
 			.def("SetCheckBox",&MyGUI::SetCheckBox)
 			.def("GetCheckBox",&MyGUI::SetCheckBox)
+			.def("SetSliderValue",&MyGUI::SetSliderValue)
+			
 			
 			
 
@@ -559,6 +563,8 @@ OgreRTCApplication::OgreRTCApplication(void)
 
 	
 	RTCFlag = false;
+
+	CameraFlag = true;
 	
 	
 
@@ -1117,6 +1123,47 @@ CEGUI::MouseButton convertButton(Qt::MouseButton buttonID)
     }
 }
 
+void OgreRTCApplication::setDisplayImage(const char *img, int w, int h)
+{
+	if(displayImg->texture->getWidth() != w)
+	{
+		std::cout << "width" << std::endl;
+		displayImg->texture->setWidth(w);
+	}
+
+	if(displayImg->texture->getHeight() != h)
+	{
+		std::cout << "height" << std::endl;
+		displayImg->texture->setHeight(h);
+	}
+
+	/*Ogre::HardwarePixelBufferSharedPtr buffer = displayImg->texture->getBuffer();
+	buffer->lock(Ogre::HardwareBuffer::HBL_NORMAL);
+
+	const Ogre::PixelBox &pb = buffer->getCurrentLock();
+
+	uint8* pDest = static_cast<uint8*>(pb.data);
+
+	for (size_t i = 0; i < h; i++)
+	{
+		for(size_t j = 0; j < w; j++)
+		{
+			*pDest++ = img[(j+w*i)*3+2];
+			*pDest++ = img[(j+w*i)*3+1];
+			*pDest++ = img[(j+w*i)*3];
+			*pDest++ = 127; // A
+		}
+		pDest += pb.getRowSkip() * Ogre::PixelUtil::getNumElemBytes(pb.format);
+	}
+
+
+	buffer->unlock();*/
+
+	displayImg->img.loadDynamicImage((Ogre::uchar*) img, w, h, Ogre::PF_R8G8B8);
+
+	displayImg->texture->unload();
+	displayImg->texture->loadImage(displayImg->img);
+}
 
 bool OgreRTCApplication::mouseMoved( QMouseEvent*  evt )
 {
@@ -1308,12 +1355,34 @@ void OgreRTCApplication::createScene(void)
 
 	UpdateCameraPQ(0,0,0,45,0,0,1500);
 
-	
+	displayImg = new DisplayImage();
+	displayImg->mRect = new Ogre::Rectangle2D(true);
+	displayImg->mRect->setCorners(-1.0, 1.0, 1.0, -1.0);
+	displayImg->mRect->setBoundingBox( Ogre::AxisAlignedBox::EXTENT_INFINITE );
+	displayImg->texture = Ogre::TextureManager::getSingleton().createManual("DisplayImageTex", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 640, 480, 0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+	//displayImg->texture = Ogre::TextureManager::getSingleton().createManual("DisplayImageTex", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 640, 480, 0, Ogre::PF_BYTE_BGRA, Ogre::TU_DEFAULT);
+	displayImg->material = Ogre::MaterialManager::getSingleton().create("DisplayImageMat", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	//displayImg->texture->setWidth(640);
+	//displayImg->texture->setHeight(480);
+	//displayImg->texture->getWidth();
+	//displayImg->texture->setHeight();
 	//stadium.mNode->setVisible(false);
 	
-	mRenderer = &CEGUI::OgreRenderer::bootstrapSystem(*mWindow);
- 
+	
 
+	displayImg->material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+    displayImg->material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+    displayImg->material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+	displayImg->material->getTechnique(0)->getPass(0)->createTextureUnitState("DisplayImageTex");
+ 
+	displayImg->mRect->setMaterial("DisplayImageMat");
+	displayImg->mRect->setRenderQueueGroup( Ogre::RENDER_QUEUE_BACKGROUND );
+
+	displayImg->node = mSceneMgr->getRootSceneNode()->createChildSceneNode("DisplayImage");
+	displayImg->node->attachObject(displayImg->mRect);
+
+
+	mRenderer = &CEGUI::OgreRenderer::bootstrapSystem(*mWindow);
 	
 
     CEGUI::Imageset::setDefaultResourceGroup("Imagesets");
@@ -3823,4 +3892,32 @@ void OgreRTCApplication::reset()
 void OgreRTCApplication::SetRTC()
 {
 	RTCFlag = true;
+}
+
+void OgreRTCApplication::SetCameraAutoMoveFlag(bool flag)
+{
+	CameraFlag = flag;
+}
+
+
+bool OgreRTCApplication::JudgeMouseOnGUI(float px, float py)
+{
+	float ipx = px/windowSizeX;
+	float ipy = py/windowSizeY;
+	for(int i=0;i < MyGUIs.size();i++)
+	{
+		//std::cout << MyGUIs[i]->pos_x << "\t" << MyGUIs[i]->pos_y << std::endl;
+		//std::cout << MyGUIs[i]->size_x << "\t" << MyGUIs[i]->size_y << std::endl;
+		//std::cout << ipx << "\t" << ipy << std::endl;
+		if(MyGUIs[i]->visi)
+		{
+			if(MyGUIs[i]->pos_x < ipx && MyGUIs[i]->pos_y < ipy)
+			{
+				if(MyGUIs[i]->size_x+MyGUIs[i]->pos_x > ipx && MyGUIs[i]->size_y+MyGUIs[i]->pos_y > ipy)
+				{
+					return true;
+			}	}
+		}
+	}
+	return false;
 }

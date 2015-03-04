@@ -23,9 +23,9 @@
 int main (int argc, char** argv)
 {
   
-
-  QApplication app(argc, argv);
-  MainWindow mainWindow;
+  int _argc = 1;
+  QApplication app(_argc, argv);
+  MainWindow mainWindow(argc, argv);
   mainWindow.show();
   app.exec();
 

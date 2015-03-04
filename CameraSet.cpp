@@ -289,43 +289,46 @@ void CameraSetWidget::mouseMoveSlot(QMouseEvent*  evt, int dx, int dy)
 {
 	if(EC)
 	{
-		for(int i=0;i < EC->QtLinks.size();i++)
+		if(EC->CameraFlag && EC->JudgeMouseOnGUI(evt->pos().x(), evt->pos().y()) == false)
 		{
-			if(EC->QtLinks[i]->mNode->bound_visi)
+			for(int i=0;i < EC->QtLinks.size();i++)
 			{
-				return;
-			}
-		}
-		
-		if((evt->buttons() & Qt::LeftButton) && (evt->buttons() & Qt::RightButton))
-		{
-			if(EC->CamLen > 0)
-			{
-				EC->CamLen = EC->CamLen + EC->CamLen * dy/200.;
-				LenspinBox->setValue(EC->CamLen);
+				if(EC->QtLinks[i]->mNode->bound_visi)
+				{
+					return;
+				}
 			}
 			
-		}
-		else if(evt->buttons() & Qt::LeftButton)
-		{
-			up_flag = false;
-			float px = EC->CamLen * (float)dx / 2000.;
-			float py = -EC->CamLen * (float)dy / 2000.;
-			EC->MoveCameraPos(px, py);
-			up_flag = true;
-		}
-		else if(evt->buttons() & Qt::RightButton)
-		{
-			up_flag = false;
-			float px = (float)dx/4;
-			float py = (float)dy/4;
-			EC->MoveCameraRot(px, py);
-			up_flag = true;
+			if((evt->buttons() & Qt::LeftButton) && (evt->buttons() & Qt::RightButton))
+			{
+				if(EC->CamLen > 0)
+				{
+					EC->CamLen = EC->CamLen + EC->CamLen * dy/200.;
+					LenspinBox->setValue(EC->CamLen);
+				}
+				
+			}
+			else if(evt->buttons() & Qt::LeftButton)
+			{
+				up_flag = false;
+				float px = EC->CamLen * (float)dx / 2000.;
+				float py = -EC->CamLen * (float)dy / 2000.;
+				EC->MoveCameraPos(px, py);
+				up_flag = true;
+			}
+			else if(evt->buttons() & Qt::RightButton)
+			{
+				up_flag = false;
+				float px = (float)dx/4;
+				float py = (float)dy/4;
+				EC->MoveCameraRot(px, py);
+				up_flag = true;
+				
+			}
 			
+			
+			UpdateList();
 		}
-		
-		
-		UpdateList();
 	}
 }
 
