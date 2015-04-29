@@ -1,5 +1,7 @@
 ﻿#include "MyGUI.h"
 
+#include <coil/stringutil.h>
+
 #ifdef _WIN32
 #include "UnicodeF.h"
 #else
@@ -73,14 +75,16 @@ void MyGUI::SetAlpha( float val)
 
 void MyGUI::SetTextColor(float r, float g, float b)
 {
-	CEGUI::colour col = CEGUI::colour(r, g, b);
+	CEGUI::Colour col = CEGUI::Colour(r, g, b);
 	CEGUI::ColourRect crect = CEGUI::ColourRect(col);
-	window->setProperty("DisabledTextColour", CEGUI::PropertyHelper::colourRectToString(crect));
+	window->setProperty("DisabledTextColour", CEGUI::PropertyHelper<CEGUI::ColourRect>::toString(crect));
 }
 
 void MyGUI::SetRotatin( float r, float p, float y)
 {
-	window->setRotation(CEGUI::Vector3(r,p,y));
+	CEGUI::Quaternion rot;
+	//window->setRotation(CEGUI::Vector3<float>(r,p,y));
+	window->setRotation(rot.eulerAnglesRadians(r,p,y));
 	roll = r;
 	pitch = p;
 	yaw = y;
@@ -98,7 +102,7 @@ void MyGUI::SetText( const char* t)
 
 void MyGUI::SetSize( float sx, float sy)
 {
-	window->setSize(CEGUI::UVector2(CEGUI::UDim(sx, 0), CEGUI::UDim(sy, 0)));
+	window->setSize(CEGUI::USize(CEGUI::UDim(sx, 0), CEGUI::UDim(sy, 0)));
 	size_x = sx;
 	size_y = sy;
 }
@@ -132,9 +136,10 @@ void MyGUI::SetBackGroundEnable( bool v)
 
 void MyGUI::SetFontSize( int Size)
 {
-	CEGUI::Font *f = window->getFont ();
+	CEGUI::Font *f = CEGUI::System::getSingleton().getDefaultGUIContext().getDefaultFont();
+	//CEGUI::Font *f = window->getFont();
 	f->setProperty ("PointSize",
-                        CEGUI::PropertyHelper::intToString (
+                        CEGUI::PropertyHelper<int>::toString (
                             Size));
 	font_size = Size;
 }
@@ -142,7 +147,22 @@ void MyGUI::SetFontSize( int Size)
 void MyGUI::SetImage(MyImageSet *MIS, const char *n)
 {
 	image_set = true;
-	window->setProperty("Image", CEGUI::PropertyHelper::imageToString(&MIS->imageSet->getImage(n)));
+	//window->setProperty("Image", CEGUI::PropertyHelper<CEGUI::Image *>::toString(&MIS->Image->getImage(n)));
+	
+	coil::vstring va = coil::split(MIS->filename, ".");
+	
+	//window->setProperty("Image", tn);
+	if(va[1] == "imageset")
+	{
+		std::string tn = MIS->name + "/";
+		tn = tn + n;
+		window->setProperty("Image", tn);
+	}
+	else
+	{
+		
+		window->setProperty("Image", MIS->name);
+	}
 	image_name = MIS->name;
 }
 
@@ -273,8 +293,8 @@ void MyGUI::save(std::ofstream &ofs2)
 
 void MyGUI::SetWindow(MyGUI *mg)
 {
-	window->getParent()->removeChildWindow(window);
-	mg->window->addChildWindow(window);
+	window->getParent()->removeChild(window);
+	mg->window->addChild(window);
 	
 }
 
@@ -344,12 +364,12 @@ void MyGUI::SetScrollValue( float val)
 
 void MyGUI::SetCheckBox(bool val)
 {
-	static_cast<CEGUI::Checkbox*>(window)->setSelected(val);
+	static_cast<CEGUI::ToggleButton*>(window)->setSelected(val);
 }
 
 bool MyGUI::GetCheckBox()
 {
-	return static_cast<CEGUI::Checkbox*>(window)->isSelected();
+	return static_cast<CEGUI::ToggleButton*>(window)->isSelected();
 }
 
 void MyGUI::moveToFront()
@@ -378,8 +398,8 @@ void MyGUI::moveBehind(MyGUI *mg)
 
 void MyGUI::setColor(float r, float g, float b)
 {
-	CEGUI::colour col = CEGUI::colour(r, g, b);
+	CEGUI::Colour col = CEGUI::Colour(r, g, b);
 	CEGUI::ColourRect crect = CEGUI::ColourRect(col);
-	window->setProperty("ImageColours", CEGUI::PropertyHelper::colourRectToString(crect));
+	window->setProperty("ImageColours", CEGUI::PropertyHelper<CEGUI::ColourRect>::toString(crect));
 	
 }

@@ -28,7 +28,7 @@ void SubWindow::SetPosition( float x, float y)
 }
 void SubWindow::SetSize( float sx, float sy)
 {
-	label->setSize(CEGUI::UVector2(CEGUI::UDim(sx, 0), CEGUI::UDim(sy, 0)));
+	label->setSize(CEGUI::USize(CEGUI::UDim(sx, 0), CEGUI::UDim(sy, 0)));
 	size_x = sx;
 	size_y = sy;
 }

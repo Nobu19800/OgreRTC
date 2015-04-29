@@ -1,8 +1,8 @@
 ﻿#ifndef MYGUI_H
 #define MYGUI_H
 
-#include <CEGUI.h>
-#include <RendererModules/Ogre/CEGUIOgreRenderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 #include "MyImageSet.h"
 #include "MyFileStream.h"

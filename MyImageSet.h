@@ -1,8 +1,8 @@
 ﻿#ifndef MYIMAGESET_H
 #define MYIMAGESET_H
 
-#include <CEGUI.h>
-#include <RendererModules/Ogre/CEGUIOgreRenderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 #include "MyFileStream.h"
 
@@ -25,7 +25,7 @@ public:
 	bool openb(std::ifstream &ifs);
 
 	CEGUI::Texture *texture;
-	CEGUI::Imageset *imageSet;
+	CEGUI::Image *Image;
 
 	std::string name;
 	std::string filename;

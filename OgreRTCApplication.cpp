@@ -15,6 +15,7 @@
 #include <fstream>
 
 #include <coil/Time.h>
+#include <coil/stringutil.h>
 
 using namespace std;
 namespace bpy = boost::python;
@@ -259,6 +260,7 @@ BOOST_PYTHON_MODULE(CppExport)
 			.def("SetRTC",&OgreRTCApplication::SetRTC)
 			.def("setDisplayImage",&OgreRTCApplication::setDisplayImage)
 			.def("SetCameraAutoMoveFlag",&OgreRTCApplication::SetCameraAutoMoveFlag)
+			.def("SetLightPosition",&OgreRTCApplication::SetLightPosition)
 			;
 			
 			
@@ -985,7 +987,7 @@ bool OgreRTCApplication::inputMethodEvent(QInputMethodEvent *arg)
 {
 	const QString tmp = arg->commitString();
 
-	CEGUI::System &sys = CEGUI::System::getSingleton();
+	CEGUI::GUIContext &sys = CEGUI::System::getSingleton().getDefaultGUIContext();
 
 	if(!PreeditStr.isEmpty())
 	{
@@ -1025,7 +1027,7 @@ bool OgreRTCApplication::inputMethodEvent(QInputMethodEvent *arg)
 bool OgreRTCApplication::keyPressed( QKeyEvent *arg )
 {
 
-	CEGUI::System &sys = CEGUI::System::getSingleton();
+	CEGUI::GUIContext &sys = CEGUI::System::getSingleton().getDefaultGUIContext();
     sys.injectKeyDown(convertKey(arg->key()));
 
 	
@@ -1064,7 +1066,8 @@ bool OgreRTCApplication::keyPressed( QKeyEvent *arg )
 
 bool OgreRTCApplication::keyReleased( QKeyEvent *arg )
 {
-    if(CEGUI::System::getSingleton().injectKeyUp(convertKey(arg->key()))) return true;
+
+    if(CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(convertKey(arg->key()))) return true;
     
 
 	if(po->Exec)
@@ -1171,7 +1174,7 @@ bool OgreRTCApplication::mouseMoved( QMouseEvent*  evt )
 	
 	
 	
-	CEGUI::Point mousePos = CEGUI::MouseCursor::getSingleton().getPosition();
+	CEGUI::Vector2f mousePos = CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().getPosition();
 
 	static int mx = evt->pos().x();
 	static int my = evt->pos().y();
@@ -1211,7 +1214,7 @@ bool OgreRTCApplication::mouseMoved( QMouseEvent*  evt )
 	
 	
 
-    if(CEGUI::System::getSingleton().injectMousePosition(mx, my)) return true;
+    if(CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(mx, my)) return true;
    
 
 	
@@ -1251,7 +1254,7 @@ bool OgreRTCApplication::mousePressed( QMouseEvent*  evt )
 
 	
 
-    if(CEGUI::System::getSingleton().injectMouseButtonDown(convertButton(evt->button()))) return true;
+    if(CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(convertButton(evt->button()))) return true;
     
 
 	
@@ -1289,7 +1292,7 @@ bool OgreRTCApplication::mouseReleased( QMouseEvent*  evt )
 
 	
 
-    if(CEGUI::System::getSingleton().injectMouseButtonUp(convertButton(evt->button()))) return true;
+    if(CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(convertButton(evt->button()))) return true;
    
 
 	
@@ -1385,16 +1388,17 @@ void OgreRTCApplication::createScene(void)
 	mRenderer = &CEGUI::OgreRenderer::bootstrapSystem(*mWindow);
 	
 
-    CEGUI::Imageset::setDefaultResourceGroup("Imagesets");
+    //CEGUI::Image::setDefaultResourceGroup("Imagesets");
+    CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
     CEGUI::Font::setDefaultResourceGroup("Fonts");
     CEGUI::Scheme::setDefaultResourceGroup("Schemes");
     CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
     CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
  
-	CEGUI::SchemeManager::getSingleton().create("TaharezLook.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 
 	CEGUI::FontManager::getSingleton().createFreeTypeFont("DefaultFont", 30/*pt*/, true, "sazanami-mincho.ttf");
-	CEGUI::System::getSingleton().setDefaultFont("DefaultFont");
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DefaultFont");
 
     //CEGUI::System::getSingleton().setDefaultMouseCursor("TaharezLook", "MouseArrow");
 
@@ -1421,7 +1425,7 @@ void OgreRTCApplication::createScene(void)
 	CEGUI::FontManager::getSingleton().isDefined("sazanami-mincho");
 
 
-	CEGUI::System::getSingleton().setGUISheet(sheet);
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
 
 	
 
@@ -1807,7 +1811,7 @@ MyGUI *OgreRTCApplication::CreateQtComboDropList(const char* name)
 MyGUI *OgreRTCApplication::CreateCheckbox(const char* name)
 {
 	MyGUI *label = CreateGUI("TaharezLook/Checkbox", name);
-	label->window->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged,
+	label->window->subscribeEvent(CEGUI::ToggleButton::EventSelectStateChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::CheckedHandler, this));
 
 	return label;
@@ -1817,7 +1821,7 @@ MyGUI *OgreRTCApplication::CreateCheckbox(const char* name)
 MyGUI *OgreRTCApplication::CreateQtCheckbox(const char* name)
 {
 	MyGUI *label = CreateQtGUI("TaharezLook/Checkbox", name);
-	label->window->subscribeEvent(CEGUI::Checkbox::EventCheckStateChanged,
+	label->window->subscribeEvent(CEGUI::ToggleButton::EventSelectStateChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::CheckedHandler, this));
 
 	return label;
@@ -2109,9 +2113,9 @@ MyGUI *OgreRTCApplication::CreateGUI(const char* type, const char* name)
 
 	label->window = wmgr.createWindow(type, name);
 	label->window->setPosition(CEGUI::UVector2(CEGUI::UDim(0., 0),CEGUI::UDim(0.0, 0)));
-	label->window->setSize(CEGUI::UVector2(CEGUI::UDim(1., 0), CEGUI::UDim(1., 0)));
+	label->window->setSize(CEGUI::USize(CEGUI::UDim(1., 0), CEGUI::UDim(1., 0)));
 	
-	sheet->addChildWindow(label->window);
+	sheet->addChild(label->window);
 
 	label->type = type;
 	label->name = name;
@@ -2129,8 +2133,8 @@ void OgreRTCApplication::CreateQtGUI(MyGUI *label)
 	Ogre::NodeAnimationTrack* track;
 	label->window = wmgr.createWindow(label->type, label->name);
 	label->window->setPosition(CEGUI::UVector2(CEGUI::UDim(0., 0),CEGUI::UDim(0.0, 0)));
-	label->window->setSize(CEGUI::UVector2(CEGUI::UDim(1., 0), CEGUI::UDim(1., 0)));
-	sheet->addChildWindow(label->window);
+	label->window->setSize(CEGUI::USize(CEGUI::UDim(1., 0), CEGUI::UDim(1., 0)));
+	sheet->addChild(label->window);
 
 	label->SetPosition(label->pos_x, label->pos_y);
 	label->SetRotatin(label->roll, label->pitch, label->yaw);
@@ -2237,7 +2241,7 @@ bool OgreRTCApplication::GUIKeyDownHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::KeyEventArgs* evt = static_cast<const CEGUI::KeyEventArgs*>(&event);
 
-	CEGUI::System &sys = CEGUI::System::getSingleton();
+	CEGUI::GUIContext &sys = CEGUI::System::getSingleton().getDefaultGUIContext();
 	//sys.injectKeyDown(evt->scancode);
 	sys.injectChar(evt->codepoint);
 	//std::cout << evt->scancode << "\t" << evt->codepoint << std::endl;
@@ -2273,7 +2277,7 @@ void OgreRTCApplication::Destroycegui(CEGUI::Window *label)
 {
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
 	
-	label->getParent()->removeChildWindow(label);
+	label->getParent()->removeChild(label);
 	wmgr.destroyWindow(label);
 	
 	
@@ -2522,18 +2526,22 @@ MyImageSet *OgreRTCApplication::CreateGuiImageSet(const char* name, const char* 
 {
 	MyImageSet *MIS = new MyImageSet();
 	//MIS->texture = &mRenderer->createTexture(filename,"Imagesets");
-	//MIS->imageSet = &CEGUI::ImagesetManager::getSingleton().create(name,*MIS->texture);
-	//MIS->imageSet->defineImage("Base",CEGUI::Point(0.0f,0.0f),CEGUI::Size(MIS->texture->getSize().d_width,MIS->texture->getSize().d_height),CEGUI::Point(0.0f,0.0f));
-	std::string ext = filename;
-	ext = GetExtension(ext);
-	
-	if(ext == "imageset")
+	//MIS->Image = &CEGUI::ImageManager::getSingleton().create(name,*MIS->texture);
+	//MIS->Image->defineImage("Base",CEGUI::Point(0.0f,0.0f),CEGUI::Size(MIS->texture->getSize().d_width,MIS->texture->getSize().d_height),CEGUI::Point(0.0f,0.0f));
+	//std::string ext = filename;
+	//ext = GetExtension(ext);
+
+	//set: BackgroundImage2 image: full_image
+	coil::vstring va = coil::split(filename, ".");
+
+	if(va[1] == "imageset")
 	{
-		MIS->imageSet = &CEGUI::ImagesetManager::getSingleton().create(filename);
+		CEGUI::ImageManager::getSingleton().loadImageset(filename);
+		//std::cout << va[0] << std::endl;
 	}
 	else
 	{
-		MIS->imageSet = &CEGUI::ImagesetManager::getSingleton().createFromImageFile(name, filename);
+		CEGUI::ImageManager::getSingleton().addFromImageFile(name, filename);
 	}
 	MIS->name = name;
 	MIS->filename = filename;
@@ -2547,17 +2555,18 @@ void OgreRTCApplication::CreateQtImage(MyImageSet *MIS)
 {
 	//MIS->texture = &mRenderer->createTexture(MIS->filename,"Imagesets");
 	
-	//MIS->imageSet = &CEGUI::ImagesetManager::getSingleton().create(MIS->name,*MIS->texture);
-	//MIS->imageSet->defineImage("Base",CEGUI::Point(0.0f,0.0f),CEGUI::Size(MIS->texture->getSize().d_width,MIS->texture->getSize().d_height),CEGUI::Point(0.0f,0.0f));
-	std::string ext = MIS->filename;
-	ext = GetExtension(ext);
-	if(ext == "imageset")
+	//MIS->Image = &CEGUI::ImageManager::getSingleton().create(MIS->name,*MIS->texture);
+	//MIS->Image->defineImage("Base",CEGUI::Point(0.0f,0.0f),CEGUI::Size(MIS->texture->getSize().d_width,MIS->texture->getSize().d_height),CEGUI::Point(0.0f,0.0f));
+	//std::string ext = MIS->filename;
+	//ext = GetExtension(ext);
+	coil::vstring va = coil::split(MIS->filename, ".");
+	if(va[1] == "imageset")
 	{
-		MIS->imageSet = &CEGUI::ImagesetManager::getSingleton().create(MIS->filename);
+		CEGUI::ImageManager::getSingleton().loadImageset(MIS->filename);
 	}
 	else
 	{
-		MIS->imageSet = &CEGUI::ImagesetManager::getSingleton().createFromImageFile(MIS->name, MIS->filename);
+		CEGUI::ImageManager::getSingleton().addFromImageFile(MIS->name, MIS->filename);
 	}
 	
 
@@ -2580,7 +2589,7 @@ MyImageSet *OgreRTCApplication::CreateQtGuiImageSet(const char* name, const char
 
 void OgreRTCApplication::DestroyImage(MyImageSet *MIS)
 {
-	CEGUI::ImagesetManager::getSingleton().destroy(MIS->imageSet->getName());
+	//CEGUI::ImageManager::getSingleton().destroy(MIS->Image->getName());
 
 	//mRenderer->destroyTexture(*MIS->texture);
 
@@ -2600,7 +2609,7 @@ void OgreRTCApplication::DestroyAllImage()
 {
 	for(int i=0;i < MyImageSets.size();i++)
 	{
-		CEGUI::ImagesetManager::getSingleton().destroy(MyImageSets[i]->imageSet->getName());
+		//CEGUI::ImageManager::getSingleton().destroy(MyImageSets[i]->Image->getName());
 
 		//mRenderer->destroyTexture(*MyImageSets[i]->texture);
 	}
@@ -2819,20 +2828,30 @@ SubWindow *OgreRTCApplication::SetSubWindow(const char* wName, const char* texNa
 
 
 
-	sw->guiTex = &mRenderer->createTexture(sw->tex);
+	sw->guiTex = &mRenderer->createTexture(texName, sw->tex);
 
-	sw->imageSet =
-	&CEGUI::ImagesetManager::getSingleton().create(ImageSetName, *sw->guiTex);
-	sw->imageSet->defineImage(ImageName,
-		CEGUI::Point(0.0f, 0.0f),
-		CEGUI::Size(sw->guiTex->getSize().d_width,
+	/*sw->Image =
+	&CEGUI::ImageManager::getSingleton().create(ImageSetName, *sw->guiTex);
+	sw->Image->defineImage(ImageName,
+		CEGUI::Vector2f(0.0f, 0.0f),
+		CEGUI::Size<float>(sw->guiTex->getSize().d_width,
 		sw->guiTex->getSize().d_height),
-		CEGUI::Point(0.0f, 0.0f));
+		CEGUI::Vector2f(0.0f, 0.0f));
 
-	sw->label->setProperty("Image", CEGUI::PropertyHelper::imageToString(&sw->imageSet->getImage(ImageName)));
+	*/
+
+	const CEGUI::Rectf rect(CEGUI::Vector2f(0.0f, 0.0f), sw->guiTex->getOriginalDataSize());
+	CEGUI::ImageManager::getSingleton().addImageType<CEGUI::BasicImage>("RTTImageset");
+	sw->Image = static_cast<CEGUI::BasicImage*>(&CEGUI::ImageManager::getSingleton().create("RTTImageset", ImageName));
+	sw->Image->setTexture(sw->guiTex);
+	sw->Image->setArea(rect);
+	sw->Image->setAutoScaled(CEGUI::ASM_Both);
+
+	//sw->label->setProperty("Image", CEGUI::PropertyHelper::imageToString(&sw->Image->getImage(ImageName)));
+	sw->label->setProperty("Image", ImageName);
 
 
-	sheet->addChildWindow(sw->label);
+	sheet->addChild(sw->label);
 
 	SubWindows.push_back(sw);
 
@@ -2872,20 +2891,30 @@ void OgreRTCApplication::CreateQtSubWindow(SubWindow *sw)
 
 
 
-	sw->guiTex = &mRenderer->createTexture(sw->tex);
+	sw->guiTex = &mRenderer->createTexture(sw->Tname, sw->tex);
 
-	sw->imageSet =
-	&CEGUI::ImagesetManager::getSingleton().create(sw->ISname, *sw->guiTex);
-	sw->imageSet->defineImage(sw->Iname,
-		CEGUI::Point(0.0f, 0.0f),
-		CEGUI::Size(sw->guiTex->getSize().d_width,
+	/*sw->Image =
+	&CEGUI::ImageManager::getSingleton().create(sw->ISname, *sw->guiTex);
+	sw->Image->defineImage(sw->Iname,
+		CEGUI::Vector2f(0.0f, 0.0f),
+		CEGUI::Size<float>(sw->guiTex->getSize().d_width,
 		sw->guiTex->getSize().d_height),
-		CEGUI::Point(0.0f, 0.0f));
+		CEGUI::Vector2f(0.0f, 0.0f));*/
 
-	sw->label->setProperty("Image", CEGUI::PropertyHelper::imageToString(&sw->imageSet->getImage(sw->Iname)));
+	const CEGUI::Rectf rect(CEGUI::Vector2f(0.0f, 0.0f), sw->guiTex->getOriginalDataSize());
+	CEGUI::ImageManager::getSingleton().addImageType<CEGUI::BasicImage>("RTTImageset");
+	sw->Image = static_cast<CEGUI::BasicImage*>(&CEGUI::ImageManager::getSingleton().create("RTTImageset", sw->Iname));
+	sw->Image->setTexture(sw->guiTex);
+	sw->Image->setArea(rect);
+	sw->Image->setAutoScaled(CEGUI::ASM_Both);
+
+	
+
+	//sw->label->setProperty("Image", CEGUI::PropertyHelper::imageToString(&sw->Image->getImage(sw->Iname)));
+	sw->label->setProperty("Image", sw->Iname);
 
 
-	sheet->addChildWindow(sw->label);
+	sheet->addChild(sw->label);
 
 	sw->SetPosition(sw->pos_x, sw->pos_y);
 	sw->SetSize(sw->size_x, sw->size_y);
@@ -2907,14 +2936,15 @@ SubWindow *OgreRTCApplication::SetQtSubWindow(const char* wName, const char* tex
 void OgreRTCApplication::DestroySubWindow(SubWindow *sw)
 {
 	Destroycegui(sw->label);
-	sw->imageSet->undefineImage(sw->Iname.c_str());
+	CEGUI::ImageManager::getSingleton().destroy(sw->Image->getName());
+	//sw->Image->undefineImage(sw->Iname.c_str());
 	mRenderer->destroyTexture(*sw->guiTex);
 	
 	mSceneMgr->destroyCamera(sw->cam->getName());
 
-	CEGUI::ImagesetManager::getSingleton().destroy(sw->imageSet->getName());
+	
 
-	mRenderer->destroyTexture(*sw->guiTex);
+	//mRenderer->destroyTexture(*sw->guiTex);
 
 	std::vector<SubWindow*>::iterator end_it = remove( SubWindows.begin(), SubWindows.end(), sw );
 	SubWindows.erase( end_it, SubWindows.end() );
@@ -2934,27 +2964,28 @@ void OgreRTCApplication::DestroyAllSubWindow()
 	for(int i=0;i < SubWindows.size();i++)
 	{
 		Destroycegui(SubWindows[i]->label);
-		SubWindows[i]->imageSet->undefineImage(SubWindows[i]->Iname);
+		CEGUI::ImageManager::getSingleton().destroy(SubWindows[i]->Image->getName());
+		//SubWindows[i]->Image->undefineImage(SubWindows[i]->Iname);
 		mRenderer->destroyTexture(*SubWindows[i]->guiTex);
 		
 		mSceneMgr->destroyCamera(SubWindows[i]->cam->getName());
 
-		CEGUI::ImagesetManager::getSingleton().destroy(SubWindows[i]->imageSet->getName());
+		
 
-		mRenderer->destroyTexture(*SubWindows[i]->guiTex);
+		//mRenderer->destroyTexture(*SubWindows[i]->guiTex);
 	}
 	SubWindows.clear();
 }
 void OgreRTCApplication::StopSubWindow(SubWindow *sw)
 {
 	sw->label->clearProperties();
-
-	sw->imageSet->undefineImage(sw->Iname);
-	mRenderer->destroyTexture(*sw->guiTex);
+	CEGUI::ImageManager::getSingleton().destroy(sw->Image->getName());
+	//sw->Image->undefineImage(sw->Iname);
+	//mRenderer->destroyTexture(*sw->guiTex);
 	
 	mSceneMgr->destroyCamera(sw->Cname);
 
-	CEGUI::ImagesetManager::getSingleton().destroy(sw->imageSet->getName());
+	
 
 	mRenderer->destroyTexture(*sw->guiTex);
 }
@@ -2993,21 +3024,33 @@ void OgreRTCApplication::restartSubWindow(SubWindow *sw)
 
 
 
-	sw->guiTex = &mRenderer->createTexture(sw->tex);
+	
 
 	
-	sw->imageSet =
-	&CEGUI::ImagesetManager::getSingleton().create(sw->ISname, *sw->guiTex);
-	sw->imageSet->defineImage(sw->Iname,
-		CEGUI::Point(0.0f, 0.0f),
-		CEGUI::Size(sw->guiTex->getSize().d_width,
+	
+
+	sw->guiTex = &mRenderer->createTexture(sw->Tname, sw->tex);
+
+	/*sw->Image =
+	&CEGUI::ImageManager::getSingleton().create(sw->ISname, *sw->guiTex);
+	sw->Image->defineImage(sw->Iname,
+		CEGUI::Vector2f(0.0f, 0.0f),
+		CEGUI::Size<float>(sw->guiTex->getSize().d_width,
 		sw->guiTex->getSize().d_height),
-		CEGUI::Point(0.0f, 0.0f));
+		CEGUI::Vector2f(0.0f, 0.0f));*/
 
-	sw->label->setProperty("Image", CEGUI::PropertyHelper::imageToString(&sw->imageSet->getImage(sw->Iname)));
+	const CEGUI::Rectf rect(CEGUI::Vector2f(0.0f, 0.0f), sw->guiTex->getOriginalDataSize());
+	CEGUI::ImageManager::getSingleton().addImageType<CEGUI::BasicImage>("RTTImageset");
+	sw->Image = static_cast<CEGUI::BasicImage*>(&CEGUI::ImageManager::getSingleton().create("RTTImageset", sw->Iname));
+	sw->Image->setTexture(sw->guiTex);
+	sw->Image->setArea(rect);
+	sw->Image->setAutoScaled(CEGUI::ASM_Both);
+
+	sw->label->setProperty("Image", sw->Iname);
+	//sw->label->setProperty("Image", CEGUI::PropertyHelper::imageToString(&sw->Image->getImage(sw->Iname)));
 
 
-	//sheet->addChildWindow(sw.label);
+	//sheet->addChild(sw.label);
 }
 
 

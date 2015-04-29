@@ -2,8 +2,8 @@
 #define SUBWINDOW_H
 
 #include "BaseApplication.h"
-#include <CEGUI.h>
-#include <RendererModules/Ogre/CEGUIOgreRenderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 
 
@@ -64,7 +64,7 @@ public:
 	Ogre::TexturePtr tex;
 	CEGUI::Window *label;
 	CEGUI::Texture *guiTex;
-	CEGUI::Imageset *imageSet;
+	CEGUI::BasicImage *Image;
 
 	std::string Iname;
 	std::string Cname;

@@ -84,7 +84,7 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	layout->addWidget(cameraangleGroup);
 
 	
-	CameraLenspinBox = SetDoubleSpinBox(tc->toUnicode("距離"), 1000.0, 0.0, layout);
+	CameraLenspinBox = SetDoubleSpinBox(tc->toUnicode("距離"), 10000.0, 0.0, layout);
 	CameraLenspinBox->setValue(100.0);
 	connect(CameraLenspinBox, SIGNAL(valueChanged(double)), this, SLOT(CameraLenSlot(double)));
 
@@ -324,7 +324,7 @@ void SubWindowSetWidget::SetSlot()
 	std::string mn = n + "Tex";
 	std::string wn = n + "Window";
 	std::string cn = n + "Cam";
-	std::string isn = n + "ImageSet";
+	std::string isn = n + "Image";
 	std::string in = n + "Image";
 	
 	if(n == "")

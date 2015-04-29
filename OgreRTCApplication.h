@@ -1,8 +1,8 @@
 ﻿#ifndef __OgreRTCApplication_h_
 #define __OgreRTCApplication_h_
 
-#include <CEGUI.h>
-#include <RendererModules/Ogre/CEGUIOgreRenderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Ogre/Renderer.h>
 
 #define windowSizeX 944
 #define windowSizeY 708

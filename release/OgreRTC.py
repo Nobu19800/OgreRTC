@@ -77,6 +77,9 @@ def RTCStop():
 
 def RTCInit(fName):
     
+    dname = os.path.dirname(os.path.relpath(fName))
+    sys.path.append(dname)
+    
     root, ext = os.path.splitext(fName)
 
     pathName = os.path.dirname(fName)
