@@ -588,7 +588,8 @@ OgreRTCApplication::OgreRTCApplication(void)
 		return;
    }
 	po = new PyObj();
-	po->global_ns["OgreObj"] = boost::ref(this);
+	OgreRTCApplication *tmpoint = this;
+	po->global_ns["OgreObj"] = boost::ref(tmpoint);
 	po->global_ns["SimulationObj"] = boost::ref(mSim);
 
 	po->Script("OgreRTC.py");
