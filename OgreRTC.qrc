@@ -1,48 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-  <file>images/eka2.png</file>
-  <file>images/editcopy.png</file>
-  <file>images/editcut.png</file>
-  <file>images/editpaste.png</file>
-  <file>images/editredo.png</file>
-  <file>images/editundo.png</file>
-  <file>images/filenew.png</file>
-  <file>images/fileopen.png</file>
-  <file>images/filesave.png</file>
-  <file>images/run.png</file>
-  <file>images/eka.ico</file>
-  <file>images/eka.png</file>
-  <file>images/allFile.png</file>
-  <file>images/bookMark.png</file>
-  <file>images/brous.png</file>
-  <file>images/class.png</file>
-  <file>images/clear.png</file>
-  <file>images/commectout.png</file>
-  <file>images/commentfree.png</file>
-  <file>images/cord.png</file>
-  <file>images/cordS.png</file>
-  <file>images/error.png</file>
-  <file>images/go.png</file>
-  <file>images/hint.png</file>
-  <file>images/indent.png</file>
-  <file>images/indentfree.png</file>
-  <file>images/karetaf.png</file>
-  <file>images/karetbe.png</file>
-  <file>images/newItem.png</file>
-  <file>images/obj.png</file>
-  <file>images/out.png</file>
-  <file>images/param.png</file>
-  <file>images/project.png</file>
-  <file>images/property.png</file>
-  <file>images/return.png</file>
-  <file>images/saveAs.png</file>
-  <file>images/sch.png</file>
-  <file>images/solusion.png</file>
-  <file>images/symbol.png</file>
-  <file>images/word.png</file>
-  <file>images/kobamasa1.png</file>
-  <file>images/kobamasa2.png</file>
-  <file>images/hatsushiba1.png</file>
-  <file>images/hatsushiba2.png</file></qresource>
+  <file>images/splashscreen.png</file>
+</qresource>
 </RCC>
 

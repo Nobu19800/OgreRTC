@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B04E3CA3-7947-3ABE-A559-9CD4F834690F}</ProjectGuid>
+    <Keyword>Qt4VSv1.0</Keyword>
+    <ProjectName>OgreRTTool_Python26</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <WarningLevel>0</WarningLevel>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>-Zm200 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\..\Qt\4.6.0\include\QtCore;..\..\..\..\Qt\4.6.0\include\QtNetwork;..\..\..\..\Qt\4.6.0\include\QtGui;..\..\..\..\Qt\4.6.0\include\QtTest;..\..\..\..\Qt\4.6.0\include;c:\Qt\4.6.0\include\QtAssistantClient;..\..\..\..\Qt\4.6.0\include\QtAssistant;..\..\..\..\Qt\4.6.0\include\ActiveQt;debug;..\..\..\..\Qt\4.6.0\mkspecs\default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_DLL;QT_TESTLIB_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <ObjectFileName>debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_DLL;QT_TESTLIB_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>c:\Qt\4.6.0\lib\QtAssistantClientd4.lib;c:\Qt\4.6.0\lib\QtTestd4.lib;c:\Qt\4.6.0\lib\QtGuid4.lib;c:\Qt\4.6.0\lib\QtNetworkd4.lib;c:\Qt\4.6.0\lib\QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>debug\OgreRTC.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>c:\Qt\4.6.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <WarningLevel>0</WarningLevel>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>-Zm200 -w34100 -w34189 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtCore;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtNetwork;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtGui;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtTest;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtAssistantClient;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtAssistant;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\ActiveQt;release;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\mkspecs\win32-msvc2010;C:\OgreCEGUILIB\OpenRTM-aist\1.1;C:\OgreCEGUILIB\ode-0.12\include;C:\OgreCEGUILIB\OgreSDK_vc10_v1-9-0\include;C:\OgreCEGUILIB\OgreSDK_vc10_v1-9-0\include\OGRE;C:\OgreCEGUILIB\OgreSDK_vc10_v1-9-0\Samples\Common\include;C:\OgreCEGUILIB\cegui-0.8.4\dependencies\include;C:\OgreCEGUILIB\cegui-0.8.4\cegui\include;C:\OgreCEGUILIB\boost_1_52_0;C:\OgreCEGUILIB\OgreSDK_vc10_v1-9-0\boost;C:\Python26\include;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;_WINDOWS;NDEBUG;__WIN32__;__x86__;__NT__;__OSVERSION__=4;_CRT_SECURE_NO_DEPRECATE;INCLUDE_stub_in_nt_dll;RTC_CORBA_CXXMAPPING11;_WIN32_WINNT=0x0500;CMAKE_INTDIR="Release";dDOUBLE;QT_NO_DEBUG;UNICODE;QT_LARGEFILE_SUPPORT;QT_DLL;QT_TESTLIB_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <ObjectFileName>release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_DLL;QT_NO_DEBUG;QT_TESTLIB_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_THREAD_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;coil111_vc10.lib;ws2_32.lib;mswsock.lib;OgreMain.lib;OgreTerrain.lib;ode.lib;winmm.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;opengl32.lib;glu32.lib;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib\Qt5Test.lib;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib\Qt5Gui.lib;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib\Qt5Network.lib;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib\Qt5Core.lib;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib\qtmain.lib;C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib\Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>release\OgreRTTool_Python26.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\lib;C:\OgreCEGUILIB/OpenRTM-aist/1.1/bin;C:\OgreCEGUILIB/OpenRTM-aist/1.1/bin/$(Configuration);C:\Python26\libs;C:\OgreCEGUILIB\OgreSDK_vc10_v1-9-0\lib\Release;C:\OgreCEGUILIB\OgreSDK_vc10_v1-9-0\boost\lib;C:\OgreCEGUILIB\cegui-0.8.4\dependencies\lib\static;C:\OgreCEGUILIB\cegui-0.8.4\lib;C:\OgreCEGUILIB\ode-0.12\lib\Release;C:\OgreCEGUILIB\boost_1_52_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimationSet.cpp" />
+    <ClCompile Include="BaseApplication.cpp" />
+    <ClCompile Include="BodySet.cpp" />
+    <ClCompile Include="BornSet.cpp" />
+    <ClCompile Include="CameraSet.cpp" />
+    <ClCompile Include="DisplayImage.cpp" />
+    <ClCompile Include="GUISet.cpp" />
+    <ClCompile Include="GUITextSet.cpp" />
+    <ClCompile Include="ImageSet.cpp" />
+    <ClCompile Include="LightSet.cpp" />
+    <ClCompile Include="mainwindow.cpp" />
+    <ClCompile Include="MyAnimation.cpp" />
+    <ClCompile Include="MyArray.cpp" />
+    <ClCompile Include="MyFileStream.cpp" />
+    <ClCompile Include="MyGUI.cpp" />
+    <ClCompile Include="MyImageSet.cpp" />
+    <ClCompile Include="MyLight.cpp" />
+    <ClCompile Include="MyLink.cpp" />
+    <ClCompile Include="MyNode.cpp" />
+    <ClCompile Include="MyODEBody.cpp" />
+    <ClCompile Include="MyODEJoint.cpp" />
+    <ClCompile Include="MyOgreMacro.cpp" />
+    <ClCompile Include="MyParticle.cpp" />
+    <ClCompile Include="MyPythonBoost.cpp" />
+    <ClCompile Include="MyQtMacro.cpp" />
+    <ClCompile Include="MySimulation.cpp" />
+    <ClCompile Include="NodeSet.cpp" />
+    <ClCompile Include="OgreRTCApplication.cpp" />
+    <ClCompile Include="OgreWidget.cpp" />
+    <ClCompile Include="OtherSet.cpp" />
+    <ClCompile Include="ParticleSet.cpp" />
+    <ClCompile Include="RTCmain.cpp" />
+    <ClCompile Include="SimBodySet.cpp" />
+    <ClCompile Include="SimJointSet.cpp" />
+    <ClCompile Include="SimulationSet.cpp" />
+    <ClCompile Include="SubWindow.cpp" />
+    <ClCompile Include="SubWindowSet.cpp" />
+    <ClCompile Include="UnicodeF.cpp" />
+    <ClCompile Include="release\moc_AnimationSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_AnimationSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_BodySet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_BodySet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_BornSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_BornSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_CameraSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_CameraSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_GUISet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_GUISet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_GUITextSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_GUITextSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_ImageSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_ImageSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_LightSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_LightSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_mainwindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_mainwindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_NodeSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_NodeSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_OgreWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_OgreWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_OtherSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_OtherSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_ParticleSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_ParticleSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_SimBodySet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_SimBodySet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_SimJointSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_SimJointSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_SimulationSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_SimulationSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_SubWindowSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_SubWindowSet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\qrc_OgreRTC.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\qrc_OgreRTC.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="OgreRTC.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OgreRTC.qrc;images\splashscreen.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\rcc.exe -name OgreRTC OgreRTC.qrc -o release\qrc_OgreRTC.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RCC OgreRTC.qrc</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\qrc_OgreRTC.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">OgreRTC.qrc;images\splashscreen.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\rcc.exe -name OgreRTC OgreRTC.qrc -o debug\qrc_OgreRTC.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RCC OgreRTC.qrc</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\qrc_OgreRTC.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="images\splashscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="AnimationSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC AnimationSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_AnimationSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 AnimationSet.h -o debug\moc_AnimationSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AnimationSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_AnimationSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC AnimationSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_AnimationSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 AnimationSet.h -o release\moc_AnimationSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AnimationSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_AnimationSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="BaseApplication.h" />
+    <CustomBuild Include="BodySet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC BodySet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_BodySet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 BodySet.h -o debug\moc_BodySet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BodySet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_BodySet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC BodySet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_BodySet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 BodySet.h -o release\moc_BodySet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BodySet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_BodySet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="BornSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC BornSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_BornSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 BornSet.h -o debug\moc_BornSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BornSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_BornSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC BornSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_BornSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 BornSet.h -o release\moc_BornSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BornSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_BornSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="CameraSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC CameraSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_CameraSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 CameraSet.h -o debug\moc_CameraSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CameraSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_CameraSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC CameraSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_CameraSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 CameraSet.h -o release\moc_CameraSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CameraSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_CameraSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="GUISet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC GUISet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_GUISet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 GUISet.h -o debug\moc_GUISet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GUISet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_GUISet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC GUISet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_GUISet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 GUISet.h -o release\moc_GUISet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GUISet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_GUISet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="GUITextSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC GUITextSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_GUITextSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 GUITextSet.h -o debug\moc_GUITextSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GUITextSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_GUITextSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC GUITextSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_GUITextSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 GUITextSet.h -o release\moc_GUITextSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GUITextSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_GUITextSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ImageSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC ImageSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_ImageSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 ImageSet.h -o debug\moc_ImageSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ImageSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_ImageSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC ImageSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_ImageSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 ImageSet.h -o release\moc_ImageSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ImageSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_ImageSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="LightSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC LightSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_LightSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 LightSet.h -o debug\moc_LightSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">LightSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_LightSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC LightSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_LightSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 LightSet.h -o release\moc_LightSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">LightSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_LightSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="mainwindow.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC mainwindow.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_mainwindow.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 mainwindow.h -o debug\moc_mainwindow.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem;mainwindow.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_mainwindow.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC mainwindow.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_mainwindow.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 mainwindow.h -o release\moc_mainwindow.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;mainwindow.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_mainwindow.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="DisplayImage.h" />
+    <ClInclude Include="MyAnimation.h" />
+    <ClInclude Include="MyArray.h" />
+    <ClInclude Include="MyFileStream.h" />
+    <ClInclude Include="MyGUI.h" />
+    <ClInclude Include="MyImageSet.h" />
+    <ClInclude Include="MyLight.h" />
+    <ClInclude Include="MyLink.h" />
+    <ClInclude Include="MyNode.h" />
+    <ClInclude Include="MyODEBody.h" />
+    <ClInclude Include="MyODEJoint.h" />
+    <ClInclude Include="MyOgreMacro.h" />
+    <ClInclude Include="MyParticle.h" />
+    <ClInclude Include="MyPythonBoost.h" />
+    <ClInclude Include="MyQtMacro.h" />
+    <ClInclude Include="MySimulation.h" />
+    <CustomBuild Include="NodeSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC NodeSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_NodeSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 NodeSet.h -o debug\moc_NodeSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NodeSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_NodeSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC NodeSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_NodeSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 NodeSet.h -o release\moc_NodeSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NodeSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_NodeSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="OgreRTCApplication.h" />
+    <CustomBuild Include="OgreWidget.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC OgreWidget.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_OgreWidget.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 OgreWidget.h -o debug\moc_OgreWidget.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">OgreWidget.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_OgreWidget.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC OgreWidget.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_OgreWidget.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 OgreWidget.h -o release\moc_OgreWidget.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OgreWidget.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_OgreWidget.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="OtherSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC OtherSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_OtherSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 OtherSet.h -o debug\moc_OtherSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">OtherSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_OtherSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC OtherSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_OtherSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 OtherSet.h -o release\moc_OtherSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">OtherSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_OtherSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="ParticleSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC ParticleSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_ParticleSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 ParticleSet.h -o debug\moc_ParticleSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ParticleSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_ParticleSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC ParticleSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_ParticleSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 ParticleSet.h -o release\moc_ParticleSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ParticleSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_ParticleSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="SimBodySet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC SimBodySet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_SimBodySet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SimBodySet.h -o debug\moc_SimBodySet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem;SimBodySet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_SimBodySet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC SimBodySet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_SimBodySet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SimBodySet.h -o release\moc_SimBodySet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;SimBodySet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SimBodySet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="SimJointSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC SimJointSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_SimJointSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SimJointSet.h -o debug\moc_SimJointSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem;SimJointSet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_SimJointSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC SimJointSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_SimJointSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SimJointSet.h -o release\moc_SimJointSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;SimJointSet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SimJointSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="SimulationSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC SimulationSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_SimulationSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SimulationSet.h -o debug\moc_SimulationSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem;SimulationSet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_SimulationSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC SimulationSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_SimulationSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SimulationSet.h -o release\moc_SimulationSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;SimulationSet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SimulationSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="SingletonT.h" />
+    <ClInclude Include="SubWindow.h" />
+    <CustomBuild Include="SubWindowSet.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC SubWindowSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile debug\moc_SubWindowSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"debug" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SubWindowSet.h -o debug\moc_SubWindowSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem;SubWindowSet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\moc_SubWindowSet.cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MOC SubWindowSet.h</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem IncrediBuild_AllowRemote
+Rem IncrediBuild_OutputFile release\moc_SubWindowSet.cpp
+C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -I"..\..\..\..\Qt\4.6.0\include\QtCore" -I"..\..\..\..\Qt\4.6.0\include\QtNetwork" -I"..\..\..\..\Qt\4.6.0\include\QtGui" -I"..\..\..\..\Qt\4.6.0\include\QtTest" -I"..\..\..\..\Qt\4.6.0\include" -I"c:\Qt\4.6.0\include\QtAssistantClient" -I"..\..\..\..\Qt\4.6.0\include\QtAssistant" -I"..\..\..\..\Qt\4.6.0\include\ActiveQt" -I"release" -I..\..\..\..\Qt\4.6.0\mkspecs\default -D_MSC_VER=1500 -DWIN32 SubWindowSet.h -o release\moc_SubWindowSet.cpp
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;SubWindowSet.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SubWindowSet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="UnicodeF.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OgreRTC.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

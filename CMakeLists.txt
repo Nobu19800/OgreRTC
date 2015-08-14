@@ -98,8 +98,9 @@ qt5_wrap_cpp(moc_SimJointSet.cpp SimJointSet.h)
 qt5_wrap_cpp(moc_SimulationSet.cpp SimulationSet.h)
 qt5_wrap_cpp(moc_SubWindowSet.cpp SubWindowSet.h)
 
+qt5_add_resources(QRC OgreRTC.qrc)
 
-add_executable(OgreRTC ${srcs})
+add_executable(OgreRTC ${srcs} ${QRC})
 
 
 
