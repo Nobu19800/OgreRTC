@@ -132,7 +132,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationSet.cpp" />
-    <ClCompile Include="BaseApplication.cpp" />
     <ClCompile Include="BodySet.cpp" />
     <ClCompile Include="BornSet.cpp" />
     <ClCompile Include="CameraSet.cpp" />
@@ -142,21 +141,20 @@
     <ClCompile Include="ImageSet.cpp" />
     <ClCompile Include="LightSet.cpp" />
     <ClCompile Include="mainwindow.cpp" />
-    <ClCompile Include="MyAnimation.cpp" />
-    <ClCompile Include="MyArray.cpp" />
-    <ClCompile Include="MyFileStream.cpp" />
-    <ClCompile Include="MyGUI.cpp" />
-    <ClCompile Include="MyImageSet.cpp" />
-    <ClCompile Include="MyLight.cpp" />
-    <ClCompile Include="MyLink.cpp" />
-    <ClCompile Include="MyNode.cpp" />
-    <ClCompile Include="MyODEBody.cpp" />
-    <ClCompile Include="MyODEJoint.cpp" />
-    <ClCompile Include="MyOgreMacro.cpp" />
-    <ClCompile Include="MyParticle.cpp" />
-    <ClCompile Include="MyPythonBoost.cpp" />
-    <ClCompile Include="MyQtMacro.cpp" />
-    <ClCompile Include="MySimulation.cpp" />
+    <ClCompile Include="AnimationObj.cpp" />
+    <ClCompile Include="FileStreamFunc.cpp" />
+    <ClCompile Include="GUIObj.cpp" />
+    <ClCompile Include="ImageSetObj.cpp" />
+    <ClCompile Include="LightObj.cpp" />
+    <ClCompile Include="LinkObj.cpp" />
+    <ClCompile Include="NodeObj.cpp" />
+    <ClCompile Include="ODEBodyObj.cpp" />
+    <ClCompile Include="ODEJointObj.cpp" />
+    <ClCompile Include="OgreMacro.cpp" />
+    <ClCompile Include="ParticleObj.cpp" />
+    <ClCompile Include="PythonBoostObj.cpp" />
+    <ClCompile Include="QtMacro.cpp" />
+    <ClCompile Include="SimulationObj.cpp" />
     <ClCompile Include="NodeSet.cpp" />
     <ClCompile Include="OgreRTCApplication.cpp" />
     <ClCompile Include="OgreWidget.cpp" />
@@ -168,7 +166,6 @@
     <ClCompile Include="SimulationSet.cpp" />
     <ClCompile Include="SubWindow.cpp" />
     <ClCompile Include="SubWindowSet.cpp" />
-    <ClCompile Include="UnicodeF.cpp" />
     <ClCompile Include="release\moc_AnimationSet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -277,6 +274,9 @@
     <ClCompile Include="release\qrc_OgreRTC.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="thirdparty\BaseApplication.cpp" />
+    <ClCompile Include="thirdparty\CEGUIFunc.cpp" />
+    <ClCompile Include="thirdparty\UnicodeF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="OgreRTC.qrc">
@@ -293,6 +293,10 @@
     <None Include="images\splashscreen.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="thirdparty\BaseApplication.h" />
+    <ClInclude Include="thirdparty\CEGUIFunc.h" />
+    <ClInclude Include="thirdparty\SingletonT.h" />
+    <ClInclude Include="thirdparty\UnicodeF.h" />
     <CustomBuild Include="AnimationSet.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC AnimationSet.h</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
@@ -309,7 +313,6 @@ C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AnimationSet.h;Rem;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_AnimationSet.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="BaseApplication.h" />
     <CustomBuild Include="BodySet.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC BodySet.h</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
@@ -439,21 +442,20 @@ C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_mainwindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <ClInclude Include="DisplayImage.h" />
-    <ClInclude Include="MyAnimation.h" />
-    <ClInclude Include="MyArray.h" />
-    <ClInclude Include="MyFileStream.h" />
-    <ClInclude Include="MyGUI.h" />
-    <ClInclude Include="MyImageSet.h" />
-    <ClInclude Include="MyLight.h" />
-    <ClInclude Include="MyLink.h" />
-    <ClInclude Include="MyNode.h" />
-    <ClInclude Include="MyODEBody.h" />
-    <ClInclude Include="MyODEJoint.h" />
-    <ClInclude Include="MyOgreMacro.h" />
-    <ClInclude Include="MyParticle.h" />
-    <ClInclude Include="MyPythonBoost.h" />
-    <ClInclude Include="MyQtMacro.h" />
-    <ClInclude Include="MySimulation.h" />
+    <ClInclude Include="AnimationObj.h" />
+    <ClInclude Include="FileStreamFunc.h" />
+    <ClInclude Include="GUIObj.h" />
+    <ClInclude Include="ImageSetObj.h" />
+    <ClInclude Include="LightObj.h" />
+    <ClInclude Include="LinkObj.h" />
+    <ClInclude Include="NodeObj.h" />
+    <ClInclude Include="ODEBodyObj.h" />
+    <ClInclude Include="ODEJointObj.h" />
+    <ClInclude Include="OgreMacro.h" />
+    <ClInclude Include="ParticleObj.h" />
+    <ClInclude Include="PythonBoostObj.h" />
+    <ClInclude Include="QtMacro.h" />
+    <ClInclude Include="SimulationObj.h" />
     <CustomBuild Include="NodeSet.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC NodeSet.h</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rem IncrediBuild_AllowRemote
@@ -567,7 +569,6 @@ C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;SimulationSet.h;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SimulationSet.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="SingletonT.h" />
     <ClInclude Include="SubWindow.h" />
     <CustomBuild Include="SubWindowSet.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MOC SubWindowSet.h</Message>
@@ -585,7 +586,6 @@ C:\Qt\Qt5.3.2\5.3\msvc2010_opengl\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rem;SubWindowSet.h;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\moc_SubWindowSet.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="UnicodeF.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OgreRTC.rc" />

@@ -1,14 +1,23 @@
-﻿#include "SubWindowSet.h"
+﻿/*!
+ * @file  SubWindowSet.cpp
+ * @brief サブウインドウの設定用ウインドウ
+ *
+ */
+
+#include "SubWindowSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
 #include "SubWindow.h"
 
 
-
+/**
+*@brief 画面分割設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 SubWindowSetWidget::SubWindowSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -119,13 +128,17 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief 画面分割設定用ウィジェットのデストラクタ
+*/
 SubWindowSetWidget::~SubWindowSetWidget(void)
 {
 
 }
 
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void SubWindowSetWidget::UpdatePos()
 {
 	if(up_flag)
@@ -154,6 +167,10 @@ void SubWindowSetWidget::UpdatePos()
 	}
 }
 
+
+/**
+*@brief 大きさ設定スピンボックスの値を反映する関数
+*/
 void SubWindowSetWidget::UpdateSize()
 {
 	if(up_flag)
@@ -182,6 +199,11 @@ void SubWindowSetWidget::UpdateSize()
 	}
 }
 
+
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void SubWindowSetWidget::UpdateVisi(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -205,6 +227,10 @@ void SubWindowSetWidget::UpdateVisi(bool visi)
 	}
 }
 
+
+/**
+*@brief カメラの位置、姿勢、距離設定スピンボックスの値を反映する関数
+*/
 void SubWindowSetWidget::UpdateCameraPQ()
 {
 	if(up_flag)
@@ -241,6 +267,9 @@ void SubWindowSetWidget::UpdateCameraPQ()
 
 }
 
+/**
+*@brief カメラの位置設定スピンボックスの値を反映する関数
+*/
 void SubWindowSetWidget::UpdateCameraPos()
 {
 	if(up_flag)
@@ -270,7 +299,9 @@ void SubWindowSetWidget::UpdateCameraPos()
 	}
 }
 
-
+/**
+*@brief カメラの姿勢設定スピンボックスの値を反映する関数
+*/
 void SubWindowSetWidget::UpdateCameraRot()
 {
 	if(up_flag)
@@ -303,6 +334,9 @@ void SubWindowSetWidget::UpdateCameraRot()
 	}
 }
 
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void SubWindowSetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -351,34 +385,62 @@ void SubWindowSetWidget::SetSlot()
 	
 }
 
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void SubWindowSetWidget::PosXSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void SubWindowSetWidget::PosYSlot(double value)
 {
 	UpdatePos();
 }
 
+/**
+*@brief 大きさ設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value サイズ(X)
+*/
 void SubWindowSetWidget::ScaleXSlot(double value)
 {
 	UpdateSize();
 }
+
+/**
+*@brief 大きさ設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value サイズ(Y)
+*/
 void SubWindowSetWidget::ScaleYSlot(double value)
 {
 	UpdateSize();
 }
 
 
-
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void SubWindowSetWidget::VisibleSlot()
 {
 	UpdateVisi(true);
 }
+
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void SubWindowSetWidget::unVisibleSlot()
 {
 	UpdateVisi(false);
 }
+
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void SubWindowSetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -396,44 +458,89 @@ void SubWindowSetWidget::DestroySlot()
 	}
 }
 
+/**
+*@brief カメラの位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void SubWindowSetWidget::CameraPosXSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief カメラの位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void SubWindowSetWidget::CameraPosYSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief カメラの位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void SubWindowSetWidget::CameraPosZSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief カメラの姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void SubWindowSetWidget::CameraRollSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief カメラの姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void SubWindowSetWidget::CameraPitchSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief カメラの姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void SubWindowSetWidget::CameraYawSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief カメラの距離設定スピンボックスの値を変更したときのスロット
+* @param value 距離
+*/
 void SubWindowSetWidget::CameraLenSlot(double value)
 {
 	UpdateCameraPQ();
 }
+
+/**
+*@brief リセットボタンを押したときのスロット
+*/
 void SubWindowSetWidget::RestartSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 }
+
+/**
+*@brief 停止ボタンを押したときのスロット
+*/
 void SubWindowSetWidget::StopSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 }
 
-
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void SubWindowSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -462,6 +569,10 @@ void SubWindowSetWidget::NameSlot(int value)
 	}
 }
 
+
+/**
+*@brief サブウインドウの設定をウィジェットに反映させるときのスロット
+*/
 void SubWindowSetWidget::UpdateList()
 {
 	if(EC)

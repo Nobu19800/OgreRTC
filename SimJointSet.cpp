@@ -1,14 +1,29 @@
-﻿#include "SimJointSet.h"
+﻿/*!
+ * @file  SimBodySet.cpp
+ * @brief シミュレーションのジョイント作成、設定用ウィンドウ
+ *
+ */
 
-#include "MyQtMacro.h"
+#include "SimJointSet.h"
+
+#include "QtMacro.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
+/*!
+ * @file  SimJointSet.cpp
+ * @brief シミュレーションのジョイント作成、設定用ウィンドウ
+ *
+ */
 
-#include "MyODEBody.h"
-#include "MyODEJoint.h"
+#include "ODEBodyObj.h"
+#include "ODEJointObj.h"
 
 
+/**
+*@brief シミュレーションのジョイント作成、設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 SimJointSetWidget::SimJointSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -120,13 +135,19 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief シミュレーションのジョイント作成、設定用ウィジェットのデストラクタ
+*/
 SimJointSetWidget::~SimJointSetWidget(void)
 {
 
 }
 
+
+/**
+*@brief ジョイントの設定をウィジェットに反映させるときのスロット
+*/
 void SimJointSetWidget::UpdateList()
 {
 	if(EC)
@@ -156,6 +177,11 @@ void SimJointSetWidget::UpdateList()
 		
 	}
 }
+
+
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void SimJointSetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -191,9 +217,9 @@ void SimJointSetWidget::SetSlot()
 		}
 		else
 		{
-			MyODEJoint *ml;
-			MyODEBody *b1 = EC->mSim->getBodyByName(b1n.c_str());
-			MyODEBody *b2 = EC->mSim->getBodyByName(b2n.c_str());
+			ODEJointObj *ml;
+			ODEBodyObj *b1 = EC->mSim->getBodyByName(b1n.c_str());
+			ODEBodyObj *b2 = EC->mSim->getBodyByName(b2n.c_str());
 			if(b1 == NULL && b2 == NULL)
 			{
 				return;
@@ -275,12 +301,17 @@ void SimJointSetWidget::SetSlot()
 
 
 }
+
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void SimJointSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+		ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 		if(ml)
 		{
 			up_flag = false;
@@ -319,53 +350,109 @@ void SimJointSetWidget::NameSlot(int value)
 		
 	}
 }
+
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void SimJointSetWidget::PosXSlot(double value)
 {
 	SetPos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void SimJointSetWidget::PosYSlot(double value)
 {
 	SetPos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void SimJointSetWidget::PosZSlot(double value)
 {
 	SetPos();
 }
+
+/**
+*@brief 3Dモデルの拡大率設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value 拡大率(X)
+*/
 void SimJointSetWidget::ScaleXSlot(double value)
 {
 	SetScale();
 }
+
+
+/**
+*@brief 3Dモデルの拡大率設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value 拡大率(Y)
+*/
 void SimJointSetWidget::ScaleYSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 3Dモデルの拡大率設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value 拡大率(Z)
+*/
 void SimJointSetWidget::ScaleZSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 軸設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value ロール
+*/
 void SimJointSetWidget::RollSlot(double value)
 {
 	SetRot();
 }
+
+/**
+*@brief 軸設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value ピッチ
+*/
 void SimJointSetWidget::PitchSlot(double value)
 {
 	SetRot();
 }
+
+/**
+*@brief 軸設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value ヨー
+*/
 void SimJointSetWidget::YawSlot(double value)
 {
 	SetRot();
 }
+
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void SimJointSetWidget::VisibleSlot()
 {
 	SetVisi(true);
 }
+
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void SimJointSetWidget::unVisibleSlot()
 {
 	SetVisi(false);
 }
 
 
-
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void SimJointSetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -374,7 +461,7 @@ void SimJointSetWidget::DestroySlot()
 
 	if(EC)
 	{
-		MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+		ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 		if(ml)
 		{
 			EC->mSim->DestroyQtJoint(ml);
@@ -387,19 +474,38 @@ void SimJointSetWidget::DestroySlot()
 	}
 }
 
+
+/**
+*@brief 3Dモデルとボディのオフセット設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value オフセット(X)
+*/
 void SimJointSetWidget::OffsetXSlot(double value)
 {
 	SetOffset();
 }
+
+/**
+*@brief 3Dモデルとボディのオフセット設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value オフセット(Y)
+*/
 void SimJointSetWidget::OffsetYSlot(double value)
 {
 	SetOffset();
 }
+
+/**
+*@brief 3Dモデルとボディのオフセット設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value オフセット(Z)
+*/
 void SimJointSetWidget::OffsetZSlot(double value)
 {
 	SetOffset();
 }
 
+
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void SimJointSetWidget::SetPos()
 {
 	if(up_flag)
@@ -412,7 +518,7 @@ void SimJointSetWidget::SetPos()
 
 		if(EC)
 		{
-			MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+			ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 			if(ml)
 			{
 				ml->SetJointPosition(px, py, pz);
@@ -421,6 +527,10 @@ void SimJointSetWidget::SetPos()
 		}
 	}
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値を反映する関数
+*/
 void SimJointSetWidget::SetScale()
 {
 	if(up_flag)
@@ -433,7 +543,7 @@ void SimJointSetWidget::SetScale()
 
 		if(EC)
 		{
-			MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+			ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 			if(ml)
 			{
 				ml->SetODEScale(sx, sy, sz);
@@ -442,6 +552,10 @@ void SimJointSetWidget::SetScale()
 		}
 	}
 }
+
+/**
+*@brief 軸設定スピンボックスの値を反映する関数
+*/
 void SimJointSetWidget::SetRot()
 {
 	if(up_flag)
@@ -454,7 +568,7 @@ void SimJointSetWidget::SetRot()
 
 		if(EC)
 		{
-			MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+			ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 			if(ml)
 			{
 				ml->SetJointRotation(roll, pitch, yaw);
@@ -463,6 +577,10 @@ void SimJointSetWidget::SetRot()
 		}
 	}
 }
+
+/**
+*@brief オフセット設定スピンボックスの値を反映する関数
+*/
 void SimJointSetWidget::SetOffset()
 {
 	if(up_flag)
@@ -475,7 +593,7 @@ void SimJointSetWidget::SetOffset()
 
 		if(EC)
 		{
-			MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+			ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 			if(ml)
 			{
 				ml->SetODEOffset(ox, oy, oz);
@@ -484,12 +602,17 @@ void SimJointSetWidget::SetOffset()
 		}
 	}
 }
+
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void SimJointSetWidget::SetVisi(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyODEJoint *ml = EC->mSim->getJointByName(n.c_str());
+		ODEJointObj *ml = EC->mSim->getJointByName(n.c_str());
 		if(ml)
 		{
 			ml->SetVisible(visi);

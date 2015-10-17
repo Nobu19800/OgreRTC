@@ -1,14 +1,23 @@
-﻿#include "BornSet.h"
+﻿/*!
+ * @file  BornSet.cpp
+ * @brief ボーンの設定用ウインドウ
+ *
+ */
+
+#include "BornSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
-#include "MyLink.h"
+#include "LinkObj.h"
 
 
-
+/**
+*@brief ボーンの設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 BornSetWidget::BornSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -79,13 +88,17 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief ボーンの設定用ウィジェットのデストラクタ
+*/
 BornSetWidget::~BornSetWidget(void)
 {
 
 }
 
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void BornSetWidget::SetSlot()
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -110,7 +123,7 @@ void BornSetWidget::SetSlot()
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				if(num < ml->GetBornNum())
@@ -131,6 +144,10 @@ void BornSetWidget::SetSlot()
 	
 }
 
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void BornSetWidget::PosXSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -138,6 +155,11 @@ void BornSetWidget::PosXSlot(double value)
 	float py = PosYspinBox->value();
 	float pz = PosZspinBox->value();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void BornSetWidget::PosYSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -145,6 +167,12 @@ void BornSetWidget::PosYSlot(double value)
 	float px = PosXspinBox->value();
 	float pz = PosZspinBox->value();
 }
+
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void BornSetWidget::PosZSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -153,6 +181,11 @@ void BornSetWidget::PosZSlot(double value)
 	float py = PosYspinBox->value();
 	
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value 拡大率(X)
+*/
 void BornSetWidget::ScaleXSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -160,6 +193,11 @@ void BornSetWidget::ScaleXSlot(double value)
 	float sy = ScaleYspinBox->value();
 	float sz = ScaleZspinBox->value();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value 拡大率(Y)
+*/
 void BornSetWidget::ScaleYSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -167,6 +205,11 @@ void BornSetWidget::ScaleYSlot(double value)
 	float sx = ScaleXspinBox->value();
 	float sz = ScaleZspinBox->value();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value 拡大率(Z)
+*/
 void BornSetWidget::ScaleZSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -174,6 +217,11 @@ void BornSetWidget::ScaleZSlot(double value)
 	float sx = ScaleXspinBox->value();
 	float sy = ScaleYspinBox->value();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void BornSetWidget::RollSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -181,6 +229,11 @@ void BornSetWidget::RollSlot(double value)
 	float pitch = PitchspinBox->value();
 	float yaw = YawspinBox->value();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void BornSetWidget::PitchSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -188,6 +241,11 @@ void BornSetWidget::PitchSlot(double value)
 	float roll = RollspinBox->value();
 	float yaw = YawspinBox->value();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void BornSetWidget::YawSlot(double value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -196,6 +254,9 @@ void BornSetWidget::YawSlot(double value)
 	float pitch = PitchspinBox->value();
 }
 
+/**
+*@brief リセットボタンを押したときのスロット
+*/
 void BornSetWidget::ResetSlot()
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -210,7 +271,7 @@ void BornSetWidget::ResetSlot()
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			
 			if(ml)
 			{
@@ -225,6 +286,10 @@ void BornSetWidget::ResetSlot()
 }
 
 
+/**
+*@brief ボディの名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void BornSetWidget::BodyNameSlot(int value)
 {
 	std::string n = (const char*)BodyNameEdit->currentText().toLocal8Bit();
@@ -237,7 +302,7 @@ void BornSetWidget::BodyNameSlot(int value)
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				NameEdit->setMaximum(ml->GetBornNum());
@@ -247,6 +312,10 @@ void BornSetWidget::BodyNameSlot(int value)
 	}
 }
 
+
+/**
+*@brief 3Dモデルが追加、削除されたときのスロット
+*/
 void BornSetWidget::UpdateBody()
 {
 	if(EC)

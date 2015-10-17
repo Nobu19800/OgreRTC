@@ -1,13 +1,22 @@
-﻿#include "ImageSet.h"
+﻿/*!
+ * @file  ImageSet.cpp
+ * @brief イメージセットの設定用ウインドウ
+ *
+ */
+
+#include "ImageSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
 
 
-
+/**
+*@brief GUIの画像作成、設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 ImageSetWidget::ImageSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -76,14 +85,18 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	setLayout(layout);
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief GUIの画像作成、設定用ウィジェットのデストラクタ
+*/
 ImageSetWidget::~ImageSetWidget(void)
 {
 
 }
 
-
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void ImageSetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -102,7 +115,7 @@ void ImageSetWidget::SetSlot()
 		}
 		else
 		{
-			MyImageSet *mi = EC->CreateQtGuiImageSet(n.c_str(), fn.c_str());
+			ImageSetObj *mi = EC->CreateQtGuiImageSet(n.c_str(), fn.c_str());
 			UpdateList();
 			NameEdit->setCurrentIndex(NameEdit->count()-1);
 			
@@ -111,12 +124,15 @@ void ImageSetWidget::SetSlot()
 	}
 }
 
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void ImageSetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyImageSet *mi = EC->getImageSetByName(n.c_str());
+		ImageSetObj *mi = EC->getImageSetByName(n.c_str());
 		if(mi)
 		{
 			EC->DestroyQtImage(mi);
@@ -126,11 +142,19 @@ void ImageSetWidget::DestroySlot()
 	}
 }
 
+/**
+*@brief GUIの名前コンボボックスの番号が変わったときのスロット
+*@param value 番号
+*/
 void ImageSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 }
 
+
+/**
+*@brief 画像の設定をウィジェットに反映させるときのスロット
+*/
 void ImageSetWidget::UpdateList()
 {
 	UpdateGUI();
@@ -145,6 +169,9 @@ void ImageSetWidget::UpdateList()
 	}
 }
 
+/**
+*@brief GUIが追加、削除された時のスロット
+*/
 void ImageSetWidget::UpdateGUI()
 {
 	GUIBox->clear();
@@ -163,12 +190,12 @@ void ImageSetWidget::UpdateGUI()
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticImage")
 				{
-					MyImageSet *mi = EC->getImageSetByName(mg->image_name.c_str());
+					ImageSetObj *mi = EC->getImageSetByName(mg->image_name.c_str());
 					if(mi)
 					{
 						NameEdit->setCurrentIndex(NameEdit->findText(mg->image_name.c_str()));
@@ -186,6 +213,10 @@ void ImageSetWidget::UpdateGUI()
 			
 }
 
+
+/**
+*@brief GUIの画像設定ボタンを押したときのスロット
+*/
 void ImageSetWidget::SetGUISlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	std::string gn = (const char*)GUIBox->currentText().toLocal8Bit();
@@ -199,12 +230,12 @@ void ImageSetWidget::SetGUISlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(gn.c_str());
+			GUIObj *mg = EC->getGUIByName(gn.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticImage")
 				{
-					MyImageSet *mi = EC->getImageSetByName(n.c_str());
+					ImageSetObj *mi = EC->getImageSetByName(n.c_str());
 					if(mi)
 					{
 						mg->SetImage(mi, in.c_str());

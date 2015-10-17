@@ -1,4 +1,10 @@
-﻿#ifndef SIMULATIONSET_H
+﻿/*!
+ * @file  SimulationSet.h
+ * @brief シミュレーション設定用ウィンドウ
+ *
+ */
+
+#ifndef SIMULATIONSET_H
 #define SIMULATIONSET_H
 
 #include <QtWidgets>
@@ -30,87 +36,132 @@ class QDoubleSpinBox;
 class QComboBox;
 QT_END_NAMESPACE
 
-/*
-* シミュレーション設定用ウィジェット
-*/
 
+/**
+ * @class SimJointSetWidget
+*@brief シミュレーション設定用ウィジェット
+*/
 
 class SimulationSetWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	* @param parent 親ウィジェット
+	*/
 	SimulationSetWidget(QWidget *parent = 0);
+	/**
+	*@brief デストラクタ
+	*/
 	~SimulationSetWidget(void);
 
 	OgreRTCApplication *EC;
 
 
 public slots:
-	/*
-	*シミュレーションの設定をウィジェットに反映させるときのスロット
+	
+	/**
+	*@brief シミュレーションの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
 
 private slots:
-	/*
-	*リセットボタンを押したときのスロット
+	
+	/**
+	*@brief リセットボタンを押したときのスロット
 	*/
 	void ResetSlot();
-	/*
-	*重力設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 重力加速度設定スピンボックスの値を変更したときのスロット
+	* @param value 重力加速度
 	*/
 	void GravitySlot(double value);
-	/*
-	*CFM設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief CFM設定スピンボックスの値を変更したときのスロット
+	* @param value CFM
 	*/
 	void CFMSlot(double value);
-	/*
-	*ERP設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief ERP設定スピンボックスの値を変更したときのスロット
+	* @param value ERP
 	*/
 	void ERPSlot(double value);
-	/*
-	*接触時のCFM設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 接触時のCFM設定スピンボックスの値を変更したときのスロット
+	* @param value CFM
 	*/
 	void gCFMSlot(double value);
-	/*
-	*接触時のERP設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 接触時のERP設定スピンボックスの値を変更したときのスロット
+	* @param value ERP
 	*/
 	void gERPSlot(double value);
-	/*
-	*精度、速度重視ボタンを押したときのスロット
+	
+	/**
+	*@brief 精度重視ボタンを押したときのスロット
 	*/
 	void unQuiqSlot();
+	/**
+	*@brief 速度重視ボタンを押したときのスロット
+	*/
 	void QuiqSlot();
 
-	/*
-	*開始ボタンを押したときのスロット
+	
+	/**
+	*@brief 開始ボタンを押したときのスロット
 	*/
 	void StartSlot();
+	/**
+	*@brief 再開始ボタンを押したときのスロット
+	*/
 	void RestartSlot();
-	/*
-	*停止ボタンを押したときのスロット
+	
+	/**
+	*@brief 停止ボタンを押したときのスロット
 	*/
 	void StopSlot();
 	
-	/*
-	*摩擦設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 摩擦設定スピンボックスの値を変更したときのスロット
+	* @param value 摩擦係数
 	*/
 	void gMuSlot(double value);
-	/*
-	*サンプリングタイム設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief サンプリングタイム設定スピンボックスの値を変更したときのスロット
+	* @param value サンプリングタイム
 	*/
 	void STimeSlot(double value);
-	/*
-	*待ち時間設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 各フレームでの待ち時間設定スピンボックスの値を変更したときのスロット
+	* @param value 待ち時間
 	*/
 	void SleepTimeSlot(double value);
-	/*
-	*3Dモデルとシミュレーションの拡大率設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 3Dモデルとシミュレーションの拡大率(X軸)設定スピンボックスの値を変更したときのスロット
+	* @param value 位置(X)
 	*/
 	void ScaleXSlot(double value);
+	/**
+	*@brief 3Dモデルとシミュレーションの拡大率(Y軸)設定スピンボックスの値を変更したときのスロット
+	* @param value 位置(Y)
+	*/
 	void ScaleYSlot(double value);
+	/**
+	*@brief 3Dモデルとシミュレーションの拡大率(Z軸)設定スピンボックスの値を変更したときのスロット
+	* @param value 位置(Z)
+	*/
 	void ScaleZSlot(double value);
 
 	
@@ -118,8 +169,9 @@ private slots:
 	
 
 private:
-	/*
-	* 拡大率設定スピンボックスの値を反映する関数
+	
+	/**
+	*@brief 拡大率設定スピンボックスの値を反映する関数
 	*/
 	void SetScale();
 	QPushButton *StartButton;

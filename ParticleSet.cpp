@@ -1,14 +1,23 @@
-﻿#include "ParticleSet.h"
+﻿/*!
+ * @file  ParticleSet.cpp
+ * @brief パーティクル設定用ウィンドウ
+ *
+ */
+
+#include "ParticleSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 #include "ParticleSet.h"
 
 
 
-
+/**
+*@brief パーティクル作成、設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 ParticleSetWidget::ParticleSetWidget(QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -118,8 +127,10 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief パーティクル作成、設定用ウィジェットのデストラクタ
+*/
 ParticleSetWidget::~ParticleSetWidget(void)
 {
 
@@ -144,7 +155,7 @@ void ParticleSetWidget::UpdatePos()
 			}
 			else
 			{
-				myParticle *pc = EC->getParticleByName(n.c_str());
+				ParticleObj *pc = EC->getParticleByName(n.c_str());
 				if(pc)
 				{
 					pc->SetPosition(px, py, pz);
@@ -154,6 +165,10 @@ void ParticleSetWidget::UpdatePos()
 		}
 	}
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値を反映する関数
+*/
 void ParticleSetWidget::UpdateScale()
 {
 	if(up_flag)
@@ -173,7 +188,7 @@ void ParticleSetWidget::UpdateScale()
 			}
 			else
 			{
-				myParticle *pc = EC->getParticleByName(n.c_str());
+				ParticleObj *pc = EC->getParticleByName(n.c_str());
 				if(pc)
 				{
 					pc->SetScale(sx, sy, sz);
@@ -183,6 +198,12 @@ void ParticleSetWidget::UpdateScale()
 		}
 	}
 }
+
+
+
+/**
+*@brief 姿勢設定スピンボックスの値を反映する関数
+*/
 void ParticleSetWidget::UpdateRot()
 {
 	if(up_flag)
@@ -202,7 +223,7 @@ void ParticleSetWidget::UpdateRot()
 			}
 			else
 			{
-				myParticle *pc = EC->getParticleByName(n.c_str());
+				ParticleObj *pc = EC->getParticleByName(n.c_str());
 				if(pc)
 				{
 					pc->SetRotation(roll,pitch,yaw);
@@ -213,6 +234,11 @@ void ParticleSetWidget::UpdateRot()
 	}
 }
 
+
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void ParticleSetWidget::UpdateVisi(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -224,7 +250,7 @@ void ParticleSetWidget::UpdateVisi(bool visi)
 		}
 		else
 		{
-			myParticle *pc = EC->getParticleByName(n.c_str());
+			ParticleObj *pc = EC->getParticleByName(n.c_str());
 			if(pc)
 			{
 				pc->SetVisible(visi);
@@ -234,6 +260,10 @@ void ParticleSetWidget::UpdateVisi(bool visi)
 	}
 }
 
+
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void ParticleSetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -263,7 +293,7 @@ void ParticleSetWidget::SetSlot()
 		}
 		else
 		{
-			myParticle *pc = EC->CreateQtParticle(n.c_str(), fn.c_str());
+			ParticleObj *pc = EC->CreateQtParticle(n.c_str(), fn.c_str());
 			pc->SetPosition(px, py, pz);
 			pc->SetScale(sx, sy, sz);
 			pc->SetRotation(roll, pitch, yaw);
@@ -278,25 +308,33 @@ void ParticleSetWidget::SetSlot()
 
 }
 
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void ParticleSetWidget::VisibleSlot()
 {
 	UpdateVisi(true);
 }
 
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void ParticleSetWidget::unVisibleSlot()
 {
 	UpdateVisi(false);
 }
 
 
-
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void ParticleSetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
-		myParticle *pc = EC->getParticleByName(n.c_str());
+		ParticleObj *pc = EC->getParticleByName(n.c_str());
 		if(pc)
 		{
 			EC->DestroyQtParticle(pc);
@@ -307,50 +345,97 @@ void ParticleSetWidget::DestroySlot()
 	}
 }
 
-
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void ParticleSetWidget::PosXSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void ParticleSetWidget::PosYSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void ParticleSetWidget::PosZSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value 拡大率(X)
+*/
 void ParticleSetWidget::ScaleXSlot(double value)
 {
 	UpdateScale();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value 拡大率(Y)
+*/
 void ParticleSetWidget::ScaleYSlot(double value)
 {
 	UpdateScale();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value 拡大率(Z)
+*/
 void ParticleSetWidget::ScaleZSlot(double value)
 {
 	UpdateScale();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void ParticleSetWidget::RollSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void ParticleSetWidget::PitchSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void ParticleSetWidget::YawSlot(double value)
 {
 	UpdateRot();
 }
 
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void ParticleSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		myParticle *pc = EC->getParticleByName(n.c_str());
+		ParticleObj *pc = EC->getParticleByName(n.c_str());
 		if(pc)
 		{
 			up_flag = false;
@@ -378,6 +463,10 @@ void ParticleSetWidget::NameSlot(int value)
 	}
 }
 
+
+/**
+*@brief パーティクルを作成、削除したときのスロット
+*/
 void ParticleSetWidget::UpdateList()
 {
 	if(EC)

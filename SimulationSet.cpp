@@ -1,8 +1,14 @@
-﻿#include "SimulationSet.h"
+﻿/*!
+ * @file  SimulationSet.cpp
+ * @brief シミュレーション設定用ウィンドウ
+ *
+ */
+
+#include "SimulationSet.h"
 
 
 
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
@@ -11,7 +17,10 @@
 
 
 
-
+/**
+*@brief シミュレーション設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 SimulationSetWidget::SimulationSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -94,13 +103,17 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief シミュレーション設定用ウィジェットのデストラクタ
+*/
 SimulationSetWidget::~SimulationSetWidget(void)
 {
 
 }
 
+/**
+*@brief シミュレーションの設定をウィジェットに反映させるときのスロット
+*/
 void SimulationSetWidget::UpdateList()
 {
 	if(EC)
@@ -127,11 +140,20 @@ void SimulationSetWidget::UpdateList()
 	}
 }
 
+
+/**
+*@brief リセットボタンを押したときのスロット
+*/
 void SimulationSetWidget::ResetSlot()
 {
 	EC->mSim->Reset();
 }
-	
+
+
+/**
+*@brief 重力加速度設定スピンボックスの値を変更したときのスロット
+* @param value 重力加速度
+*/
 void SimulationSetWidget::GravitySlot(double value)
 {
 	double g = GravityspinBox->value();
@@ -140,6 +162,11 @@ void SimulationSetWidget::GravitySlot(double value)
 		EC->mSim->SetGravity(g);
 	}
 }
+
+/**
+*@brief CFM設定スピンボックスの値を変更したときのスロット
+* @param value CFM
+*/
 void SimulationSetWidget::CFMSlot(double value)
 {
 	double c = CFMspinBox->value() * (1e-10);
@@ -148,6 +175,11 @@ void SimulationSetWidget::CFMSlot(double value)
 		EC->mSim->SetCFM(c);
 	}
 }
+
+/**
+*@brief ERP設定スピンボックスの値を変更したときのスロット
+* @param value ERP
+*/
 void SimulationSetWidget::ERPSlot(double value)
 {
 	double e = ERPspinBox->value();
@@ -156,6 +188,11 @@ void SimulationSetWidget::ERPSlot(double value)
 		EC->mSim->SetERP(e);
 	}
 }
+
+/**
+*@brief 接触時のCFM設定スピンボックスの値を変更したときのスロット
+* @param value CFM
+*/
 void SimulationSetWidget::gCFMSlot(double value)
 {
 	double gc = gCFMspinBox->value() * (1e-10);
@@ -164,6 +201,11 @@ void SimulationSetWidget::gCFMSlot(double value)
 		EC->mSim->SetGroundCFM(gc);
 	}
 }
+
+/**
+*@brief 接触時のERP設定スピンボックスの値を変更したときのスロット
+* @param value ERP
+*/
 void SimulationSetWidget::gERPSlot(double value)
 {
 	double ge = gERPspinBox->value();
@@ -172,6 +214,10 @@ void SimulationSetWidget::gERPSlot(double value)
 		EC->mSim->SetGroundERP(ge);
 	}
 }
+
+/**
+*@brief 速度重視ボタンを押したときのスロット
+*/
 void SimulationSetWidget::QuiqSlot()
 {
 	if(EC)
@@ -180,6 +226,9 @@ void SimulationSetWidget::QuiqSlot()
 	}
 }
 
+/**
+*@brief 精度重視ボタンを押したときのスロット
+*/
 void SimulationSetWidget::unQuiqSlot()
 {
 	if(EC)
@@ -188,6 +237,9 @@ void SimulationSetWidget::unQuiqSlot()
 	}
 }
 
+/**
+*@brief 開始ボタンを押したときのスロット
+*/
 void SimulationSetWidget::StartSlot()
 {
 	if(EC)
@@ -195,6 +247,10 @@ void SimulationSetWidget::StartSlot()
 		EC->mSim->startSim();
 	}
 }
+
+/**
+*@brief 再開始ボタンを押したときのスロット
+*/
 void SimulationSetWidget::RestartSlot()
 {
 	if(EC)
@@ -203,6 +259,10 @@ void SimulationSetWidget::RestartSlot()
 	}
 }
 
+/**
+*@brief 摩擦設定スピンボックスの値を変更したときのスロット
+* @param value 摩擦係数
+*/
 void SimulationSetWidget::gMuSlot(double value)
 {
 	double gm = gMuspinBox->value();
@@ -211,6 +271,11 @@ void SimulationSetWidget::gMuSlot(double value)
 		EC->mSim->SetGroundMu(gm);
 	}
 }
+
+/**
+*@brief サンプリングタイム設定スピンボックスの値を変更したときのスロット
+* @param value サンプリングタイム
+*/
 void SimulationSetWidget::STimeSlot(double value)
 {
 	double st = STimespinBox->value()/ 1000.;
@@ -220,6 +285,11 @@ void SimulationSetWidget::STimeSlot(double value)
 	}
 
 }
+
+/**
+*@brief 各フレームでの待ち時間設定スピンボックスの値を変更したときのスロット
+* @param value 待ち時間
+*/
 void SimulationSetWidget::SleepTimeSlot(double value)
 {
 	double t = SleepTimespinBox->value() / 1000.;
@@ -228,6 +298,10 @@ void SimulationSetWidget::SleepTimeSlot(double value)
 		EC->mSim->SetSleepTime(t);
 	}
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値を反映する関数
+*/
 void SimulationSetWidget::SetScale()
 {
 	float sx = ScaleXspinBox->value();
@@ -241,19 +315,37 @@ void SimulationSetWidget::SetScale()
 	}
 
 }
+
+/**
+*@brief 3Dモデルとシミュレーションの拡大率(X軸)設定スピンボックスの値を変更したときのスロット
+* @param value 位置(X)
+*/
 void SimulationSetWidget::ScaleXSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 3Dモデルとシミュレーションの拡大率(Y軸)設定スピンボックスの値を変更したときのスロット
+* @param value 位置(Y)
+*/
 void SimulationSetWidget::ScaleYSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 3Dモデルとシミュレーションの拡大率(Z軸)設定スピンボックスの値を変更したときのスロット
+* @param value 位置(Z)
+*/
 void SimulationSetWidget::ScaleZSlot(double value)
 {
 	SetScale();
 }
 
+/**
+*@brief 停止ボタンを押したときのスロット
+*/
 void SimulationSetWidget::StopSlot()
 {
 	if(EC)

@@ -1,4 +1,10 @@
-﻿#ifndef IMAGESET_H
+﻿/*!
+ * @file  ImageSet.h
+ * @brief イメージセットの設定用ウインドウ
+ *
+ */
+
+#ifndef IMAGESET_H
 #define IMAGESET_H
 
 #include <QtWidgets>
@@ -29,16 +35,24 @@ class QComboBox;
 QT_END_NAMESPACE
 
 
-/*
-* GUIの画像作成、設定用ウィジェット
-*/
 
+/**
+ * @class ImageSetWidget
+*@brief GUIの画像作成、設定用ウィジェット
+*/
 class ImageSetWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	*@param parent 親ウィジェット
+	*/
 	ImageSetWidget(QWidget *parent = 0);
+	/**
+	*@brief デストラクタ
+	*/
 	~ImageSetWidget(void);
 
 	OgreRTCApplication *EC;
@@ -46,30 +60,37 @@ public:
 
 
 public slots:
-	/*
-	*画像の設定をウィジェットに反映させるときのスロット
+	
+	/**
+	*@brief 画像の設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
-	/*
-	*GUIが追加、削除された時のスロット
+	
+	/**
+	*@brief GUIが追加、削除された時のスロット
 	*/
 	void UpdateGUI();
 
 private slots:
-	/*
-	*作成ボタンを押したときのスロット
+	
+	/**
+	*@brief 作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
-	/*
-	*削除ボタンを押したときのスロット
+	
+	/**
+	*@brief 削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
-	/*
-	*GUIの名前コンボボックスの番号が変わったときのスロット
+	
+	/**
+	*@brief GUIの名前コンボボックスの番号が変わったときのスロット
+	*@param value 番号
 	*/
 	void NameSlot(int value);
-	/*
-	*GUIの画像設定ボタンを押したときのスロット
+	
+	/**
+	*@brief GUIの画像設定ボタンを押したときのスロット
 	*/
 	void SetGUISlot();
 

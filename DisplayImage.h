@@ -1,4 +1,10 @@
-﻿#ifndef DISPLAYIMAGE_H
+﻿/*!
+ * @file  DisplayImage.h
+ * @brief 画像表示オブジェクト
+ *
+ */
+
+#ifndef DISPLAYIMAGE_H
 #define DISPLAYIMAGE_H
 
 #include "BaseApplication.h"
@@ -9,14 +15,18 @@
 
 
 
-/*
-*画像表示オブジェクトのクラス
-*/
 
+/**
+ * @class DisplayImage
+*@brief 画像表示オブジェクトのクラス
+*/
 
 class DisplayImage
 {
 public:
+	/**
+	*@brief コンストラクタ
+	*/
 	DisplayImage();
 
 	Ogre::Rectangle2D* mRect;

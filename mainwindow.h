@@ -1,4 +1,10 @@
-﻿#ifndef MAINWINDOW_H
+﻿/*!
+ * @file  mainwindow.h
+ * @brief メインウインドウ
+ *
+ */
+
+#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -22,7 +28,7 @@
 #include "ParticleSet.h"
 #include "SubWindowSet.h"
 #include "ImageSet.h"
-#include "MyFileStream.h"
+#include "FileStreamFunc.h"
 #include "AnimationSet.h"
 #include "LightSet.h"
 #include "SimBodySet.h"
@@ -63,24 +69,31 @@ class QTextCursor;
 class QTreeWidget;
 QT_END_NAMESPACE
 
-/*
-*メインウインドウのクラス
-*/
 
-//! [0]
+/**
+ * @class MainWindow
+*@brief メインウインドウ
+*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	*@param argc コマンドライン引数の数
+	*@param argv コマンドライン引数
+	*@param parent 親ウィジェット
+	*/
     MainWindow(int argc, char** argv, QWidget *parent = 0);
 	
 
 protected:
 
 signals:
-	/*
-	*ファイル読み込み時のシグナル
+	
+	/**
+	*@brief ファイル読み込み時のシグナル
 	*/
 	void UpdateList();
 	
@@ -108,24 +121,30 @@ private:
 	NodeSetWidget * mNodeSetWidget;
 
 private slots:
-	/*
-	*RTC読み込み時のスロット
+	
+	/**
+	*@brief RTC読み込み時のスロット
 	*/
 	void pyOpen();
-	/*
-	*ファイル保存時のスロット
+	
+	/**
+	*@brief ファイル保存時のスロット
+	* @return trueは成功、falseは失敗
 	*/
 	bool save();
-	/*
-	*ファイル読み込み時のスロット
+	
+	/**
+	*@brief ファイル読み込み時のスロット
 	*/
 	void open();
-	/*
-	*初期化時のスロット
+	
+	/**
+	*@brief 初期化時のスロット
 	*/
 	void newFile();
-	/*
-	*ファイルシステム追加のスロット
+	
+	/**
+	*@brief ファイルシステム追加のスロット
 	*/
 	void addFileSystem();
 
@@ -135,12 +154,14 @@ private:
 	QAction *saveAct;
 	QAction *pyAct;
 	QAction *addFileSystemAct;
-	/*
-	*メニュー作成の関数
+	
+	/**
+	*@brief メニュー作成の関数
 	*/
 	void createMenus();
-	/*
-	*アクション作成の関数
+	
+	/**
+	*@brief アクション作成の関数
 	*/
 	void createAction();
 	QMenu *fileMenu;
@@ -151,7 +172,7 @@ private:
 	
 	
 };
-//! [0]
+
 
 
 

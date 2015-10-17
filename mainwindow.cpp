@@ -1,4 +1,11 @@
-﻿#include <QtWidgets>
+﻿/*!
+ * @file  mainwindow.cpp
+ * @brief メインウインドウ
+ *
+ */
+
+
+#include <QtWidgets>
 #include <QLabel>
 #include <QTextEdit>
 #include <qfont.h>
@@ -23,7 +30,12 @@
 
 
 
-
+/**
+*@brief メインウインドウのコンストラクタ
+*@param argc コマンドライン引数の数
+*@param argv コマンドライン引数
+*@param parent 親ウィジェット
+*/
 MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 : QMainWindow(parent)
 {
@@ -186,6 +198,9 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 }
 
 
+/**
+*@brief アクション作成の関数
+*/
 void MainWindow::createAction()
 {
 	newAct = new QAction(tr("&New..."),this);
@@ -209,7 +224,9 @@ void MainWindow::createAction()
     connect(addFileSystemAct, SIGNAL(triggered()), this, SLOT(addFileSystem()));
 }
 
-
+/**
+*@brief メニュー作成の関数
+*/
 void MainWindow::createMenus()
 {
 	fileMenu = menuBar()->addMenu(tr("&File"));
@@ -258,6 +275,9 @@ void MainWindow::open()
 
 }
 
+/**
+*@brief RTC読み込み時のスロット
+*/
 void MainWindow::pyOpen()
 {
 	QString fileName = QFileDialog::getOpenFileName(this,
@@ -295,6 +315,10 @@ void MainWindow::pyOpen()
 
 }
 
+/**
+*@brief ファイル保存時のスロット
+* @return trueは成功、falseは失敗
+*/
 bool MainWindow::save()
 {
 	QString fileName = QFileDialog::getSaveFileName(this,
@@ -325,7 +349,9 @@ bool MainWindow::save()
     return true;
 }
 
-
+/**
+*@brief 初期化時のスロット
+*/
 void MainWindow::newFile()
 {
 	if(EC)
@@ -341,6 +367,9 @@ void MainWindow::newFile()
 	}
 }
 
+/**
+*@brief ファイルシステム追加のスロット
+*/
 void MainWindow::addFileSystem()
 {
 	QString fileName = QFileDialog::getExistingDirectory(this,

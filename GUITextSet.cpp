@@ -1,14 +1,23 @@
-﻿#include "GUITextSet.h"
+﻿/*!
+ * @file  GUITextSet.cpp
+ * @brief GUIのテキスト設定用ウインドウ
+ *
+ */
+
+#include "GUITextSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
-#include "MyGUI.h"
-#include "MyImageSet.h"
+#include "GUIObj.h"
+#include "ImageSetObj.h"
 
-
+/**
+*@brief GUIのテキスト設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 GUITextSetWidget::GUITextSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -94,15 +103,19 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief GUIのテキスト設定用ウィジェットのデストラクタ
+*/
 GUITextSetWidget::~GUITextSetWidget(void)
 {
 
 }
 
 
-
+/**
+*@brief テキスト設定ボタンを押したときのスロット
+*/
 void GUITextSetWidget::SetSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int fs = FontSizespinBox->value();
@@ -116,7 +129,7 @@ void GUITextSetWidget::SetSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText" || mg->type == "TaharezLook/Editbox")
@@ -132,10 +145,14 @@ void GUITextSetWidget::SetSlot(){
 
 }
 
-void GUITextSetWidget::FontSizeSlot(int)
+/**
+*@brief フォントサイズ設定スピンボックスの値を変更したときのスロット
+* @param fs フォントサイズ
+*/
+void GUITextSetWidget::FontSizeSlot(int fs)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
-	int fs = FontSizespinBox->value();
+	//int fs = FontSizespinBox->value();
 
 	if(EC)
 	{
@@ -145,7 +162,7 @@ void GUITextSetWidget::FontSizeSlot(int)
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText" || mg->type == "TaharezLook/Editbox")
@@ -158,6 +175,10 @@ void GUITextSetWidget::FontSizeSlot(int)
 
 	}
 }
+
+/**
+*@brief テキストの位置を上端に設定するスロット
+*/
 void GUITextSetWidget::TextTopAlignedSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -169,7 +190,7 @@ void GUITextSetWidget::TextTopAlignedSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -182,6 +203,10 @@ void GUITextSetWidget::TextTopAlignedSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を下端に設定するスロット
+*/
 void GUITextSetWidget::BottomAlignedSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -193,7 +218,7 @@ void GUITextSetWidget::BottomAlignedSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -206,6 +231,10 @@ void GUITextSetWidget::BottomAlignedSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を縦中央に設定するスロット
+*/
 void GUITextSetWidget::VertCentredSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -217,7 +246,7 @@ void GUITextSetWidget::VertCentredSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -230,6 +259,11 @@ void GUITextSetWidget::VertCentredSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を左端に設定するスロット
+*単語の途中で改行する
+*/
 void GUITextSetWidget::WordWrapLeftAlignedSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -241,7 +275,7 @@ void GUITextSetWidget::WordWrapLeftAlignedSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -254,6 +288,11 @@ void GUITextSetWidget::WordWrapLeftAlignedSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を右端に設定するスロット
+*単語の途中で改行する
+*/
 void GUITextSetWidget::WordWrapRightAlignedSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -265,7 +304,7 @@ void GUITextSetWidget::WordWrapRightAlignedSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -278,6 +317,11 @@ void GUITextSetWidget::WordWrapRightAlignedSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を中央に設定するスロット
+*単語の途中で改行する
+*/
 void GUITextSetWidget::WordWrapCentredSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -289,7 +333,7 @@ void GUITextSetWidget::WordWrapCentredSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -302,6 +346,10 @@ void GUITextSetWidget::WordWrapCentredSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を左端に設定するスロット
+*/
 void GUITextSetWidget::LeftAlignedSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -313,7 +361,7 @@ void GUITextSetWidget::LeftAlignedSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -326,6 +374,10 @@ void GUITextSetWidget::LeftAlignedSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を右端に設定するスロット
+*/
 void GUITextSetWidget::RightAlignedSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -337,7 +389,7 @@ void GUITextSetWidget::RightAlignedSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -350,6 +402,10 @@ void GUITextSetWidget::RightAlignedSlot(){
 
 	}
 }
+
+/**
+*@brief テキストの位置を横中央に設定するスロット
+*/
 void GUITextSetWidget::HorzCentredSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -361,7 +417,7 @@ void GUITextSetWidget::HorzCentredSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText")
@@ -374,6 +430,10 @@ void GUITextSetWidget::HorzCentredSlot(){
 
 	}
 }
+
+/**
+*@brief 設定初期化ボタンを押したときのスロット
+*/
 void GUITextSetWidget::ClearPropertiesSlot(){
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
@@ -385,7 +445,7 @@ void GUITextSetWidget::ClearPropertiesSlot(){
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				mg->ClearProperties();
@@ -397,6 +457,9 @@ void GUITextSetWidget::ClearPropertiesSlot(){
 }
 
 
+/**
+*@brief GUIの名前コンボボックスの番号が変わったときのスロット
+*/
 void GUITextSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -410,7 +473,7 @@ void GUITextSetWidget::NameSlot(int value)
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				if(mg->type == "TaharezLook/StaticText" || mg->type == "TaharezLook/Editbox")
@@ -424,11 +487,17 @@ void GUITextSetWidget::NameSlot(int value)
 	}
 }
 
+/**
+*@brief GUIの設定をウィジェットに反映させるときのスロット
+*/
 void GUITextSetWidget::UpdateList()
 {
 	UpdateGUI();
 }
 
+/**
+*@brief GUIが追加、削除された時のスロット
+*/
 void GUITextSetWidget::UpdateGUI()
 {
 	NameEdit->clear();

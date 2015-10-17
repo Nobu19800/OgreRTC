@@ -1,4 +1,10 @@
-﻿#ifndef GUISET_H
+﻿/*!
+ * @file  GUISet.h
+ * @brief GUIの設定用ウインドウ
+ *
+ */
+
+#ifndef GUISET_H
 #define GUISET_H
 
 #include <QtWidgets>
@@ -29,110 +35,169 @@ class QComboBox;
 QT_END_NAMESPACE
 
 
-/*
-* GUI作成、設定用ウィジェット
-*/
 
+/**
+ * @class GUISetWidget
+*@brief GUI設定用ウィジェット
+*/
 class GUISetWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	*@param parent 親ウィジェット
+	*/
 	GUISetWidget(QWidget *parent = 0);
+	/**
+	*@brief デストラクタ
+	*/
 	~GUISetWidget(void);
 
 	OgreRTCApplication *EC;
 
 signals:
-	/*
-	* GUIを作成、削除したときのシグナル
+	
+	/**
+	*@brief GUIを作成、削除したときのシグナル
 	*/
 	void UpdateGUI();
 
 public slots:
-	/*
-	*GUIの設定をウィジェットに反映させるときのスロット
+	
+	/**
+	*@brief GUIの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
-	/*
-	*作成ボタンを押したときのスロット
+	
+	/**
+	*@brief 作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
-	/*
-	*位置設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+	* @param value 位置(X)
 	*/
 	void PosXSlot(double value);
+	/**
+	*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+	* @param value 位置(Y)
+	*/
 	void PosYSlot(double value);
-	/*
-	*姿勢設定スピンボックスの値を変更したときのスロット
+	/**
+	*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+	* @param value 角度(ロール)
 	*/
 	void RollSlot(double value);
+	/**
+	*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+	* @param value 角度(ピッチ)
+	*/
 	void PitchSlot(double value);
+	/**
+	*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+	* @param value 角度(ヨー)
+	*/
 	void YawSlot(double value);
-	/*
-	*大きさ設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 大きさ設定スピンボックスの値(X軸方向)を変更したときのスロット
+	* @param value サイズ(X)
 	*/
 	void ScaleXSlot(double value);
+	/**
+	*@brief 大きさ設定スピンボックスの値(Y軸方向)を変更したときのスロット
+	* @param value サイズ(Y)
+	*/
 	void ScaleYSlot(double value);
-	/*
-	*透明度設定スピンボックスの値を変更したときのスロット
+	
+	/**
+	*@brief 透明度設定スピンボックスの値を変更したときのスロット
+	* @param value 透明度
 	*/
 	void AlphaSlot(double value);
-	/*
-	*表示、非表示設定ボタンを押したときのスロット
+	
+	/**
+	*@brief 表示設定ボタンを押したときのスロット
 	*/
 	void VisibleSlot();
+	/**
+	*@brief 非表示設定ボタンを押したときのスロット
+	*/
 	void unVisibleSlot();
-	/*
-	*フレームの表示、非表示設定ボタンを押したときのスロット
+	
+	/**
+	*@brief フレームの表示設定ボタンを押したときのスロット
 	*/
 	void FrameSlot();
+	/**
+	*@brief フレームの非表示設定ボタンを押したときのスロット
+	*/
 	void unFrameSlot();
-	/*
-	*背景の表示、非表示設定ボタンを押したときのスロット
+	
+	/**
+	*@brief 背景の表示設定ボタンを押したときのスロット
 	*/
 	void BackGroundSlot();
+	/**
+	*@brief 背景の非表示設定ボタンを押したときのスロット
+	*/
 	void unBackGroundSlot();
-	/*
-	*削除ボタンを押したときのスロット
+	
+	/**
+	*@brief 削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
-	/*
-	*名前コンボボックスの番号が変わったときのスロット
+	
+	/**
+	*@brief 名前コンボボックスの番号が変わったときのスロット
+	* @param value 番号
 	*/
 	void NameSlot(int value);
-	/*
-	*ウィンドウ設定ボタンを押したときのスロット
+	
+	/**
+	*@brief ウィンドウ設定ボタンを押したときのスロット
 	*/
 	void WindowSlot();
 
 
 private:
 	bool up_flag;
-	/*
-	* 位置設定スピンボックスの値を反映する関数
+	
+	/**
+	*@brief 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
-	/*
-	* 姿勢設定スピンボックスの値を反映する関数
+	
+	/**
+	*@brief 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void UpdateRot();
-	/*
-	* 大きさ設定スピンボックスの値を反映する関数
+	
+	/**
+	*@brief 大きさ設定スピンボックスの値を反映する関数
 	*/
 	void UpdateSize();
-	/*
-	* 表示設定ボタンを反映する関数
+	
+	/**
+	*@brief 表示設定ボタンを反映する関数
+	* @param visi trueで表示、falseで非表示
 	*/
 	void UpdateVisi(bool visi);
-	/*
-	* フレームの表示設定ボタンを反映する関数
+	
+	/**
+	*@brief フレームの表示設定ボタンを反映する関数
+	* @param visi trueで表示、falseで非表示
 	*/
 	void UpdateFrame(bool visi);
-	/*
-	* 背景の表示設定ボタンを反映する関数
+	
+	/**
+	*@brief 背景の表示設定ボタンを反映する関数
+	* @param visi trueで表示、falseで非表示
 	*/
 	void UpdateBackGround(bool visi);
 

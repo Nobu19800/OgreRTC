@@ -1,4 +1,10 @@
-﻿#ifndef ANIMATIONSET_H
+﻿/*!
+ * @file  AnimationSet.h
+ * @brief アニメーション設定ウインドウ
+ *
+ */
+
+#ifndef ANIMATIONSET_H
 #define ANIMATIONSET_H
 
 
@@ -31,8 +37,10 @@ class QDoubleSpinBox;
 class QComboBox;
 QT_END_NAMESPACE
 
-/*
-* アニメーション設定用ウィジェット
+
+/**
+ * @class AnimationSetWidget
+*@brief アニメーション設定用ウィジェット
 */
 
 class AnimationSetWidget : public QWidget
@@ -40,83 +48,116 @@ class AnimationSetWidget : public QWidget
 	Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	*@param parent 親ウィジェット
+	*/
 	AnimationSetWidget(QWidget *parent = 0);
+	/**
+	*@brief デストラクタ
+	*/
 	~AnimationSetWidget(void);
 
 	OgreRTCApplication *EC;
 
 signals:
-	/*
-	*アニメーションを追加、削除したときのシグナル
+	/**
+	*@brief アニメーションを追加、削除したときのシグナル
 	*/
 	void UpdateAnimation();
 
 public slots:
-	/*
-	*アニメーションの設定をウィジェットに反映させるときのスロット
+	/**
+	*@brief アニメーションの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 	
 
 private slots:
-	/*
-	*作成ボタンを押したときのスロット
+	/**
+	*@brief 作成ボタンを押したときのスロット
 	*/
 	void SetSlot();
-	/*
-	*名前コンボボックスの番号が変わったときのスロット
+	/**
+	*@brief 名前コンボボックスの番号が変わったときのスロット
+	*@param value 番号
 	*/
 	void NameSlot(int value);
-	/*
-	*削除ボタンを押したときのスロット
+	/**
+	*@brief 削除ボタンを押したときのスロット
 	*/
 	void DestroySlot();
-	/*
-	*リセットボタンを押したときのスロット
+	/**
+	*@brief リセットボタンを押したときのスロット
 	*/
 	void ResetSlot();
-
-	/*
-	*位置設定スピンボックスの値を変更したときのスロット
+	/**
+	*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+	*@param value 位置(X)
 	*/
 	void PosXSlot(double value);
+	/**
+	*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+	*@param value 位置(Y)
+	*/
 	void PosYSlot(double value);
+	/**
+	*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+	*@param value 位置(Z)
+	*/
 	void PosZSlot(double value);
-	/*
-	*姿勢設定スピンボックスの値を変更したときのスロット
+	/**
+	*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+	*@param value 角度(ロール)
 	*/
 	void RollSlot(double value);
+	/**
+	*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+	*@param value 角度(ピッチ)
+	*/
 	void PitchSlot(double value);
+	/**
+	*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+	*@param value 角度(ヨー)
+	*/
 	void YawSlot(double value);
 	
-	/*
-	* キー番号追加ボタンを押したときのスロット
+
+	/**
+	*@brief キー番号追加ボタンを押したときのスロット
 	*/
 	void KeySlot();
-	/*
-	* キー番号削除ボタンを押したときのスロット
+	/**
+	*@brief キー番号削除ボタンを押したときのスロット
 	*/
 	void RemoveKeySlot();
-	/*
-	* キー番号コンボボックスの番号が変わったときのスロット
+	/**
+	*@brief キー番号コンボボックスの番号が変わったときのスロット
+	*@param value 番号
 	*/
 	void KeyNumSlot(int value);
 
-	/*
-	* キーの位置設定ボタンが押されたときのスロット
+
+	/**
+	*@brief キーの位置設定ボタンが押されたときのスロット
 	*/
 	void TransSlot();
-	/*
-	* キーの姿勢設定ボタンが押されたときのスロット
+
+	/**
+	*@brief キーの姿勢設定ボタンが押されたときのスロット
 	*/
 	void RotSlot();
 
-	/*
-	* アニメーションの時間変更スピンボックスの値が変化したときのスロット
+
+	/**
+	*@brief アニメーションの時間変更スピンボックスの値が変化したときのスロット
+	*@param value 時間
 	*/
 	void StateSlot(double value);
-	/*
-	* アニメーションの終了時間設定スピンボックスの値が変化したときのスロット
+
+	/**
+	*@brief アニメーションの終了時間設定スピンボックスの値が変化したときのスロット
+	*@param value 時間
 	*/
 	void TimeSlot(double value);
 	
@@ -125,12 +166,14 @@ private:
 
 	bool up_flag;
 	
-	/*
-	* 位置設定スピンボックスの値を反映する関数
+
+	/**
+	*@brief 位置設定スピンボックスの値を反映する関数
 	*/
 	void UpdatePos();
-	/*
-	* 姿勢設定スピンボックスの値を反映する関数
+
+	/**
+	*@brief 姿勢設定スピンボックスの値を反映する関数
 	*/
 	void UpdateRot();
 

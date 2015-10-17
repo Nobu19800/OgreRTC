@@ -1,14 +1,23 @@
-﻿#include "BodySet.h"
-#include "MyQtMacro.h"
+﻿/*!
+ * @file  BodySet.cpp
+ * @brief ボディ設定用ウィンドウ
+ *
+ */
+
+#include "BodySet.h"
+#include "QtMacro.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
 
-#include "MyLink.h"
+#include "LinkObj.h"
 
 
 
-
+/**
+*@brief ボディ設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 BodySetWidget::BodySetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -285,14 +294,17 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief ボディ設定用ウィジェットのデストラクタ
+*/
 BodySetWidget::~BodySetWidget(void)
 {
 
 }
 
-
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void BodySetWidget::UpdatePos()
 {
 	if(up_flag)
@@ -311,7 +323,7 @@ void BodySetWidget::UpdatePos()
 			}
 			else
 			{
-				MyLink *ml = EC->getBodyByName(n.c_str());
+				LinkObj *ml = EC->getBodyByName(n.c_str());
 				if(ml)
 				{
 					ml->SetPosition(px, py, pz);
@@ -321,6 +333,10 @@ void BodySetWidget::UpdatePos()
 		}
 	}
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値を反映する関数
+*/
 void BodySetWidget::UpdateScale()
 {
 	if(up_flag)
@@ -340,7 +356,7 @@ void BodySetWidget::UpdateScale()
 			}
 			else
 			{
-				MyLink *ml = EC->getBodyByName(n.c_str());
+				LinkObj *ml = EC->getBodyByName(n.c_str());
 				if(ml)
 				{
 					ml->SetScale(sx, sy, sz);
@@ -350,6 +366,11 @@ void BodySetWidget::UpdateScale()
 		}
 	}
 }
+
+
+/**
+*@brief 姿勢設定スピンボックスの値を反映する関数
+*/
 void BodySetWidget::UpdateRot()
 {
 	if(up_flag)
@@ -369,7 +390,7 @@ void BodySetWidget::UpdateRot()
 			}
 			else
 			{
-				MyLink *ml = EC->getBodyByName(n.c_str());
+				LinkObj *ml = EC->getBodyByName(n.c_str());
 				if(ml)
 				{
 					ml->SetRotation(roll, pitch, yaw);
@@ -380,6 +401,11 @@ void BodySetWidget::UpdateRot()
 		}
 	}
 }
+
+
+/**
+*@brief 色設定スピンボックスの値を反映する関数
+*/
 void BodySetWidget::UpdateColor()
 {
 	if(up_flag)
@@ -401,7 +427,7 @@ void BodySetWidget::UpdateColor()
 			}
 			else
 			{
-				MyLink *ml = EC->getBodyByName(n.c_str());
+				LinkObj *ml = EC->getBodyByName(n.c_str());
 				if(ml)
 				{
 					EC->setEColor(ml,red,green,blue,alpha);
@@ -412,6 +438,11 @@ void BodySetWidget::UpdateColor()
 	}
 }
 
+
+/**
+*@brief 影の表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void BodySetWidget::UpdateShadow(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -423,7 +454,7 @@ void BodySetWidget::UpdateShadow(bool visi)
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetShadows(visi);
@@ -432,6 +463,12 @@ void BodySetWidget::UpdateShadow(bool visi)
 		
 	}
 }
+
+
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void BodySetWidget::UpdateVisi(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -443,7 +480,7 @@ void BodySetWidget::UpdateVisi(bool visi)
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetVisible(visi);
@@ -452,6 +489,12 @@ void BodySetWidget::UpdateVisi(bool visi)
 		
 	}
 }
+
+
+/**
+*@brief バウンディングボックスの表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void BodySetWidget::UpdateBound(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -464,7 +507,7 @@ void BodySetWidget::UpdateBound(bool visi)
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->BoundingBoxVisible(visi);
@@ -474,6 +517,9 @@ void BodySetWidget::UpdateBound(bool visi)
 	}
 }
 
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void BodySetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -502,7 +548,7 @@ void BodySetWidget::SetSlot()
 		}
 		else
 		{
-			MyLink *ml = EC->SetQtBody(n.c_str(), fn.c_str());
+			LinkObj *ml = EC->SetQtBody(n.c_str(), fn.c_str());
 			ml->SetScale(sx, sy, sz);
 			ml->SetPosition(px, py, pz);
 			ml->SetRotation(roll, pitch, yaw);
@@ -518,18 +564,28 @@ void BodySetWidget::SetSlot()
 
 }
 
+
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void BodySetWidget::VisibleSlot()
 {
 	UpdateVisi(true);
 }
 
+
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void BodySetWidget::unVisibleSlot()
 {
 	UpdateVisi(false);
 }
 
 
-
+/**
+*@brief アニメーション設定ボタンを押したときのスロット
+*/
 void BodySetWidget::SetAnimationSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -543,7 +599,7 @@ void BodySetWidget::SetAnimationSlot()
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetAnimation(c.c_str());
@@ -554,6 +610,9 @@ void BodySetWidget::SetAnimationSlot()
 	}
 }
 
+/**
+*@brief アニメーションのリセットボタンを押したときのスロット
+*/
 void BodySetWidget::ResetAnimationSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -568,7 +627,7 @@ void BodySetWidget::ResetAnimationSlot()
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->ResetAnimation(c.c_str());
@@ -578,13 +637,16 @@ void BodySetWidget::ResetAnimationSlot()
 	}
 }
 
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void BodySetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
-		MyLink *ml = EC->getBodyByName(n.c_str());
+		LinkObj *ml = EC->getBodyByName(n.c_str());
 		if(ml)
 		{
 			EC->DestroyQtBody(ml);
@@ -595,6 +657,9 @@ void BodySetWidget::DestroySlot()
 	
 }
 
+/**
+*@brief 影の表示ボタンを押したときのスロット
+*/
 void BodySetWidget::SetShadowSlot()
 {
 
@@ -602,6 +667,9 @@ void BodySetWidget::SetShadowSlot()
 	
 }
 
+/**
+*@brief 影の非表示ボタンを押したときのスロット
+*/
 void BodySetWidget::RemoveShadowSlot()
 {
 	UpdateShadow(false);
@@ -609,60 +677,128 @@ void BodySetWidget::RemoveShadowSlot()
 	
 }
 
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void BodySetWidget::PosXSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void BodySetWidget::PosYSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void BodySetWidget::PosZSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value 拡大率(X)
+*/
 void BodySetWidget::ScaleXSlot(double value)
 {
 	UpdateScale();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value 拡大率(Y)
+*/
 void BodySetWidget::ScaleYSlot(double value)
 {
 	UpdateScale();
 
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value 拡大率(Z)
+*/
 void BodySetWidget::ScaleZSlot(double value)
 {
 	UpdateScale();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void BodySetWidget::RollSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void BodySetWidget::PitchSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void BodySetWidget::YawSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 色設定スピンボックスの値(赤)を変更したときのスロット
+* @param value 輝度(赤)
+*/
 void BodySetWidget::RedSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 色設定スピンボックスの値(緑)を変更したときのスロット
+* @param value 輝度(緑)
+*/
 void BodySetWidget::GreenSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 色設定スピンボックスの値(青)を変更したときのスロット
+* @param value 輝度(青)
+*/
 void BodySetWidget::BlueSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 透明度設定スピンボックスの値を変更したときのスロット
+* @param value 透明度
+*/
 void BodySetWidget::AlphaSlot(double value)
 {
 	UpdateColor();
 }
 
+/**
+*@brief アニメーション時間変更スピンボックスの値を変更したときのスロット
+* @param value 時間
+*/
 void BodySetWidget::AnimationSlot(double value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -676,7 +812,7 @@ void BodySetWidget::AnimationSlot(double value)
 		}
 		else
 		{
-			MyLink *ml = EC->getBodyByName(n.c_str());
+			LinkObj *ml = EC->getBodyByName(n.c_str());
 			if(ml)
 			{
 				if(ml->mAnimationState)
@@ -691,22 +827,33 @@ void BodySetWidget::AnimationSlot(double value)
 	}
 }
 
+/**
+*@brief バウンディングボックスの表示ボタンを押したときのスロット
+*/
 void BodySetWidget::SetBoundingBoxSlot()
 {
 	UpdateBound(true);
 }
 
+/**
+*@brief バウンディングボックスの非表示ボタンを押したときのスロット
+*/
 void BodySetWidget::RemoveBoundingBoxSlot()
 {
 	UpdateBound(false);
 }
 
+
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void BodySetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyLink *ml = EC->getBodyByName(n.c_str());
+		LinkObj *ml = EC->getBodyByName(n.c_str());
 		if(ml)
 		{
 			up_flag = false;
@@ -746,6 +893,9 @@ void BodySetWidget::NameSlot(int value)
 }
 
 
+/**
+*@brief 3Dモデルの設定をウィジェットに反映させるときのスロット
+*/
 void BodySetWidget::UpdateList()
 {
 	if(EC)
@@ -760,13 +910,19 @@ void BodySetWidget::UpdateList()
 	}
 }
 
+/**
+*@brief マウスが動いた時のスロット
+* @param evt マウスイベント
+* @param dx 移動量(X)
+* @param dy 移動量(Y)
+*/
 void BodySetWidget::mouseMoveSlot(QMouseEvent*  evt, int dx, int dy)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
 		
-		MyLink *ml = EC->getBodyByName(n.c_str());
+		LinkObj *ml = EC->getBodyByName(n.c_str());
 		if(ml)
 		{
 			if(ml->mNode->bound_visi)
@@ -805,12 +961,17 @@ void BodySetWidget::mouseMoveSlot(QMouseEvent*  evt, int dx, int dy)
 	}
 }
 
+
+/**
+*@brief マウスのボタンを押したときのスロット
+* @param evt マウスイベント
+*/
 void BodySetWidget::mousePressSlot(QMouseEvent*  evt)
 {
 	if(EC)
 	{
 	
-		MyLink *ml = EC->GetQueryScene(evt->pos().x(), evt->pos().y());
+		LinkObj *ml = EC->GetQueryScene(evt->pos().x(), evt->pos().y());
 		if(ml)
 		{
 			ml->BoundingBoxVisible(true);
@@ -825,14 +986,18 @@ void BodySetWidget::mousePressSlot(QMouseEvent*  evt)
 		}
 		else
 		{
-			for(int i=0;i < EC->MyLinks.size();i++)
+			for(int i=0;i < EC->LinkObjs.size();i++)
 			{
-				EC->MyLinks[i]->BoundingBoxVisible(false);
+				EC->LinkObjs[i]->BoundingBoxVisible(false);
 			}
 		}
 	}
 }
 
+/**
+*@brief マウスのボタンを離したときのスロット
+* @param evt マウスイベント
+*/
 void BodySetWidget::mouseReleaseSlot(QMouseEvent*  evt)
 {
 	if(EC)
@@ -842,19 +1007,24 @@ void BodySetWidget::mouseReleaseSlot(QMouseEvent*  evt)
 		up_flag = true;
 	}
 }
-
+/*
 void BodySetWidget::MaterialSlot()
 {
 	
 
-}
+}*/
+
+
+/**
+*@brief マテリアル設定ボタンを押したときのスロット
+*/
 void BodySetWidget::SetMaterialSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	std::string en = (const char*)MaterialEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyLink *ml = EC->getBodyByName(n.c_str());
+		LinkObj *ml = EC->getBodyByName(n.c_str());
 		if(ml)
 		{
 			ml->SetMaterial(en.c_str());

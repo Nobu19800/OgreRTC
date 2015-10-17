@@ -1,16 +1,25 @@
-﻿#include "LightSet.h"
+﻿/*!
+ * @file  LightSet.cpp
+ * @brief 光源の設定用ウインドウ
+ *
+ */
+
+#include "LightSet.h"
 
 
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
 
-#include "MyLight.h"
+#include "LightObj.h"
 
 
 
-
+/**
+*@brief 光源の作成、設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 LightSetWidget::LightSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -81,13 +90,19 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief 光源の作成、設定用ウィジェットのデストラクタ
+*/
 LightSetWidget::~LightSetWidget(void)
 {
 
 }
 
+
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void LightSetWidget::UpdatePos()
 {
 	if(up_flag)
@@ -106,7 +121,7 @@ void LightSetWidget::UpdatePos()
 			}
 			else
 			{
-				MyLight *ml = EC->getLightByName(n.c_str());
+				LightObj *ml = EC->getLightByName(n.c_str());
 				if(ml)
 				{
 					ml->SetPosition(px, py, pz);
@@ -116,6 +131,10 @@ void LightSetWidget::UpdatePos()
 		}
 	}
 }
+
+/**
+*@brief 色設定スピンボックスの値を反映する関数
+*/
 void LightSetWidget::UpdateColor()
 {
 	if(up_flag)
@@ -134,7 +153,7 @@ void LightSetWidget::UpdateColor()
 			}
 			else
 			{
-				MyLight *ml = EC->getLightByName(n.c_str());
+				LightObj *ml = EC->getLightByName(n.c_str());
 				if(ml)
 				{
 					ml->setColor(red, green, blue);
@@ -144,6 +163,11 @@ void LightSetWidget::UpdateColor()
 		}
 	}
 }
+
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void LightSetWidget::UpdateVisi(bool visi)
 {
 	if(up_flag)
@@ -159,7 +183,7 @@ void LightSetWidget::UpdateVisi(bool visi)
 			}
 			else
 			{
-				MyLight *ml = EC->getLightByName(n.c_str());
+				LightObj *ml = EC->getLightByName(n.c_str());
 				if(ml)
 				{
 					ml->SetVisible(visi);
@@ -170,6 +194,10 @@ void LightSetWidget::UpdateVisi(bool visi)
 	}
 }
 
+
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void LightSetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -195,7 +223,7 @@ void LightSetWidget::SetSlot()
 		else
 		{
 			
-			MyLight *ml = EC->CreateQtLight(n.c_str());
+			LightObj *ml = EC->CreateQtLight(n.c_str());
 			ml->SetPosition(px, py, pz);
 			ml->setColor(red, green, blue);
 			
@@ -209,12 +237,17 @@ void LightSetWidget::SetSlot()
 		}
 	}
 }
+
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void LightSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyLight *ml = EC->getLightByName(n.c_str());
+		LightObj *ml = EC->getLightByName(n.c_str());
 		if(ml)
 		{
 			up_flag = false;
@@ -236,41 +269,80 @@ void LightSetWidget::NameSlot(int value)
 		
 	}
 }
+
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void LightSetWidget::PosXSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void LightSetWidget::PosYSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void LightSetWidget::PosZSlot(double value)
 {
 	UpdatePos();
 }
 
+/**
+*@brief 色設定スピンボックスの値(赤)を変更したときのスロット
+* @param value 輝度(赤)
+*/
 void LightSetWidget::RedSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 色設定スピンボックスの値(緑)を変更したときのスロット
+* @param value 輝度(緑)
+*/
 void LightSetWidget::GreenSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 色設定スピンボックスの値(青)を変更したときのスロット
+* @param value 輝度(青)
+*/
 void LightSetWidget::BlueSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void LightSetWidget::VisibleSlot()
 {
 	UpdateVisi(true);
 }
+
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void LightSetWidget::unVisibleSlot()
 {
 	UpdateVisi(false);
 }
 
-
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void LightSetWidget::DestroySlot()
 {
 	
@@ -287,7 +359,7 @@ void LightSetWidget::DestroySlot()
 			}
 			else
 			{
-				MyLight *ml = EC->getLightByName(n.c_str());
+				LightObj *ml = EC->getLightByName(n.c_str());
 				if(ml)
 				{
 					EC->DestroyQtLight(ml);
@@ -300,6 +372,10 @@ void LightSetWidget::DestroySlot()
 	}
 }
 
+
+/**
+*@brief 光源の設定をウィジェットに反映させるときのスロット
+*/
 void LightSetWidget::UpdateList()
 {
 	if(EC)

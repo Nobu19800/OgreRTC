@@ -1,13 +1,23 @@
-﻿#include "GUISet.h"
+﻿/*!
+ * @file  GUISet.cpp
+ * @brief GUIの設定用ウインドウ
+ *
+ */
+
+#include "GUISet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
-#include "MyGUI.h"
+#include "GUIObj.h"
 
 
+/**
+*@brief GUI設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 GUISetWidget::GUISetWidget(QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -154,13 +164,18 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	setLayout(layout);
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief GUI設定用ウィジェットのデストラクタ
+*/
 GUISetWidget::~GUISetWidget(void)
 {
 
 }
 
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void GUISetWidget::UpdatePos()
 {
 	if(up_flag)
@@ -178,7 +193,7 @@ void GUISetWidget::UpdatePos()
 			}
 			else
 			{
-				MyGUI *mg = EC->getGUIByName(n.c_str());
+				GUIObj *mg = EC->getGUIByName(n.c_str());
 				if(mg)
 				{
 					mg->SetPosition(px, py);
@@ -189,6 +204,10 @@ void GUISetWidget::UpdatePos()
 	}
 }
 
+
+/**
+*@brief 姿勢設定スピンボックスの値を反映する関数
+*/
 void GUISetWidget::UpdateRot()
 {
 	if(up_flag)
@@ -207,7 +226,7 @@ void GUISetWidget::UpdateRot()
 			}
 			else
 			{
-				MyGUI *mg = EC->getGUIByName(n.c_str());
+				GUIObj *mg = EC->getGUIByName(n.c_str());
 				if(mg)
 				{
 					mg->SetRotatin(roll, pitch, yaw);
@@ -218,6 +237,9 @@ void GUISetWidget::UpdateRot()
 	}
 }
 
+/**
+*@brief 大きさ設定スピンボックスの値を反映する関数
+*/
 void GUISetWidget::UpdateSize()
 {
 	if(up_flag)
@@ -235,7 +257,7 @@ void GUISetWidget::UpdateSize()
 			}
 			else
 			{
-				MyGUI *mg = EC->getGUIByName(n.c_str());
+				GUIObj *mg = EC->getGUIByName(n.c_str());
 				if(mg)
 				{
 					mg->SetSize(sx, sy);
@@ -246,6 +268,10 @@ void GUISetWidget::UpdateSize()
 	}
 }
 
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void GUISetWidget::UpdateVisi(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -259,7 +285,7 @@ void GUISetWidget::UpdateVisi(bool visi)
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				mg->SetVisible(visi);
@@ -270,7 +296,10 @@ void GUISetWidget::UpdateVisi(bool visi)
 }
 
 
-
+/**
+*@brief フレームの表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void GUISetWidget::UpdateFrame(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -284,7 +313,7 @@ void GUISetWidget::UpdateFrame(bool visi)
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				mg->SetFrameEnable(visi);
@@ -294,6 +323,11 @@ void GUISetWidget::UpdateFrame(bool visi)
 	}
 }
 
+
+/**
+*@brief 背景の表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void GUISetWidget::UpdateBackGround(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -307,7 +341,7 @@ void GUISetWidget::UpdateBackGround(bool visi)
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				mg->SetBackGroundEnable(visi);
@@ -317,6 +351,9 @@ void GUISetWidget::UpdateBackGround(bool visi)
 	}
 }
 
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void GUISetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -329,7 +366,7 @@ void GUISetWidget::SetSlot()
 
 	float a = AlphaspinBox->value();
 	
-	MyGUI *mg;
+	GUIObj *mg;
 	if(n == "")
 	{
 		return;
@@ -481,38 +518,78 @@ void GUISetWidget::SetSlot()
 	
 	
 }
+
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void GUISetWidget::PosXSlot(double value)
 {
 	UpdatePos();
 	
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void GUISetWidget::PosYSlot(double value)
 {
 	UpdatePos();
 	
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void GUISetWidget::RollSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void GUISetWidget::PitchSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void GUISetWidget::YawSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 大きさ設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value サイズ(X)
+*/
 void GUISetWidget::ScaleXSlot(double value)
 {
 	UpdateSize();
 	
 }
+
+/**
+*@brief 大きさ設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value サイズ(Y)
+*/
 void GUISetWidget::ScaleYSlot(double value)
 {
 	UpdateSize();
 	
 }
+
+/**
+*@brief 透明度設定スピンボックスの値を変更したときのスロット
+* @param value 透明度
+*/
 void GUISetWidget::AlphaSlot(double value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -527,7 +604,7 @@ void GUISetWidget::AlphaSlot(double value)
 		}
 		else
 		{
-			MyGUI *mg = EC->getGUIByName(n.c_str());
+			GUIObj *mg = EC->getGUIByName(n.c_str());
 			if(mg)
 			{
 				mg->SetAlpha(a);
@@ -536,38 +613,65 @@ void GUISetWidget::AlphaSlot(double value)
 
 	}
 }
+
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void GUISetWidget::VisibleSlot()
 {
 	UpdateVisi(true);
 }
+
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void GUISetWidget::unVisibleSlot()
 {
 	UpdateVisi(false);
 }
+
+/**
+*@brief フレームの表示設定ボタンを押したときのスロット
+*/
 void GUISetWidget::FrameSlot()
 {
 	UpdateFrame(true);
 }
+
+/**
+*@brief フレームの非表示設定ボタンを押したときのスロット
+*/
 void GUISetWidget::unFrameSlot()
 {
 	UpdateFrame(false);
 }
+
+/**
+*@brief 背景の表示設定ボタンを押したときのスロット
+*/
 void GUISetWidget::BackGroundSlot()
 {
 	UpdateBackGround(true);
 }
+
+/**
+*@brief 背景の非表示設定ボタンを押したときのスロット
+*/
 void GUISetWidget::unBackGroundSlot()
 {
 	UpdateBackGround(true);
 }
 
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void GUISetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
-		MyGUI *mg = EC->getGUIByName(n.c_str());
+		GUIObj *mg = EC->getGUIByName(n.c_str());
 		if(mg)
 		{
 			EC->DestroyQtGui(mg);
@@ -577,12 +681,17 @@ void GUISetWidget::DestroySlot()
 	}
 }
 
+
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void GUISetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyGUI *mg = EC->getGUIByName(n.c_str());
+		GUIObj *mg = EC->getGUIByName(n.c_str());
 		if(mg)
 		{
 			up_flag = false;
@@ -602,6 +711,10 @@ void GUISetWidget::NameSlot(int value)
 	}
 }
 
+
+/**
+*@brief GUIの設定をウィジェットに反映させるときのスロット
+*/
 void GUISetWidget::UpdateList()
 {
 	if(EC)
@@ -617,16 +730,20 @@ void GUISetWidget::UpdateList()
 	}
 }
 
+
+/**
+*@brief ウィンドウ設定ボタンを押したときのスロット
+*/
 void GUISetWidget::WindowSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	std::string wn = (const char*)WindowBox->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyGUI *mg = EC->getGUIByName(n.c_str());
+		GUIObj *mg = EC->getGUIByName(n.c_str());
 		if(mg)
 		{
-			MyGUI *wmg = EC->getGUIByName(wn.c_str());
+			GUIObj *wmg = EC->getGUIByName(wn.c_str());
 			if(wmg)
 			{
 				if(mg != wmg)

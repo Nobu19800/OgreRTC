@@ -1,16 +1,25 @@
-﻿#include "AnimationSet.h"
+﻿/*!
+ * @file  AnimationSet.cpp
+ * @brief アニメーション設定ウインドウ
+ *
+ */
+
+#include "AnimationSet.h"
 
 
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
 
 
-#include "MyAnimation.h"
+#include "AnimationObj.h"
 
 
-
+/**
+*@brief アニメーション設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 AnimationSetWidget::AnimationSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags (Qt::MSWindowsOwnDC))
 {
@@ -103,13 +112,17 @@ QWidget(parent,Qt::WindowFlags (Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief アニメーション設定用ウィジェットのデストラクタ
+*/
 AnimationSetWidget::~AnimationSetWidget(void)
 {
 
 }
 
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void AnimationSetWidget::UpdatePos()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -122,7 +135,7 @@ void AnimationSetWidget::UpdatePos()
 	{
 		if(EC)
 		{
-			MyAnimation *man = EC->getAnimationByName(n.c_str());
+			AnimationObj *man = EC->getAnimationByName(n.c_str());
 			if(man)
 			{
 				
@@ -143,6 +156,11 @@ void AnimationSetWidget::UpdatePos()
 		}
 	}
 }
+
+
+/**
+*@brief 姿勢設定スピンボックスの値を反映する関数
+*/
 void AnimationSetWidget::UpdateRot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -155,7 +173,7 @@ void AnimationSetWidget::UpdateRot()
 	{
 		if(EC)
 		{
-			MyAnimation *man = EC->getAnimationByName(n.c_str());
+			AnimationObj *man = EC->getAnimationByName(n.c_str());
 			if(man)
 			{
 				
@@ -177,6 +195,10 @@ void AnimationSetWidget::UpdateRot()
 	}
 }
 
+
+/**
+*@brief アニメーションの設定をウィジェットに反映させるときのスロット
+*/
 void AnimationSetWidget::UpdateList()
 {
 	if(EC)
@@ -192,6 +214,9 @@ void AnimationSetWidget::UpdateList()
 }
 
 
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void AnimationSetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -209,7 +234,7 @@ void AnimationSetWidget::SetSlot()
 		}
 		else
 		{
-			MyAnimation *man = EC->CreateQtAnimation(n.c_str(), TimespinBox->value());
+			AnimationObj *man = EC->CreateQtAnimation(n.c_str(), TimespinBox->value());
 			
 			
 
@@ -225,12 +250,17 @@ void AnimationSetWidget::SetSlot()
 	
 }
 
+
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+*@param value 番号
+*/
 void AnimationSetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			up_flag = false;
@@ -266,6 +296,10 @@ void AnimationSetWidget::NameSlot(int value)
 	}
 }
 
+
+/**
+*@brief キーの位置設定ボタンが押されたときのスロット
+*/
 void AnimationSetWidget::TransSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -278,7 +312,7 @@ void AnimationSetWidget::TransSlot()
 	{
 		if(EC)
 		{
-			MyAnimation *man = EC->getAnimationByName(n.c_str());
+			AnimationObj *man = EC->getAnimationByName(n.c_str());
 			if(man)
 			{
 				
@@ -297,6 +331,9 @@ void AnimationSetWidget::TransSlot()
 	}
 }
 
+/**
+*@brief キーの姿勢設定ボタンが押されたときのスロット
+*/
 void AnimationSetWidget::RotSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -309,7 +346,7 @@ void AnimationSetWidget::RotSlot()
 	{
 		if(EC)
 		{
-			MyAnimation *man = EC->getAnimationByName(n.c_str());
+			AnimationObj *man = EC->getAnimationByName(n.c_str());
 			if(man)
 			{
 				
@@ -327,18 +364,26 @@ void AnimationSetWidget::RotSlot()
 	}
 }
 
+
+/**
+*@brief リセットボタンを押したときのスロット
+*/
 void AnimationSetWidget::ResetSlot()
 {
 
 }
 
+
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void AnimationSetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			EC->DestroyQtAnimation(man);
@@ -349,32 +394,64 @@ void AnimationSetWidget::DestroySlot()
 	}
 }
 
-
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+*@param value 位置(X)
+*/
 void AnimationSetWidget::PosXSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+*@param value 位置(Y)
+*/
 void AnimationSetWidget::PosYSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+*@param value 位置(Z)
+*/
 void AnimationSetWidget::PosZSlot(double value)
 {
 	UpdatePos();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+*@param value 角度(ロール)
+*/
 void AnimationSetWidget::RollSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+*@param value 角度(ピッチ)
+*/
 void AnimationSetWidget::PitchSlot(double value)
 {
 	UpdateRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+*@param value 角度(ヨー)
+*/
 void AnimationSetWidget::YawSlot(double value)
 {
 	UpdateRot();
 }
 
+
+/**
+*@brief キー番号追加ボタンを押したときのスロット
+*/
 void AnimationSetWidget::KeySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -382,7 +459,7 @@ void AnimationSetWidget::KeySlot()
 
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			man->AddKeyFrame(t);
@@ -394,13 +471,18 @@ void AnimationSetWidget::KeySlot()
 		
 	}
 }
+
+/**
+*@brief キー番号コンボボックスの番号が変わったときのスロット
+*@param value 番号
+*/
 void AnimationSetWidget::KeyNumSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			up_flag = false;
@@ -429,13 +511,17 @@ void AnimationSetWidget::KeyNumSlot(int value)
 		
 	}
 }
+
+/**
+*@brief キー番号削除ボタンを押したときのスロット
+*/
 void AnimationSetWidget::RemoveKeySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	int kn = KeyNumspinBox->value();
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			if(kn < man->animList.size())
@@ -450,13 +536,19 @@ void AnimationSetWidget::RemoveKeySlot()
 		
 	}
 }
+
+
+/**
+*@brief アニメーションの時間変更スピンボックスの値が変化したときのスロット
+*@param value 時間
+*/
 void AnimationSetWidget::StateSlot(double value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	float st = StatespinBox->value();
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			man->SetAnimationState(st);
@@ -466,6 +558,11 @@ void AnimationSetWidget::StateSlot(double value)
 	}
 }
 
+
+/**
+*@brief アニメーションの終了時間設定スピンボックスの値が変化したときのスロット
+*@param value 時間
+*/
 void AnimationSetWidget::TimeSlot(double value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -473,7 +570,7 @@ void AnimationSetWidget::TimeSlot(double value)
 	
 	if(EC)
 	{
-		MyAnimation *man = EC->getAnimationByName(n.c_str());
+		AnimationObj *man = EC->getAnimationByName(n.c_str());
 		if(man)
 		{
 			man->SetLength(t);

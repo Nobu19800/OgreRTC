@@ -1,10 +1,7 @@
 ﻿// -*- C++ -*-
 /*!
- * @file Test1Comp.cpp
- * @brief Standalone component
- * @date $Date$
- *
- * $Id$
+ * @file RTCmain.cpp
+ * @brief メイン関数
  */
 
 
@@ -19,19 +16,36 @@
 
 
 
-
+/**
+*@brief メイン関数
+* @param argc コマンドライン引数の数
+* @param argv コマンドライン引数
+*/
 int main (int argc, char** argv)
 {
-  
+  Q_INIT_RESOURCE(OgreRTC);
   int _argc = 1;
   QApplication app(_argc, argv);
+
+
+  QPixmap pxmSplash(":/images/splashscreen.png");
+  QSplashScreen wndSplash(pxmSplash);
+  wndSplash.setMask(pxmSplash.mask());
+  wndSplash.show();
+
+  
+  
+  app.processEvents();
+
+
   MainWindow mainWindow(argc, argv);
   mainWindow.show();
+
+  wndSplash.finish(&mainWindow);
+
   app.exec();
 
 
-  // If you want to run the manager in non-blocking mode, do like this
-  // manager->runManager(true);
 
   return 0;
 }

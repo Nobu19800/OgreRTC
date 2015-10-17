@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 
-set(ODE_PATH C:/ode-0.13)
-set(CEGUI_PATH C:/cegui-0.8.4)
-set(srcs AnimationSet.cpp BaseApplication.cpp BodySet.cpp BornSet.cpp CameraSet.cpp DisplayImage.cpp GUISet.cpp GUITextSet.cpp ImageSet.cpp LightSet.cpp mainwindow.cpp MyAnimation.cpp MyArray.cpp MyFileStream.cpp MyGUI.cpp MyImageSet.cpp MyLight.cpp MyLink.cpp MyNode.cpp MyODEBody.cpp MyODEJoint.cpp MyOgreMacro.cpp MyParticle.cpp MyPythonBoost.cpp MyQtMacro.cpp MySimulation.cpp NodeSet.cpp OgreRTCApplication.cpp OgreWidget.cpp OtherSet.cpp ParticleSet.cpp RTCmain.cpp SimBodySet.cpp SimJointSet.cpp SimulationSet.cpp SubWindow.cpp SubWindowSet.cpp UnicodeF.cpp )
+set(thirdparty thirdparty)
+
+
+set(ODE_PATH C:/OgreCEGUILIB/ode-0.12)
+set(CEGUI_PATH C:/OgreCEGUILIB/cegui-0.8.4)
+set(srcs AnimationSet.cpp ${thirdparty}/BaseApplication.cpp BodySet.cpp BornSet.cpp CameraSet.cpp DisplayImage.cpp ${thirdparty}/CEGUIFunc.cpp GUISet.cpp GUITextSet.cpp ImageSet.cpp LightSet.cpp mainwindow.cpp AnimationObj.cpp FileStreamFunc.cpp GUIObj.cpp ImageSetObj.cpp LightObj.cpp LinkObj.cpp NodeObj.cpp ODEBodyObj.cpp ODEJointObj.cpp OgreMacro.cpp ParticleObj.cpp PythonBoostObj.cpp QtMacro.cpp SimulationObj.cpp NodeSet.cpp OgreRTCApplication.cpp OgreWidget.cpp OtherSet.cpp ParticleSet.cpp RTCmain.cpp SimBodySet.cpp SimJointSet.cpp SimulationSet.cpp SubWindow.cpp SubWindowSet.cpp ${thirdparty}/UnicodeF.cpp )
 
 
 
@@ -12,7 +15,10 @@ project(OgreRTC)
 set(CMAKE_AUTOMOC ON)
 
 
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/Orge/OgreSDK_vc10_v1-9-0/CMake" )
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/OgreCEGUILIB/OgreSDK_vc10_v1-9-0/CMake" )
+
+
+include_directories(${thirdparty})
 
 
 find_package(PythonLibs REQUIRED)
@@ -20,6 +26,8 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 
 find_package(OGRE REQUIRED)
 include_directories(${OGRE_INCLUDE_DIRS})
+
+
 
 
 find_package(Qt5Widgets REQUIRED)

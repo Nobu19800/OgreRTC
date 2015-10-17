@@ -1,12 +1,21 @@
-﻿#include "CameraSet.h"
+﻿/*!
+ * @file  CameraSet.cpp
+ * @brief カメラの設定用ウインドウ
+ *
+ */
+
+#include "CameraSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
 
-
+/**
+*@brief カメラ設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 CameraSetWidget::CameraSetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -94,14 +103,17 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	setLayout(layout);
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief カメラ設定用ウィジェットのデストラクタ
+*/
 CameraSetWidget::~CameraSetWidget(void)
 {
 
 }
 
-
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void CameraSetWidget::UpdatePos()
 {
 	if(up_flag)
@@ -119,6 +131,9 @@ void CameraSetWidget::UpdatePos()
 	}
 }
 
+/**
+*@brief 位置、姿勢、距離設定スピンボックスの値を反映する関数
+*/
 void CameraSetWidget::UpdatePQ()
 {
 	if(up_flag)
@@ -147,6 +162,10 @@ void CameraSetWidget::UpdatePQ()
 
 }
 
+
+/**
+*@brief 姿勢設定スピンボックスの値を反映する関数
+*/
 void CameraSetWidget::UpdateRot()
 {
 	if(up_flag)
@@ -165,6 +184,9 @@ void CameraSetWidget::UpdateRot()
 	}
 }
 
+/**
+*@brief 影の色設定スピンボックスの値を反映する関数
+*/
 void CameraSetWidget::UpdateColor()
 {
 	if(up_flag)
@@ -182,7 +204,9 @@ void CameraSetWidget::UpdateColor()
 	}
 }
 
-
+/**
+*@brief 光源の位置設定スピンボックスの値を反映する関数
+*/
 void CameraSetWidget::UpdateLightPos()
 {
 	if(up_flag)
@@ -200,64 +224,127 @@ void CameraSetWidget::UpdateLightPos()
 	}
 }
 
+/**
+*@brief 光源の位置設定スピンボックスの値(X)を変更したときのスロット
+* @param value 位置(X)
+*/
 void CameraSetWidget::LightXSlot(double value)
 {
 	UpdateLightPos();
 }
+
+/**
+*@brief 光源の位置設定スピンボックスの値(Y)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void CameraSetWidget::LightYSlot(double value)
 {
 	UpdateLightPos();
 }
+
+/**
+*@brief 光源の位置設定スピンボックスの値(Z)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void CameraSetWidget::LightZSlot(double value)
 {
 	UpdateLightPos();
 }
 
+/**
+*@brief 影の色設定スピンボックスの値(赤)を変更したときのスロット
+* @param value 輝度(赤)
+*/
 void CameraSetWidget::ShadowRSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 影の色設定スピンボックスの値(緑)を変更したときのスロット
+* @param value 輝度(緑)
+*/
 void CameraSetWidget::ShadowGSlot(double value)
 {
 	UpdateColor();
 }
+
+/**
+*@brief 影の色設定スピンボックスの値(青)を変更したときのスロット
+* @param value 輝度(青)
+*/
 void CameraSetWidget::ShadowBSlot(double value)
 {
 	UpdateColor();
 }
 
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void CameraSetWidget::PosXSlot(double value)
 {
 	UpdatePQ();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void CameraSetWidget::PosYSlot(double value)
 {
 	UpdatePQ();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void CameraSetWidget::PosZSlot(double value)
 {
 	UpdatePQ();
 }
 
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void CameraSetWidget::RollSlot(double value)
 {
 	UpdatePQ();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void CameraSetWidget::PitchSlot(double value)
 {
 	UpdatePQ();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void CameraSetWidget::YawSlot(double value)
 {
 	UpdatePQ();
 }
 
+/**
+*@brief 距離設定スピンボックスの値を変更したときのスロット
+* @param value 距離
+*/
 void CameraSetWidget::LenSlot(double value)
 {
 	UpdatePQ();
 }
 
 
+/**
+*@brief カメラ設定をウィジェットに反映させるときのスロット
+*/
 void CameraSetWidget::UpdateList()
 {
 	if(EC)
@@ -285,6 +372,12 @@ void CameraSetWidget::UpdateList()
 	}
 }
 
+/**
+*@brief マウスが動いた時のスロット
+* @param evt マウスイベント
+* @param dx 移動量(X)
+* @param dy 移動量(Y)
+*/
 void CameraSetWidget::mouseMoveSlot(QMouseEvent*  evt, int dx, int dy)
 {
 	if(EC)
@@ -332,6 +425,10 @@ void CameraSetWidget::mouseMoveSlot(QMouseEvent*  evt, int dx, int dy)
 	}
 }
 
+/**
+*@brief マウスのボタンを押したときのスロット
+* @param evt マウスイベント
+*/
 void CameraSetWidget::mousePressSlot(QMouseEvent*  evt)
 {
 	if(EC)
@@ -342,6 +439,10 @@ void CameraSetWidget::mousePressSlot(QMouseEvent*  evt)
 	}
 }
 
+/**
+*@brief マウスのボタンを離したときのスロット
+* @param evt マウスイベント
+*/
 void CameraSetWidget::mouseReleaseSlot(QMouseEvent*  evt)
 {
 	if(EC)

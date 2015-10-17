@@ -1,11 +1,20 @@
-﻿#include "OtherSet.h"
+﻿/*!
+ * @file  OtherSet.cpp
+ * @brief その他各種設定用ウインドウ
+ *
+ */
+
+#include "OtherSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
-
+/**
+*@brief 背景、地面、FPS設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 OtherSetWidget::OtherSetWidget(QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -105,15 +114,18 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief 背景、地面、FPS設定用ウィジェットのデストラクタ
+*/
 OtherSetWidget::~OtherSetWidget(void)
 {
 
 }
 
 
-
+/**
+*@brief スカイボックス設定ボタンを押したときのスロット
+*/
 void OtherSetWidget::SkyBoxSetSlot()
 {
 	if(EC)
@@ -124,10 +136,19 @@ void OtherSetWidget::SkyBoxSetSlot()
 		EC->SetQtSkyBox(fn.c_str(), s);
 	}
 }
+
+/**
+*@brief スカイボックスのサイズ変更ボタンを押したときのスロット
+* @param value サイズ
+*/
 void OtherSetWidget::SkyBoxSizeSlot(int value)
 {
 	
 }
+
+/**
+*@brief スカイボックス削除ボタンを押したときのスロット
+*/
 void OtherSetWidget::DelSkyBoxSetSlot()
 {
 	/*if(EC)
@@ -135,6 +156,10 @@ void OtherSetWidget::DelSkyBoxSetSlot()
 		EC->RemoveSkyBox();
 	}*/
 }
+
+/**
+*@brief 地面作成ボタンを押したときのスロット
+*/
 void OtherSetWidget::FloorSetSlot()
 {
 	
@@ -167,11 +192,20 @@ void OtherSetWidget::FloorSetSlot()
 	
 }
 
+/**
+*@brief 地面のサイズ変更ボタンを押したときのスロット
+* @param value サイズ
+*/
 void OtherSetWidget::FloorSizeSlot(int value)
 {
 	
 	
 }
+
+/**
+*@brief 地面の法線方向変更ボタンを押したときのスロット
+* @param value 0でX軸、1でY軸、2でZ軸
+*/
 void OtherSetWidget::FloorDirSlot(int value)
 {
 	if(value == 0)
@@ -189,6 +223,9 @@ void OtherSetWidget::FloorDirSlot(int value)
 	
 }
 
+/**
+*@brief 地面削除ボタンを押したときのスロット
+*/
 void OtherSetWidget::DelFloorSetSlot()
 {
 	if(EC)
@@ -198,6 +235,10 @@ void OtherSetWidget::DelFloorSetSlot()
 	
 }
 
+
+/**
+*@brief 背景、地面の設定をウィジェットに反映させるときのスロット
+*/
 void OtherSetWidget::UpdateList()
 {
 	if(EC)
@@ -215,6 +256,11 @@ void OtherSetWidget::UpdateList()
 	}
 }
 
+
+/**
+*@brief FPSスピンボックスの値を変更したときのスロット
+* @param value FPS
+*/
 void OtherSetWidget::TimeSlot(int value)
 {
 	if(EC)

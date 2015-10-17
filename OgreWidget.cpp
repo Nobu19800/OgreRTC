@@ -1,4 +1,10 @@
-﻿#include "mainwindow.h"
+﻿/*!
+ * @file  OgreWidget.cpp
+ * @brief Ogre3Dのレンダリング表示ウィンドウ
+ *
+ */
+
+#include "mainwindow.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
@@ -7,6 +13,11 @@
 #include <QX11Info>
 #endif
 
+
+/**
+*@brief Ogre3Dのレンダリングの表示のウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 OgreWidget::OgreWidget(QWidget *parent) :
 #ifdef Q_OS_WIN
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
@@ -38,14 +49,19 @@ QWidget(parent)
 
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief Ogre3Dのレンダリングの表示のウィジェットのデストラクタ
+*/
 OgreWidget::~OgreWidget(void)
 {
 
 }
 
 
+/**
+*@brief レンダリング初期化
+*/
 void OgreWidget::initOgre()
 {
 	
@@ -81,7 +97,11 @@ void OgreWidget::initOgre()
 	startTimer(1);
 }
 
-void OgreWidget::paintEvent (QPaintEvent *event)
+/**
+*@brief 描画時に呼び出される関数
+* @param evt ペイントイベント
+*/
+void OgreWidget::paintEvent (QPaintEvent *evt)
 {
 	if (mOgreRTCApplication)
 	{
@@ -92,15 +112,22 @@ void OgreWidget::paintEvent (QPaintEvent *event)
 }
 
 
-void OgreWidget::timerEvent (QTimerEvent *event)
+/**
+*@brief 周期的に呼び出される関数
+* @param evt タイマーイベント
+*/
+void OgreWidget::timerEvent (QTimerEvent *evt)
 {
 	//mOgreApp->update();
 	//mOgreRTCApplication->update(100);
 	update();
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief マウスが動いたときに呼び出される関数
+* @param evt マウスイベント
+*/
 void  OgreWidget::mouseMoveEvent(QMouseEvent*  evt)
 {
 	if (mOgreRTCApplication)
@@ -126,7 +153,10 @@ void  OgreWidget::mouseMoveEvent(QMouseEvent*  evt)
 
 }
 
-
+/**
+*@brief マウスのボタンを押したときに呼び出される関数
+* @param evt マウスイベント
+*/
 void  OgreWidget::mousePressEvent(QMouseEvent*  evt)
 {
 	if (mOgreRTCApplication)
@@ -139,7 +169,10 @@ void  OgreWidget::mousePressEvent(QMouseEvent*  evt)
 	
 }
 
-
+/**
+*@brief マウスのボタンを離したときに呼び出される関数
+* @param evt マウスイベント
+*/
 void  OgreWidget::mouseReleaseEvent(QMouseEvent*  evt)
 {
 	if (mOgreRTCApplication)
@@ -152,36 +185,49 @@ void  OgreWidget::mouseReleaseEvent(QMouseEvent*  evt)
 	
 }
 
-void  OgreWidget::keyPressEvent(QKeyEvent*  e)
+/**
+*@brief キーを押した時に呼び出される関数
+* @param evt キーイベント
+*/
+void  OgreWidget::keyPressEvent(QKeyEvent*  evt)
 {
 	if (mOgreRTCApplication)
 	{
 		//std::cout << "key = " << e->key() << std::endl;
 		
-		mOgreRTCApplication->keyPressed(e);
+		mOgreRTCApplication->keyPressed(evt);
 		
 		//QWidget::keyPressEvent(e);
 	}
 }
 
-void  OgreWidget::keyReleaseEvent(QKeyEvent* e)
+
+/**
+*@brief キーを離した時に呼び出される関数
+* @param evt キーイベント
+*/
+void  OgreWidget::keyReleaseEvent(QKeyEvent* evt)
 {
 	if (mOgreRTCApplication)
 	{
 		//std::cout << "key = " << e->key() << std::endl;
 
-		mOgreRTCApplication->keyReleased(e);
+		mOgreRTCApplication->keyReleased(evt);
 
 		//QWidget::keyReleaseEvent(e);
 	}
 }
 
-void OgreWidget::inputMethodEvent(QInputMethodEvent *e)
+/**
+*@brief テキストを入力した場合等に呼び出される関数
+* @param evt インプットメソッドイベント
+*/
+void OgreWidget::inputMethodEvent(QInputMethodEvent *evt)
 {
 	if (mOgreRTCApplication)
 	{
 		//std::cout << e->commitString().toStdString() << std::endl;
-		mOgreRTCApplication->inputMethodEvent(e);
+		mOgreRTCApplication->inputMethodEvent(evt);
 
 		//QWidget::inputMethodEvent(e);
 	}

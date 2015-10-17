@@ -1,4 +1,10 @@
-﻿#ifndef OGREWIDGET_H
+﻿/*!
+ * @file  OgreWidget.h
+ * @brief Ogre3Dのレンダリング表示ウィンドウ
+ *
+ */
+
+#ifndef OGREWIDGET_H
 #define OGREWIDGET_H
 
 #include <QtWidgets>
@@ -26,48 +32,70 @@ class QTextCursor;
 class QTreeWidget;
 QT_END_NAMESPACE
 
-/*
-*Ogre3Dのレンダリングの表示のウィジェット
+
+/**
+ * @class OgreWidget
+*@brief Ogre3Dのレンダリングの表示のウィジェット
 */
 class OgreWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	* @param parent 親ウィジェット
+	*/
 	OgreWidget(QWidget *parent = 0);
+	/**
+	*@brief デストラクタ
+	*/
 	~OgreWidget(void);
 
-	/*
-	*レンダリング初期化
+	
+	/**
+	*@brief レンダリング初期化
 	*/
 	void initOgre();
 
 	OgreRTCApplication *mOgreRTCApplication;
 
 signals:
-	/*
-	*マウス移動時のシグナル
+	
+	/**
+	*@brief マウス移動時のシグナル
+	* @param evt マウスイベント
+	* @param dx 移動量(X)
+	* @param dy 移動量(Y)
 	*/
 	void  mouseMoveSignal(QMouseEvent*  evt, int dx, int dy);
-	/*
-	*マウスのボタンを押した時のシグナル
+	
+	/**
+	*@brief マウスのボタンを押した時のシグナル
+	* @param evt マウスイベント
 	*/
 	void  mousePressSignal(QMouseEvent*  evt);
-	/*
-	*マウスのボタンを離した時のシグナル
+	
+	/**
+	*@brief マウスのボタンを離した時のシグナル
+	* @param evt マウスイベント
 	*/
 	void  mouseReleaseSignal(QMouseEvent*  evt);
 
 
 private:
-	/*
-	*周期的に呼び出される関数
+	
+	/**
+	*@brief 周期的に呼び出される関数
+	* @param evt タイマーイベント
 	*/
-	void timerEvent (QTimerEvent *event);
-	/*
-	*描画時に呼び出される関数
+	void timerEvent (QTimerEvent *evt);
+	
+	/**
+	*@brief 描画時に呼び出される関数
+	* @param evt ペイントイベント
 	*/
-	void paintEvent (QPaintEvent *event);
+	void paintEvent (QPaintEvent *evt);
 	
 	QPaintEngine *paintEngine() const { return 0;}
 
@@ -81,30 +109,41 @@ private:
 
 
 protected:
-	/*
-	*マウスが動いたときに呼び出される関数
+	
+	/**
+	*@brief マウスが動いたときに呼び出される関数
+	* @param evt マウスイベント
 	*/
 	void  mouseMoveEvent(QMouseEvent*  evt);
-	/*
-	*マウスのボタンを押したときに呼び出される関数
+	
+	/**
+	*@brief マウスのボタンを押したときに呼び出される関数
+	* @param evt マウスイベント
 	*/
 	void  mousePressEvent(QMouseEvent*  evt);
-	/*
-	*マウスのボタンを離したときに呼び出される関数
+	
+	/**
+	*@brief マウスのボタンを離したときに呼び出される関数
+	* @param evt マウスイベント
 	*/
 	void  mouseReleaseEvent(QMouseEvent*  evt);
-	/*
-	*キーを押した時に呼び出される関数
+	
+	/**
+	*@brief キーを押した時に呼び出される関数
+	* @param evt キーイベント
 	*/
-	void  keyPressEvent(QKeyEvent*  event);
-	/*
-	*キーを離した時に呼び出される関数
+	void  keyPressEvent(QKeyEvent*  evt);
+	
+	/**
+	*@brief キーを離した時に呼び出される関数
+	* @param evt キーイベント
 	*/
-	void  keyReleaseEvent(QKeyEvent*  event);
-	/*
-	*
+	void  keyReleaseEvent(QKeyEvent*  evt);
+	/**
+	*@brief テキストを入力した場合等に呼び出される関数
+	* @param evt インプットメソッドイベント
 	*/
-	void inputMethodEvent(QInputMethodEvent *event);
+	void inputMethodEvent(QInputMethodEvent *evt);
 
 
 

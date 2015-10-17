@@ -1,11 +1,20 @@
-﻿#include "NodeSet.h"
+﻿/*!
+ * @file  NodeSet.cpp
+ * @brief ノードの設定用ウインドウ
+ *
+ */
+
+#include "NodeSet.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
-#include "MyQtMacro.h"
+#include "QtMacro.h"
 
 
-
+/**
+*@brief ノードの設定用ウィジェットのコンストラクタ
+*@param parent 親ウィジェット
+*/
 NodeSetWidget::NodeSetWidget(QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -95,19 +104,30 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
 
+/**
+*@brief ノードの設定用ウィジェットのデストラクタ
+*/
 NodeSetWidget::~NodeSetWidget(void)
 {
 
 }
 
-
+/**
+*@brief オブジェクトの種類コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void NodeSetWidget::NameSlot(int value)
 {
 	
 }
 
+
+
+
+/**
+*@brief 接続ボタンを押したときのスロット
+*/
 void NodeSetWidget::AttachSlot()
 {
 	int num = NumEdit->currentIndex();
@@ -126,7 +146,7 @@ void NodeSetWidget::AttachSlot()
 		{
 			if(num == 0 || num == 4 || num == 5)
 			{
-				MyLink *ml;
+				LinkObj *ml;
 				if(num == 0)
 				{
 					ml = EC->getBodyByName(n.c_str());
@@ -143,7 +163,7 @@ void NodeSetWidget::AttachSlot()
 				{
 					if(anum == 0)
 					{
-						MyLink *aml = EC->getBodyByName(an.c_str());
+						LinkObj *aml = EC->getBodyByName(an.c_str());
 						if(aml)
 						{
 							if(type == 0)
@@ -159,7 +179,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 1)
 					{
-						myParticle *amp = EC->getParticleByName(an.c_str());
+						ParticleObj *amp = EC->getParticleByName(an.c_str());
 						if(amp)
 						{
 							
@@ -176,7 +196,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 2)
 					{
-						MyLight *aml = EC->getLightByName(an.c_str());
+						LightObj *aml = EC->getLightByName(an.c_str());
 						if(aml)
 						{
 							
@@ -199,12 +219,12 @@ void NodeSetWidget::AttachSlot()
 			}
 			else if(num == 1)
 			{
-				myParticle *mp = EC->getParticleByName(n.c_str());
+				ParticleObj *mp = EC->getParticleByName(n.c_str());
 				if(mp)
 				{
 					if(anum == 0)
 					{
-						MyLink *aml = EC->getBodyByName(an.c_str());
+						LinkObj *aml = EC->getBodyByName(an.c_str());
 						if(aml)
 						{
 							EC->AttachObj(aml, mp);
@@ -213,7 +233,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 1)
 					{
-						myParticle *amp = EC->getParticleByName(an.c_str());
+						ParticleObj *amp = EC->getParticleByName(an.c_str());
 						if(amp)
 						{
 							EC->AttachObj(mp, amp);
@@ -222,7 +242,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 2)
 					{
-						MyLight *aml = EC->getLightByName(an.c_str());
+						LightObj *aml = EC->getLightByName(an.c_str());
 						if(aml)
 						{
 							EC->AttachObj(mp, aml);
@@ -234,12 +254,12 @@ void NodeSetWidget::AttachSlot()
 			}
 			else if(num == 2)
 			{
-				MyLight *ml = EC->getLightByName(n.c_str());
+				LightObj *ml = EC->getLightByName(n.c_str());
 				if(ml)
 				{
 					if(anum == 0)
 					{
-						MyLink *aml = EC->getBodyByName(an.c_str());
+						LinkObj *aml = EC->getBodyByName(an.c_str());
 						if(aml)
 						{
 							EC->AttachObj(aml, ml);
@@ -248,7 +268,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 1)
 					{
-						myParticle *amp = EC->getParticleByName(an.c_str());
+						ParticleObj *amp = EC->getParticleByName(an.c_str());
 						if(amp)
 						{
 							EC->AttachObj(amp, ml);
@@ -257,7 +277,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 2)
 					{
-						MyLight *aml = EC->getLightByName(an.c_str());
+						LightObj *aml = EC->getLightByName(an.c_str());
 						if(aml)
 						{
 							EC->AttachObj(ml, aml);
@@ -270,12 +290,12 @@ void NodeSetWidget::AttachSlot()
 			}
 			else if(num == 3)
 			{
-				MyAnimation *man = EC->getAnimationByName(n.c_str());
+				AnimationObj *man = EC->getAnimationByName(n.c_str());
 				if(man)
 				{
 					if(anum == 0)
 					{
-						MyLink *aml = EC->getBodyByName(an.c_str());
+						LinkObj *aml = EC->getBodyByName(an.c_str());
 						if(aml)
 						{
 							EC->AttachObj(man, aml);
@@ -284,7 +304,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 1)
 					{
-						myParticle *amp = EC->getParticleByName(an.c_str());
+						ParticleObj *amp = EC->getParticleByName(an.c_str());
 						if(amp)
 						{
 							EC->AttachObj(man, amp);
@@ -293,7 +313,7 @@ void NodeSetWidget::AttachSlot()
 					}
 					else if(anum == 2)
 					{
-						MyLight *aml = EC->getLightByName(an.c_str());
+						LightObj *aml = EC->getLightByName(an.c_str());
 						if(aml)
 						{
 							EC->AttachObj(man, aml);
@@ -309,6 +329,11 @@ void NodeSetWidget::AttachSlot()
 		
 	}
 }
+
+
+/**
+*@brief 分離ボタンを押したときのスロット
+*/
 void NodeSetWidget::DettachSlot()
 {
 	int num = NumEdit->currentIndex();
@@ -325,7 +350,7 @@ void NodeSetWidget::DettachSlot()
 		{
 			if(num == 0)
 			{
-				MyLink *ml = EC->getBodyByName(n.c_str());
+				LinkObj *ml = EC->getBodyByName(n.c_str());
 				if(ml)
 				{
 					if(type == 0)
@@ -343,7 +368,7 @@ void NodeSetWidget::DettachSlot()
 			}
 			else if(num == 1)
 			{
-				myParticle *mp = EC->getParticleByName(n.c_str());
+				ParticleObj *mp = EC->getParticleByName(n.c_str());
 				if(mp)
 				{
 					EC->DeatachObj(mp);
@@ -353,7 +378,7 @@ void NodeSetWidget::DettachSlot()
 			}
 			else if(num == 2)
 			{
-				MyLight *ml = EC->getLightByName(n.c_str());
+				LightObj *ml = EC->getLightByName(n.c_str());
 				if(ml)
 				{
 					EC->DeatachObj(ml);
@@ -368,6 +393,11 @@ void NodeSetWidget::DettachSlot()
 		
 	}
 }
+
+/**
+*@brief 接続するオブジェクトのコンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void NodeSetWidget::AttachNumSlot(int value)
 {
 	int anum = AttachNumBox->currentIndex();
@@ -404,12 +434,94 @@ void NodeSetWidget::AttachNumSlot(int value)
 	}
 }
 
+/**
+*@brief 分離するオブジェクトのコンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
+void NodeSetWidget::DettachNumSlot(int value)
+{
+	int num = NumEdit->currentIndex();
+	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
+	//int dnum = DettachNumBox->currentIndex();
+	
+	
+	if(EC)
+	{
+		if(n == "")
+		{
+			return;
+		}
+		else
+		{
+			if(num == 0)
+			{
+				LinkObj *ml = EC->getBodyByName(n.c_str());
+				if(ml)
+				{
+					DettachListBox->clear();
+					for(int i=0;i < ml->mNode->mobj.size();i++)
+					{
+						DettachListBox->addItem(ml->mNode->mobj[i]->name.c_str());
+					}
+				}
+				
+			}
+			else if(num == 1)
+			{
+				ParticleObj *mp = EC->getParticleByName(n.c_str());
+				if(mp)
+				{
+					DettachListBox->clear();
+					for(int i=0;i < mp->mNode->mobj.size();i++)
+					{
+						DettachListBox->addItem(mp->mNode->mobj[i]->name.c_str());
+					}
+				}
+			}
+			else if(num == 2)
+			{
+				LightObj *ml = EC->getLightByName(n.c_str());
+				if(ml)
+				{
+					DettachListBox->clear();
+					for(int i=0;i < ml->mNode->mobj.size();i++)
+					{
+						DettachListBox->addItem(ml->mNode->mobj[i]->name.c_str());
+					}
+				}
+				
+			}
+			else if(num == 3)
+			{
+				AnimationObj *man = EC->getAnimationByName(n.c_str());
+				if(man)
+				{
+					DettachListBox->clear();
+					for(int i=0;i < man->mNode->mobj.size();i++)
+					{
+						DettachListBox->addItem(man->mNode->mobj[i]->name.c_str());
+					}
+				}
+				
+			}
+		}
+		
+		
+	}
+}
 
+/**
+*@brief ノードの設定をウィジェットに反映させるときのスロット
+*/
 void NodeSetWidget::UpdateList()
 {
 	NumSlot(0);
 }
 
+/**
+*@brief オブジェクトの種類コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void NodeSetWidget::NumSlot(int value)
 {
 	int num = NumEdit->currentIndex();
@@ -479,74 +591,3 @@ void NodeSetWidget::NumSlot(int value)
 	DettachNumSlot(10);
 }
 
-void NodeSetWidget::DettachNumSlot(int value)
-{
-	int num = NumEdit->currentIndex();
-	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
-	//int dnum = DettachNumBox->currentIndex();
-	
-	
-	if(EC)
-	{
-		if(n == "")
-		{
-			return;
-		}
-		else
-		{
-			if(num == 0)
-			{
-				MyLink *ml = EC->getBodyByName(n.c_str());
-				if(ml)
-				{
-					DettachListBox->clear();
-					for(int i=0;i < ml->mNode->mobj.size();i++)
-					{
-						DettachListBox->addItem(ml->mNode->mobj[i]->name.c_str());
-					}
-				}
-				
-			}
-			else if(num == 1)
-			{
-				myParticle *mp = EC->getParticleByName(n.c_str());
-				if(mp)
-				{
-					DettachListBox->clear();
-					for(int i=0;i < mp->mNode->mobj.size();i++)
-					{
-						DettachListBox->addItem(mp->mNode->mobj[i]->name.c_str());
-					}
-				}
-			}
-			else if(num == 2)
-			{
-				MyLight *ml = EC->getLightByName(n.c_str());
-				if(ml)
-				{
-					DettachListBox->clear();
-					for(int i=0;i < ml->mNode->mobj.size();i++)
-					{
-						DettachListBox->addItem(ml->mNode->mobj[i]->name.c_str());
-					}
-				}
-				
-			}
-			else if(num == 3)
-			{
-				MyAnimation *man = EC->getAnimationByName(n.c_str());
-				if(man)
-				{
-					DettachListBox->clear();
-					for(int i=0;i < man->mNode->mobj.size();i++)
-					{
-						DettachListBox->addItem(man->mNode->mobj[i]->name.c_str());
-					}
-				}
-				
-			}
-		}
-		
-		
-	}
-}

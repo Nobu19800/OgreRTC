@@ -1,4 +1,10 @@
-﻿#ifndef NODESET_H
+﻿/*!
+ * @file  NodeSet.h
+ * @brief ノードの設定用ウインドウ
+ *
+ */
+
+#ifndef NODESET_H
 #define NODESET_H
 
 #include <QtWidgets>
@@ -29,44 +35,67 @@ class QComboBox;
 QT_END_NAMESPACE
 
 
-/*
-* ノードの設定用ウィジェット
-*/
 
+/**
+ * @class NodeSetWidget
+*@brief ノードの設定用ウィジェット
+*/
 class NodeSetWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
+	/**
+	*@brief コンストラクタ
+	*@param parent 親ウィジェット
+	*/
 	NodeSetWidget(QWidget *parent = 0);
+	/**
+	*@brief デストラクタ
+	*/
 	~NodeSetWidget(void);
 
 	OgreRTCApplication *EC;
 
 public slots:
-	/*
-	*ノードの設定をウィジェットに反映させるときのスロット
+	
+	/**
+	*@brief ノードの設定をウィジェットに反映させるときのスロット
 	*/
 	void UpdateList();
 
 private slots:
-	/*
-	*オブジェクトの種類コンボボックスの番号が変わったときのスロット
+	
+	/**
+	*@brief オブジェクトの種類コンボボックスの番号が変わったときのスロット
+	* @param value 番号
 	*/
 	void NumSlot(int value);
+	/**
+	*@brief オブジェクトの名前コンボボックスの番号が変わったときのスロット
+	* @param value 番号
+	*/
 	void NameSlot(int value);
-	/*
-	*接続ボタンを押したときのスロット
+	
+	/**
+	*@brief 接続ボタンを押したときのスロット
 	*/
 	void AttachSlot();
-	/*
-	*分離ボタンを押したときのスロット
+	
+	/**
+	*@brief 分離ボタンを押したときのスロット
 	*/
 	void DettachSlot();
-	/*
-	*接続したオブジェクトのコンボボックスの番号が変わったときのスロット
+	
+	/**
+	*@brief 接続するオブジェクトのコンボボックスの番号が変わったときのスロット
+	* @param value 番号
 	*/
 	void AttachNumSlot(int value);
+	/**
+	*@brief 分離するオブジェクトのコンボボックスの番号が変わったときのスロット
+	* @param value 番号
+	*/
 	void DettachNumSlot(int value);
 	
 

@@ -1,12 +1,23 @@
-﻿#include "SimBodySet.h"
+﻿/*!
+ * @file  SimBodySet.cpp
+ * @brief シミュレーションのボディ作成、設定用ウィンドウ
+ *
+ */
 
-#include "MyQtMacro.h"
+#include "SimBodySet.h"
+
+#include "QtMacro.h"
 #include <QtWidgets/QApplication>
 //#include <QtWidgets/QPainter>
 #include <QtWidgets>
 
-#include "MyODEBody.h"
+#include "ODEBodyObj.h"
 
+
+/**
+*@brief シミュレーションのボディ作成、設定用ウィジェットのコンストラクタ
+* @param parent 親ウィジェット
+*/
 SimBodySetWidget::SimBodySetWidget( QWidget *parent) : 
 QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 {
@@ -132,13 +143,17 @@ QWidget(parent,Qt::WindowFlags(Qt::MSWindowsOwnDC))
 	
 }
 
-//----------------------------------------------------------------------------------------
-
+/**
+*@brief シミュレーションのボディ作成、設定用ウィジェットのデストラクタ
+*/
 SimBodySetWidget::~SimBodySetWidget(void)
 {
 
 }
 
+/**
+*@brief ボディの設定をウィジェットに反映させるときのスロット
+*/
 void SimBodySetWidget::UpdateList()
 {
 	if(EC)
@@ -153,6 +168,9 @@ void SimBodySetWidget::UpdateList()
 	}
 }
 
+/**
+*@brief 作成ボタンを押したときのスロット
+*/
 void SimBodySetWidget::SetSlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -192,7 +210,7 @@ void SimBodySetWidget::SetSlot()
 		}
 		else
 		{
-			MyODEBody *ml;
+			ODEBodyObj *ml;
 			if(type == 0)
 			{
 				ml = EC->mSim->SetQtSphere(n.c_str(), m, szr);
@@ -227,12 +245,17 @@ void SimBodySetWidget::SetSlot()
 		}
 	}
 }
+
+/**
+*@brief 名前コンボボックスの番号が変わったときのスロット
+* @param value 番号
+*/
 void SimBodySetWidget::NameSlot(int value)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+		ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 		if(ml)
 		{
 			up_flag = false;
@@ -269,68 +292,143 @@ void SimBodySetWidget::NameSlot(int value)
 		
 	}
 }
+
+/**
+*@brief 位置設定スピンボックスの値(X座標)を変更したときのスロット
+* @param value 位置(X)
+*/
 void SimBodySetWidget::PosXSlot(double value)
 {
 	SetPos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Y座標)を変更したときのスロット
+* @param value 位置(Y)
+*/
 void SimBodySetWidget::PosYSlot(double value)
 {
 	SetPos();
 }
+
+/**
+*@brief 位置設定スピンボックスの値(Z座標)を変更したときのスロット
+* @param value 位置(Z)
+*/
 void SimBodySetWidget::PosZSlot(double value)
 {
 	SetPos();
 }
+
+/**
+*@brief サイズ設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value サイズ(X)
+*/
 void SimBodySetWidget::SizeXSlot(double value)
 {
 	SetSize();
 }
+
+/**
+*@brief サイズ設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value サイズ(Y)
+*/
 void SimBodySetWidget::SizeYSlot(double value)
 {
 	SetSize();
 }
+
+/**
+*@brief サイズ設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value サイズ(Z)
+*/
 void SimBodySetWidget::SizeZSlot(double value)
 {
 	SetSize();
 }
+
+/**
+*@brief サイズ設定スピンボックスの値(半径)を変更したときのスロット
+* @param value サイズ(半径)
+*/
 void SimBodySetWidget::SizeRSlot(double value)
 {
 	SetSize();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value 拡大率(X)
+*/
 void SimBodySetWidget::ScaleXSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value 拡大率(Y)
+*/
 void SimBodySetWidget::ScaleYSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value 拡大率(Z)
+*/
 void SimBodySetWidget::ScaleZSlot(double value)
 {
 	SetScale();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ロール角)を変更したときのスロット
+* @param value 角度(ロール)
+*/
 void SimBodySetWidget::RollSlot(double value)
 {
 	SetRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ピッチ角)を変更したときのスロット
+* @param value 角度(ピッチ)
+*/
 void SimBodySetWidget::PitchSlot(double value)
 {
 	SetRot();
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値(ヨー角)を変更したときのスロット
+* @param value 角度(ヨー)
+*/
 void SimBodySetWidget::YawSlot(double value)
 {
 	SetRot();
 }
+
+/**
+*@brief 表示設定ボタンを押したときのスロット
+*/
 void SimBodySetWidget::VisibleSlot()
 {
 	SetVisi(true);
 }
+
+/**
+*@brief 非表示設定ボタンを押したときのスロット
+*/
 void SimBodySetWidget::unVisibleSlot()
 {
 	SetVisi(false);
 }
 
-	
+/**
+*@brief 削除ボタンを押したときのスロット
+*/
 void SimBodySetWidget::DestroySlot()
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
@@ -339,7 +437,7 @@ void SimBodySetWidget::DestroySlot()
 
 	if(EC)
 	{
-		MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+		ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 		if(ml)
 		{
 			EC->mSim->DestroyQtBody(ml);
@@ -350,24 +448,48 @@ void SimBodySetWidget::DestroySlot()
 	}
 }
 
+
+/**
+*@brief 3Dモデルとボディのオフセット設定スピンボックスの値(X軸方向)を変更したときのスロット
+* @param value オフセット(X)
+*/
 void SimBodySetWidget::OffsetXSlot(double value)
 {
 	SetOffset();
 }
+
+/**
+*@brief 3Dモデルとボディのオフセット設定スピンボックスの値(Y軸方向)を変更したときのスロット
+* @param value オフセット(Y)
+*/
 void SimBodySetWidget::OffsetYSlot(double value)
 {
 	SetOffset();
 }
+
+/**
+*@brief 3Dモデルとボディのオフセット設定スピンボックスの値(Z軸方向)を変更したときのスロット
+* @param value オフセット(Z)
+*/
 void SimBodySetWidget::OffsetZSlot(double value)
 {
 	SetOffset();
 }
 
+
+/**
+*@brief 質量設定スピンボックスの値を変更したときのスロット
+* @param value 質量
+*/
 void SimBodySetWidget::MassSlot(double value)
 {
 
 }
 
+
+/**
+*@brief 位置設定スピンボックスの値を反映する関数
+*/
 void SimBodySetWidget::SetPos()
 {
 	if(up_flag)
@@ -380,7 +502,7 @@ void SimBodySetWidget::SetPos()
 
 		if(EC)
 		{
-			MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+			ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetBodyPosition(px, py, pz);
@@ -389,6 +511,10 @@ void SimBodySetWidget::SetPos()
 		}
 	}
 }
+
+/**
+*@brief 拡大率設定スピンボックスの値を反映する関数
+*/
 void SimBodySetWidget::SetScale()
 {
 	if(up_flag)
@@ -401,7 +527,7 @@ void SimBodySetWidget::SetScale()
 
 		if(EC)
 		{
-			MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+			ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetODEScale(sx, sy, sz);
@@ -410,6 +536,10 @@ void SimBodySetWidget::SetScale()
 		}
 	}
 }
+
+/**
+*@brief 姿勢設定スピンボックスの値を反映する関数
+*/
 void SimBodySetWidget::SetRot()
 {
 	if(up_flag)
@@ -422,7 +552,7 @@ void SimBodySetWidget::SetRot()
 
 		if(EC)
 		{
-			MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+			ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetBodyRotation(roll, pitch, yaw);
@@ -431,6 +561,10 @@ void SimBodySetWidget::SetRot()
 		}
 	}
 }
+
+/**
+*@brief オフセット設定スピンボックスの値を反映する関数
+*/
 void SimBodySetWidget::SetOffset()
 {
 	if(up_flag)
@@ -443,7 +577,7 @@ void SimBodySetWidget::SetOffset()
 
 		if(EC)
 		{
-			MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+			ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 			if(ml)
 			{
 				ml->SetODEOffset(ox, oy, oz);
@@ -452,12 +586,17 @@ void SimBodySetWidget::SetOffset()
 		}
 	}
 }
+
+/**
+*@brief 表示設定ボタンを反映する関数
+* @param visi trueで表示、falseで非表示
+*/
 void SimBodySetWidget::SetVisi(bool visi)
 {
 	std::string n = (const char*)NameEdit->currentText().toLocal8Bit();
 	if(EC)
 	{
-		MyODEBody *ml = EC->mSim->getBodyByName(n.c_str());
+		ODEBodyObj *ml = EC->mSim->getBodyByName(n.c_str());
 		if(ml)
 		{
 			ml->SetVisible(visi);
@@ -466,6 +605,9 @@ void SimBodySetWidget::SetVisi(bool visi)
 	}
 }
 
+/**
+*@brief 大きさ設定スピンボックスの値を反映する関数
+*/
 void SimBodySetWidget::SetSize()
 {
 	double szx = SizeXspinBox->value();

@@ -1,4 +1,10 @@
-﻿#include "OgreRTCApplication.h"
+﻿/*!
+ * @file  OgreRTCApplication.cpp
+ * @brief Ogre3Dのレンダリング管理クラス
+ *
+ */
+
+#include "OgreRTCApplication.h"
 
 #ifdef _WIN32
 #include "UnicodeF.h"
@@ -49,99 +55,18 @@ int str_size;
 
 
 
-CEGUI::utf32 keycodeToUTF32( unsigned int scanCode)
- {
-
- 	CEGUI::utf32 utf = 0;
-
-#ifdef _WIN32
- 	BYTE keyboardState[256];
- 	unsigned char ucBuffer[3];
- 	static WCHAR deadKey = '\0';
- 
- 	
- 	HKL hklKeyboardLayout = GetKeyboardLayout(0);
- 	
- 	if (GetKeyboardState(keyboardState) == FALSE)
- 		return utf;
- 
- 	
- 	UINT virtualKey = MapVirtualKeyEx(scanCode, 3, hklKeyboardLayout);
- 	if (virtualKey == 0)
- 		return utf;
- 
-
- 	int ascii = ToAsciiEx(virtualKey, scanCode, keyboardState, (LPWORD) ucBuffer, 0, hklKeyboardLayout);
- 	if(deadKey != '\0' && ascii == 1)
- 	{
- 		
- 		WCHAR wcBuffer[3];
- 		WCHAR out[3];
- 		wcBuffer[0] = ucBuffer[0];
- 		wcBuffer[1] = deadKey;
- 		wcBuffer[2] = '\0';
- 		if( FoldStringW(MAP_PRECOMPOSED, (LPWSTR) wcBuffer, 3, (LPWSTR) out, 3) )
- 			utf = out[0];
- 		else
- 		{
- 			
- 			DWORD dw = GetLastError();
- 			switch(dw)
- 			{
- 			case ERROR_INSUFFICIENT_BUFFER:
- 			case ERROR_INVALID_FLAGS:
- 			case ERROR_INVALID_PARAMETER:
- 				break;
- 			}
- 		}
- 		deadKey = '\0';
- 	}
- 	else if (ascii == 1)
- 	{
- 		
- 		utf = ucBuffer[0];
- 		deadKey = '\0';
- 	}
- 	else
- 	{
- 		
- 		switch(ucBuffer[0])
- 		{
- 		case 0x5E:
- 			deadKey = 0x302;
- 			break;
- 		case 0x60:
- 			deadKey = 0x300;
- 			break;
- 		case 0xA8:
- 			deadKey = 0x308;
- 			break;
- 		case 0xB4:
- 			deadKey = 0x301;
- 			break;
- 		case 0xB8:
- 			deadKey = 0x327;
- 			break;
- 		default:
- 			deadKey = ucBuffer[0];
- 		}
- 	}
-#else
-#endif
- 	return utf;
- }
 
 
 
-
-
-
-
-
-
-
-
-void OgreRTCApplication::setEColor(MyLink *ml, float r, float g, float b, float a){
+/**
+*@brief 3Dモデルの色の設定の関数
+* @param ml ボディオブジェクト
+* @param r 輝度(赤)
+* @param g 輝度(緑)
+* @param b 輝度(青)
+* @param a 透明度
+*/
+void OgreRTCApplication::setEColor(LinkObj *ml, float r, float g, float b, float a){
 	Ogre::MaterialPtr mat = Ogre::MaterialManager::getSingleton().create("BoxColor", "General", true );
 	Ogre::Technique* tech = mat->getTechnique(0);
 	Ogre::Pass* pass = tech->getPass(0);
@@ -166,9 +91,6 @@ void OgreRTCApplication::setEColor(MyLink *ml, float r, float g, float b, float 
 
 
 
-
-
-//-------------------------------------------------------------------------------------
 
 
 BOOST_PYTHON_MODULE(CppExport)
@@ -241,18 +163,18 @@ BOOST_PYTHON_MODULE(CppExport)
 			.def("getLightByName",&OgreRTCApplication::getLightByName, bpy::return_internal_reference<>())
 			.def("getAnimationByName",&OgreRTCApplication::getAnimationByName, bpy::return_internal_reference<>())
 			.def("getNodeByName",&OgreRTCApplication::getNodeByName, bpy::return_internal_reference<>())
-			.def("DeatachObj",(void(OgreRTCApplication:: *)(MyLink *))&OgreRTCApplication::DeatachObj)
-			.def("DeatachObj",(void(OgreRTCApplication:: *)(myParticle *))&OgreRTCApplication::DeatachObj)
-			.def("DeatachObj",(void(OgreRTCApplication:: *)(MyLight *))&OgreRTCApplication::DeatachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyLink *, myParticle *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyLink *, MyLight *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(myParticle *, MyLight *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyLink *, MyLink *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(myParticle *, myParticle *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyLight *, MyLight *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyAnimation *, MyLink *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyAnimation *, MyLight *))&OgreRTCApplication::AttachObj)
-			.def("AttachObj",(void(OgreRTCApplication:: *)(MyAnimation *, myParticle *))&OgreRTCApplication::AttachObj)
+			.def("DeatachObj",(void(OgreRTCApplication:: *)(LinkObj *))&OgreRTCApplication::DeatachObj)
+			.def("DeatachObj",(void(OgreRTCApplication:: *)(ParticleObj *))&OgreRTCApplication::DeatachObj)
+			.def("DeatachObj",(void(OgreRTCApplication:: *)(LightObj *))&OgreRTCApplication::DeatachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(LinkObj *, ParticleObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(LinkObj *, LightObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(ParticleObj *, LightObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(LinkObj *, LinkObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(ParticleObj *, ParticleObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(LightObj *, LightObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(AnimationObj *, LinkObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(AnimationObj *, LightObj *))&OgreRTCApplication::AttachObj)
+			.def("AttachObj",(void(OgreRTCApplication:: *)(AnimationObj *, ParticleObj *))&OgreRTCApplication::AttachObj)
 			.def("save",&OgreRTCApplication::save)
 			.def("openb",&OgreRTCApplication::openb)
 			.def("newfile",&OgreRTCApplication::newfile)
@@ -261,100 +183,101 @@ BOOST_PYTHON_MODULE(CppExport)
 			.def("setDisplayImage",&OgreRTCApplication::setDisplayImage)
 			.def("SetCameraAutoMoveFlag",&OgreRTCApplication::SetCameraAutoMoveFlag)
 			.def("SetLightPosition",&OgreRTCApplication::SetLightPosition)
+			.def("loadFont",&OgreRTCApplication::loadFont)
 			;
 			
 			
-			bpy::class_<MyObject>("MyObject")
-			.def("SetPosition",&MyObject::SetPosition)
-			.def("SetScale",&MyObject::SetScale)
-			.def("Roll",&MyObject::Roll)
-			.def("Pitch",&MyObject::Pitch)
-			.def("Yaw",&MyObject::Yaw)
-			.def("SetQuaternion",&MyObject::SetQuaternion)
-			.def("SetVisible",&MyObject::SetVisible)
-			.def("BoundingBoxVisible",&MyObject::BoundingBoxVisible)
+			bpy::class_<ObjectBase>("ObjectBase")
+			.def("SetPosition",&ObjectBase::SetPosition)
+			.def("SetScale",&ObjectBase::SetScale)
+			.def("Roll",&ObjectBase::Roll)
+			.def("Pitch",&ObjectBase::Pitch)
+			.def("Yaw",&ObjectBase::Yaw)
+			.def("SetQuaternion",&ObjectBase::SetQuaternion)
+			.def("SetVisible",&ObjectBase::SetVisible)
+			.def("BoundingBoxVisible",&ObjectBase::BoundingBoxVisible)
 			;
 
 			
 
-			bpy::class_<MyLink>("MyLink",bpy::init<std::string>())
-			.def("SetAnimation",&MyLink::SetAnimation)
-			.def("ResetAnimation",&MyLink::ResetAnimation)
-			.def("UpdateAnimation",&MyLink::UpdateAnimation)
-			.def("SetShadows",&MyLink::SetShadows)
-			.def("SetBornPosition",(void(MyLink:: *)(const char *, float, float, float))&MyLink::SetBornPosition)
-			.def("SetBornOrientation",(void(MyLink:: *)(const char *, float, float, float, float))&MyLink::SetBornOrientation)
-			.def("SetBornRotation",(void(MyLink:: *)(const char *, float, float, float))&MyLink::SetBornRotation)
-			.def("SetBornScale",(void(MyLink:: *)(const char *, float, float, float))&MyLink::SetBornScale)
-			.def("SetBornRoll",(void(MyLink:: *)(const char *, float))&MyLink::SetBornRoll)
-			.def("SetBornPitch",(void(MyLink:: *)(const char *, float))&MyLink::SetBornPitch)
-			.def("SetBornYaw",(void(MyLink:: *)(const char *, float))&MyLink::SetBornYaw)
-			.def("GetBornNum",&MyLink::GetBornNum)
-			.def("ResetBorn",&MyLink::ResetBorn)
-			.def("SetBornPosition",(void(MyLink:: *)(int, float, float, float))&MyLink::SetBornPosition)
-			.def("SetBornOrientation",(void(MyLink:: *)(int, float, float, float, float))&MyLink::SetBornOrientation)
-			.def("SetBornRotation",(void(MyLink:: *)(int, float, float, float))&MyLink::SetBornRotation)
-			.def("SetBornScale",(void(MyLink:: *)(int, float, float, float))&MyLink::SetBornScale)
-			.def("SetBornRoll",(void(MyLink:: *)(int , float))&MyLink::SetBornRoll)
-			.def("SetBornPitch",(void(MyLink:: *)(int , float))&MyLink::SetBornPitch)
-			.def("SetBornYaw",(void(MyLink:: *)(int , float))&MyLink::SetBornYaw)
-			//.def("BoundingBoxVisible",&MyLink::BoundingBoxVisible)
-			.def("GetBoundingBoxSize",&MyLink::GetBoundingBoxSize)
-			.def("SetPosition",&MyLink::SetPosition)
-			.def("SetScale",&MyLink::SetScale)
-			.def("Roll",&MyLink::Roll)
-			.def("Pitch",&MyLink::Pitch)
-			.def("Yaw",&MyLink::Yaw)
-			.def("SetQuaternion",&MyLink::SetQuaternion)
-			.def("SetRotation",&MyLink::SetRotation)
-			.def("SetVisible",&MyLink::SetVisible)
-			.def("BoundingBoxVisible",&MyLink::BoundingBoxVisible)
+			bpy::class_<LinkObj>("LinkObj",bpy::init<std::string>())
+			.def("SetAnimation",&LinkObj::SetAnimation)
+			.def("ResetAnimation",&LinkObj::ResetAnimation)
+			.def("UpdateAnimation",&LinkObj::UpdateAnimation)
+			.def("SetShadows",&LinkObj::SetShadows)
+			.def("SetBornPosition",(void(LinkObj:: *)(const char *, float, float, float))&LinkObj::SetBornPosition)
+			.def("SetBornOrientation",(void(LinkObj:: *)(const char *, float, float, float, float))&LinkObj::SetBornOrientation)
+			.def("SetBornRotation",(void(LinkObj:: *)(const char *, float, float, float))&LinkObj::SetBornRotation)
+			.def("SetBornScale",(void(LinkObj:: *)(const char *, float, float, float))&LinkObj::SetBornScale)
+			.def("SetBornRoll",(void(LinkObj:: *)(const char *, float))&LinkObj::SetBornRoll)
+			.def("SetBornPitch",(void(LinkObj:: *)(const char *, float))&LinkObj::SetBornPitch)
+			.def("SetBornYaw",(void(LinkObj:: *)(const char *, float))&LinkObj::SetBornYaw)
+			.def("GetBornNum",&LinkObj::GetBornNum)
+			.def("ResetBorn",&LinkObj::ResetBorn)
+			.def("SetBornPosition",(void(LinkObj:: *)(int, float, float, float))&LinkObj::SetBornPosition)
+			.def("SetBornOrientation",(void(LinkObj:: *)(int, float, float, float, float))&LinkObj::SetBornOrientation)
+			.def("SetBornRotation",(void(LinkObj:: *)(int, float, float, float))&LinkObj::SetBornRotation)
+			.def("SetBornScale",(void(LinkObj:: *)(int, float, float, float))&LinkObj::SetBornScale)
+			.def("SetBornRoll",(void(LinkObj:: *)(int , float))&LinkObj::SetBornRoll)
+			.def("SetBornPitch",(void(LinkObj:: *)(int , float))&LinkObj::SetBornPitch)
+			.def("SetBornYaw",(void(LinkObj:: *)(int , float))&LinkObj::SetBornYaw)
+			//.def("BoundingBoxVisible",&LinkObj::BoundingBoxVisible)
+			.def("GetBoundingBoxSize",&LinkObj::GetBoundingBoxSize)
+			.def("SetPosition",&LinkObj::SetPosition)
+			.def("SetScale",&LinkObj::SetScale)
+			.def("Roll",&LinkObj::Roll)
+			.def("Pitch",&LinkObj::Pitch)
+			.def("Yaw",&LinkObj::Yaw)
+			.def("SetQuaternion",&LinkObj::SetQuaternion)
+			.def("SetRotation",&LinkObj::SetRotation)
+			.def("SetVisible",&LinkObj::SetVisible)
+			.def("BoundingBoxVisible",&LinkObj::BoundingBoxVisible)
 
 			;
 
-			bpy::class_<MyGUI>("CEGUIWindow")
-			.def("SetPosition",&MyGUI::SetPosition)
-			.def("SetSize",&MyGUI::SetSize)
-			.def("SetText",&MyGUI::SetText)
-			.def("SetVisible",&MyGUI::SetVisible)
-			.def("SetFrameEnable",&MyGUI::SetFrameEnable)
-			.def("SetBackGroundEnable",&MyGUI::SetBackGroundEnable)
-			.def("SetFontSize",&MyGUI::SetFontSize)
-			.def("GetText",&MyGUI::GetText)
-			.def("GetComboBoxItem",&MyGUI::GetComboBoxItem)
-			.def("GetSliderValue",&MyGUI::GetSliderValue)
-			.def("SetTextColor",&MyGUI::SetTextColor)
-			.def("SetAlpha",&MyGUI::SetAlpha)
-			.def("SetImage",&MyGUI::SetImage)
-			.def("SetTextTopAligned",&MyGUI::SetTextTopAligned)
-			.def("SetTextBottomAligned",&MyGUI::SetTextBottomAligned)
-			.def("SetTextVertCentred",&MyGUI::SetTextVertCentred)
-			.def("SetTextWordWrapLeftAligned",&MyGUI::SetTextWordWrapLeftAligned)
-			.def("SetTextWordWrapRightAligned",&MyGUI::SetTextWordWrapRightAligned)
-			.def("SetTextWordWrapCentred",&MyGUI::SetTextWordWrapCentred)
-			.def("SetTextLeftAligned",&MyGUI::SetTextLeftAligned)
-			.def("SetTextRightAligned",&MyGUI::SetTextRightAligned)
-			.def("SetTextHorzCentred",&MyGUI::SetTextHorzCentred)
-			.def("ClearProperties",&MyGUI::ClearProperties)
-			.def("SetRotatin",&MyGUI::SetRotatin)
-			.def("moveToFront",&MyGUI::moveToFront)
-			.def("moveToBack",&MyGUI::moveToBack)
-			.def("moveInFront",&MyGUI::moveInFront)
-			.def("moveBehind",&MyGUI::moveBehind)
-			.def("setColor",&MyGUI::setColor)
-			.def("SetWindow",&MyGUI::SetWindow)
-			.def("RemoveComboBoxItem",&MyGUI::RemoveComboBoxItem)
-			.def("AddListBoxItem",&MyGUI::AddListBoxItem)
-			.def("RemoveListBoxItem",&MyGUI::RemoveListBoxItem)
-			.def("AddMultiColumnRow",&MyGUI::AddMultiColumnRow)
-			.def("RemoveMultiColumnRow",&MyGUI::RemoveMultiColumnRow)
-			.def("RemoveMultiColumnCol",&MyGUI::RemoveMultiColumnCol)
-			.def("AddMultiColumnItem",&MyGUI::AddMultiColumnItem)
-			.def("SetProgressBarValue",&MyGUI::SetProgressBarValue)
-			.def("GetScrollValue",&MyGUI::GetScrollValue)
-			.def("SetCheckBox",&MyGUI::SetCheckBox)
-			.def("GetCheckBox",&MyGUI::SetCheckBox)
-			.def("SetSliderValue",&MyGUI::SetSliderValue)
+			bpy::class_<GUIObj>("CEGUIWindow")
+			.def("SetPosition",&GUIObj::SetPosition)
+			.def("SetSize",&GUIObj::SetSize)
+			.def("SetText",&GUIObj::SetText)
+			.def("SetVisible",&GUIObj::SetVisible)
+			.def("SetFrameEnable",&GUIObj::SetFrameEnable)
+			.def("SetBackGroundEnable",&GUIObj::SetBackGroundEnable)
+			.def("SetFontSize",&GUIObj::SetFontSize)
+			.def("GetText",&GUIObj::GetText)
+			.def("GetComboBoxItem",&GUIObj::GetComboBoxItem)
+			.def("GetSliderValue",&GUIObj::GetSliderValue)
+			.def("SetTextColor",&GUIObj::SetTextColor)
+			.def("SetAlpha",&GUIObj::SetAlpha)
+			.def("SetImage",&GUIObj::SetImage)
+			.def("SetTextTopAligned",&GUIObj::SetTextTopAligned)
+			.def("SetTextBottomAligned",&GUIObj::SetTextBottomAligned)
+			.def("SetTextVertCentred",&GUIObj::SetTextVertCentred)
+			.def("SetTextWordWrapLeftAligned",&GUIObj::SetTextWordWrapLeftAligned)
+			.def("SetTextWordWrapRightAligned",&GUIObj::SetTextWordWrapRightAligned)
+			.def("SetTextWordWrapCentred",&GUIObj::SetTextWordWrapCentred)
+			.def("SetTextLeftAligned",&GUIObj::SetTextLeftAligned)
+			.def("SetTextRightAligned",&GUIObj::SetTextRightAligned)
+			.def("SetTextHorzCentred",&GUIObj::SetTextHorzCentred)
+			.def("ClearProperties",&GUIObj::ClearProperties)
+			.def("SetRotatin",&GUIObj::SetRotatin)
+			.def("moveToFront",&GUIObj::moveToFront)
+			.def("moveToBack",&GUIObj::moveToBack)
+			.def("moveInFront",&GUIObj::moveInFront)
+			.def("moveBehind",&GUIObj::moveBehind)
+			.def("setColor",&GUIObj::setColor)
+			.def("SetWindow",&GUIObj::SetWindow)
+			.def("RemoveComboBoxItem",&GUIObj::RemoveComboBoxItem)
+			.def("AddListBoxItem",&GUIObj::AddListBoxItem)
+			.def("RemoveListBoxItem",&GUIObj::RemoveListBoxItem)
+			.def("AddMultiColumnRow",&GUIObj::AddMultiColumnRow)
+			.def("RemoveMultiColumnRow",&GUIObj::RemoveMultiColumnRow)
+			.def("RemoveMultiColumnCol",&GUIObj::RemoveMultiColumnCol)
+			.def("AddMultiColumnItem",&GUIObj::AddMultiColumnItem)
+			.def("SetProgressBarValue",&GUIObj::SetProgressBarValue)
+			.def("GetScrollValue",&GUIObj::GetScrollValue)
+			.def("SetCheckBox",&GUIObj::SetCheckBox)
+			.def("GetCheckBox",&GUIObj::SetCheckBox)
+			.def("SetSliderValue",&GUIObj::SetSliderValue)
 			
 			
 			
@@ -363,16 +286,16 @@ BOOST_PYTHON_MODULE(CppExport)
 			
 
 			;
-			bpy::class_<myParticle>("myParticle",bpy::init<std::string>())
-			.def("SetPosition",&myParticle::SetPosition)
-			.def("SetScale",&myParticle::SetScale)
-			.def("Roll",&myParticle::Roll)
-			.def("Pitch",&myParticle::Pitch)
-			.def("Yaw",&myParticle::Yaw)
-			.def("SetQuaternion",&myParticle::SetQuaternion)
-			.def("SetRotation",&myParticle::SetRotation)
-			.def("SetVisible",&myParticle::SetVisible)
-			.def("BoundingBoxVisible",&myParticle::BoundingBoxVisible)
+			bpy::class_<ParticleObj>("ParticleObj",bpy::init<std::string>())
+			.def("SetPosition",&ParticleObj::SetPosition)
+			.def("SetScale",&ParticleObj::SetScale)
+			.def("Roll",&ParticleObj::Roll)
+			.def("Pitch",&ParticleObj::Pitch)
+			.def("Yaw",&ParticleObj::Yaw)
+			.def("SetQuaternion",&ParticleObj::SetQuaternion)
+			.def("SetRotation",&ParticleObj::SetRotation)
+			.def("SetVisible",&ParticleObj::SetVisible)
+			.def("BoundingBoxVisible",&ParticleObj::BoundingBoxVisible)
 
 			;
 			bpy::class_<SubWindow>("SubWindow")
@@ -388,91 +311,91 @@ BOOST_PYTHON_MODULE(CppExport)
 			;
 
 
-			bpy::class_<MyAnimation>("MyAnimation",bpy::init<std::string>())
-			.def("AddKeyFrame",&MyAnimation::AddKeyFrame, bpy::return_internal_reference<>())
-			.def("RemoveKeyFrame",&MyAnimation::RemoveKeyFrame)
-			.def("SetAnimationState",&MyAnimation::SetAnimationState)
-			.def("SetLength",&MyAnimation::SetLength)
+			bpy::class_<AnimationObj>("AnimationObj",bpy::init<std::string>())
+			.def("AddKeyFrame",&AnimationObj::AddKeyFrame, bpy::return_internal_reference<>())
+			.def("RemoveKeyFrame",&AnimationObj::RemoveKeyFrame)
+			.def("SetAnimationState",&AnimationObj::SetAnimationState)
+			.def("SetLength",&AnimationObj::SetLength)
 			;
-			bpy::class_<MyAnimationList>("MyAnimationList")
-			.def("setTranslate",&MyAnimationList::setTranslate)
-			.def("setRotation",&MyAnimationList::setRotation)
+			bpy::class_<AnimationObjList>("AnimationObjList")
+			.def("setTranslate",&AnimationObjList::setTranslate)
+			.def("setRotation",&AnimationObjList::setRotation)
 
 			;
-			bpy::class_<MyLight>("MyLight",bpy::init<std::string>())
-			.def("setColor",&MyLight::setColor)
-			.def("SetPosition",&MyLight::SetPosition)
-			.def("SetScale",&MyLight::SetScale)
-			.def("Roll",&MyLight::Roll)
-			.def("Pitch",&MyLight::Pitch)
-			.def("Yaw",&MyLight::Yaw)
-			.def("SetQuaternion",&MyLight::SetQuaternion)
-			.def("SetRotation",&MyLight::SetRotation)
-			.def("SetVisible",&MyLight::SetVisible)
-			.def("BoundingBoxVisible",&MyLight::BoundingBoxVisible)
+			bpy::class_<LightObj>("LightObj",bpy::init<std::string>())
+			.def("setColor",&LightObj::setColor)
+			.def("SetPosition",&LightObj::SetPosition)
+			.def("SetScale",&LightObj::SetScale)
+			.def("Roll",&LightObj::Roll)
+			.def("Pitch",&LightObj::Pitch)
+			.def("Yaw",&LightObj::Yaw)
+			.def("SetQuaternion",&LightObj::SetQuaternion)
+			.def("SetRotation",&LightObj::SetRotation)
+			.def("SetVisible",&LightObj::SetVisible)
+			.def("BoundingBoxVisible",&LightObj::BoundingBoxVisible)
 
 			;
-			bpy::class_<MyODEBody>("MyODEBody",bpy::init<std::string, MySimulation*>())
-			.def("SetBodyPosition",&MyODEBody::SetBodyPosition)
-			.def("SetBodyRotation",&MyODEBody::SetBodyRotation)
-			.def("SetODEScale",&MyODEBody::SetODEScale)
-			.def("SetODEOffset",&MyODEBody::SetODEOffset)
-			.def("GetPosition",&MyODEBody::GetPosition)
+			bpy::class_<ODEBodyObj>("ODEBodyObj",bpy::init<std::string, SimulationObj*>())
+			.def("SetBodyPosition",&ODEBodyObj::SetBodyPosition)
+			.def("SetBodyRotation",&ODEBodyObj::SetBodyRotation)
+			.def("SetODEScale",&ODEBodyObj::SetODEScale)
+			.def("SetODEOffset",&ODEBodyObj::SetODEOffset)
+			.def("GetPosition",&ODEBodyObj::GetPosition)
 
 			;
-			bpy::class_<MyODEJoint>("MyODEJoint",bpy::init<std::string, MySimulation*>())
-			.def("SetJointPosition",&MyODEJoint::SetJointPosition)
-			.def("SetJointRotation",&MyODEJoint::SetJointRotation)
-			.def("ControlJointAng",&MyODEJoint::ControlJointAng)
-			.def("ControlJointVel",&MyODEJoint::ControlJointVel)
-			.def("ControlJointToq",&MyODEJoint::ControlJointToq)
-			.def("SetODEScale",&MyODEJoint::SetODEScale)
-			.def("SetODEOffset",&MyODEJoint::SetODEOffset)
-			.def("GetJointPosition",&MyODEJoint::GetJointPosition)
+			bpy::class_<ODEJointObj>("ODEJointObj",bpy::init<std::string, SimulationObj*>())
+			.def("SetJointPosition",&ODEJointObj::SetJointPosition)
+			.def("SetJointRotation",&ODEJointObj::SetJointRotation)
+			.def("ControlJointAng",&ODEJointObj::ControlJointAng)
+			.def("ControlJointVel",&ODEJointObj::ControlJointVel)
+			.def("ControlJointToq",&ODEJointObj::ControlJointToq)
+			.def("SetODEScale",&ODEJointObj::SetODEScale)
+			.def("SetODEOffset",&ODEJointObj::SetODEOffset)
+			.def("GetJointPosition",&ODEJointObj::GetJointPosition)
 			;
-			bpy::class_<MyContactList>("MyContactList",bpy::init<std::string>())
-			.def("SetERP",&MyContactList::SetERP)
-			.def("SetCFM",&MyContactList::SetCFM)
-			.def("SetMu",&MyContactList::SetMu)
-			.def("SetContact",&MyContactList::SetContact)
+			bpy::class_<ContactListObj>("ContactListObj",bpy::init<std::string>())
+			.def("SetERP",&ContactListObj::SetERP)
+			.def("SetCFM",&ContactListObj::SetCFM)
+			.def("SetMu",&ContactListObj::SetMu)
+			.def("SetContact",&ContactListObj::SetContact)
 			;
-			bpy::class_<MySimulation>("MySimulation",bpy::init<OgreRTCApplication*>())
-			.def("SetSphere",&MySimulation::SetSphere, bpy::return_internal_reference<>())
-			.def("SetBox",&MySimulation::SetBox, bpy::return_internal_reference<>())
-			.def("SetSylinder",&MySimulation::SetSylinder, bpy::return_internal_reference<>())
-			.def("SetCapsule",&MySimulation::SetCapsule, bpy::return_internal_reference<>())
-			.def("SetSliderJoint",(MyODEJoint *(MySimulation:: *)(const char *, MyODEBody *, MyODEBody *, double, double, double))&MySimulation::SetSliderJoint, bpy::return_internal_reference<>())
-			.def("SetSliderJoint",(MyODEJoint *(MySimulation:: *)(const char *, MyODEBody *, double, double, double))&MySimulation::SetSliderJoint, bpy::return_internal_reference<>())
-			.def("SetFixJoint",(MyODEJoint *(MySimulation:: *)(const char *, MyODEBody *, MyODEBody *))&MySimulation::SetFixJoint, bpy::return_internal_reference<>())
-			.def("SetFixJoint",(MyODEJoint *(MySimulation:: *)(const char *, MyODEBody *))&MySimulation::SetFixJoint, bpy::return_internal_reference<>())
-			.def("SetHingeJoint",(MyODEJoint *(MySimulation:: *)(const char *, MyODEBody *, MyODEBody *, double, double, double, double, double, double))&MySimulation::SetHingeJoint, bpy::return_internal_reference<>())
-			.def("SetHingeJoint",(MyODEJoint *(MySimulation:: *)(const char *, MyODEBody *, double, double, double, double, double, double))&MySimulation::SetHingeJoint, bpy::return_internal_reference<>())
-			.def("DestroyBody",&MySimulation::DestroyBody)
-			.def("DestroyJoint",&MySimulation::DestroyJoint)
-			.def("DestroyAll",&MySimulation::DestroyAll)
-			.def("startSim",&MySimulation::startSim)
-			.def("restartSim",&MySimulation::restartSim)
-			.def("stopSim",&MySimulation::stopSim)
-			.def("SetGravity",&MySimulation::SetGravity)
-			.def("SetCFM",&MySimulation::SetCFM)
-			.def("SetERP",&MySimulation::SetERP)
-			.def("SetSamplingTime",&MySimulation::SetSamplingTime)
-			.def("SetSleepTime",&MySimulation::SetSleepTime)
-			.def("SetGroundCFM",&MySimulation::SetGroundCFM)
-			.def("SetGroundERP",&MySimulation::SetGroundERP)
-			.def("SetQuiq",&MySimulation::SetQuiq)
-			.def("SetGroundMu",&MySimulation::SetGroundMu)
-			.def("getBodyByName",&MySimulation::getBodyByName, bpy::return_internal_reference<>())
-			.def("getJointByName",&MySimulation::getJointByName, bpy::return_internal_reference<>())
-			.def("SetScale",&MySimulation::SetScale)
-			.def("SetContactList",&MySimulation::SetContactList, bpy::return_internal_reference<>())
-			.def("DestroyContactList",&MySimulation::DestroyContactList)
-			.def("getContactListByName",&MySimulation::getContactListByName, bpy::return_internal_reference<>())
+			bpy::class_<SimulationObj>("SimulationObj",bpy::init<OgreRTCApplication*>())
+			.def("SetSphere",&SimulationObj::SetSphere, bpy::return_internal_reference<>())
+			.def("SetBox",&SimulationObj::SetBox, bpy::return_internal_reference<>())
+			.def("SetSylinder",&SimulationObj::SetSylinder, bpy::return_internal_reference<>())
+			.def("SetCapsule",&SimulationObj::SetCapsule, bpy::return_internal_reference<>())
+			.def("SetSliderJoint",(ODEJointObj *(SimulationObj:: *)(const char *, ODEBodyObj *, ODEBodyObj *, double, double, double))&SimulationObj::SetSliderJoint, bpy::return_internal_reference<>())
+			.def("SetSliderJoint",(ODEJointObj *(SimulationObj:: *)(const char *, ODEBodyObj *, double, double, double))&SimulationObj::SetSliderJoint, bpy::return_internal_reference<>())
+			.def("SetFixJoint",(ODEJointObj *(SimulationObj:: *)(const char *, ODEBodyObj *, ODEBodyObj *))&SimulationObj::SetFixJoint, bpy::return_internal_reference<>())
+			.def("SetFixJoint",(ODEJointObj *(SimulationObj:: *)(const char *, ODEBodyObj *))&SimulationObj::SetFixJoint, bpy::return_internal_reference<>())
+			.def("SetHingeJoint",(ODEJointObj *(SimulationObj:: *)(const char *, ODEBodyObj *, ODEBodyObj *, double, double, double, double, double, double))&SimulationObj::SetHingeJoint, bpy::return_internal_reference<>())
+			.def("SetHingeJoint",(ODEJointObj *(SimulationObj:: *)(const char *, ODEBodyObj *, double, double, double, double, double, double))&SimulationObj::SetHingeJoint, bpy::return_internal_reference<>())
+			.def("DestroyBody",&SimulationObj::DestroyBody)
+			.def("DestroyJoint",&SimulationObj::DestroyJoint)
+			.def("DestroyAll",&SimulationObj::DestroyAll)
+			.def("startSim",&SimulationObj::startSim)
+			.def("restartSim",&SimulationObj::restartSim)
+			.def("stopSim",&SimulationObj::stopSim)
+			.def("SetGravity",&SimulationObj::SetGravity)
+			.def("SetCFM",&SimulationObj::SetCFM)
+			.def("SetERP",&SimulationObj::SetERP)
+			.def("SetSamplingTime",&SimulationObj::SetSamplingTime)
+			.def("SetSleepTime",&SimulationObj::SetSleepTime)
+			.def("SetGroundCFM",&SimulationObj::SetGroundCFM)
+			.def("SetGroundERP",&SimulationObj::SetGroundERP)
+			.def("SetQuiq",&SimulationObj::SetQuiq)
+			.def("SetGroundMu",&SimulationObj::SetGroundMu)
+			.def("getBodyByName",&SimulationObj::getBodyByName, bpy::return_internal_reference<>())
+			.def("getJointByName",&SimulationObj::getJointByName, bpy::return_internal_reference<>())
+			.def("SetScale",&SimulationObj::SetScale)
+			.def("SetContactList",&SimulationObj::SetContactList, bpy::return_internal_reference<>())
+			.def("DestroyContactList",&SimulationObj::DestroyContactList)
+			.def("getContactListByName",&SimulationObj::getContactListByName, bpy::return_internal_reference<>())
 
 			
 			
 			;
-			bpy::class_<MyImageSet>("MyImageSet")
+			bpy::class_<ImageSetObj>("ImageSetObj")
 
 			;
 			
@@ -554,7 +477,9 @@ BOOST_PYTHON_MODULE(CppExport)
 
 }
 
-
+/**
+*@brief Ogre3Dのレンダリング管理クラスのコンストラクタ
+*/
 OgreRTCApplication::OgreRTCApplication(void)
 {
 	
@@ -578,7 +503,7 @@ OgreRTCApplication::OgreRTCApplication(void)
 	QtskyBoxName = "";
 
 
-	mSim = new MySimulation(this);
+	mSim = new SimulationObj(this);
 
 	mSim->activate();
 	
@@ -601,9 +526,18 @@ OgreRTCApplication::OgreRTCApplication(void)
 	
 	
 }
-//-------------------------------------------------------------------------------------
 
 
+/**
+*@brief カメラの位置、姿勢、距離の設定の関数
+* @param px 位置(X)
+* @param py 位置(X)
+* @param pz 位置(X)
+* @param roll 角度(ロール)
+* @param pitch 角度(ピッチ)
+* @param yaw 角度(ヨー)
+* @param len 距離
+*/
 void OgreRTCApplication::UpdateCameraPQ(float px, float py, float pz, float roll, float pitch, float yaw, float len)
 {
 	CamX = px;
@@ -626,6 +560,11 @@ void OgreRTCApplication::UpdateCameraPQ(float px, float py, float pz, float roll
 
 }
 
+/**
+*@brief カメラを移動する関数
+* @param dx 移動距離(X)
+* @param dy 移動距離(Y)
+*/
 void OgreRTCApplication::MoveCameraPos(float dx, float dy)
 {
 
@@ -649,6 +588,11 @@ void OgreRTCApplication::MoveCameraPos(float dx, float dy)
 
 }
 
+/**
+*@brief カメラを回転する関数
+* @param dx 回転量(X)
+* @param dy 回転量(Y)
+*/
 void OgreRTCApplication::MoveCameraRot(float dx, float dy)
 {
 	
@@ -698,6 +642,9 @@ void OgreRTCApplication::MoveCameraRot(float dx, float dy)
 	SetCameraQuaternion(tRot.w,tRot.x,tRot.y,tRot.z);
 }
 
+/**
+*@brief RTCの停止の関数
+*/
 void OgreRTCApplication::StopFile()
 {
 	if(po->Exec)
@@ -708,6 +655,10 @@ void OgreRTCApplication::StopFile()
 		po->Exec = false;
 	}
 }
+
+/**
+*@brief RTC削除の関数
+*/
 void OgreRTCApplication::CloseFile()
 {
 	StopFile();
@@ -726,6 +677,10 @@ void OgreRTCApplication::CloseFile()
 	
 }
 
+/**
+*@brief RTC読み込みの関数
+* @param fname ファイル名
+*/
 void OgreRTCApplication::OpenFile(const char *fname)
 {
 	if(po->Exec)
@@ -764,43 +719,64 @@ void OgreRTCApplication::OpenFile(const char *fname)
 	
 }
 
-MyLink* OgreRTCApplication::getBodyByName(const char* name)
+/**
+*@brief 名前からボディオブジェクトを取得
+* @param name 名前
+* @return ボディオブジェクト
+*/
+LinkObj* OgreRTCApplication::getBodyByName(const char* name)
 {
 	
-	for(int i=0;i < MyLinks.size();i++)
+	for(int i=0;i < LinkObjs.size();i++)
 	{
-		if(MyLinks[i]->name == name)
+		if(LinkObjs[i]->name == name)
 		{
-			return MyLinks[i];
+			return LinkObjs[i];
 		}
 	}
 	return NULL;
 }
 
-MyGUI* OgreRTCApplication::getGUIByName(const char* name)
+
+/**
+*@brief 名前からGUIオブジェクトを取得
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj* OgreRTCApplication::getGUIByName(const char* name)
 {
-	for(int i=0;i < MyGUIs.size();i++)
+	for(int i=0;i < GUIObjs.size();i++)
 	{
-		if(MyGUIs[i]->name == name)
+		if(GUIObjs[i]->name == name)
 		{
-			return MyGUIs[i];
+			return GUIObjs[i];
 		}
 	}
 	return NULL;
 }
 
-myParticle* OgreRTCApplication::getParticleByName(const char* name)
+/**
+*@brief 名前からパーティクルオブジェクトを取得
+* @param name 名前
+* @return パーティクルオブジェクト
+*/
+ParticleObj* OgreRTCApplication::getParticleByName(const char* name)
 {
-	for(int i=0;i < myParticles.size();i++)
+	for(int i=0;i < ParticleObjs.size();i++)
 	{
-		if(myParticles[i]->name == name)
+		if(ParticleObjs[i]->name == name)
 		{
-			return myParticles[i];
+			return ParticleObjs[i];
 		}
 	}
 	return NULL;
 }
 
+/**
+*@brief 名前からサブウインドウオブジェクトを取得
+* @param name 名前
+* @return サブウインドウオブジェクト
+*/
 SubWindow* OgreRTCApplication::getSubWindowByName(const char* name)
 {
 	for(int i=0;i < SubWindows.size();i++)
@@ -813,18 +789,28 @@ SubWindow* OgreRTCApplication::getSubWindowByName(const char* name)
 	return NULL;
 }
 
-MyImageSet* OgreRTCApplication::getImageSetByName(const char* name)
+
+/**
+*@brief 名前からイメージセットオブジェクトを取得
+* @param name 名前
+* @return イメージセットオブジェクト
+*/
+ImageSetObj* OgreRTCApplication::getImageSetByName(const char* name)
 {
-	for(int i=0;i < MyImageSets.size();i++)
+	for(int i=0;i < ImageSetObjs.size();i++)
 	{
-		if(MyImageSets[i]->name == name)
+		if(ImageSetObjs[i]->name == name)
 		{
-			return MyImageSets[i];
+			return ImageSetObjs[i];
 		}
 	}
 	return NULL;
 }
 
+
+/**
+*@brief Ogre3Dのレンダリング管理クラスのデストラクタ
+*/
 OgreRTCApplication::~OgreRTCApplication(void)
 {
 	/*if (hTh != NULL) {
@@ -844,7 +830,11 @@ OgreRTCApplication::~OgreRTCApplication(void)
 	mSceneMgr->destroyQuery(mRayQuery);
 }
 
-
+/**
+*@brief QtのキーコードをCEGUIのキーコードに変換
+* @param key Qtのキーコード
+* @return CEGUIのキーコード
+*/
 CEGUI::Key::Scan convertKey(int key)
 {
 	switch (key)
@@ -984,6 +974,11 @@ CEGUI::Key::Scan convertKey(int key)
 	}
 }
 
+/**
+*@brief テキストを入力した場合等に呼び出される関数
+* @param arg インプットメソッドイベント
+* @return true
+*/
 bool OgreRTCApplication::inputMethodEvent(QInputMethodEvent *arg)
 {
 	const QString tmp = arg->commitString();
@@ -1025,6 +1020,12 @@ bool OgreRTCApplication::inputMethodEvent(QInputMethodEvent *arg)
 
 }
 
+
+/**
+*@brief キーを押した時に呼ばれる関数
+* @param arg キーイベント
+* @return true
+*/
 bool OgreRTCApplication::keyPressed( QKeyEvent *arg )
 {
 
@@ -1065,6 +1066,11 @@ bool OgreRTCApplication::keyPressed( QKeyEvent *arg )
 	return BaseApplication::keyPressed(arg);
 }
 
+/**
+*@brief キーを離した時に呼ばれる関数
+* @param arg キーイベント
+* @return true
+*/
 bool OgreRTCApplication::keyReleased( QKeyEvent *arg )
 {
 
@@ -1103,7 +1109,11 @@ bool OgreRTCApplication::keyReleased( QKeyEvent *arg )
 }
 
 
-
+/**
+*@brief QtのマウスボタンIDをCEGUIのマウスボタンIDに変換
+* @param buttonID QtのマウスボタンID
+* @return CEGUIのマウスボタンID
+*/
 CEGUI::MouseButton convertButton(Qt::MouseButton buttonID)
 {
 
@@ -1127,6 +1137,13 @@ CEGUI::MouseButton convertButton(Qt::MouseButton buttonID)
     }
 }
 
+
+/**
+*@brief 背景画像設定の関数
+* @param img 画像データ
+* @param w 幅
+* @param h 高さ
+*/
 void OgreRTCApplication::setDisplayImage(const char *img, int w, int h)
 {
 	if(displayImg->texture->getWidth() != w)
@@ -1169,6 +1186,12 @@ void OgreRTCApplication::setDisplayImage(const char *img, int w, int h)
 	displayImg->texture->loadImage(displayImg->img);
 }
 
+
+/**
+*@brief マウスを動かした時に呼ばれる関数
+* @param arg マウスイベント
+* @return true
+*/
 bool OgreRTCApplication::mouseMoved( QMouseEvent*  evt )
 {
 	
@@ -1225,6 +1248,11 @@ bool OgreRTCApplication::mouseMoved( QMouseEvent*  evt )
     return true;
 }
  
+/**
+*@brief マウスのボタン押した時に呼ばれる関数
+* @param arg マウスイベント
+* @return true
+*/
 bool OgreRTCApplication::mousePressed( QMouseEvent*  evt )
 {
 
@@ -1263,6 +1291,11 @@ bool OgreRTCApplication::mousePressed( QMouseEvent*  evt )
     return true;
 }
  
+/**
+*@brief マウスのボタン離した時に呼ばれる関数
+* @param arg マウスイベント
+* @return true
+*/
 bool OgreRTCApplication::mouseReleased( QMouseEvent*  evt )
 {
 
@@ -1301,7 +1334,14 @@ bool OgreRTCApplication::mouseReleased( QMouseEvent*  evt )
     return true;
 }
 
-void CreateML(MyLink *ml,double scx,double scy,double scz)
+/**
+*@brief ボディオブジェクト初期化
+* @param ml ボディオブジェクト
+* @param scx 拡大率(X)
+* @param scy 拡大率(Y)
+* @param scz 拡大率(Z)
+*/
+void CreateML(LinkObj *ml,double scx,double scy,double scz)
 {
 	ml->mEntity->setCastShadows(true);
 	ml->mNode->mNode->attachObject(ml->mEntity);
@@ -1313,7 +1353,9 @@ void CreateML(MyLink *ml,double scx,double scy,double scz)
 	
 }
  
-//-------------------------------------------------------------------------------------
+/**
+*@brief 初期化の関数
+*/
 void OgreRTCApplication::createScene(void)
 {
     // Set the default lighting.
@@ -1398,8 +1440,12 @@ void OgreRTCApplication::createScene(void)
  
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 
-	CEGUI::FontManager::getSingleton().createFreeTypeFont("DefaultFont", 30/*pt*/, true, "sazanami-mincho.ttf");
-	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DefaultFont");
+	
+	
+	
+	
+	
+	
 
     //CEGUI::System::getSingleton().setDefaultMouseCursor("TaharezLook", "MouseArrow");
 
@@ -1421,9 +1467,14 @@ void OgreRTCApplication::createScene(void)
 	
 
 	
-
-
-	CEGUI::FontManager::getSingleton().isDefined("sazanami-mincho");
+	//CEGUI::FontManager::getSingleton().createFreeTypeFont("DefaultFont", 30/*pt*/, true, "DejaVuSans.ttf");
+	//CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont("DefaultFont");
+	//CEGUI::FontManager::getSingleton().isDefined("DejaVuSans");
+	
+	if(!loadFont("SazanamiFont",30,true,"sazanami-mincho"))
+	{
+		loadFont("DejaVuSansFont",30,true,"DejaVuSans");
+	}
 
 
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
@@ -1434,7 +1485,48 @@ void OgreRTCApplication::createScene(void)
 	
 }
 
+/**
+*@brief フォントを読み込む関数
+* @param font_name フォント名
+* @param point_size サイズ
+* @param anti_aliased trueでアンチエイリアス有効
+* @param font_filename ファイル名
+* @return 成功でtrue、失敗でfalse
+*/
 
+bool OgreRTCApplication::loadFont(const char *font_name, float point_size, bool anti_aliased, const char *font_filename)
+{
+	for (std::vector<std::string>::iterator it = fontList.begin(); it != fontList.end();it++)
+	{
+		if((*it) == font_filename)
+		{
+			return true;
+		}
+	}
+
+	std::string fontFileName = font_filename;
+	fontFileName += ".ttf";
+	try
+	{
+		CEGUI::FontManager::getSingleton().createFreeTypeFont(font_name, point_size/*pt*/, anti_aliased, fontFileName.c_str());
+	}
+	catch(...)
+	{
+		return false;
+	}
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont(font_name);
+	CEGUI::FontManager::getSingleton().isDefined(font_filename);
+
+	fontList.push_back(font_filename);
+	return true;
+	
+}
+
+/**
+*@brief キーを押した時に終了する関数
+* @param e キーイベント
+* @return true
+*/
 bool OgreRTCApplication::quit(const CEGUI::EventArgs &e)
 {
     mShutDown = true;
@@ -1444,7 +1536,10 @@ bool OgreRTCApplication::quit(const CEGUI::EventArgs &e)
 
 
 
-
+/**
+*@brief 更新時に呼び出される関数
+* @param t フレーム時間
+*/
 void OgreRTCApplication::update(float t)
 {
 	if(mWindow) {
@@ -1464,7 +1559,7 @@ void OgreRTCApplication::update(float t)
 		Tm = tTm;
 
 		//std::cout << t << std::endl;
-		//std::cout << MyNodes.size() << std::endl;
+		//std::cout << NodeObjs.size() << std::endl;
 		
 		int ttW = SleepTime - (int)(1000. * t); 
 		if(ttW > 0)coil::usleep(ttW);
@@ -1485,7 +1580,12 @@ void OgreRTCApplication::update(float t)
 }
  
 
-
+/**
+*@brief カメラの位置設定の関数
+* @param x 位置(X)
+* @param y 位置(Y)
+* @param z 位置(Z)
+*/
 void OgreRTCApplication::SetCameraPosition(float x, float y, float z)
 {
 	mCamera->setPosition(x, y, z);
@@ -1493,14 +1593,11 @@ void OgreRTCApplication::SetCameraPosition(float x, float y, float z)
     
 }
 
-void OgreRTCApplication::CameraYaw(float ang)
-{
-	mCamera->yaw(Ogre::Degree(ang));
 
-	
-	
-}
-
+/**
+*@brief カメラの姿勢(ロール角)設定の関数
+* @param ang 角度(ロール)
+*/
 void OgreRTCApplication::CameraRoll(float ang)
 {
 	mCamera->roll(Ogre::Degree(ang));
@@ -1509,6 +1606,10 @@ void OgreRTCApplication::CameraRoll(float ang)
 	
 }
 
+/**
+*@brief カメラの姿勢(ピッチ角)設定の関数
+* @param ang 角度(ピッチ)
+*/
 void OgreRTCApplication::CameraPitch(float ang)
 {
 	mCamera->pitch(Ogre::Degree(ang));
@@ -1516,6 +1617,25 @@ void OgreRTCApplication::CameraPitch(float ang)
 	
 }
 
+/**
+*@brief カメラの姿勢(ヨー角)設定の関数
+* @param ang 角度(ヨー)
+*/
+void OgreRTCApplication::CameraYaw(float ang)
+{
+	mCamera->yaw(Ogre::Degree(ang));
+
+	
+	
+}
+
+
+/**
+*@brief カメラの姿勢設定の関数
+* @param r 角度(ロール)
+* @param p 角度(ピッチ)
+* @param y 角度(ヨー)
+*/
 void OgreRTCApplication::SetCameraRotation(float r, float p, float y)
 {
 	SetCameraQuaternion(1,0,0,0);
@@ -1525,25 +1645,48 @@ void OgreRTCApplication::SetCameraRotation(float r, float p, float y)
 	
 }
 
+
+/**
+*@brief カメラの姿勢(クォータニオン)設定の関数
+* @param w クォータニオン(W)
+* @param x クォータニオン(X)
+* @param y クォータニオン(Y)
+* @param z クォータニオン(Z)
+*/
 void OgreRTCApplication::SetCameraQuaternion(float w, float x, float y, float z)
 {
 	mCamera->setOrientation(Ogre::Quaternion(w,x,y,z));
 }
 
-
-MyGUI *OgreRTCApplication::CreateStaticText(const char* name)
+/**
+*@brief スタティックテキスト作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateStaticText(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/StaticText", name);
+	GUIObj *label = CreateGUI("TaharezLook/StaticText", name);
 	
 	return label;
 }
 
-MyGUI *OgreRTCApplication::CreateQtStaticText(const char* name)
+/**
+*@brief GUIの操作でボタンを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtStaticText(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/StaticText", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/StaticText", name);
 	return label;
 }
 
+
+/**
+*@brief ボタンを押したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::BottonClickedHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -1555,6 +1698,11 @@ bool OgreRTCApplication::BottonClickedHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
+/**
+*@brief GUIのコールバックを設定する関数
+* @param name 名前
+* @param type ウィジェットの種類
+*/
 void OgreRTCApplication::SetCallScript(const char* name, const char* type)
 {
 	std::string t_st = name;
@@ -1591,59 +1739,85 @@ void OgreRTCApplication::SetCallScript(const char* name, const char* type)
 	
 }
 
-
-MyGUI *OgreRTCApplication::CreateButton(const char* name)
+/**
+*@brief ボタン作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateButton(const char* name)
 {
 	
-	MyGUI *label = CreateGUI("TaharezLook/Button", name);
+	GUIObj *label = CreateGUI("TaharezLook/Button", name);
 	label->window->subscribeEvent(CEGUI::PushButton::EventClicked,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::BottonClickedHandler, this));
 	return label;
 }
 
-MyGUI *OgreRTCApplication::CreateQtButton(const char* name)
+/**
+*@brief GUIの操作でスタティックテキストを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtButton(const char* name)
 {
 	
-	MyGUI *label = CreateQtGUI("TaharezLook/Button", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Button", name);
 	label->window->subscribeEvent(CEGUI::PushButton::EventClicked,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::BottonClickedHandler, this));
 	return label;
 }
 
 
-
-MyGUI *OgreRTCApplication::CreateEditBox(const char* name)
+/**
+*@brief テキストエディタ作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateEditBox(const char* name)
 {
 	
-	MyGUI *label = CreateGUI("TaharezLook/Editbox", name);
+	GUIObj *label = CreateGUI("TaharezLook/Editbox", name);
 	//label->subscribeEvent(CEGUI::Window::EventKeyDown, CEGUI::Event::Subscriber(&OgreRTCApplication::GUIKeyDownHandler, this));
 	//label->subscribeEvent(CEGUI::Window::EventKeyUp, CEGUI::Event::Subscriber(&OgreRTCApplication::GUIKeyUpHandler, this));
 	return label;
 }
 
-
-MyGUI *OgreRTCApplication::CreateQtEditBox(const char* name)
+/**
+*@brief GUIの操作でテキストエディタを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtEditBox(const char* name)
 {
 	
-	MyGUI *label = CreateQtGUI("TaharezLook/Editbox", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Editbox", name);
 	
 	return label;
 }
 
 
-
-MyGUI *OgreRTCApplication::CreateComboBox(const char* name)
+/**
+*@brief コンボボックス作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateComboBox(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Combobox", name);
+	GUIObj *label = CreateGUI("TaharezLook/Combobox", name);
 	label->window->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::ComboBoxChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtComboBox(const char* name)
+/**
+*@brief GUIの操作でスタティックテキストを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtComboBox(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Combobox", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Combobox", name);
 	label->window->subscribeEvent(CEGUI::Combobox::EventListSelectionChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::ComboBoxChangedHandler, this));
 
@@ -1656,58 +1830,91 @@ MyGUI *OgreRTCApplication::CreateQtComboBox(const char* name)
 
 
 
-
-MyGUI *OgreRTCApplication::CreateSlider(const char* name)
+/**
+*@brief スライダー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateSlider(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Slider", name);
+	GUIObj *label = CreateGUI("TaharezLook/Slider", name);
 	label->window->subscribeEvent(CEGUI::Slider::EventValueChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::SliderChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtSlider(const char* name)
+/**
+*@brief GUIの操作でコンボボックスを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtSlider(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Slider", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Slider", name);
 	label->window->subscribeEvent(CEGUI::Slider::EventValueChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::SliderChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateTitlebar(const char* name)
+/**
+*@brief タイトルバー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateTitlebar(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Titlebar", name);
+	GUIObj *label = CreateGUI("TaharezLook/Titlebar", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtTitlebar(const char* name)
+/**
+*@brief GUIの操作でタイトルバーを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtTitlebar(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Titlebar", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Titlebar", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateFrameWindow(const char* name)
+/**
+*@brief フレームウインドウ作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateFrameWindow(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/FrameWindow", name);
+	GUIObj *label = CreateGUI("TaharezLook/FrameWindow", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtFrameWindow(const char* name)
+/**
+*@brief GUIの操作でフレームウインドウを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtFrameWindow(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/FrameWindow", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/FrameWindow", name);
 	return label;
 	
 }
 
 
-
-MyGUI *OgreRTCApplication::CreateVerticalScrollbar(const char* name)
+/**
+*@brief 縦スクロールバー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateVerticalScrollbar(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/VerticalScrollbar", name);
+	GUIObj *label = CreateGUI("TaharezLook/VerticalScrollbar", name);
 	label->window->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::ScrollPosChangedHandler, this));
 	
@@ -1715,27 +1922,14 @@ MyGUI *OgreRTCApplication::CreateVerticalScrollbar(const char* name)
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtVerticalScrollbar(const char* name)
+/**
+*@brief GUIの操作で縦スクロールバーを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtVerticalScrollbar(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/VerticalScrollbar", name);
-	label->window->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged,
-			CEGUI::Event::Subscriber(&OgreRTCApplication::ScrollPosChangedHandler, this));
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateHorizontalScrollbar(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/HorizontalScrollbar", name);
-	label->window->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged,
-			CEGUI::Event::Subscriber(&OgreRTCApplication::ScrollPosChangedHandler, this));
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtHorizontalScrollbar(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/HorizontalScrollbar", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/VerticalScrollbar", name);
 	label->window->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::ScrollPosChangedHandler, this));
 	return label;
@@ -1743,64 +1937,135 @@ MyGUI *OgreRTCApplication::CreateQtHorizontalScrollbar(const char* name)
 }
 
 
-
-
-MyGUI *OgreRTCApplication::CreateProgressBar(const char* name)
+/**
+*@brief 横スクロールバー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateHorizontalScrollbar(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/ProgressBar", name);
+	GUIObj *label = CreateGUI("TaharezLook/HorizontalScrollbar", name);
+	label->window->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged,
+			CEGUI::Event::Subscriber(&OgreRTCApplication::ScrollPosChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtProgressBar(const char* name)
+
+/**
+*@brief GUIの操作で横スクロールバーを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtHorizontalScrollbar(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/ProgressBar", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/HorizontalScrollbar", name);
+	label->window->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged,
+			CEGUI::Event::Subscriber(&OgreRTCApplication::ScrollPosChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateMultiLineEditbox(const char* name)
+
+
+/**
+*@brief プログレスバー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateProgressBar(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/MultiLineEditbox", name);
+	GUIObj *label = CreateGUI("TaharezLook/ProgressBar", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtMultiLineEditbox(const char* name)
+/**
+*@brief GUIの操作でプログレスバーを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtProgressBar(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/MultiLineEditbox", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/ProgressBar", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateListbox(const char* name)
+/**
+*@brief マルチラインエディット作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateMultiLineEditbox(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Listbox", name);
+	GUIObj *label = CreateGUI("TaharezLook/MultiLineEditbox", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でマルチラインエディットを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtMultiLineEditbox(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/MultiLineEditbox", name);
+	return label;
+	
+}
+
+
+/**
+*@brief リストボックス作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateListbox(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/Listbox", name);
 	label->window->subscribeEvent(CEGUI::Listbox::EventSelectionChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::ListBoxChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtListbox(const char* name)
+
+/**
+*@brief GUIの操作でリストボックスを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtListbox(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Listbox", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Listbox", name);
 	label->window->subscribeEvent(CEGUI::Listbox::EventSelectionChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::ListBoxChangedHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateComboDropList(const char* name)
+/**
+*@brief コンボドロップリスト作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateComboDropList(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/ComboDropList", name);
+	GUIObj *label = CreateGUI("TaharezLook/ComboDropList", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtComboDropList(const char* name)
+/**
+*@brief GUIの操作でコンボドロップリストを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtComboDropList(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/ComboDropList", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/ComboDropList", name);
 	return label;
 	
 }
@@ -1808,10 +2073,14 @@ MyGUI *OgreRTCApplication::CreateQtComboDropList(const char* name)
 
 
 
-
-MyGUI *OgreRTCApplication::CreateCheckbox(const char* name)
+/**
+*@brief チェックボックス作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateCheckbox(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Checkbox", name);
+	GUIObj *label = CreateGUI("TaharezLook/Checkbox", name);
 	label->window->subscribeEvent(CEGUI::ToggleButton::EventSelectStateChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::CheckedHandler, this));
 
@@ -1819,9 +2088,14 @@ MyGUI *OgreRTCApplication::CreateCheckbox(const char* name)
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtCheckbox(const char* name)
+/**
+*@brief GUIの操作でチェックボックスを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtCheckbox(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Checkbox", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Checkbox", name);
 	label->window->subscribeEvent(CEGUI::ToggleButton::EventSelectStateChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::CheckedHandler, this));
 
@@ -1829,18 +2103,29 @@ MyGUI *OgreRTCApplication::CreateQtCheckbox(const char* name)
 	
 }
 
-MyGUI *OgreRTCApplication::CreateRadioButton(const char* name)
+
+/**
+*@brief ラジオボタン作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateRadioButton(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/RadioButton", name);
+	GUIObj *label = CreateGUI("TaharezLook/RadioButton", name);
 	label->window->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::RadioHandler, this));
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtRadioButton(const char* name)
+/**
+*@brief GUIの操作でラジオボタンを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtRadioButton(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/RadioButton", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/RadioButton", name);
 	label->window->subscribeEvent(CEGUI::RadioButton::EventSelectStateChanged,
 			CEGUI::Event::Subscriber(&OgreRTCApplication::RadioHandler, this));
 	return label;
@@ -1848,202 +2133,341 @@ MyGUI *OgreRTCApplication::CreateQtRadioButton(const char* name)
 }
 
 
-
-MyGUI *OgreRTCApplication::CreateTooltip(const char* name)
+/**
+*@brief ツールチップ作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateTooltip(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Tooltip", name);
+	GUIObj *label = CreateGUI("TaharezLook/Tooltip", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtTooltip(const char* name)
+/**
+*@brief GUIの操作でツールチップを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtTooltip(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Tooltip", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Tooltip", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateItemListbox(const char* name)
+/**
+*@brief アイテムリストボックス作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateItemListbox(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/ItemListbox", name);
+	GUIObj *label = CreateGUI("TaharezLook/ItemListbox", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtItemListbox(const char* name)
+/**
+*@brief GUIの操作でアイテムリストボックスを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtItemListbox(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/ItemListbox", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/ItemListbox", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateListboxItem(const char* name)
+/**
+*@brief リストボックスアイテム作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateListboxItem(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/ListboxItem", name);
+	GUIObj *label = CreateGUI("TaharezLook/ListboxItem", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtListboxItem(const char* name)
+/**
+*@brief GUIの操作でリストボックスアイテムを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtListboxItem(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/ListboxItem", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/ListboxItem", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateSpinner(const char* name)
+/**
+*@brief スピナー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateSpinner(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/Spinner", name);
+	GUIObj *label = CreateGUI("TaharezLook/Spinner", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtSpinner(const char* name)
+/**
+*@brief GUIの操作でスピナーを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtSpinner(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/Spinner", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Spinner", name);
+	return label;
+	
+}
+
+/**
+*@brief スクロールブルペーン作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateScrollablePane(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/ScrollablePane", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でスクロールブルペーンを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtScrollablePane(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/ScrollablePane", name);
+	return label;
+	
+}
+
+/**
+*@brief リストヘッダーセグメント作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateListHeaderSegment(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/ListHeaderSegment", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でリストヘッダーセグメントを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtListHeaderSegment(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/ListHeaderSegment", name);
+	return label;
+	
+}
+
+/**
+*@brief リストヘッダーセグメント作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateListHeader(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/ListHeader", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でリストヘッダーセグメントを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtListHeader(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/ListHeader", name);
+	return label;
+	
+}
+
+/**
+*@brief マルチコロンリスト作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateMultiColumnList(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/MultiColumnList", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でマルチコロンリストを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtMultiColumnList(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/MultiColumnList", name);
+	return label;
+	
+}
+
+/**
+*@brief メニューアイテム作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateMenuItem(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/MenuItem", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でメニューアイテムを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtMenuItem(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/MenuItem", name);
+	return label;
+	
+}
+
+/**
+*@brief メニューバー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateMenubar(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/Menubar", name);
 	return label;
 	
 }
 
 
-MyGUI *OgreRTCApplication::CreateScrollablePane(const char* name)
+/**
+*@brief GUIの操作でメニューバーを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtMenubar(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/ScrollablePane", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtScrollablePane(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/ScrollablePane", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateListHeaderSegment(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/ListHeaderSegment", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtListHeaderSegment(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/ListHeaderSegment", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateListHeader(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/ListHeader", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtListHeader(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/ListHeader", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateMultiColumnList(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/MultiColumnList", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtMultiColumnList(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/MultiColumnList", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateMenuItem(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/MenuItem", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtMenuItem(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/MenuItem", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateMenubar(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/Menubar", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtMenubar(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/Menubar", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreatePopupMenu(const char* name)
-{
-	MyGUI *label = CreateGUI("TaharezLook/PopupMenu", name);
-	return label;
-	
-}
-
-MyGUI *OgreRTCApplication::CreateQtPopupMenu(const char* name)
-{
-	MyGUI *label = CreateQtGUI("TaharezLook/PopupMenu", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/Menubar", name);
 	return label;
 	
 }
 
 
-
-MyGUI *OgreRTCApplication::CreateTabButtonPane(const char* name)
+/**
+*@brief ポップアイテムメニュー作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreatePopupMenu(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/TabButtonPane", name);
+	GUIObj *label = CreateGUI("TaharezLook/PopupMenu", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtTabButtonPane(const char* name)
+/**
+*@brief GUIの操作でポップアイテムメニューを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtPopupMenu(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/TabButtonPane", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/PopupMenu", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateTabContentPane(const char* name)
+
+/**
+*@brief タブボタンペーン作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateTabButtonPane(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/TabContentPane", name);
+	GUIObj *label = CreateGUI("TaharezLook/TabButtonPane", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtTabContentPane(const char* name)
+/**
+*@brief GUIの操作でタブボタンペーンを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtTabButtonPane(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/TabContentPane", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/TabButtonPane", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateTabControl(const char* name)
+/**
+*@brief タブコンテキストペーン作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateTabContentPane(const char* name)
 {
-	MyGUI *label = CreateGUI("TaharezLook/TabControl", name);
+	GUIObj *label = CreateGUI("TaharezLook/TabContentPane", name);
 	return label;
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtTabControl(const char* name)
+/**
+*@brief GUIの操作でタブコンテキストペーンを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtTabContentPane(const char* name)
 {
-	MyGUI *label = CreateQtGUI("TaharezLook/TabControl", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/TabContentPane", name);
+	return label;
+	
+}
+
+/**
+*@brief タブコントロール作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateTabControl(const char* name)
+{
+	GUIObj *label = CreateGUI("TaharezLook/TabControl", name);
+	return label;
+	
+}
+
+/**
+*@brief GUIの操作でタブコントロールを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtTabControl(const char* name)
+{
+	GUIObj *label = CreateQtGUI("TaharezLook/TabControl", name);
 	return label;
 	
 }
@@ -2051,7 +2475,11 @@ MyGUI *OgreRTCApplication::CreateQtTabControl(const char* name)
 
 
 
-
+/**
+*@brief スライダーの値が変化したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::SliderChangedHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -2061,7 +2489,11 @@ bool OgreRTCApplication::SliderChangedHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
-
+/**
+*@brief チェックボックスが変化したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::CheckedHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -2070,7 +2502,12 @@ bool OgreRTCApplication::CheckedHandler(const CEGUI::EventArgs &event)
 
 	return true;
 }
-	
+
+/**
+*@brief ラジオボタンが変化したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::RadioHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -2080,6 +2517,11 @@ bool OgreRTCApplication::RadioHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
+/**
+*@brief リストボックスの選択が変化したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::ListBoxChangedHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -2088,6 +2530,11 @@ bool OgreRTCApplication::ListBoxChangedHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
+/**
+*@brief コンボボックスの選択が変化したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::ComboBoxChangedHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -2097,6 +2544,11 @@ bool OgreRTCApplication::ComboBoxChangedHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
+/**
+*@brief スクロールバーが変化したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::ScrollPosChangedHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::WindowEventArgs* evt = static_cast<const CEGUI::WindowEventArgs*>(&event);
@@ -2106,9 +2558,16 @@ bool OgreRTCApplication::ScrollPosChangedHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
-MyGUI *OgreRTCApplication::CreateGUI(const char* type, const char* name)
+
+/**
+*@brief GUI作成の関数
+* @param type ウィジェットの種類
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateGUI(const char* type, const char* name)
 {
-	MyGUI *label = new MyGUI();
+	GUIObj *label = new GUIObj();
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
 
 
@@ -2121,13 +2580,18 @@ MyGUI *OgreRTCApplication::CreateGUI(const char* type, const char* name)
 	label->type = type;
 	label->name = name;
 
-	MyGUIs.push_back(label);
+	GUIObjs.push_back(label);
 	
 
 	return label;
 }
 
-void OgreRTCApplication::CreateQtGUI(MyGUI *label)
+
+/**
+*@brief GUIオブジェクトの再生成の関数
+* @param label GUIオブジェクト
+*/
+void OgreRTCApplication::CreateQtGUI(GUIObj *label)
 {
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
 
@@ -2152,7 +2616,7 @@ void OgreRTCApplication::CreateQtGUI(MyGUI *label)
 		if(label->image_set)
 		{
 			
-			MyImageSet* ims = getImageSetByName(label->image_name.c_str());
+			ImageSetObj* ims = getImageSetByName(label->image_name.c_str());
 			if(ims)
 			{
 				
@@ -2214,12 +2678,19 @@ void OgreRTCApplication::CreateQtGUI(MyGUI *label)
 	}
 
 
-	MyGUIs.push_back(label);
+	GUIObjs.push_back(label);
 }
 
-MyGUI *OgreRTCApplication::CreateQtGUI(const char* type, const char* name)
+
+/**
+*@brief GUIの操作でGUIを作成する関数
+* @param type GUIの種類
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtGUI(const char* type, const char* name)
 {
-	MyGUI *label = CreateGUI(type, name);
+	GUIObj *label = CreateGUI(type, name);
 	QtGUIs.push_back(label);
 
 	return label;
@@ -2227,7 +2698,11 @@ MyGUI *OgreRTCApplication::CreateQtGUI(const char* type, const char* name)
 
 
 
-
+/**
+*@brief GUIをキーで押したときに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::GUIKeyUpHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::KeyEventArgs* evt = static_cast<const CEGUI::KeyEventArgs*>(&event);
@@ -2238,6 +2713,12 @@ bool OgreRTCApplication::GUIKeyUpHandler(const CEGUI::EventArgs &event)
 
 	return true;
 }
+
+/**
+*@brief GUIからキーを離したに呼び出される関数
+* @param event イベント
+* @return true
+*/
 bool OgreRTCApplication::GUIKeyDownHandler(const CEGUI::EventArgs &event)
 {
 	const CEGUI::KeyEventArgs* evt = static_cast<const CEGUI::KeyEventArgs*>(&event);
@@ -2250,11 +2731,17 @@ bool OgreRTCApplication::GUIKeyDownHandler(const CEGUI::EventArgs &event)
 	return true;
 }
 
-MyGUI *OgreRTCApplication::CreateStaticImage(const char* name)
+
+/**
+*@brief スタティックイメージ作成の関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateStaticImage(const char* name)
 {
 	
 
-	MyGUI *label = CreateGUI("TaharezLook/StaticImage", name);
+	GUIObj *label = CreateGUI("TaharezLook/StaticImage", name);
 	
 
 	return label;
@@ -2262,11 +2749,17 @@ MyGUI *OgreRTCApplication::CreateStaticImage(const char* name)
 	
 }
 
-MyGUI *OgreRTCApplication::CreateQtStaticImage(const char* name)
+
+/**
+*@brief GUIの操作でスタティックイメージを作成する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+GUIObj *OgreRTCApplication::CreateQtStaticImage(const char* name)
 {
 	
 
-	MyGUI *label = CreateQtGUI("TaharezLook/StaticImage", name);
+	GUIObj *label = CreateQtGUI("TaharezLook/StaticImage", name);
 	
 
 	return label;
@@ -2274,6 +2767,10 @@ MyGUI *OgreRTCApplication::CreateQtStaticImage(const char* name)
 	
 }
 
+/**
+*@brief CEGUIのウインドウ削除の関数
+* @param label ウインドウオブジェクト
+*/
 void OgreRTCApplication::Destroycegui(CEGUI::Window *label)
 {
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
@@ -2285,29 +2782,39 @@ void OgreRTCApplication::Destroycegui(CEGUI::Window *label)
 	
 }
 
-void OgreRTCApplication::DestroyGui(MyGUI *label)
+/**
+*@brief GUIオブジェクト削除の関数
+* @param label GUIオブジェクト
+*/
+void OgreRTCApplication::DestroyGui(GUIObj *label)
 {
 	
 	
 		
-	for(int j=0;j < MyGUIs.size();j++)
+	for(int j=0;j < GUIObjs.size();j++)
 	{
-		if(label->window->isChild(MyGUIs[j]->window->getName()))
+		if(label->window->isChild(GUIObjs[j]->window->getName()))
 		{
-			DestroyGui(MyGUIs[j]);
+			DestroyGui(GUIObjs[j]);
 			
 			j = j - 1;
 		}
 	}
 	
 	Destroycegui(label->window);
-	std::vector<MyGUI*>::iterator end_it = remove( MyGUIs.begin(), MyGUIs.end(), label );
-	MyGUIs.erase( end_it, MyGUIs.end() );
+	std::vector<GUIObj*>::iterator end_it = remove( GUIObjs.begin(), GUIObjs.end(), label );
+	GUIObjs.erase( end_it, GUIObjs.end() );
 
 	
 }
 
-void OgreRTCApplication::DestroyQtGui(MyGUI *label)
+
+/**
+*@brief GUIの操作でGUIオブジェクトを削除する関数
+* @param name 名前
+* @return GUIオブジェクト
+*/
+void OgreRTCApplication::DestroyQtGui(GUIObj *label)
 {
 	for(int j=0;j < QtGUIs.size();j++)
 	{
@@ -2322,23 +2829,27 @@ void OgreRTCApplication::DestroyQtGui(MyGUI *label)
 	
 
 	DestroyGui(label);
-	std::vector<MyGUI*>::iterator end_it = remove( QtGUIs.begin(), QtGUIs.end(), label );
+	std::vector<GUIObj*>::iterator end_it = remove( QtGUIs.begin(), QtGUIs.end(), label );
 	QtGUIs.erase( end_it, QtGUIs.end() );
 
 	
 }
 
+
+/**
+*@brief 全てのGUIオブジェクト削除の関数
+*/
 void OgreRTCApplication::DestroyAllGUI()
 {
 	
-	//for(int i=0;i < MyGUIs.size();i++)
-	while(MyGUIs.size() > 0)
+	//for(int i=0;i < GUIObjs.size();i++)
+	while(GUIObjs.size() > 0)
 	{
 		
-		DestroyGui(MyGUIs[0]);
-		//Destroycegui(MyGUIs[i]->window);
+		DestroyGui(GUIObjs[0]);
+		//Destroycegui(GUIObjs[i]->window);
 	}
-	MyGUIs.clear();
+	GUIObjs.clear();
 }
 
 
@@ -2348,18 +2859,23 @@ void OgreRTCApplication::DestroyAllGUI()
 
 
 
-
-myParticle *OgreRTCApplication::CreateParticle(const char* name, const char* file_name)
+/**
+*@brief パーティクル作成の関数
+* @param name 名前
+* @param file_name ファイル名
+* @return パーティクルオブジェクト
+*/
+ParticleObj *OgreRTCApplication::CreateParticle(const char* name, const char* file_name)
 {
-	myParticle *ml = new myParticle(name);
+	ParticleObj *ml = new ParticleObj(name);
 	ml->particleSystem = mSceneMgr->createParticleSystem(name, file_name);
 	ml->mNode->mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	ml->mNode->mNode->attachObject(ml->particleSystem);
 	ml->mNode->mNode->setPosition(Ogre::Vector3(0,0,0));
 
-	MyNodes.push_back(ml->mNode);
+	NodeObjs.push_back(ml->mNode);
 	ml->mNode->AddObj(ml);
-	myParticles.push_back(ml);
+	ParticleObjs.push_back(ml);
 
 
 	
@@ -2370,11 +2886,15 @@ myParticle *OgreRTCApplication::CreateParticle(const char* name, const char* fil
 
 }
 
-void OgreRTCApplication::CreateQtParticle(myParticle *ml)
+/**
+*@brief パーティクルオブジェクトの再生成の関数
+* @param ml パーティクルオブジェクト
+*/
+void OgreRTCApplication::CreateQtParticle(ParticleObj *ml)
 {
 	ml->particleSystem = mSceneMgr->createParticleSystem(ml->name, ml->filename);
 	
-	MyNode *mn = getNodeByName(ml->mNode->name.c_str());
+	NodeObj *mn = getNodeByName(ml->mNode->name.c_str());
 	if(mn)
 	{
 		ml->mNode = mn;
@@ -2391,12 +2911,18 @@ void OgreRTCApplication::CreateQtParticle(myParticle *ml)
 	ml->SetRotation(ml->mNode->roll, ml->mNode->pitch, ml->mNode->yaw);
 	ml->SetVisible(ml->mNode->visi);
 
-	myParticles.push_back(ml);
+	ParticleObjs.push_back(ml);
 }
 
-myParticle *OgreRTCApplication::CreateQtParticle(const char* name, const char* file_name)
+/**
+*@brief GUIの操作でパーティクルオブジェクトを作成する関数
+* @param name 名前
+* @param file_name ファイル名
+* @return パーティクルオブジェクト
+*/
+ParticleObj *OgreRTCApplication::CreateQtParticle(const char* name, const char* file_name)
 {
-	myParticle *ml = CreateParticle(name, file_name);
+	ParticleObj *ml = CreateParticle(name, file_name);
 
 	QtNodes.push_back(ml->mNode);
 	QtParticles.push_back(ml);
@@ -2408,8 +2934,11 @@ myParticle *OgreRTCApplication::CreateQtParticle(const char* name, const char* f
 
 
 
-
-void OgreRTCApplication::DestroyParticle(myParticle *ml)
+/**
+*@brief パーティクル削除の関数
+* @param ml パーティクルオブジェクト
+*/
+void OgreRTCApplication::DestroyParticle(ParticleObj *ml)
 {
 	ml->mNode->mNode->detachObject(ml->particleSystem);
 	mSceneMgr->destroyParticleSystem(ml->particleSystem);
@@ -2417,35 +2946,52 @@ void OgreRTCApplication::DestroyParticle(myParticle *ml)
 	ml->mNode->RemoveObj(ml);
 	DestroyNode(ml->mNode);
 
-	std::vector<myParticle*>::iterator end_it = remove( myParticles.begin(), myParticles.end(), ml );
-	myParticles.erase( end_it, myParticles.end() );
+	std::vector<ParticleObj*>::iterator end_it = remove( ParticleObjs.begin(), ParticleObjs.end(), ml );
+	ParticleObjs.erase( end_it, ParticleObjs.end() );
 
 	
 }
 
-void OgreRTCApplication::DestroyQtParticle(myParticle *ml)
+
+/**
+*@brief GUIの操作でパーティクルオブジェクトの削除する関数
+* @param ml パーティクルオブジェクト
+*/
+void OgreRTCApplication::DestroyQtParticle(ParticleObj *ml)
 {
 	DestroyParticle(ml);
 
 	DestroyQtNode(ml->mNode);
 
-	std::vector<myParticle*>::iterator end_it = remove( QtParticles.begin(), QtParticles.end(), ml );
+	std::vector<ParticleObj*>::iterator end_it = remove( QtParticles.begin(), QtParticles.end(), ml );
 	QtParticles.erase( end_it, QtParticles.end() );
 }
 
+/**
+*@brief 全てパーティクル削除の関数
+*/
 void OgreRTCApplication::DestroyAllParticle()
 {
-	for(int i=0;i < myParticles.size();i++)
+	for(int i=0;i < ParticleObjs.size();i++)
 	{
-		myParticles[i]->mNode->mNode->detachObject(myParticles[i]->particleSystem);
-		mSceneMgr->destroyParticleSystem(myParticles[i]->particleSystem);
-		myParticles[i]->mNode->RemoveObj(myParticles[i]);
-		DestroyNode(myParticles[i]->mNode);
+		ParticleObjs[i]->mNode->mNode->detachObject(ParticleObjs[i]->particleSystem);
+		mSceneMgr->destroyParticleSystem(ParticleObjs[i]->particleSystem);
+		ParticleObjs[i]->mNode->RemoveObj(ParticleObjs[i]);
+		DestroyNode(ParticleObjs[i]->mNode);
 	}
-	myParticles.clear();
+	ParticleObjs.clear();
 }
 
-MyLink *OgreRTCApplication::SetFloor(const char* name, const char* name2, const char* filename, int Size, int direction)
+/**
+*@brief 地面作成の関数
+* @param name 名前
+* @param name2 ボディ名
+* @param filename マテリアル名
+* @param Size 大きさ
+* @param direction 方向
+* @return ボディオブジェクト
+*/
+LinkObj *OgreRTCApplication::SetFloor(const char* name, const char* name2, const char* filename, int Size, int direction)
 {
 	if(Floor)
 	{
@@ -2466,7 +3012,7 @@ MyLink *OgreRTCApplication::SetFloor(const char* name, const char* name2, const 
 		DIR = Ogre::Vector3::UNIT_Z;
 	}
 	
-	MyLink *link = new MyLink(name);
+	LinkObj *link = new LinkObj(name);
 
 	link->mp = Ogre::MeshManager::getSingleton().createPlane(name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
 		Ogre::Plane(DIR, 0), Size, Size, 10, 10, true, 1, 10, 10, Ogre::Vector3::UNIT_Y);
@@ -2494,7 +3040,17 @@ MyLink *OgreRTCApplication::SetFloor(const char* name, const char* name2, const 
 	return link;
 }
 
-MyLink *OgreRTCApplication::SetQtFloor(const char* name, const char* name2, const char* filename, int Size, int direction)
+
+/**
+*@brief GUIの操作で地面を作成する関数
+* @param name 名前
+* @param name2 ボディ名
+* @param filename マテリアル名
+* @param Size 大きさ
+* @param direction 方向
+* @return ボディオブジェクト
+*/
+LinkObj *OgreRTCApplication::SetQtFloor(const char* name, const char* name2, const char* filename, int Size, int direction)
 {
 
 	qtFloor = SetFloor(name, name2, filename, Size, direction);
@@ -2502,12 +3058,20 @@ MyLink *OgreRTCApplication::SetQtFloor(const char* name, const char* name2, cons
 	return qtFloor;
 }
 
+
+/**
+*@brief スカイボックス削除の関数
+*/
 void OgreRTCApplication::RemoveSkyBox()
 {
 	mSceneMgr->destroySceneNode(mSceneMgr->getSkyBoxNode());
 }
 
-
+/**
+*@brief スカイボックス作成の関数
+* @param filename ファイル名
+* @param Size 大きさ
+*/
 void OgreRTCApplication::SetSkyBox(const char* filename, int Size)
 {
 	mSceneMgr->setSkyBox(true, filename, Size);
@@ -2516,6 +3080,11 @@ void OgreRTCApplication::SetSkyBox(const char* filename, int Size)
 
 }
 
+/**
+*@brief GUIの操作でスカイボックスを作成する関数
+* @param filename ファイル名
+* @param Size 大きさ
+*/
 void OgreRTCApplication::SetQtSkyBox(const char* filename, int Size)
 {
 	SetSkyBox(filename, Size);
@@ -2523,9 +3092,15 @@ void OgreRTCApplication::SetQtSkyBox(const char* filename, int Size)
 	QtskyBoxSize = Size;
 }
 
-MyImageSet *OgreRTCApplication::CreateGuiImageSet(const char* name, const char* filename)
+/**
+*@brief 画像作成の関数
+* @param name 名前
+* @param filename ファイル名
+* @return イメージセットオブジェクト
+*/
+ImageSetObj *OgreRTCApplication::CreateGuiImageSet(const char* name, const char* filename)
 {
-	MyImageSet *MIS = new MyImageSet();
+	ImageSetObj *MIS = new ImageSetObj();
 	//MIS->texture = &mRenderer->createTexture(filename,"Imagesets");
 	//MIS->Image = &CEGUI::ImageManager::getSingleton().create(name,*MIS->texture);
 	//MIS->Image->defineImage("Base",CEGUI::Point(0.0f,0.0f),CEGUI::Size(MIS->texture->getSize().d_width,MIS->texture->getSize().d_height),CEGUI::Point(0.0f,0.0f));
@@ -2546,13 +3121,17 @@ MyImageSet *OgreRTCApplication::CreateGuiImageSet(const char* name, const char* 
 	}
 	MIS->name = name;
 	MIS->filename = filename;
-	MyImageSets.push_back(MIS);
+	ImageSetObjs.push_back(MIS);
 	
 	return MIS;
 }
 
 
-void OgreRTCApplication::CreateQtImage(MyImageSet *MIS)
+/**
+*@brief イメージセットオブジェクトの再生成の関数
+* @param MIS イメージセットオブジェクト
+*/
+void OgreRTCApplication::CreateQtImage(ImageSetObj *MIS)
 {
 	//MIS->texture = &mRenderer->createTexture(MIS->filename,"Imagesets");
 	
@@ -2571,13 +3150,18 @@ void OgreRTCApplication::CreateQtImage(MyImageSet *MIS)
 	}
 	
 
-	MyImageSets.push_back(MIS);
+	ImageSetObjs.push_back(MIS);
 }
 
-
-MyImageSet *OgreRTCApplication::CreateQtGuiImageSet(const char* name, const char* filename)
+/**
+*@brief GUIの操作で画像を作成する関数
+* @param name 名前
+* @param filename ファイル名
+* @return イメージセットオブジェクト
+*/
+ImageSetObj *OgreRTCApplication::CreateQtGuiImageSet(const char* name, const char* filename)
 {
-	MyImageSet *MIS = CreateGuiImageSet(name, filename);
+	ImageSetObj *MIS = CreateGuiImageSet(name, filename);
 	QtImageSets.push_back(MIS);
 	
 	return MIS;
@@ -2587,42 +3171,58 @@ MyImageSet *OgreRTCApplication::CreateQtGuiImageSet(const char* name, const char
 
 
 
-
-void OgreRTCApplication::DestroyImage(MyImageSet *MIS)
+/**
+*@brief 画像削除の関数
+* @param MIS イメージセットオブジェクト
+*/
+void OgreRTCApplication::DestroyImage(ImageSetObj *MIS)
 {
 	//CEGUI::ImageManager::getSingleton().destroy(MIS->Image->getName());
 
 	//mRenderer->destroyTexture(*MIS->texture);
 
-	std::vector<MyImageSet*>::iterator end_it = remove( MyImageSets.begin(), MyImageSets.end(), MIS );
-	MyImageSets.erase( end_it, MyImageSets.end() );
+	std::vector<ImageSetObj*>::iterator end_it = remove( ImageSetObjs.begin(), ImageSetObjs.end(), MIS );
+	ImageSetObjs.erase( end_it, ImageSetObjs.end() );
 }
 
-void OgreRTCApplication::DestroyQtImage(MyImageSet *MIS)
+
+/**
+*@brief GUIの操作で画像を削除する関数
+* @param MIS イメージセットオブジェクト
+*/
+void OgreRTCApplication::DestroyQtImage(ImageSetObj *MIS)
 {
 	DestroyImage(MIS);
 
-	std::vector<MyImageSet*>::iterator end_it = remove( QtImageSets.begin(), QtImageSets.end(), MIS );
+	std::vector<ImageSetObj*>::iterator end_it = remove( QtImageSets.begin(), QtImageSets.end(), MIS );
 	QtImageSets.erase( end_it, QtImageSets.end() );
 }
 
+/**
+*@brief 全画像削除の関数
+*/
 void OgreRTCApplication::DestroyAllImage()
 {
-	for(int i=0;i < MyImageSets.size();i++)
+	for(int i=0;i < ImageSetObjs.size();i++)
 	{
-		//CEGUI::ImageManager::getSingleton().destroy(MyImageSets[i]->Image->getName());
+		//CEGUI::ImageManager::getSingleton().destroy(ImageSetObjs[i]->Image->getName());
 
-		//mRenderer->destroyTexture(*MyImageSets[i]->texture);
+		//mRenderer->destroyTexture(*ImageSetObjs[i]->texture);
 	}
 
-	MyImageSets.clear();
+	ImageSetObjs.clear();
 
 }
 
-
-MyLink *OgreRTCApplication::SetBody(const char* n, const char* s)
+/**
+*@brief 3Dモデルの作成の関数
+* @param n 名前
+* @param s ファイル名
+* @return ボディオブジェクト
+*/
+LinkObj *OgreRTCApplication::SetBody(const char* n, const char* s)
 {
-	MyLink *link = new MyLink(n);
+	LinkObj *link = new LinkObj(n);
 	{
 		
 		link->mEntity = mSceneMgr->createEntity(s);
@@ -2636,18 +3236,22 @@ MyLink *OgreRTCApplication::SetBody(const char* n, const char* s)
 	
 	
 	link->filename = s;
-	MyNodes.push_back(link->mNode);
+	NodeObjs.push_back(link->mNode);
 	link->mNode->AddObj(link);
-	MyLinks.push_back(link);
+	LinkObjs.push_back(link);
 
 	return link;
 }
 
-void OgreRTCApplication::CreateQtBody(MyLink *link)
+/**
+*@brief ボディオブジェクトの再生成の関数
+* @param link ボディオブジェクト
+*/
+void OgreRTCApplication::CreateQtBody(LinkObj *link)
 {
 	link->mEntity = mSceneMgr->createEntity(link->filename);
 	link->mEntity->setQueryFlags(1<<0);
-	MyNode *mn = getNodeByName(link->mNode->name.c_str());
+	NodeObj *mn = getNodeByName(link->mNode->name.c_str());
 	if(mn)
 	{
 		link->mNode = mn;
@@ -2659,7 +3263,7 @@ void OgreRTCApplication::CreateQtBody(MyLink *link)
 
 	for(int i=0;i < link->NodeList.size();i++)
 	{
-		MyNode *mnl = getNodeByName(link->NodeList[i]->name.c_str());
+		NodeObj *mnl = getNodeByName(link->NodeList[i]->name.c_str());
 		if(mnl)
 		{
 			link->NodeList[i] = mnl;
@@ -2685,21 +3289,30 @@ void OgreRTCApplication::CreateQtBody(MyLink *link)
 		link->SetMaterial(link->material_name.c_str());
 	}
 
-	MyLinks.push_back(link);
+	LinkObjs.push_back(link);
 
 	//link->name =link->mEntity->getName().c_str();
 }
 
 
-MyLink *OgreRTCApplication::SetQtBody(const char* n, const char* s)
+/**
+*@brief GUIの操作でボディを作成する関数
+* @param n 名前
+* @param s ファイル名
+* @return ボディオブジェクト
+*/
+LinkObj *OgreRTCApplication::SetQtBody(const char* n, const char* s)
 {
-	MyLink *link = SetBody(n,s);
+	LinkObj *link = SetBody(n,s);
 	QtNodes.push_back(link->mNode);
 	QtLinks.push_back(link);
 
 	return link;
 }
 
+/**
+*@brief 地面削除の関数
+*/
 void OgreRTCApplication::DestroyFloor()
 {
 	Floor->mNode->mNode->detachObject(Floor->mEntity);
@@ -2712,6 +3325,9 @@ void OgreRTCApplication::DestroyFloor()
 	Floor = NULL;
 }
 
+/**
+*@brief GUIの操作で地面を削除する関数
+*/
 void OgreRTCApplication::DestroyQtFloor()
 {
 	if(qtFloor)
@@ -2722,8 +3338,11 @@ void OgreRTCApplication::DestroyQtFloor()
 	}
 }
 
-
-void OgreRTCApplication::DestroyBody(MyLink *link)
+/**
+*@brief 3Dモデルの削除の関数
+* @param link ボディオブジェクト
+*/
+void OgreRTCApplication::DestroyBody(LinkObj *link)
 {
 	link->mNode->mNode->detachObject(link->mEntity);
 	mSceneMgr->destroyEntity(link->mEntity);
@@ -2731,41 +3350,52 @@ void OgreRTCApplication::DestroyBody(MyLink *link)
 	link->mNode->RemoveObj(link);
 	DestroyNode(link->mNode);
 
-	std::vector<MyLink*>::iterator end_it = remove( MyLinks.begin(), MyLinks.end(), link );
-	MyLinks.erase( end_it, MyLinks.end() );
+	std::vector<LinkObj*>::iterator end_it = remove( LinkObjs.begin(), LinkObjs.end(), link );
+	LinkObjs.erase( end_it, LinkObjs.end() );
 
 	
 }
 
-
-void OgreRTCApplication::DestroyQtBody(MyLink *link)
+/**
+*@brief GUIの操作でボディを削除する関数
+* @param link ボディオブジェクト
+*/
+void OgreRTCApplication::DestroyQtBody(LinkObj *link)
 {
 	DestroyBody(link);
 
 	DestroyQtNode(link->mNode);
 
-	std::vector<MyLink*>::iterator end_it = remove( QtLinks.begin(), QtLinks.end(), link );
+	std::vector<LinkObj*>::iterator end_it = remove( QtLinks.begin(), QtLinks.end(), link );
 	QtLinks.erase( end_it, QtLinks.end() );
 }
 
+/**
+*@brief 全ての3Dモデルの削除の関数
+*/
 void OgreRTCApplication::DestroyAllBody()
 {
-	for(int i=0;i < MyLinks.size();i++)
+	for(int i=0;i < LinkObjs.size();i++)
 	{
-		MyLinks[i]->mNode->mNode->detachObject(MyLinks[i]->mEntity);
-		mSceneMgr->destroyEntity(MyLinks[i]->mEntity);
+		LinkObjs[i]->mNode->mNode->detachObject(LinkObjs[i]->mEntity);
+		mSceneMgr->destroyEntity(LinkObjs[i]->mEntity);
 
-		MyLinks[i]->mNode->RemoveObj(MyLinks[i]);
-		DestroyNode(MyLinks[i]->mNode);
+		LinkObjs[i]->mNode->RemoveObj(LinkObjs[i]);
+		DestroyNode(LinkObjs[i]->mNode);
 	}
 
-	MyLinks.clear();
+	LinkObjs.clear();
 }
 
 
 
 
-
+/**
+*@brief 光源の位置設定の関数
+* @param x 位置(X)
+* @param y 位置(Y)
+* @param z 位置(Z)
+*/
 void OgreRTCApplication::SetLightPosition(float x, float y, float z)
 {
 	light->setPosition(x, y, z);
@@ -2774,6 +3404,12 @@ void OgreRTCApplication::SetLightPosition(float x, float y, float z)
 	LightZ = z;
 }
 
+/**
+*@brief 影の色の設定の関数
+* @param r 輝度(赤)
+* @param g 輝度(緑)
+* @param b 輝度(青)
+*/
 void OgreRTCApplication::SetShadowColour(float r, float g, float b)
 {
 	mSceneMgr->setShadowColour(Ogre::ColourValue(r, g, b));
@@ -2782,6 +3418,12 @@ void OgreRTCApplication::SetShadowColour(float r, float g, float b)
 	ShadowB = b;
 }
 
+/**
+*@brief 光源の色の設定の関数
+* @param r 輝度(赤)
+* @param g 輝度(緑)
+* @param b 輝度(青)
+*/
 void OgreRTCApplication::SetLightColor(float r, float g, float b)
 {
 	light->setDiffuseColour(r,g,b);
@@ -2791,6 +3433,15 @@ void OgreRTCApplication::SetLightColor(float r, float g, float b)
 	//light->setSpecularColour(r,g,b);
 }
 
+/**
+*@brief サブウインドウ作成の関数
+* @param wName 名前
+* @param texName テクスチャ名
+* @param camName カメラ名
+* @param ImageSetName イメージセット名
+* @param ImageName イメージ名
+* @return サブウインドウオブジェクト
+*/
 SubWindow *OgreRTCApplication::SetSubWindow(const char* wName, const char* texName, const char* camName, const char* ImageSetName, const char* ImageName)
 {
 	
@@ -2859,6 +3510,10 @@ SubWindow *OgreRTCApplication::SetSubWindow(const char* wName, const char* texNa
 	return sw;
 }
 
+/**
+*@brief サブウインドウオブジェクトの再生成の関数
+* @param sw サブウインドウオブジェクト
+*/
 void OgreRTCApplication::CreateQtSubWindow(SubWindow *sw)
 {
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
@@ -2925,6 +3580,15 @@ void OgreRTCApplication::CreateQtSubWindow(SubWindow *sw)
 	SubWindows.push_back(sw);
 }
 
+/**
+*@brief GUIの操作でサブウインドウを作成する関数
+* @param wName 名前
+* @param texName テクスチャ名
+* @param camName カメラ名
+* @param ImageSetName イメージセット名
+* @param ImageName イメージ名
+* @return サブウインドウオブジェクト
+*/
 SubWindow *OgreRTCApplication::SetQtSubWindow(const char* wName, const char* texName, const char* camName, const char* ImageSetName, const char* ImageName)
 {
 	SubWindow* sw = SetSubWindow(wName,texName,camName,ImageSetName,ImageName);
@@ -2933,7 +3597,10 @@ SubWindow *OgreRTCApplication::SetQtSubWindow(const char* wName, const char* tex
 	return sw;
 }
 
-
+/**
+*@brief サブウインドウ削除の関数
+* @param sw サブウインドウオブジェクト
+*/
 void OgreRTCApplication::DestroySubWindow(SubWindow *sw)
 {
 	Destroycegui(sw->label);
@@ -2951,6 +3618,10 @@ void OgreRTCApplication::DestroySubWindow(SubWindow *sw)
 	SubWindows.erase( end_it, SubWindows.end() );
 }
 
+/**
+*@brief GUIの操作でサブウインドウを削除する関数
+* @param sw サブウインドウオブジェクト
+*/
 void OgreRTCApplication::DestroyQtSubWindow(SubWindow *sw)
 {
 	DestroySubWindow(sw);
@@ -2960,6 +3631,9 @@ void OgreRTCApplication::DestroyQtSubWindow(SubWindow *sw)
 
 }
 
+/**
+*@brief サブウインドウ全削除の関数
+*/
 void OgreRTCApplication::DestroyAllSubWindow()
 {
 	for(int i=0;i < SubWindows.size();i++)
@@ -2977,6 +3651,11 @@ void OgreRTCApplication::DestroyAllSubWindow()
 	}
 	SubWindows.clear();
 }
+
+/**
+*@brief サブウインドウ動停止の関数
+* @param sw サブウインドウオブジェクト
+*/
 void OgreRTCApplication::StopSubWindow(SubWindow *sw)
 {
 	sw->label->clearProperties();
@@ -2993,7 +3672,10 @@ void OgreRTCApplication::StopSubWindow(SubWindow *sw)
 
 
 
-
+/**
+*@brief サブウインドウ動作再開の関数
+* @param sw サブウインドウオブジェクト
+*/
 void OgreRTCApplication::restartSubWindow(SubWindow *sw)
 {
 	CEGUI::WindowManager &wmgr = CEGUI::WindowManager::getSingleton();
@@ -3057,7 +3739,10 @@ void OgreRTCApplication::restartSubWindow(SubWindow *sw)
 
 
 
-
+/**
+*@brief FPS設定の関数
+* @param st FPS
+*/
 void OgreRTCApplication::SetSleepTime(int st)
 {
 	SleepTime = st;
@@ -3069,13 +3754,22 @@ void OgreRTCApplication::SetSleepTime(int st)
 
 
 
-
+/**
+*@brief ウインドウのサイズ取得の関数
+* @return サイズ
+*/
 Ogre::Vector2 OgreRTCApplication::getRenderWindowSize()
 {
 	return Ogre::Vector2(mWindow->getWidth(), mWindow->getHeight());
 }
 
-MyLink* OgreRTCApplication::GetQueryScene(float screenX, float screenY)
+/**
+*@brief カーソル位置の3Dモデルを取得の関数
+* @param screenX 位置(X)
+* @param screenY 位置(Y)
+* @return ボディオブジェクト
+*/
+LinkObj* OgreRTCApplication::GetQueryScene(float screenX, float screenY)
 {
 	//static Ogre::Camera *cam = mSceneMgr->getCameraIterator().getNext();
 
@@ -3092,11 +3786,11 @@ MyLink* OgreRTCApplication::GetQueryScene(float screenX, float screenY)
 	if (itr != result.end() && itr->movable) {
 		Ogre::MovableObject *obj = itr->movable;
 		
-		for(int i=0;i < MyLinks.size();i++)
+		for(int i=0;i < LinkObjs.size();i++)
 		{
-			if(MyLinks[i]->mEntity->getName() == obj->getName())
+			if(LinkObjs[i]->mEntity->getName() == obj->getName())
 			{
-				return MyLinks[i];
+				return LinkObjs[i];
 			}
 		}
 		
@@ -3107,13 +3801,21 @@ MyLink* OgreRTCApplication::GetQueryScene(float screenX, float screenY)
 
 }
 
-
-std::string OgreRTCApplication::GetBodyName(MyLink *link)
+/**
+*@brief 3Dモデルの名前を取得の関数
+* @param link ボディオブジェクト
+* @return 名前
+*/
+std::string OgreRTCApplication::GetBodyName(LinkObj *link)
 {
 	//return link.mNode->getName().c_str();
 	return link->mEntity->getName().c_str();
 }
 
+/**
+*@brief ファイルシステムの追加の関数
+* @param name ファイルパス
+*/
 void OgreRTCApplication::AddFileSystem(const char *name)
 {
 	std::stringstream ss;
@@ -3125,9 +3827,15 @@ void OgreRTCApplication::AddFileSystem(const char *name)
 }
 
 
-MyAnimation *OgreRTCApplication::CreateAnimation(const char* name, float t)
+/**
+*@brief アニメーション作成の関数
+* @param name 名前
+* @param t 終了時間
+* @return アニメーションオブジェクト
+*/
+AnimationObj *OgreRTCApplication::CreateAnimation(const char* name, float t)
 {
-	MyAnimation *man = new MyAnimation(name);
+	AnimationObj *man = new AnimationObj(name);
 	man->anim = mSceneMgr->createAnimation(name, t);
 	man->anim->setInterpolationMode(Ogre::Animation::IM_SPLINE);
 
@@ -3137,9 +3845,9 @@ MyAnimation *OgreRTCApplication::CreateAnimation(const char* name, float t)
 	man->mstate = mSceneMgr->createAnimationState(name);
 	man->mstate->setEnabled(true);
 
-	MyNodes.push_back(man->mNode);
+	NodeObjs.push_back(man->mNode);
 	man->mNode->AddObj(man);
-	MyAnimations.push_back(man);
+	AnimationObjs.push_back(man);
 
 
 	
@@ -3147,20 +3855,32 @@ MyAnimation *OgreRTCApplication::CreateAnimation(const char* name, float t)
 
 	return man;
 }
-MyAnimation *OgreRTCApplication::CreateQtAnimation(const char* name, float t)
+
+/**
+*@brief GUIの操作でアニメーションを作成する関数
+* @param name 名前
+* @param t 終了時間
+* @return アニメーションオブジェクト
+*/
+AnimationObj *OgreRTCApplication::CreateQtAnimation(const char* name, float t)
 {
-	MyAnimation *man = CreateAnimation(name, t);
+	AnimationObj *man = CreateAnimation(name, t);
 	QtNodes.push_back(man->mNode);
 	QtAnimations.push_back(man);
 
 	return man;
 }
-void OgreRTCApplication::CreateQtAnimation(MyAnimation *man)
+
+/**
+*@brief アニメーションオブジェクトの再生成の関数
+* @param man アニメーションオブジェクト
+*/
+void OgreRTCApplication::CreateQtAnimation(AnimationObj *man)
 {
 	man->anim = mSceneMgr->createAnimation(man->name, man->Time);
 	man->anim->setInterpolationMode(Ogre::Animation::IM_SPLINE);
 
-	MyNode *mn = getNodeByName(man->mNode->name.c_str());
+	NodeObj *mn = getNodeByName(man->mNode->name.c_str());
 	if(mn)
 	{
 		man->mNode = mn;
@@ -3191,9 +3911,14 @@ void OgreRTCApplication::CreateQtAnimation(MyAnimation *man)
 		}
 	}
 
-	MyAnimations.push_back(man);
+	AnimationObjs.push_back(man);
 }
-void OgreRTCApplication::DestroyAnimation(MyAnimation *man)
+
+/**
+*@brief アニメーション削除の関数
+* @param man アニメーションオブジェクト
+*/
+void OgreRTCApplication::DestroyAnimation(AnimationObj *man)
 {
 	mSceneMgr->destroyAnimation(man->anim->getName());
 	
@@ -3201,33 +3926,47 @@ void OgreRTCApplication::DestroyAnimation(MyAnimation *man)
 	man->mNode->RemoveObj(man);
 	DestroyNode(man->mNode);
 
-	std::vector<MyAnimation*>::iterator end_it = remove( MyAnimations.begin(), MyAnimations.end(), man );
-	MyAnimations.erase( end_it, MyAnimations.end() );
+	std::vector<AnimationObj*>::iterator end_it = remove( AnimationObjs.begin(), AnimationObjs.end(), man );
+	AnimationObjs.erase( end_it, AnimationObjs.end() );
 }
-void OgreRTCApplication::DestroyQtAnimation(MyAnimation *man)
+
+/**
+*@brief GUIの操作でアニメーションを削除する関数
+* @param man アニメーションオブジェクト
+*/
+void OgreRTCApplication::DestroyQtAnimation(AnimationObj *man)
 {
 	DestroyAnimation(man);
 	DestroyQtNode(man->mNode);
 
-	std::vector<MyAnimation*>::iterator end_it = remove( QtAnimations.begin(), QtAnimations.end(), man );
+	std::vector<AnimationObj*>::iterator end_it = remove( QtAnimations.begin(), QtAnimations.end(), man );
 	QtAnimations.erase( end_it, QtAnimations.end() );
 }
+
+/**
+*@brief アニメーション全削除の関数
+*/
 void OgreRTCApplication::DestroyAllAnimation()
 {
-	for(int i=0;i < MyAnimations.size();i++)
+	for(int i=0;i < AnimationObjs.size();i++)
 	{
-		mSceneMgr->destroyAnimation(MyAnimations[i]->anim->getName());
+		mSceneMgr->destroyAnimation(AnimationObjs[i]->anim->getName());
 		
-		MyAnimations[i]->mNode->RemoveObj(MyAnimations[i]);
-		DestroyNode(MyAnimations[i]->mNode);
+		AnimationObjs[i]->mNode->RemoveObj(AnimationObjs[i]);
+		DestroyNode(AnimationObjs[i]->mNode);
 	}
-	MyAnimations.clear();
+	AnimationObjs.clear();
 }
 
 
-MyLight *OgreRTCApplication::CreateLight(const char* name)
+/**
+*@brief 光源作成の関数
+* @param name 名前
+* @return 光源オブジェクト
+*/
+LightObj *OgreRTCApplication::CreateLight(const char* name)
 {
-	MyLight *ml = new MyLight(name);
+	LightObj *ml = new LightObj(name);
 	
 	ml->light = mSceneMgr->createLight();
 	ml->light->setType(Ogre::Light::LT_POINT);
@@ -3237,28 +3976,39 @@ MyLight *OgreRTCApplication::CreateLight(const char* name)
 	ml->mNode->mNode->setPosition(Ogre::Vector3(0,0,0));
 	ml->mNode->mNode->attachObject(ml->light);
 
-	MyNodes.push_back(ml->mNode);
+	NodeObjs.push_back(ml->mNode);
 	ml->mNode->AddObj(ml);
-	MyLights.push_back(ml);
+	LightObjs.push_back(ml);
 
 	
 
 	return ml;
 }
-MyLight *OgreRTCApplication::CreateQtLight(const char* name)
+
+/**
+*@brief GUIの操作で光源を作成する関数
+* @param name 名前
+* @return 光源オブジェクト
+*/
+LightObj *OgreRTCApplication::CreateQtLight(const char* name)
 {
-	MyLight *ml = CreateLight(name);
+	LightObj *ml = CreateLight(name);
 
 	QtNodes.push_back(ml->mNode);
 	QtLights.push_back(ml);
 	return ml;
 }
-void OgreRTCApplication::CreateQtLight(MyLight *ml)
+
+/**
+*@brief 光源オブジェクトの再生成の関数
+* @param ml 光源オブジェクト
+*/
+void OgreRTCApplication::CreateQtLight(LightObj *ml)
 {
 	ml->light = mSceneMgr->createLight();
 	ml->light->setType(Ogre::Light::LT_POINT);
 
-	MyNode *mn = getNodeByName(ml->mNode->name.c_str());
+	NodeObj *mn = getNodeByName(ml->mNode->name.c_str());
 	if(mn)
 	{
 		ml->mNode = mn;
@@ -3274,10 +4024,15 @@ void OgreRTCApplication::CreateQtLight(MyLight *ml)
 	ml->setColor(ml->red, ml->green, ml->blue);
 	ml->SetVisible(ml->mNode->visi);
 
-	MyLights.push_back(ml);
+	LightObjs.push_back(ml);
 
 }
-void OgreRTCApplication::DestroyLight(MyLight *ml)
+
+/**
+*@brief 光源削除の関数
+* @param ml 光源オブジェクト
+*/
+void OgreRTCApplication::DestroyLight(LightObj *ml)
 {
 	ml->mNode->mNode->detachObject(ml->light);
 	mSceneMgr->destroyLight(ml->light);
@@ -3287,91 +4042,169 @@ void OgreRTCApplication::DestroyLight(MyLight *ml)
 
 
 	
-	std::vector<MyLight*>::iterator end_it = remove( MyLights.begin(), MyLights.end(), ml );
-	MyLights.erase( end_it, MyLights.end() );
+	std::vector<LightObj*>::iterator end_it = remove( LightObjs.begin(), LightObjs.end(), ml );
+	LightObjs.erase( end_it, LightObjs.end() );
 }
-void OgreRTCApplication::DestroyQtLight(MyLight *ml)
+
+/**
+*@brief GUIの操作で光源を削除する関数
+* @param ml 光源オブジェクト
+*/
+void OgreRTCApplication::DestroyQtLight(LightObj *ml)
 {
 	DestroyLight(ml);
 	DestroyQtNode(ml->mNode);
-	std::vector<MyLight*>::iterator end_it = remove( QtLights.begin(), QtLights.end(), ml );
+	std::vector<LightObj*>::iterator end_it = remove( QtLights.begin(), QtLights.end(), ml );
 	QtLights.erase( end_it, QtLights.end() );
 }
+
+/**
+*@brief 全光源削除の関数
+*/
 void OgreRTCApplication::DestroyAllLight()
 {
-	for(int i=0;i < MyLights.size();i++)
+	for(int i=0;i < LightObjs.size();i++)
 	{
-		MyLights[i]->mNode->mNode->detachObject(MyLights[i]->light);
-		mSceneMgr->destroyLight(MyLights[i]->light);
-		MyLights[i]->mNode->RemoveObj(MyLights[i]);
-		DestroyNode(MyLights[i]->mNode);
+		LightObjs[i]->mNode->mNode->detachObject(LightObjs[i]->light);
+		mSceneMgr->destroyLight(LightObjs[i]->light);
+		LightObjs[i]->mNode->RemoveObj(LightObjs[i]);
+		DestroyNode(LightObjs[i]->mNode);
 	}
-	MyLights.clear();
+	LightObjs.clear();
 }
 
-MyLight* OgreRTCApplication::getLightByName(const char* name)
+/**
+*@brief 名前から光源オブジェクトを取得
+* @param name 名前
+* @return 光源オブジェクト
+*/
+LightObj* OgreRTCApplication::getLightByName(const char* name)
 {
-	for(int i=0;i < MyLights.size();i++)
+	for(int i=0;i < LightObjs.size();i++)
 	{
-		if(MyLights[i]->name == name)
+		if(LightObjs[i]->name == name)
 		{
-			return MyLights[i];
-		}
-	}
-	return NULL;
-}
-MyAnimation* OgreRTCApplication::getAnimationByName(const char* name)
-{
-	for(int i=0;i < MyAnimations.size();i++)
-	{
-		if(MyAnimations[i]->name == name)
-		{
-			return MyAnimations[i];
+			return LightObjs[i];
 		}
 	}
 	return NULL;
 }
 
+/**
+*@brief 名前からアニメーションオブジェクトを取得
+* @param name 名前
+* @return アニメーションオブジェクト
+*/
+AnimationObj* OgreRTCApplication::getAnimationByName(const char* name)
+{
+	for(int i=0;i < AnimationObjs.size();i++)
+	{
+		if(AnimationObjs[i]->name == name)
+		{
+			return AnimationObjs[i];
+		}
+	}
+	return NULL;
+}
 
-void OgreRTCApplication::AttachObj(MyLink *obj1, myParticle *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 ボディオブジェクト
+* @param obj2 パーティクルオブジェクト
+*/
+void OgreRTCApplication::AttachObj(LinkObj *obj1, ParticleObj *obj2)
 {
 	AttachObj(obj2, obj2->particleSystem, obj1);
 }
-void OgreRTCApplication::AttachObj(MyLink *obj1, MyLight *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 ボディオブジェクト
+* @param obj2 光源オブジェクト
+*/
+void OgreRTCApplication::AttachObj(LinkObj *obj1, LightObj *obj2)
 {
 	AttachObj(obj2, obj2->light, obj1);
 }
-void OgreRTCApplication::AttachObj(myParticle *obj1, MyLight *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 パーティクルオブジェクト
+* @param obj2 光源オブジェクト
+*/
+void OgreRTCApplication::AttachObj(ParticleObj *obj1, LightObj *obj2)
 {
 	AttachObj(obj2, obj2->light, obj1);
 }
-void OgreRTCApplication::AttachObj(MyLink *obj1, MyLink *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 ボディオブジェクト
+* @param obj2 ボディオブジェクト
+*/
+void OgreRTCApplication::AttachObj(LinkObj *obj1, LinkObj *obj2)
 {
 	AttachObj(obj2, obj2->mEntity, obj1);
 }
-void OgreRTCApplication::AttachObj(myParticle *obj1, myParticle *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 パーティクルオブジェクト
+* @param obj2 パーティクルオブジェクト
+*/
+void OgreRTCApplication::AttachObj(ParticleObj *obj1, ParticleObj *obj2)
 {
 	AttachObj(obj2, obj2->particleSystem, obj1);
 }
-void OgreRTCApplication::AttachObj(MyLight *obj1, MyLight *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 光源オブジェクト
+* @param obj2 光源オブジェクト
+*/
+void OgreRTCApplication::AttachObj(LightObj *obj1, LightObj *obj2)
 {
 	AttachObj(obj2, obj2->light, obj1);
 }
-void OgreRTCApplication::AttachObj(MyAnimation *obj1, MyLink *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 アニメーションオブジェクト
+* @param obj2 ボディオブジェクト
+*/
+void OgreRTCApplication::AttachObj(AnimationObj *obj1, LinkObj *obj2)
 {
 	AttachObj(obj2, obj2->mEntity, obj1);
 }
-void OgreRTCApplication::AttachObj(MyAnimation *obj1, MyLight *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 アニメーションオブジェクト
+* @param obj2 光源オブジェクト
+*/
+void OgreRTCApplication::AttachObj(AnimationObj *obj1, LightObj *obj2)
 {
 	AttachObj(obj2, obj2->light, obj1);
 }
-void OgreRTCApplication::AttachObj(MyAnimation *obj1, myParticle *obj2)
+
+/**
+*@brief ノードの接続の関数
+* @param obj1 アニメーションオブジェクト
+* @param obj2 パーティクルオブジェクト
+*/
+void OgreRTCApplication::AttachObj(AnimationObj *obj1, ParticleObj *obj2)
 {
 	AttachObj(obj2, obj2->particleSystem, obj1);
 }
 
-
-void OgreRTCApplication::AttachObj(MyObject *n1, Ogre::MovableObject *o1,MyObject *n2)
+/**
+*@brief ノードの接続の関数
+* @param n1 ベースオブジェクト
+* @param o1 可動オブジェクト1
+* @param o2 可動オブジェクト2
+*/
+void OgreRTCApplication::AttachObj(ObjectBase *n1, Ogre::MovableObject *o1,ObjectBase *n2)
 {
 	if(n1->mNode != n2->mNode)
 	{
@@ -3387,20 +4220,39 @@ void OgreRTCApplication::AttachObj(MyObject *n1, Ogre::MovableObject *o1,MyObjec
 }
 
 
-
-void OgreRTCApplication::DeatachObj(MyLink *obj1)
+/**
+*@brief ノード分離の関数
+* @param obj1 ボディオブジェクト
+*/
+void OgreRTCApplication::DeatachObj(LinkObj *obj1)
 {
 	DeatachObj(obj1, obj1->mEntity);
 }
-void OgreRTCApplication::DeatachObj(myParticle *obj1)
+
+/**
+*@brief ノード分離の関数
+* @param obj1 パーティクルオブジェクト
+*/
+void OgreRTCApplication::DeatachObj(ParticleObj *obj1)
 {
 	DeatachObj(obj1, obj1->particleSystem);
 }
-void OgreRTCApplication::DeatachObj(MyLight *obj1)
+
+/**
+*@brief ノード分離の関数
+* @param obj1 光源オブジェクト
+*/
+void OgreRTCApplication::DeatachObj(LightObj *obj1)
 {
 	DeatachObj(obj1, obj1->light);
 }
-void OgreRTCApplication::DeatachObj(MyObject *n1, Ogre::MovableObject *o1)
+
+/**
+*@brief ノード分離の関数
+* @param n1 ベースオブジェクト
+* @param o1 可動オブジェクト
+*/
+void OgreRTCApplication::DeatachObj(ObjectBase *n1, Ogre::MovableObject *o1)
 {
 	static int Dn = 0;
 	if(n1->mNode->mobj.size() > 1)
@@ -3409,74 +4261,96 @@ void OgreRTCApplication::DeatachObj(MyObject *n1, Ogre::MovableObject *o1)
 		n1->mNode->RemoveObj(n1);
 		std::stringstream ss;
 		ss << "DeatachObj" << Dn;
-		n1->mNode = new MyNode(ss.str());
+		n1->mNode = new NodeObj(ss.str());
 
 		n1->mNode->mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		n1->mNode->mNode->attachObject(o1);
 		n1->mNode->AddObj(n1);
 
-		MyNodes.push_back(n1->mNode);
+		NodeObjs.push_back(n1->mNode);
 		QtNodes.push_back(n1->mNode);
 	}
 }
 
-MyNode* OgreRTCApplication::getNodeByName(const char* name)
+/**
+*@brief 名前からノードオブジェクトを取得
+* @param name 名前
+* @return ノードオブジェクト
+*/
+NodeObj* OgreRTCApplication::getNodeByName(const char* name)
 {
-	for(int i=0;i < MyNodes.size();i++)
+	for(int i=0;i < NodeObjs.size();i++)
 	{
-		if(MyNodes[i]->name == name)
+		if(NodeObjs[i]->name == name)
 		{
-			return MyNodes[i];
+			return NodeObjs[i];
 		}
 	}
 	return NULL;
 }
 
-void OgreRTCApplication::CreateQtNode(MyNode *mn)
+/**
+*@brief ノードオブジェクトの再生成の関数
+* @param mn ノードオブジェクト
+*/
+void OgreRTCApplication::CreateQtNode(NodeObj *mn)
 {
 	mn->mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	
 }
 
-void OgreRTCApplication::DestroyNode(MyNode *mn)
+/**
+*@brief ノード削除の関数
+* @param mn ノードオブジェクト
+*/
+void OgreRTCApplication::DestroyNode(NodeObj *mn)
 {
 	
 	if(mn->mobj.size() == 0)
 	{
 		mSceneMgr->destroySceneNode(mn->mNode);
-		std::vector<MyNode*>::iterator end_it = remove( MyNodes.begin(), MyNodes.end(), mn );
-		MyNodes.erase( end_it, MyNodes.end() );
+		std::vector<NodeObj*>::iterator end_it = remove( NodeObjs.begin(), NodeObjs.end(), mn );
+		NodeObjs.erase( end_it, NodeObjs.end() );
 	}
 	
 }
 
-void OgreRTCApplication::DestroyQtNode(MyNode *mn)
+/**
+*@brief GUIの操作でノードを削除する関数
+* @param mn ノードオブジェクト
+*/
+void OgreRTCApplication::DestroyQtNode(NodeObj *mn)
 {
 	if(mn->mobj.size() == 0)
 	{
-		std::vector<MyNode*>::iterator end_it = remove( QtNodes.begin(), QtNodes.end(), mn );
+		std::vector<NodeObj*>::iterator end_it = remove( QtNodes.begin(), QtNodes.end(), mn );
 		QtNodes.erase( end_it, QtNodes.end() );
 	}
 	
 }
 
-
+/**
+*@brief 全ノードの削除の関数
+*/
 void OgreRTCApplication::DestroyAllNode()
 {
-	for(int i=0;i < MyNodes.size();i++)
+	for(int i=0;i < NodeObjs.size();i++)
 	{
-		MyNodes[i]->mNode->detachAllObjects();
-		mSceneMgr->destroySceneNode(MyNodes[i]->mNode);
+		NodeObjs[i]->mNode->detachAllObjects();
+		mSceneMgr->destroySceneNode(NodeObjs[i]->mNode);
 	}
-	MyNodes.clear();
+	NodeObjs.clear();
 }
 
-
-void OgreRTCApplication::CreateODEObj(MyLink *obj)
+/**
+*@brief シミュレーションの3Dモデルの作成
+* @param obj ボディオブジェクト
+*/
+void OgreRTCApplication::CreateODEObj(LinkObj *obj)
 {
 	obj->mEntity = mSceneMgr->createEntity(obj->filename);
 	obj->mEntity->setQueryFlags(1<<0);
-	MyNode *mn = getNodeByName(obj->mNode->name.c_str());
+	NodeObj *mn = getNodeByName(obj->mNode->name.c_str());
 	if(mn)
 	{
 		obj->mNode = mn;
@@ -3487,7 +4361,7 @@ void OgreRTCApplication::CreateODEObj(MyLink *obj)
 	}
 	for(int i=0;i < obj->NodeList.size();i++)
 	{
-		MyNode *mnl = getNodeByName(obj->NodeList[i]->name.c_str());
+		NodeObj *mnl = getNodeByName(obj->NodeList[i]->name.c_str());
 		if(mnl)
 		{
 			obj->NodeList[i] = mnl;
@@ -3501,13 +4375,17 @@ void OgreRTCApplication::CreateODEObj(MyLink *obj)
 	
 	
 	
-	MyNodes.push_back(obj->mNode);
+	NodeObjs.push_back(obj->mNode);
 	obj->mNode->AddObj(obj);
 }
 
 
 
-void OgreRTCApplication::DestroyODEObj(MyLink *obj)
+/**
+*@brief シミュレーションの3Dモデルの削除
+* @param obj ボディオブジェクト
+*/
+void OgreRTCApplication::DestroyODEObj(LinkObj *obj)
 {
 	obj->mNode->mNode->detachObject(obj->mEntity);
 	mSceneMgr->destroyEntity(obj->mEntity);
@@ -3517,7 +4395,10 @@ void OgreRTCApplication::DestroyODEObj(MyLink *obj)
 
 }
 
-
+/**
+*@brief ファイル読み込みの関数
+* @param s ファイル名
+*/
 void OgreRTCApplication::save(std::string s)
 {
 	std::ofstream ofs2(s.c_str(), ios_base::out | ios_base::trunc | ios_base::binary );
@@ -3629,6 +4510,13 @@ void OgreRTCApplication::save(std::string s)
 
 	}
 }
+
+
+/**
+*@brief ファイル書き込みの関数
+* @param s ファイル名
+* @return trueで成功、falseで失敗
+*/
 bool OgreRTCApplication::openb(std::string s)
 {
 	std::ifstream ifs( s.c_str() , ios::in | ios::binary );
@@ -3640,11 +4528,11 @@ bool OgreRTCApplication::openb(std::string s)
 	ifs.read( (char*)&NodeNum, sizeof(NodeNum) );
 	for(int i=0;i < NodeNum;i++)
 	{
-		MyNode *mn = new MyNode("");
+		NodeObj *mn = new NodeObj("");
 		mn->openb(ifs);
 		CreateQtNode(mn);
 		QtNodes.push_back(mn);
-		MyNodes.push_back(mn);
+		NodeObjs.push_back(mn);
 	}
 
 	mSim->openb(ifs);
@@ -3654,44 +4542,44 @@ bool OgreRTCApplication::openb(std::string s)
 	ifs.read( (char*)&BodyNum, sizeof(BodyNum) );
 	for(int i=0;i < BodyNum;i++)
 	{
-		MyLink *ml = new MyLink("");
+		LinkObj *ml = new LinkObj("");
 		ml->openb(ifs);
 		CreateQtBody(ml);
 		QtLinks.push_back(ml);
-		MyLinks.push_back(ml);
+		LinkObjs.push_back(ml);
 	}
 
 	int ParticleNum;
 	ifs.read( (char*)&ParticleNum, sizeof(ParticleNum) );
 	for(int i=0;i < ParticleNum;i++)
 	{
-		myParticle *mp = new myParticle("");
+		ParticleObj *mp = new ParticleObj("");
 		mp->openb(ifs);
 		CreateQtParticle(mp);
 		QtParticles.push_back(mp);
-		myParticles.push_back(mp);
+		ParticleObjs.push_back(mp);
 	}
 
 	int ImageNum;
 	ifs.read( (char*)&ImageNum, sizeof(ImageNum) );
 	for(int i=0;i < ImageNum;i++)
 	{
-		MyImageSet *mi = new MyImageSet();
+		ImageSetObj *mi = new ImageSetObj();
 		mi->openb(ifs);
 		CreateQtImage(mi);
 		QtImageSets.push_back(mi);
-		MyImageSets.push_back(mi);
+		ImageSetObjs.push_back(mi);
 	}
 	
 	int GUINum;
 	ifs.read( (char*)&GUINum, sizeof(GUINum) );
 	for(int i=0;i < GUINum;i++)
 	{
-		MyGUI *mg = new MyGUI();
+		GUIObj *mg = new GUIObj();
 		mg->openb(ifs);
 		CreateQtGUI(mg);
 		QtGUIs.push_back(mg);
-		MyGUIs.push_back(mg);
+		GUIObjs.push_back(mg);
 	}
 
 	
@@ -3711,11 +4599,11 @@ bool OgreRTCApplication::openb(std::string s)
 	ifs.read( (char*)&AnimNum, sizeof(AnimNum) );
 	for(int i=0;i < AnimNum;i++)
 	{
-		MyAnimation *man = new MyAnimation("");
+		AnimationObj *man = new AnimationObj("");
 		man->openb(ifs);
 		CreateQtAnimation(man);
 		QtAnimations.push_back(man);
-		MyAnimations.push_back(man);
+		AnimationObjs.push_back(man);
 	}
 
 
@@ -3723,11 +4611,11 @@ bool OgreRTCApplication::openb(std::string s)
 	ifs.read( (char*)&LightNum, sizeof(LightNum) );
 	for(int i=0;i < LightNum;i++)
 	{
-		MyLight *ml = new MyLight("");
+		LightObj *ml = new LightObj("");
 		ml->openb(ifs);
 		CreateQtLight(ml);
 		QtLights.push_back(ml);
-		MyLights.push_back(ml);
+		LightObjs.push_back(ml);
 	}
 
 
@@ -3806,6 +4694,11 @@ bool OgreRTCApplication::openb(std::string s)
 
 	return true;
 }
+
+/**
+*@brief 初期化の関数
+* @return trueで成功、falseで失敗
+*/
 bool OgreRTCApplication::newfile()
 {
 	mSim->DestroyAll();
@@ -3834,6 +4727,10 @@ bool OgreRTCApplication::newfile()
 
 	return true;
 }
+
+/**
+*@brief リセットの関数
+*/
 void OgreRTCApplication::reset()
 {
 	mSim->DestroyAll();
@@ -3933,31 +4830,43 @@ void OgreRTCApplication::reset()
 	}
 }
 
+/**
+*@brief RTCが起動出来たときに呼び出す関数
+*/
 void OgreRTCApplication::SetRTC()
 {
 	RTCFlag = true;
 }
 
+/**
+*@brief カメラをGUIで設定した位置に固定するか設定する関数
+* @param flag trueで固定、falseで固定解除
+*/
 void OgreRTCApplication::SetCameraAutoMoveFlag(bool flag)
 {
 	CameraFlag = flag;
 }
 
 
+/**
+*@brief カーソルがGUI上に乗っているか判定する関数
+* @param px カーソルの位置(X)
+* @param py カーソルの位置(Y)
+*/
 bool OgreRTCApplication::JudgeMouseOnGUI(float px, float py)
 {
 	float ipx = px/windowSizeX;
 	float ipy = py/windowSizeY;
-	for(int i=0;i < MyGUIs.size();i++)
+	for(int i=0;i < GUIObjs.size();i++)
 	{
-		//std::cout << MyGUIs[i]->pos_x << "\t" << MyGUIs[i]->pos_y << std::endl;
-		//std::cout << MyGUIs[i]->size_x << "\t" << MyGUIs[i]->size_y << std::endl;
+		//std::cout << GUIObjs[i]->pos_x << "\t" << GUIObjs[i]->pos_y << std::endl;
+		//std::cout << GUIObjs[i]->size_x << "\t" << GUIObjs[i]->size_y << std::endl;
 		//std::cout << ipx << "\t" << ipy << std::endl;
-		if(MyGUIs[i]->visi)
+		if(GUIObjs[i]->visi)
 		{
-			if(MyGUIs[i]->pos_x < ipx && MyGUIs[i]->pos_y < ipy)
+			if(GUIObjs[i]->pos_x < ipx && GUIObjs[i]->pos_y < ipy)
 			{
-				if(MyGUIs[i]->size_x+MyGUIs[i]->pos_x > ipx && MyGUIs[i]->size_y+MyGUIs[i]->pos_y > ipy)
+				if(GUIObjs[i]->size_x+GUIObjs[i]->pos_x > ipx && GUIObjs[i]->size_y+GUIObjs[i]->pos_y > ipy)
 				{
 					return true;
 			}	}
