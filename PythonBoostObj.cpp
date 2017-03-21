@@ -40,10 +40,19 @@ int PBThread::svc()
 	
 	
 	//gilstate = PyGILState_Ensure();
+	try
+	{
+		test2(fname.c_str());
+	}
 	
-	test2(fname.c_str());
-	
+	catch (const bpy::error_already_set&)
+	{
+		PyErr_Print();
+	}
+	catch (...)
+	{
 
+	}
 	//PyGILState_Release(gilstate);
 
 	fin = true;
@@ -102,11 +111,17 @@ PyObj::~PyObj()
 */
 void PyObj::Script(const char *fname)
 {
-	
-	obj = bpy::exec_file
-		(
-			fname, global_ns , global_ns
-		);
+	try
+	{
+		obj = bpy::exec_file
+			(
+			fname, global_ns, global_ns
+			);
+	}
+	catch (...)
+	{
+
+	}
 	
 }
 
@@ -146,6 +161,10 @@ void PyObj::setFunc(const char *fname)
 	catch(const bpy::error_already_set&)
 	{
 		PyErr_Print();
+	}
+	catch (...)
+	{
+		
 	}
 	PyGILState_Release(gilstate);
 }

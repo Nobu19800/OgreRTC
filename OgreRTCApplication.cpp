@@ -4,7 +4,9 @@
  *
  */
 
+#include <OgreRectangle2D.h>
 #include "OgreRTCApplication.h"
+
 
 #ifdef _WIN32
 #include "UnicodeF.h"
@@ -494,7 +496,7 @@ OgreRTCApplication::OgreRTCApplication(void)
 	CameraFlag = true;
 	
 	
-
+	ShadowEnable = true;
 	
 	
 
@@ -1341,9 +1343,9 @@ bool OgreRTCApplication::mouseReleased( QMouseEvent*  evt )
 * @param scy 拡大率(Y)
 * @param scz 拡大率(Z)
 */
-void CreateML(LinkObj *ml,double scx,double scy,double scz)
+void CreateML(LinkObj *ml, double scx, double scy, double scz, bool ShadowEnable)
 {
-	ml->mEntity->setCastShadows(true);
+	ml->mEntity->setCastShadows(ShadowEnable);
 	ml->mNode->mNode->attachObject(ml->mEntity);
 	Ogre::Vector3 scale = Ogre::Vector3::ZERO;
 	scale.x = scx;
@@ -3228,7 +3230,7 @@ LinkObj *OgreRTCApplication::SetBody(const char* n, const char* s)
 		link->mEntity = mSceneMgr->createEntity(s);
 		link->mEntity->setQueryFlags(1<<0);
 		link->mNode->mNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
-		link->mEntity->setCastShadows(true);
+		link->mEntity->setCastShadows(ShadowEnable);
 		link->mNode->mNode->attachObject(link->mEntity);
 		link->mNode->mNode->scale(Ogre::Vector3(1,1,1));
 		link->mNode->mNode->setPosition(Ogre::Vector3(0,0,0));
@@ -3271,7 +3273,7 @@ void OgreRTCApplication::CreateQtBody(LinkObj *link)
 		
 	}
 	
-	link->mEntity->setCastShadows(true);
+	link->mEntity->setCastShadows(ShadowEnable);
 	link->mNode->mNode->attachObject(link->mEntity);
 	link->mNode->AddObj(link);
 	link->SetScale(link->mNode->scale_x,link->mNode->scale_y,link->mNode->scale_z);
@@ -4368,7 +4370,7 @@ void OgreRTCApplication::CreateODEObj(LinkObj *obj)
 		}
 		
 	}
-	obj->mEntity->setCastShadows(true);
+	obj->mEntity->setCastShadows(ShadowEnable);
 	obj->mNode->mNode->attachObject(obj->mEntity);
 	obj->mNode->mNode->scale(Ogre::Vector3(1,1,1));
 	obj->mNode->mNode->setPosition(Ogre::Vector3(0,0,0));
@@ -4873,4 +4875,10 @@ bool OgreRTCApplication::JudgeMouseOnGUI(float px, float py)
 		}
 	}
 	return false;
+}
+
+
+void OgreRTCApplication::setShadow(bool enable)
+{
+	ShadowEnable = enable;
 }

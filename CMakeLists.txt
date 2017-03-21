@@ -4,18 +4,18 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(thirdparty thirdparty)
 
 
-set(ODE_PATH C:/OgreCEGUILIB/ode-0.12)
-set(CEGUI_PATH C:/OgreCEGUILIB/cegui-0.8.4)
+set(ODE_PATH C:/ode-0.13)
+set(CEGUI_PATH C:/cegui/build/sdk)
 set(srcs AnimationSet.cpp ${thirdparty}/BaseApplication.cpp BodySet.cpp BornSet.cpp CameraSet.cpp DisplayImage.cpp ${thirdparty}/CEGUIFunc.cpp GUISet.cpp GUITextSet.cpp ImageSet.cpp LightSet.cpp mainwindow.cpp AnimationObj.cpp FileStreamFunc.cpp GUIObj.cpp ImageSetObj.cpp LightObj.cpp LinkObj.cpp NodeObj.cpp ODEBodyObj.cpp ODEJointObj.cpp OgreMacro.cpp ParticleObj.cpp PythonBoostObj.cpp QtMacro.cpp SimulationObj.cpp NodeSet.cpp OgreRTCApplication.cpp OgreWidget.cpp OtherSet.cpp ParticleSet.cpp RTCmain.cpp SimBodySet.cpp SimJointSet.cpp SimulationSet.cpp SubWindow.cpp SubWindowSet.cpp ${thirdparty}/UnicodeF.cpp )
 
 
 
-project(OgreRTC)
+project(OgreRTTool_Python27)
 
 set(CMAKE_AUTOMOC ON)
 
 
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/OgreCEGUILIB/OgreSDK_vc10_v1-9-0/CMake" )
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/Ogre3D/build/sdk/CMake" )
 
 
 include_directories(${thirdparty})
@@ -37,6 +37,8 @@ find_package(OpenRTM REQUIRED)
 include_directories(${OPENRTM_INCLUDE_DIRS})
 add_definitions(${OPENRTM_CFLAGS})
 link_directories(${OPENRTM_LIBRARY_DIRS})
+
+
 
 
 find_package(Boost REQUIRED)
@@ -72,7 +74,7 @@ endif (DEFINED OPENRTM_LIBRARIES)
 
 include_directories(${ODE_PATH}/include)
 include_directories(${CEGUI_PATH}/dependencies/include)
-include_directories(${CEGUI_PATH}/cegui/include)
+include_directories(${CEGUI_PATH}/include/cegui-0)
 
 
 add_definitions(-DNOMINMAX)
@@ -108,13 +110,13 @@ qt5_wrap_cpp(moc_SubWindowSet.cpp SubWindowSet.h)
 
 qt5_add_resources(QRC OgreRTC.qrc)
 
-add_executable(OgreRTC ${srcs} ${QRC})
+add_executable(OgreRTTool_Python27 ${srcs} ${QRC} OgreRTC.rc)
 
 
 
-QT5_USE_MODULES(OgreRTC Widgets)
+QT5_USE_MODULES(OgreRTTool_Python27 Widgets)
 
-target_link_libraries(OgreRTC ${OPENRTM_LIBRARIES} ${PYTHON_LIBRARIES} ${OGRE_LIBRARIES} ode CEGUIBase-0 CEGUIOgreRenderer-0 opengl32 glu32 )
+target_link_libraries(OgreRTTool_Python27 ${OPENRTM_LIBRARIES} ${PYTHON_LIBRARIES} ${OGRE_LIBRARIES} ode CEGUIBase-0 CEGUIOgreRenderer-0 opengl32 glu32 )
 
 
 

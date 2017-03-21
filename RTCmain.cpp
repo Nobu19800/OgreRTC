@@ -40,6 +40,7 @@ int main (int argc, char** argv)
 
   MainWindow mainWindow(argc, argv);
   mainWindow.show();
+  //mainWindow.initOgre();
 
   wndSplash.finish(&mainWindow);
 

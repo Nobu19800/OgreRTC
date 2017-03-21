@@ -87,7 +87,7 @@ public:
 	*/
     MainWindow(int argc, char** argv, QWidget *parent = 0);
 	
-
+	void initOgre();
 protected:
 
 signals:
@@ -147,6 +147,7 @@ private slots:
 	*@brief ファイルシステム追加のスロット
 	*/
 	void addFileSystem();
+	
 
 private:
 	QAction *newAct;

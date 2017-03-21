@@ -197,6 +197,10 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
 }
 
+void MainWindow::initOgre()
+{
+	mOgreWidget->initOgre();
+}
 
 /**
 *@brief アクション作成の関数

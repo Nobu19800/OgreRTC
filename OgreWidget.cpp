@@ -29,6 +29,7 @@ QWidget(parent)
 	
 
 	setAttribute(Qt::WA_PaintOnScreen);
+	setAutoFillBackground(true);
 	setAttribute(Qt::WA_NoBackground);
 	setAttribute(Qt::WA_InputMethodEnabled);
 
@@ -68,7 +69,11 @@ void OgreWidget::initOgre()
 	{
 		Ogre::String winHandle;
 #ifdef Q_OS_WIN
-		winHandle = Ogre::StringConverter::toString((long)((HWND)winId()));
+
+		winHandle = Ogre::StringConverter::toString((size_t)((HWND)winId()));
+		
+
+		//winHandle += Ogre::StringConverter::toString((unsigned long)(winId()));
 #else
 		QX11Info info = this->x11Info();
 		winHandle  = Ogre::StringConverter::toString((unsigned long)(info.display()));

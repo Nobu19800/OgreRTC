@@ -691,7 +691,12 @@ public:
 	*@brief 全光源削除の関数
 	*/
 	void DestroyAllLight();
-	
+
+
+	/**
+	*@brief 影の有無を設定
+	*/
+	void setShadow(bool enable);
 
 	
 	/**
@@ -1377,7 +1382,7 @@ public:
 	bool RTCFlag;
 
 	bool CameraFlag;
-
+	bool ShadowEnable;
 	
 
  
